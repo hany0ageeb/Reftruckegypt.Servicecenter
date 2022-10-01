@@ -199,10 +199,16 @@
     <Compile Include="Data\EF\ReftruckDbContextInitializer.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\EntityBase.cs" />
+    <Compile Include="Models\ExternalAutoRepairShop.cs" />
+    <Compile Include="Models\ExternalRepairBill.cs" />
     <Compile Include="Models\FuelCard.cs" />
+    <Compile Include="Models\FuelConsumption.cs" />
     <Compile Include="Models\FuelType.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Period.cs" />
+    <Compile Include="Models\SparePart.cs" />
+    <Compile Include="Models\Uom.cs" />
+    <Compile Include="Models\UomConversion.cs" />
     <Compile Include="Models\Vehicel.cs" />
     <Compile Include="Models\VehicelLicense.cs" />
     <Compile Include="Models\VehicelOvallState.cs" />

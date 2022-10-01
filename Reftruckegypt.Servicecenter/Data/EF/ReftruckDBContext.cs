@@ -22,7 +22,6 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-           
             // ... location
             modelBuilder.Entity<Location>().Map(m =>
             {
@@ -319,7 +318,162 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<VehicleViolation>()
                 .Property(e => e.Notes)
                 .HasMaxLength(500);
-
+            // .... FuelConsumption
+            modelBuilder
+                .Entity<FuelConsumption>()
+                .Map(
+                    m =>{
+                        m.MapInheritedProperties();
+                        m.ToTable("FuelConsumptions");
+                });
+            modelBuilder
+                .Entity<FuelConsumption>()
+                .HasRequired(e => e.Vehicle)
+                .WithMany()
+                .HasForeignKey(e => e.VehicleId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<FuelConsumption>()
+                .HasRequired(e => e.FuelCard)
+                .WithMany()
+                .HasForeignKey(e => e.FuelCardId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<FuelConsumption>()
+                .HasRequired(e => e.Period)
+                .WithMany()
+                .HasForeignKey(e => e.PeriodId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<FuelConsumption>()
+                .Property(e => e.Notes)
+                .HasMaxLength(500);
+            // .... ExternalAutoRepairShop
+            modelBuilder
+                .Entity<ExternalAutoRepairShop>()
+                .Map(m => {
+                    m.MapInheritedProperties();
+                    m.ToTable("ExternalAutoRepairShops"); 
+                });
+            modelBuilder
+                .Entity<ExternalAutoRepairShop>()
+                .HasIndex(e => e.Name)
+                .IsUnique(true)
+                .HasName("IDX_UNQ_SHOP_NAME");
+            modelBuilder
+                .Entity<ExternalAutoRepairShop>()
+                .Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(250);
+            modelBuilder
+                .Entity<ExternalAutoRepairShop>()
+                .Property(e => e.Address)
+                .HasMaxLength(500);
+            modelBuilder
+                .Entity<ExternalAutoRepairShop>()
+                .Property(e => e.Phone)
+                .HasMaxLength(15);
+            // ... ExternalRepairBill
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("ExternalRepairBills");
+                });
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .HasRequired(e => e.Vehicle)
+                .WithMany()
+                .HasForeignKey(e => e.VehicleId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .HasRequired(e => e.ExternalAutoRepairShop)
+                .WithMany()
+                .HasForeignKey(e => e.ExternalAutoRepairShopId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .HasRequired(e => e.Period)
+                .WithMany()
+                .HasForeignKey(e => e.PeriodId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .Property(e => e.Repairs)
+                .IsRequired()
+                .HasMaxLength(1000);
+            // Uom ...
+            modelBuilder
+                .Entity<Uom>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("Uoms");
+                });
+            modelBuilder
+                .Entity<Uom>()
+                .HasIndex(e => e.Code)
+                .IsUnique(true)
+                .HasName("IDX_UNQ_UOM_CODE");
+            modelBuilder
+                .Entity<Uom>()
+                .Property(e => e.Code)
+                .IsRequired()
+                .HasMaxLength(6);
+            modelBuilder
+                .Entity<Uom>()
+                .Property(e => e.Name)
+                .HasMaxLength(250);
+            // SparePart ....
+            modelBuilder
+                .Entity<SparePart>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("SpareParts");
+                });
+            modelBuilder
+                .Entity<SparePart>()
+                .HasIndex(e => e.Code)
+                .IsUnique(true)
+                .HasName("IDX_UNQ_PART_CODE");
+            modelBuilder
+                .Entity<SparePart>()
+                .Property(e => e.Code)
+                .IsRequired()
+                .HasMaxLength(50);
+            modelBuilder
+                .Entity<SparePart>()
+                .Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(500);
+            modelBuilder
+                .Entity<SparePart>()
+                .HasRequired(e => e.PrimaryUom)
+                .WithMany()
+                .HasForeignKey(e => e.PrimaryUomId)
+                .WillCascadeOnDelete(false);
+            // UomConversion ...
+            modelBuilder
+                .Entity<UomConversion>()
+                .HasRequired(e => e.FromUom)
+                .WithMany()
+                .HasForeignKey(e => e.ToUomId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<UomConversion>()
+                .HasRequired(e => e.ToUom)
+                .WithMany()
+                .HasForeignKey(e => e.ToUomId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<UomConversion>()
+                .HasOptional(e => e.SparePart)
+                .WithMany()
+                .HasForeignKey(e => e.SparePartId)
+                .WillCascadeOnDelete(false);
         }
         public DbSet<Location> Locations { get; set; }
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
@@ -330,5 +484,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         public DbSet<VehicelLicense> VehicelLicenses { get; set; }
         public DbSet<Vehicle> Vehicels { get; set; }
         public DbSet<Driver> Drivers { get; set; }
+        public DbSet<ViolationType> ViolationTypes { get; set; }
+        public DbSet<VehicleViolation> VehicleViolations { get; set; }
+        public DbSet<Uom> Uoms { get; set; }
+        public DbSet<SparePart> SpareParts { get; set; }
+        public DbSet<UomConversion> UomConversions { get; set; }
+        public DbSet<ExternalAutoRepairShop> ExternalAutoRepairShops { get; set; }
+        public DbSet<ExternalRepairBill> ExternalRepairBills { get; set; }
     }
 }
