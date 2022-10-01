@@ -193,8 +193,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Abstractions\IRepository.cs" />
+    <Compile Include="Data\Abstractions\IUnitOfWork.cs" />
     <Compile Include="Data\EF\ReftruckDBContext.cs" />
+    <Compile Include="Data\EF\ReftruckDbContextInitializer.cs" />
+    <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\EntityBase.cs" />
+    <Compile Include="Models\FuelCard.cs" />
+    <Compile Include="Models\FuelType.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Period.cs" />
+    <Compile Include="Models\Vehicel.cs" />
+    <Compile Include="Models\VehicelLicense.cs" />
+    <Compile Include="Models\VehicelOvallState.cs" />
+    <Compile Include="Models\VehicleCategory.cs" />
+    <Compile Include="Models\VehicleModel.cs" />
+    <Compile Include="Models\VehicleViolation.cs" />
+    <Compile Include="Models\ViolationType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -206,7 +221,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="appsettings.json" />
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -217,13 +234,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Abstractions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

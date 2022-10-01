@@ -21,7 +21,12 @@ namespace Reftruckegypt.Servicecenter
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run();
+            //Application.Run();
+            using(var context = new ReftruckDbContext(Configuration.GetConnectionString("ReftruckDBDevConnection")))
+            {
+                var locations = context.Locations.ToList();
+                MessageBox.Show(locations[0].Name);
+            }
         }
         static Program()
         {
