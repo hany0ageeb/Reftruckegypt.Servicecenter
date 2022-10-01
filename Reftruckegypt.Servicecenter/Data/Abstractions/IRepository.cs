@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace Reftruckegypt.Servicecenter.Data.Abstractions
 {
     public interface IRepository<TEntity, TKey>
+        where TEntity : Models.EntityBase
     {
         TEntity Find(TKey key);
         IEnumerable<TEntity> Find();

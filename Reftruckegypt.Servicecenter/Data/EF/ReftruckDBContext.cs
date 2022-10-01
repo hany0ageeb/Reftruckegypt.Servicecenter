@@ -1,8 +1,5 @@
-﻿using System;
-using Reftruckegypt.Servicecenter.Models;
-using System.Collections.Generic;
+﻿using Reftruckegypt.Servicecenter.Models;
 using System.Data.Entity;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -404,6 +401,18 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Property(e => e.Repairs)
                 .IsRequired()
                 .HasMaxLength(1000);
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .Property(e => e.SupplierBillNumber)
+                .HasMaxLength(50);
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .Property(e => e.Number)
+                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .Property(e => e.BillImageFilePath)
+                .HasMaxLength(1000);
             // Uom ...
             modelBuilder
                 .Entity<Uom>()
@@ -474,6 +483,154 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .WithMany()
                 .HasForeignKey(e => e.SparePartId)
                 .WillCascadeOnDelete(false);
+            // SparePartPriceList
+            modelBuilder
+                .Entity<SparePartsPriceList>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("SparePartsPriceLists");
+                });
+            modelBuilder
+                .Entity<SparePartsPriceList>()
+                .Property(e => e.Number)
+                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            modelBuilder
+                .Entity<SparePartsPriceList>()
+                .HasRequired(e => e.Period)
+                .WithOptional()
+                .WillCascadeOnDelete(true);
+            modelBuilder
+                .Entity<SparePartsPriceList>()
+                .HasMany(e => e.Lines)
+                .WithRequired(e => e.SparePartsPriceList)
+                .WillCascadeOnDelete(true);
+            // SparePartPriceList
+            modelBuilder
+                .Entity<SparePartPriceListLine>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("SparePartPriceListLines");
+                });
+            modelBuilder
+                .Entity<SparePartPriceListLine>()
+                .HasRequired(e => e.SparePart)
+                .WithMany()
+                .HasForeignKey(e => e.SparePartId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<SparePartPriceListLine>()
+                .HasRequired(e => e.Uom)
+                .WithMany()
+                .HasForeignKey(e => e.UomId)
+                .WillCascadeOnDelete(false);
+            // SparePartsBill
+            modelBuilder
+                .Entity<SparePartsBill>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("SparePartsBills");
+                });
+            modelBuilder
+                .Entity<SparePartsBill>()
+                .HasRequired(e => e.Vehicle)
+                .WithMany()
+                .HasForeignKey(e => e.VehicleId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<SparePartsBill>()
+                .HasRequired(e => e.Period)
+                .WithMany()
+                .HasForeignKey(e => e.PeriodId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<SparePartsBill>()
+                .HasMany(e => e.Lines)
+                .WithRequired(e=>e.SparePartsBill)
+                .WillCascadeOnDelete(true);
+            modelBuilder
+                .Entity<SparePartsBill>()
+                .Property(e => e.Number)
+                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            modelBuilder
+                .Entity<SparePartsBill>()
+                .Property(e => e.Repairs)
+                .HasMaxLength(500);
+            // SparePartsBillLine
+            modelBuilder
+                .Entity<SparePartsBillLine>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("SparePartsBillLines");
+                });
+            modelBuilder
+                .Entity<SparePartsBillLine>()
+                .HasRequired(e => e.SparePart)
+                .WithMany()
+                .HasForeignKey(e => e.SparePartId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<SparePartsBillLine>()
+                .HasRequired(e => e.Uom)
+                .WithMany()
+                .HasForeignKey(e => e.UomId)
+                .WillCascadeOnDelete(false);
+            // VehicleKilometerReading
+            modelBuilder
+                .Entity<VehicleKilometerReading>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("VehicleKilometerReadings");
+                });
+            modelBuilder
+                .Entity<VehicleKilometerReading>()
+                .HasRequired(e => e.Vehicle)
+                .WithMany()
+                .HasForeignKey(e => e.VehicleId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<VehicleKilometerReading>()
+                .HasRequired(e => e.Period)
+                .WithMany()
+                .HasForeignKey(e => e.PeriodId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<VehicleKilometerReading>()
+                .Property(e => e.Notes)
+                .HasMaxLength(500);
+            // VehicleStateChange
+            modelBuilder
+               .Entity<VehicleStateChange>()
+               .Map(m =>
+               {
+                   m.MapInheritedProperties();
+                   m.ToTable("VehicleStateChanges");
+               });
+            modelBuilder
+                .Entity<VehicleStateChange>()
+                .HasRequired(e => e.Vehicle)
+                .WithMany()
+                .HasForeignKey(e => e.VehicleId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<VehicleStateChange>()
+                .HasRequired(e => e.Period)
+                .WithMany()
+                .HasForeignKey(e => e.PeriodId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<VehicleStateChange>()
+                .Property(e => e.State)
+                .IsRequired()
+                .HasMaxLength(50);
+            modelBuilder
+                .Entity<VehicleStateChange>()
+                .Property(e => e.Notes)
+                .HasMaxLength(500);
         }
         public DbSet<Location> Locations { get; set; }
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
@@ -491,5 +648,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         public DbSet<UomConversion> UomConversions { get; set; }
         public DbSet<ExternalAutoRepairShop> ExternalAutoRepairShops { get; set; }
         public DbSet<ExternalRepairBill> ExternalRepairBills { get; set; }
+        public DbSet<SparePartsBill> SparePartsBills { get; set; }
+        public DbSet<Period> Periods { get; set; }
+        public DbSet<FuelConsumption> FuelConsumptions { get; set; }
+        public DbSet<SparePartsPriceList> SparePartsPriceLists { get; set; }
+        public DbSet<VehicleKilometerReading> VehicleKilometerReadings { get; set; }
+        public DbSet<VehicleStateChange> VehicleStateChanges { get; set; }
     }
 }
