@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using Reftruckegypt.Servicecenter.Data.EF;
+using Reftruckegypt.Servicecenter.Data.Abstractions;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -45,6 +46,8 @@ namespace Reftruckegypt.Servicecenter
             {
                 return new ReftruckDbContext(Configuration.GetConnectionString("ReftruckDBDevConnection"));
             });
+            //
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             //
         }
         public static IServiceProvider ServiceProvider { get; private set; }

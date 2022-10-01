@@ -193,12 +193,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Abstractions\IDriverRepository.cs" />
+    <Compile Include="Data\Abstractions\IExternalAutoRepairShop.cs" />
+    <Compile Include="Data\Abstractions\IExternalRepairBillRepository.cs" />
+    <Compile Include="Data\Abstractions\IFuelCardRepository.cs" />
+    <Compile Include="Data\Abstractions\IFuelConsumptionRepository.cs" />
+    <Compile Include="Data\Abstractions\IFuelTypeRepository.cs" />
+    <Compile Include="Data\Abstractions\ILocationRepository.cs" />
+    <Compile Include="Data\Abstractions\IPeriodReposiory.cs" />
     <Compile Include="Data\Abstractions\IRepository.cs" />
+    <Compile Include="Data\Abstractions\ISparePartRepository.cs" />
+    <Compile Include="Data\Abstractions\ISparePartsBillRepository.cs" />
+    <Compile Include="Data\Abstractions\ISparePartsPriceListRepository.cs" />
     <Compile Include="Data\Abstractions\IUnitOfWork.cs" />
+    <Compile Include="Data\Abstractions\IUomRepository.cs" />
+    <Compile Include="Data\Abstractions\IVehicleCategoryRepository.cs" />
+    <Compile Include="Data\Abstractions\IVehicleKilometerReadingRepository.cs" />
+    <Compile Include="Data\Abstractions\IVehicleModelRepository.cs" />
+    <Compile Include="Data\Abstractions\IVehicleRepository.cs" />
+    <Compile Include="Data\Abstractions\IVehicleStateChangeRepository.cs" />
+    <Compile Include="Data\Abstractions\IVehicleViolationRepository.cs" />
+    <Compile Include="Data\Abstractions\IViolationTypeRepository.cs" />
+    <Compile Include="Data\EF\DriverRepository.cs" />
+    <Compile Include="Data\EF\ExternalAutoRepairShopRepository.cs" />
+    <Compile Include="Data\EF\ExternalRepairBillRepository.cs" />
+    <Compile Include="Data\EF\FuelCardRepository.cs" />
+    <Compile Include="Data\EF\FuelConsumptionRepository.cs" />
+    <Compile Include="Data\EF\FuelTypeRepository.cs" />
+    <Compile Include="Data\EF\LocationRepository.cs" />
+    <Compile Include="Data\EF\PeriodRepository.cs" />
     <Compile Include="Data\EF\ReftruckDBContext.cs" />
     <Compile Include="Data\EF\ReftruckDbContextInitializer.cs" />
     <Compile Include="Data\EF\Repository.cs" />
+    <Compile Include="Data\EF\SparePartRepository.cs" />
+    <Compile Include="Data\EF\SparePartsBillRepository.cs" />
     <Compile Include="Data\EF\UnitOfWork.cs" />
+    <Compile Include="Data\EF\UomRepository.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\ExternalAutoRepairShop.cs" />
@@ -215,6 +245,9 @@
     <Compile Include="Models\SparePartsPriceList.cs" />
     <Compile Include="Models\Uom.cs" />
     <Compile Include="Models\UomConversion.cs" />
+    <Compile Include="Models\Validation\IValidator.cs" />
+    <Compile Include="Models\Validation\LocationValidator.cs" />
+    <Compile Include="Models\Validation\ModelState.cs" />
     <Compile Include="Models\Vehicel.cs" />
     <Compile Include="Models\VehicelLicense.cs" />
     <Compile Include="Models\VehicelOvallState.cs" />
@@ -226,6 +259,11 @@
     <Compile Include="Models\ViolationType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationErrors.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationErrors.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +279,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ValidationErrors.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationErrors.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
