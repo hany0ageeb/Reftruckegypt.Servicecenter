@@ -10,9 +10,12 @@ namespace Reftruckegypt.Servicecenter.Models
         [Range(1, int.MaxValue)]
         public int Count { get; set; } = 1;
         public virtual Period Period { get; set; }
+        public DateTime ViolationDate { get; set; } = DateTime.Now;
         public Guid PeriodId { get; set; }
         public virtual ViolationType ViolationType { get; set; }
         public Guid ViolationTypeId { get; set; }
         public string Notes { get; set; }
+
+        public const int MaxNotesLength = 500;
     }
 }

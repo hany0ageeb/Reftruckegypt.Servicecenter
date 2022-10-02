@@ -18,5 +18,9 @@ namespace Reftruckegypt.Servicecenter.Models
         public virtual Period Period { get; set; }
         public Guid PeriodId { get; set; }
         public string BillImageFilePath { get; set; }
+
+        public const int MaxSupplierBillNumberLength = 50;
+        public const int MaxRepairsLength = 1500;
+        public const int MaxBillImageFilePathLength = 1000;
     }
 }

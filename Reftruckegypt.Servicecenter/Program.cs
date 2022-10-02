@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using Reftruckegypt.Servicecenter.Data.EF;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
+using Reftruckegypt.Servicecenter.Models.Validation;
+using Reftruckegypt.Servicecenter.Models;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -42,13 +44,33 @@ namespace Reftruckegypt.Servicecenter
         }
         private static void ConfigureServices(IServiceCollection services)
         {
+            // DbContext ...
             services.AddTransient(typeof(ReftruckDbContext), (serviceProvider) =>
             {
                 return new ReftruckDbContext(Configuration.GetConnectionString("ReftruckDBDevConnection"));
             });
-            //
+            // Data ....
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            //
+            services.AddTransient<IVehicleCategoryRepository, VehicleCategoryRepository>();
+            // Validators .....
+            services.AddSingleton<IValidator<Driver>,DriverValidator>();
+            services.AddSingleton<IValidator<ExternalAutoRepairShop>, ExternalAutoRepairShopValidator>();
+            services.AddSingleton<IValidator<ExternalRepairBill>, ExternalRepairBillValidator>();
+            services.AddSingleton<IValidator<FuelCard>, FuelCardValidator>();
+            services.AddSingleton<IValidator<FuelConsumption>, FuelConsumptionValidator>();
+            services.AddSingleton<IValidator<FuelType>, FuelTypeValidator>();
+            services.AddSingleton<IValidator<Location>, LocationValidator>();
+            services.AddSingleton<IValidator<Period>, PeriodValidator>();
+            services.AddSingleton<IValidator<Uom>, UomValidator>();
+            services.AddSingleton<IValidator<VehicleCategory>, VehicleCategoryValidator>();
+            services.AddSingleton<IValidator<VehicleKilometerReading>, VehicleKilometerReadingValidator>();
+            services.AddSingleton<IValidator<VehicleModel>, VehicleModelValidator>();
+            services.AddSingleton<IValidator<VehicleStateChange>, VehicleStateChangeValidator>();
+            services.AddSingleton<IValidator<VehicleViolation>, VehicleViolationValidator>();
+            services.AddSingleton<IValidator<ViolationType>, ViolationTypeValidator>();
+            services.AddSingleton<IValidator<SparePart>, SparePartValidator>();
+            // ....
+
         }
         public static IServiceProvider ServiceProvider { get; private set; }
         public static IConfiguration Configuration { get; private set; }

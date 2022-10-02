@@ -7,7 +7,11 @@ namespace Reftruckegypt.Servicecenter.Models
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
-        public virtual ICollection<ExternalRepairBill> ExternalRepairBills { get; set; } = new HashSet<ExternalRepairBill>();
         public bool IsEnabled { get; set; } = true;
+        public virtual ICollection<ExternalRepairBill> ExternalRepairBills { get; set; } = new HashSet<ExternalRepairBill>();
+
+        public const int MaxNameLength = 250;
+        public const int MaxAddressLength = 500;
+        public const int MaxPhoneLength = 15;
     }
 }

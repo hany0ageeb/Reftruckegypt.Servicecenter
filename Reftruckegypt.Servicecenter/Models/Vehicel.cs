@@ -30,5 +30,10 @@ namespace Reftruckegypt.Servicecenter.Models
     {
         public const string Broken = "Broken";
         public const string Working = "Working";
+
+        public static bool IsValidState(string state)
+        {
+            return state == Broken || state == Working;
+        }
     }
 }

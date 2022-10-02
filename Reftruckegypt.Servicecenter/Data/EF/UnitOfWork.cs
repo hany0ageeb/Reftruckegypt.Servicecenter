@@ -2,6 +2,30 @@
 
 namespace Reftruckegypt.Servicecenter.Data.EF
 {
+    public class VehicleKilometerReadingRepository : Repository<Models.VehicleKilometerReading, System.Guid>, IVehicleKilometerReadingRepository
+    {
+        public VehicleKilometerReadingRepository(ReftruckDbContext context)
+            : base(context)
+        {
+
+        }
+    }
+    public class SparePartsPriceListRepository : Repository<Models.SparePartsPriceList, System.Guid>, ISparePartsPriceListRepository
+    {
+        public SparePartsPriceListRepository(ReftruckDbContext context)
+            : base(context)
+        {
+
+        }
+    }
+    public class VehicleStateChangeRepository : Repository<Models.VehicleStateChange, System.Guid>, IVehicleStateChangeRepository
+    {
+        public VehicleStateChangeRepository(ReftruckDbContext context)
+            : base(context)
+        {
+
+        }
+    }
     public class UnitOfWork : IUnitOfWork
     {
         private bool _isDisposed = false;
@@ -20,6 +44,14 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             SparePartRepository = new SparePartRepository(context);
             UomRepository = new UomRepository(context);
             SparePartsBillRepository = new SparePartsBillRepository(context);
+            VehicleCategoryRepository = new VehicleCategoryRepository(context);
+            VehicleModelRepository = new VehicleModelRepository(context);
+            ViolationTypeRepository = new ViolationTypeRepository(context);
+            VehicleViolationRepository = new VehicleViolationRepository(context);
+            VehicleRepository = new VehicleRepository(context);
+            VehicleKilometerReadingRepository = new VehicleKilometerReadingRepository(context);
+            SparePartsPriceListRepository = new SparePartsPriceListRepository(context);
+            VehicleStateChangeRepository = new VehicleStateChangeRepository(context);
         }
 
         public IDriverRepository DriverRepository { get; private set; }
@@ -44,21 +76,21 @@ namespace Reftruckegypt.Servicecenter.Data.EF
 
         public ISparePartsBillRepository SparePartsBillRepository { get; private set; }
 
-        public ISparePartsPriceListRepository SparePartsPriceListRepository => throw new System.NotImplementedException();
+        public ISparePartsPriceListRepository SparePartsPriceListRepository { get; private set; }
 
-        public IVehicleRepository VehicleRepository => throw new System.NotImplementedException();
+        public IVehicleRepository VehicleRepository { get; private set; }
 
-        public IVehicleCategoryRepository VehicleCategoryRepository => throw new System.NotImplementedException();
+        public IVehicleCategoryRepository VehicleCategoryRepository { get; private set; }
 
-        public IVehicleModelRepository VehicleModelRepository => throw new System.NotImplementedException();
+        public IVehicleModelRepository VehicleModelRepository { get; private set; }
 
-        public IVehicleKilometerReadingRepository VehicleKilometerReadingRepository => throw new System.NotImplementedException();
+        public IVehicleKilometerReadingRepository VehicleKilometerReadingRepository { get; private set; }
 
-        public IViolationTypeRepository ViolationTypeRepository => throw new System.NotImplementedException();
+        public IViolationTypeRepository ViolationTypeRepository { get; private set; }
 
-        public IVehicleViolationRepository VehicleViolationRepository => throw new System.NotImplementedException();
+        public IVehicleViolationRepository VehicleViolationRepository { get; private set; }
 
-        public IVehicleStateChangeRepository VehicleStateChangeRepository => throw new System.NotImplementedException();
+        public IVehicleStateChangeRepository VehicleStateChangeRepository { get; private set; }
 
         public int Complete()
         {

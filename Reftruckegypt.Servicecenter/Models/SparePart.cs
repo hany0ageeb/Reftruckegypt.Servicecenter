@@ -9,5 +9,8 @@ namespace Reftruckegypt.Servicecenter.Models
         public Uom PrimaryUom { get; set; }
         public Guid PrimaryUomId { get; set; }
         public bool IsEnabled { get; set; } = true;
+
+        public const int MaxSparePartCodeLength = 100;
+        public const int MaxSparePartNameLength = 500;
     }
 }

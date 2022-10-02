@@ -117,7 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EmptyLocationName" xml:space="preserve">
-    <value>Location Name Field is required</value>
+  <data name="InvalidAmount" xml:space="preserve">
+    <value>{0} is invalid. should be greater than or equal to zero.</value>
+  </data>
+  <data name="InvalidKilometerReading" xml:space="preserve">
+    <value>{0} is invalid kilometer reading. should be greater than or equal to zero.</value>
+  </data>
+  <data name="InvalidPeriodStateValue" xml:space="preserve">
+    <value>{0} is invalid period state. should be {1} or {2}.</value>
+  </data>
+  <data name="InvalidQuantity" xml:space="preserve">
+    <value>{0} is invalid. it should be greater than zero.</value>
+  </data>
+  <data name="InvalidVehicleState" xml:space="preserve">
+    <value>{0} is invalid Vehicle State. Should be either {1} or {2}</value>
+  </data>
+  <data name="InvalidViolationsCount" xml:space="preserve">
+    <value>{0} is invalid violations count. it should be greater than or equal to zero.</value>
+  </data>
+  <data name="RequiredField" xml:space="preserve">
+    <value>{0} Field is required</value>
+  </data>
+  <data name="TooLongFieldValue" xml:space="preserve">
+    <value>{0} Field Should not be longer than {1} characters.</value>
   </data>
 </root>

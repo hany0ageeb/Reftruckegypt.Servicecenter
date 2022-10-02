@@ -61,11 +61,74 @@ namespace Reftruckegypt.Servicecenter {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Location Name Field is required.
+        ///   Looks up a localized string similar to {0} is invalid. should be greater than or equal to zero..
         /// </summary>
-        internal static string EmptyLocationName {
+        internal static string InvalidAmount {
             get {
-                return ResourceManager.GetString("EmptyLocationName", resourceCulture);
+                return ResourceManager.GetString("InvalidAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is invalid kilometer reading. should be greater than or equal to zero..
+        /// </summary>
+        internal static string InvalidKilometerReading {
+            get {
+                return ResourceManager.GetString("InvalidKilometerReading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is invalid period state. should be {1} or {2}..
+        /// </summary>
+        internal static string InvalidPeriodStateValue {
+            get {
+                return ResourceManager.GetString("InvalidPeriodStateValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is invalid. it should be greater than zero..
+        /// </summary>
+        internal static string InvalidQuantity {
+            get {
+                return ResourceManager.GetString("InvalidQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is invalid Vehicle State. Should be either {1} or {2}.
+        /// </summary>
+        internal static string InvalidVehicleState {
+            get {
+                return ResourceManager.GetString("InvalidVehicleState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is invalid violations count. it should be greater than or equal to zero..
+        /// </summary>
+        internal static string InvalidViolationsCount {
+            get {
+                return ResourceManager.GetString("InvalidViolationsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Field is required.
+        /// </summary>
+        internal static string RequiredField {
+            get {
+                return ResourceManager.GetString("RequiredField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Field Should not be longer than {1} characters..
+        /// </summary>
+        internal static string TooLongFieldValue {
+            get {
+                return ResourceManager.GetString("TooLongFieldValue", resourceCulture);
             }
         }
     }

@@ -13,5 +13,7 @@ namespace Reftruckegypt.Servicecenter.Models
         public string Notes { get; set; }
         public Guid VehicleId { get; set; }
         public Guid PeriodId { get; set; }
+
+        public const int VehicleKilometerReadingNotesMaxLength = 500;
     }
 }

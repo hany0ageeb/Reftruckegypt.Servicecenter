@@ -54,11 +54,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<VehicleCategory>()
                 .Property(e => e.Name)
                 .IsRequired()
-                .HasMaxLength(250);
+                .HasMaxLength(VehicleCategory.MaxVehicleCategoryNameLength);
             modelBuilder
                 .Entity<VehicleCategory>()
                 .Property(e => e.Description)
-                .HasMaxLength(500);
+                .HasMaxLength(VehicleCategory.MaxVehicleCategoryDescriptionLength);
             // .... FuelType
             modelBuilder.Entity<FuelType>().Map(m =>
             {
@@ -73,12 +73,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<FuelType>()
                 .Property(e => e.Name)
-                .HasMaxLength(250)
+                .HasMaxLength(FuelType.MaxFuelTypeNameLength)
                 .IsRequired();
             modelBuilder
                 .Entity<FuelType>()
                 .Property(e => e.Description)
-                .HasMaxLength(500);
+                .HasMaxLength(FuelType.MaxFuelTypeDescriptionLength);
             // ..... VehicleModel
             modelBuilder.Entity<VehicleModel>().Map(m =>
             {
@@ -94,11 +94,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<VehicleModel>()
                 .Property(e => e.Name)
                 .IsRequired()
-                .HasMaxLength(250);
+                .HasMaxLength(VehicleModel.NameMaxLength);
             modelBuilder
                 .Entity<VehicleModel>()
                 .Property(e => e.Description)
-                .HasMaxLength(500);
+                .HasMaxLength(VehicleModel.DescriptionMaxLength);
             modelBuilder
                 .Entity<VehicleModel>()
                 .HasOptional(e => e.DefaultFuelType)
@@ -174,12 +174,16 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<FuelCard>()
                 .Property(e => e.Number)
                 .IsRequired()
-                .HasMaxLength(10);
+                .HasMaxLength(FuelCard.MaxFuelCardNumberLength);
             modelBuilder
                 .Entity<FuelCard>()
                 .Property(e => e.Name)
                 .IsRequired()
-                .HasMaxLength(250);
+                .HasMaxLength(FuelCard.MaxFuelCardNameLength);
+            modelBuilder
+                .Entity<FuelCard>()
+                .Property(e => e.Registration)
+                .HasMaxLength(FuelCard.MaxFuelCardRegistrationLength;
             modelBuilder
                 .Entity<FuelCard>()
                 .HasRequired(e => e.Vehicel)
@@ -244,11 +248,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<ViolationType>()
                 .Property(e => e.Name)
                 .IsRequired()
-                .HasMaxLength(250);
+                .HasMaxLength(ViolationType.MaxNameLength);
             modelBuilder
                 .Entity<ViolationType>()
                 .Property(e => e.Description)
-                .HasMaxLength(500);
+                .HasMaxLength(ViolationType.MaxDescriptionLength);
             // ... Driver
             modelBuilder
                 .Entity<Driver>()
@@ -269,6 +273,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<Driver>()
                 .HasIndex(e => e.LicenseNumber)
                 .HasName("IDX_DRV_LICENS_NUM");
+            modelBuilder
+                .Entity<Driver>()
+                .Property(e => e.TrafficDepartmentName)
+                .HasMaxLength(250);
+
             // ... Period
             modelBuilder
                 .Entity<Period>()
@@ -285,12 +294,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<Period>()
                 .Property(e => e.Name)
                 .IsRequired()
-                .HasMaxLength(250);
+                .HasMaxLength(Period.MaxPeriodNameLength);
             modelBuilder
                 .Entity<Period>()
                 .Property(e => e.State)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(Period.MaxPeriodStateLength);
             // ... Violation
             modelBuilder
                 .Entity<VehicleViolation>()
@@ -314,7 +323,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<VehicleViolation>()
                 .Property(e => e.Notes)
-                .HasMaxLength(500);
+                .HasMaxLength(VehicleViolation.MaxNotesLength);
             // .... FuelConsumption
             modelBuilder
                 .Entity<FuelConsumption>()
@@ -344,7 +353,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<FuelConsumption>()
                 .Property(e => e.Notes)
-                .HasMaxLength(500);
+                .HasMaxLength(FuelConsumption.MaxFuelConsumptionNotesLength);
             // .... ExternalAutoRepairShop
             modelBuilder
                 .Entity<ExternalAutoRepairShop>()
@@ -361,15 +370,15 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<ExternalAutoRepairShop>()
                 .Property(e => e.Name)
                 .IsRequired()
-                .HasMaxLength(250);
+                .HasMaxLength(ExternalAutoRepairShop.MaxNameLength);
             modelBuilder
                 .Entity<ExternalAutoRepairShop>()
                 .Property(e => e.Address)
-                .HasMaxLength(500);
+                .HasMaxLength(ExternalAutoRepairShop.MaxAddressLength);
             modelBuilder
                 .Entity<ExternalAutoRepairShop>()
                 .Property(e => e.Phone)
-                .HasMaxLength(15);
+                .HasMaxLength(ExternalAutoRepairShop.MaxPhoneLength);
             // ... ExternalRepairBill
             modelBuilder
                 .Entity<ExternalRepairBill>()
@@ -400,11 +409,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<ExternalRepairBill>()
                 .Property(e => e.Repairs)
                 .IsRequired()
-                .HasMaxLength(1000);
+                .HasMaxLength(ExternalRepairBill.MaxRepairsLength);
             modelBuilder
                 .Entity<ExternalRepairBill>()
                 .Property(e => e.SupplierBillNumber)
-                .HasMaxLength(50);
+                .HasMaxLength(ExternalRepairBill.MaxSupplierBillNumberLength);
             modelBuilder
                 .Entity<ExternalRepairBill>()
                 .Property(e => e.Number)
@@ -412,7 +421,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<ExternalRepairBill>()
                 .Property(e => e.BillImageFilePath)
-                .HasMaxLength(1000);
+                .HasMaxLength(ExternalRepairBill.MaxBillImageFilePathLength);
             // Uom ...
             modelBuilder
                 .Entity<Uom>()
@@ -430,11 +439,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<Uom>()
                 .Property(e => e.Code)
                 .IsRequired()
-                .HasMaxLength(6);
+                .HasMaxLength(Uom.CodeMaxLength);
             modelBuilder
                 .Entity<Uom>()
                 .Property(e => e.Name)
-                .HasMaxLength(250);
+                .HasMaxLength(Uom.NameMaxLength);
             // SparePart ....
             modelBuilder
                 .Entity<SparePart>()
@@ -452,12 +461,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<SparePart>()
                 .Property(e => e.Code)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(SparePart.MaxSparePartCodeLength);
             modelBuilder
                 .Entity<SparePart>()
                 .Property(e => e.Name)
                 .IsRequired()
-                .HasMaxLength(500);
+                .HasMaxLength(SparePart.MaxSparePartNameLength);
             modelBuilder
                 .Entity<SparePart>()
                 .HasRequired(e => e.PrimaryUom)
@@ -601,7 +610,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<VehicleKilometerReading>()
                 .Property(e => e.Notes)
-                .HasMaxLength(500);
+                .HasMaxLength(VehicleKilometerReading.VehicleKilometerReadingNotesMaxLength);
             // VehicleStateChange
             modelBuilder
                .Entity<VehicleStateChange>()
@@ -626,11 +635,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<VehicleStateChange>()
                 .Property(e => e.State)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(VehicleStateChange.MaxStateLength);
             modelBuilder
                 .Entity<VehicleStateChange>()
                 .Property(e => e.Notes)
-                .HasMaxLength(500);
+                .HasMaxLength(VehicleStateChange.MaxNotesLength);
         }
         public DbSet<Location> Locations { get; set; }
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
