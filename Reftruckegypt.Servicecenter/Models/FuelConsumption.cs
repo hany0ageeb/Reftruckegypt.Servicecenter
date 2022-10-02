@@ -7,7 +7,7 @@ namespace Reftruckegypt.Servicecenter.Models
     {
         public virtual Vehicle Vehicle { get; set; }
         public virtual FuelCard FuelCard { get; set; }
-        public Period Period { get; set; }
+        public virtual Period Period { get; set; }
         public DateTime ConsumptionDate { get; set; } = DateTime.Now;
         [Range(double.Epsilon,double.MaxValue)]
         public decimal TotalConsumedQuanityInLiteres { get; set; }

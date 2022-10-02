@@ -7,6 +7,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
     {
         protected override void Seed(ReftruckDbContext context)
         {
+            // ....
             Location[] locations = new Location[]
             {
                 new Location()
@@ -25,8 +26,127 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     AddressLine = ""
                 }
             };
-            VehicleCategory[] vehicleCategories = new VehicleCategory[]
+            // ....
+           
+            FuelType[] fuelTypes = new FuelType[]
             {
+                new FuelType()
+                {
+                    Name = "Diesel",
+                    Description = "سولار"
+                },
+                new FuelType()
+                {
+                    Name = "Gasoline",
+                    Description = "بنزين"
+                }
+            };
+            // .....
+           
+            VehicleOvallState[] overallStates =
+            {
+                new VehicleOvallState()
+                {
+                    Name = "حالة ممتازة",
+                    Description = ""
+                },
+                new VehicleOvallState()
+                {
+                    Name = "حالة جيدة جدا",
+                    Description = ""
+                },
+                new VehicleOvallState()
+                {
+                    Name = "حالة جيدة",
+                    Description = ""
+                },
+                new VehicleOvallState()
+                {
+                    Name = "حالة متوسطة",
+                    Description = ""
+                },
+                new VehicleOvallState()
+                {
+                    Name = "حالة متهالكة",
+                    Description = ""
+                }
+            };
+            // ...
+            ExternalAutoRepairShop[] externalAutoRepairShops = new ExternalAutoRepairShop[]
+            {
+                new ExternalAutoRepairShop()
+                {
+                    Name = "المركز الهندسي",
+                    Address = "العاشر",
+                    Phone = "",
+                    IsEnabled = true
+                },
+                new ExternalAutoRepairShop()
+                {
+                    Name = "المنصور للسيارات",
+                    Address = "الهرم",
+                    Phone = "",
+                    IsEnabled = true
+                },
+                new ExternalAutoRepairShop()
+                {
+                    Name = "بريدجستون",
+                    Address = "العاشر",
+                    Phone = "",
+                    IsEnabled = true
+                },
+                new ExternalAutoRepairShop()
+                {
+                    Name = "محطة توتال",
+                    Address = "العاشر",
+                    Phone = "",
+                    IsEnabled = true
+                },
+                new ExternalAutoRepairShop()
+                {
+                    Name = "ورشة الأسطي عبد الله",
+                    Address = "العاشر",
+                    Phone = "",
+                    IsEnabled = true
+                }
+            };
+            // ........
+            Uom[] uoms = new Uom[]
+            {
+                new Uom()
+                {
+                    Code = "EACH",
+                    Name = "عدد"
+                },
+                new Uom()
+                {
+                    Code = "KG",
+                    Name = "Kilogram"
+                },
+                new Uom()
+                {
+                    Code = "MT",
+                    Name = "متر"
+                },
+                new Uom()
+                {
+                    Code = "LT",
+                    Name = "Litre"
+                }
+            };
+            // ...
+            ViolationType[] violationTypes = new ViolationType[]
+            {
+                new ViolationType()
+                {
+                    Name = "Speed Violation",
+                    Description = "مخالفة السرعة المقررة",
+                    IsEnabled = true
+                }
+            };
+            // ........
+            VehicleCategory[] vehicleCategories = new VehicleCategory[]
+           {
                 new VehicleCategory()
                 {
                     Name = "Bus",
@@ -56,42 +176,33 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     IsFuelCardRequired = false
                 }
             };
-            FuelType[] fuelTypes = new FuelType[]
-            {
-                new FuelType()
-                {
-                    Name = "Diesel",
-                    Description = "سولار"
-                },
-                new FuelType()
-                {
-                    Name = "Gasoline",
-                    Description = "بنزين"
-                }
-            };
             VehicleModel[] vehicleModels = new VehicleModel[]
-            {
+           {
                 // Buses
                 new VehicleModel()
                 {
+                    // 0
                     Name = "ميكروباص فوتون",
                     Description = "",
                     DefaultFuelType = fuelTypes[0]
                 },
                 new VehicleModel()
                 {
+                    // 1
                     Name = "ميكروباص تويوتا",
                     Description = "",
                     DefaultFuelType = fuelTypes[0]
                 },
                 new VehicleModel()
                 {
+                    // 2
                     Name = "أوتوبيس - شيفروليه - خلف",
                     Description = "",
                     DefaultFuelType = fuelTypes[0]
                 },
                 new VehicleModel()
                 {
+                    // 3
                     Name = "أوتوبيس - شيفروليه - MCV",
                     Description = "",
                     DefaultFuelType = fuelTypes[0]
@@ -99,12 +210,14 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 // Trucks
                 new VehicleModel()
                 {
+                    // 4
                     Name = "شيفرليه  - جامبو 5000",
                     Description = "",
                     DefaultFuelType = fuelTypes[0]
                 },
                 new VehicleModel()
                 {
+                    // 5
                     Name = "شيفرليه ديماكس",
                     Description = "",
                     DefaultFuelType = fuelTypes[0]
@@ -225,40 +338,246 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     DefaultFuelType = fuelTypes[0]
                 }
             };
-            VehicelOvallState[] overallStates =
+            // ...
+            Vehicle[] vehicles = new Vehicle[]
             {
-                new VehicelOvallState()
+                new Vehicle()
                 {
-                    Name = "حالة ممتازة",
-                    Description = ""
+                    ChassisNumber = "71001700",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2011,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "88434",
+                        Name = "Chevrolet MCV",
+                        Registration = "9735C W R"
+                    }
                 },
-                new VehicelOvallState()
+                new Vehicle()
                 {
-                    Name = "حالة جيدة جدا",
-                    Description = ""
+                    ChassisNumber = "7100200",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2012,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "139562",
+                        Name = "Chevrolet MCV",
+                        Registration = "1295C L R"
+                    }
                 },
-                new VehicelOvallState()
+                new Vehicle()
                 {
-                    Name = "حالة جيدة",
-                    Description = ""
+                    ChassisNumber = "7100169",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2011,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "88435",
+                        Name = "Chevrolet MCV",
+                        Registration = "9736C W R"
+                    }
                 },
-                new VehicelOvallState()
+                new Vehicle()
                 {
-                    Name = "حالة متوسطة",
-                    Description = ""
+                    ChassisNumber = "260476",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2015,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "138900",
+                        Name = "Chevrolet MCV",
+                        Registration = "2736K A R"
+                    }
                 },
-                new VehicelOvallState()
+                new Vehicle()
                 {
-                    Name = "حالة متهالكة",
-                    Description = ""
+                    ChassisNumber = "260475",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2015,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "138904",
+                        Name = "Chevrolet MCV",
+                        Registration = "2735K A R"
+                    }
+                },
+                new Vehicle()
+                {
+                    ChassisNumber = "7100318",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2013,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "88432",
+                        Name = "Chevrolet MCV",
+                        Registration = "1832C L R"
+                    }
+                },
+                new Vehicle()
+                {
+                    ChassisNumber = "771589",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2016,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "138858",
+                        Name = "Chevrolet MCV",
+                        Registration = "2764K A R"
+                    }
+                },
+                new Vehicle()
+                {
+                    ChassisNumber = "7101033",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2012,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "145088",
+                        Name = "",
+                        Registration = ""
+                    }
+                },
+                new Vehicle()
+                {
+                    ChassisNumber = "232685",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2015,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "148580",
+                        Name = "Chevrolet MCV",
+                        Registration = "2435K A R"
+                    }
+                },
+                new Vehicle()
+                {
+                    ChassisNumber = "7102315",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[2],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2015,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "88430",
+                        Name = "Khalaf Bus",
+                        Registration = "8716B M R"
+                    }
+                },
+                new Vehicle()
+                {
+                    ChassisNumber = "232687",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2015,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "138908",
+                        Name = "Chevrolet MCV",
+                        Registration = "2431K A R"
+                    }
+                },
+                new Vehicle()
+                {
+                    ChassisNumber = "804409",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2017,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "138907",
+                        Name = "Chevrolet MCV",
+                        Registration = "3165K A R"
+                    }
+                },
+                new Vehicle()
+                {
+                    ChassisNumber = "ME030042",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2021,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "99185",
+                        Name = "Chevrolet MCV",
+                        Registration = "3248K A R"
+                    }
+                },
+                new Vehicle()
+                {
+                    ChassisNumber = "ME030088",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[3],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2021,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "187952",
+                        Name = "Chevrolet MCV",
+                        Registration = "3249K A R"
+                    }
+                },
+                new Vehicle()
+                {
+                    ChassisNumber = "11199",
+                    VehicleCategory = vehicleCategories[0],
+                    VehicleModel = vehicleModels[0],
+                    WorkingState = VehicleStates.Working,
+                    ModelYear = 2019,
+                    WorkLocation = locations[0],
+                    FuelCard = new FuelCard()
+                    {
+                        Number = "88423",
+                        Name = "Foton",
+                        Registration = "1739C L R"
+                    }
                 }
             };
+            // ...
             context.Locations.AddRange(locations);
             context.VehicleCategories.AddRange(vehicleCategories);
             context.FuelTypes.AddRange(fuelTypes);
             context.VehicleModels.AddRange(vehicleModels);
             context.VehicelOvallStates.AddRange(overallStates);
-            //
+            context.ExternalAutoRepairShops.AddRange(externalAutoRepairShops);
+            context.Uoms.AddRange(uoms);
+            context.ViolationTypes.AddRange(violationTypes);
+            context.Vehicels.AddRange(vehicles);
+            // ........
             context.SaveChanges();
         }
     }

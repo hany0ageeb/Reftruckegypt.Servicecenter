@@ -11,6 +11,8 @@ using Reftruckegypt.Servicecenter.Data.EF;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models.Validation;
 using Reftruckegypt.Servicecenter.Models;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
+
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -27,8 +29,8 @@ namespace Reftruckegypt.Servicecenter
             //Application.Run();
             using(var context = new ReftruckDbContext(Configuration.GetConnectionString("ReftruckDBDevConnection")))
             {
-                var locations = context.Locations.ToList();
-                MessageBox.Show(locations[0].Name);
+                var vehicles = context.Vehicels.ToList();
+                MessageBox.Show(vehicles[0].FuelCard?.Number);
             }
         }
         static Program()
@@ -69,6 +71,10 @@ namespace Reftruckegypt.Servicecenter
             services.AddSingleton<IValidator<VehicleViolation>, VehicleViolationValidator>();
             services.AddSingleton<IValidator<ViolationType>, ViolationTypeValidator>();
             services.AddSingleton<IValidator<SparePart>, SparePartValidator>();
+            // ....
+            services.AddSingleton<Common.IApplicationContext, Common.WindowsFormsApplicationContext>();
+            // ....
+            services.AddTransient(typeof(VehicleCategorySearchViewModel));
             // ....
 
         }

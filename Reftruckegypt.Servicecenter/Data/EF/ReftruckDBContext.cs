@@ -105,58 +105,58 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .WithMany()
                 .HasForeignKey(e => e.DefaultFuelTypeId);
             // .... VehicelOverallState
-            modelBuilder.Entity<VehicelOvallState>().Map(m =>
+            modelBuilder.Entity<VehicleOvallState>().Map(m =>
             {
                 m.MapInheritedProperties();
                 m.ToTable("VehicelOvallStates");
             });
             modelBuilder
-                .Entity<VehicelOvallState>()
+                .Entity<VehicleOvallState>()
                 .Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(250);
             modelBuilder
-                .Entity<VehicelOvallState>()
+                .Entity<VehicleOvallState>()
                 .HasIndex(e => e.Name)
                 .IsUnique(true)
                 .HasName("IDX_UNQ_OVERALL_ST_NAME");
             modelBuilder
-                .Entity<VehicelOvallState>()
+                .Entity<VehicleOvallState>()
                 .Property(e => e.Description)
                 .HasMaxLength(500);
             // .... VehicelLicense
-            modelBuilder.Entity<VehicelLicense>().Map(m =>
+            modelBuilder.Entity<VehicleLicense>().Map(m =>
             {
                 m.MapInheritedProperties();
                 m.ToTable("VehicelLicenses");
             });
             modelBuilder
-                .Entity<VehicelLicense>()
+                .Entity<VehicleLicense>()
                 .Property(e => e.MotorNumber)
                 .IsRequired()
                 .HasMaxLength(250);
             modelBuilder
-                .Entity<VehicelLicense>()
+                .Entity<VehicleLicense>()
                 .Property(e => e.Notes)
                 .HasMaxLength(500);
             modelBuilder
-                .Entity<VehicelLicense>()
+                .Entity<VehicleLicense>()
                 .HasRequired(e => e.FuelType)
                 .WithMany()
                 .HasForeignKey(e => e.FuelTypeId);
             modelBuilder
-                .Entity<VehicelLicense>()
+                .Entity<VehicleLicense>()
                 .HasRequired(e => e.Vehicel)
                 .WithMany(e=>e.VehicelLicenses)
                 .HasForeignKey(e => e.VehicleId)
                 .WillCascadeOnDelete(true);
             modelBuilder
-                .Entity<VehicelLicense>()
+                .Entity<VehicleLicense>()
                 .HasIndex(e => e.MotorNumber)
                 .IsUnique(false)
                 .HasName("IDX_LICE_MOT_NUM");
             modelBuilder
-                .Entity<VehicelLicense>()
+                .Entity<VehicleLicense>()
                 .Property(e => e.TrafficDepartmentName)
                 .HasMaxLength(500);
             //  ....... FuelCard
@@ -183,12 +183,16 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<FuelCard>()
                 .Property(e => e.Registration)
-                .HasMaxLength(FuelCard.MaxFuelCardRegistrationLength;
+                .HasMaxLength(FuelCard.MaxFuelCardRegistrationLength);
             modelBuilder
                 .Entity<FuelCard>()
-                .HasRequired(e => e.Vehicel)
+                .HasRequired(e => e.Vehicle)
                 .WithOptional(e => e.FuelCard)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
+            modelBuilder
+                .Entity<FuelCard>()
+                .Property(e => e.Id)
+                .HasColumnAnnotation("ForeignKey", "Vehicle");
             // ....... Vehicle
             modelBuilder.Entity<Vehicle>().Map(m =>
             {
@@ -233,6 +237,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<Vehicle>()
                 .HasOptional(e => e.Driver)
                 .WithOptionalPrincipal();
+            modelBuilder
+                .Entity<Vehicle>()
+                .HasOptional(e => e.FuelCard)
+                .WithRequired(e => e.Vehicle)
+                .WillCascadeOnDelete(true);
             // ... ViolationType
             modelBuilder.Entity<ViolationType>().Map(m =>
             {
@@ -645,9 +654,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
         public DbSet<FuelType> FuelTypes { get; set; }
         public DbSet<VehicleModel> VehicleModels { get; set; }
-        public DbSet<VehicelOvallState> VehicelOvallStates { get; set; }
+        public DbSet<VehicleOvallState> VehicelOvallStates { get; set; }
         public DbSet<FuelCard> FuelCards { get; set; }
-        public DbSet<VehicelLicense> VehicelLicenses { get; set; }
+        public DbSet<VehicleLicense> VehicelLicenses { get; set; }
         public DbSet<Vehicle> Vehicels { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<ViolationType> ViolationTypes { get; set; }

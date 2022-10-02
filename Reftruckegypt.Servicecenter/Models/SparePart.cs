@@ -6,7 +6,7 @@ namespace Reftruckegypt.Servicecenter.Models
     {
         public string Code { get; set; }
         public string Name { get; set; }
-        public Uom PrimaryUom { get; set; }
+        public virtual Uom PrimaryUom { get; set; }
         public Guid PrimaryUomId { get; set; }
         public bool IsEnabled { get; set; } = true;
 
