@@ -568,6 +568,15 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 }
             };
             // ...
+            UserCommand[] userCommands = new UserCommand[]
+            {
+                new UserCommand()
+                {
+                    Name = "VehicleCategory",
+                    DisplayName = "Vehicle Category"
+                }
+            };
+            // ...
             context.Locations.AddRange(locations);
             context.VehicleCategories.AddRange(vehicleCategories);
             context.FuelTypes.AddRange(fuelTypes);
@@ -577,6 +586,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             context.Uoms.AddRange(uoms);
             context.ViolationTypes.AddRange(violationTypes);
             context.Vehicels.AddRange(vehicles);
+            context.UserCommands.AddRange(userCommands);
             // ........
             context.SaveChanges();
         }

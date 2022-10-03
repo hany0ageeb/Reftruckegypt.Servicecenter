@@ -23,6 +23,7 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
         IViolationTypeRepository ViolationTypeRepository { get; }
         IVehicleViolationRepository VehicleViolationRepository { get; }
         IVehicleStateChangeRepository VehicleStateChangeRepository { get; }
+        IUserCommandRepository UserCommandRepository { get; }
         int Complete();
     }
 }

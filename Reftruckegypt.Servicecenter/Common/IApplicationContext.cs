@@ -8,10 +8,10 @@ namespace Reftruckegypt.Servicecenter.Common
 {
     public interface IApplicationContext
     {
+        DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon);
+        void DisplayVehicleCategoryEditView(ViewModels.VehicleCategoryViewModels.VehicleCategoryEditViewModel _editModel);
 
+        void DisplayVehicleCategoriesView();
     }
-    public class WindowsFormsApplicationContext : IApplicationContext
-    {
-
-    }
+   
 }

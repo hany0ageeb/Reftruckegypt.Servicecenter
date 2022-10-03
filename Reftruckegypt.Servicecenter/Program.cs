@@ -12,7 +12,8 @@ using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models.Validation;
 using Reftruckegypt.Servicecenter.Models;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
-
+using Reftruckegypt.Servicecenter.Views.VehicleCategoryViews;
+using Reftruckegypt.Servicecenter.Views;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -26,12 +27,11 @@ namespace Reftruckegypt.Servicecenter
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run();
-            using(var context = new ReftruckDbContext(Configuration.GetConnectionString("ReftruckDBDevConnection")))
+            using (MainView view = ServiceProvider.GetRequiredService<MainView>())
             {
-                var vehicles = context.Vehicels.ToList();
-                MessageBox.Show(vehicles[0].FuelCard?.Number);
+                Application.Run(view);
             }
+            
         }
         static Program()
         {
@@ -72,9 +72,17 @@ namespace Reftruckegypt.Servicecenter
             services.AddSingleton<IValidator<ViolationType>, ViolationTypeValidator>();
             services.AddSingleton<IValidator<SparePart>, SparePartValidator>();
             // ....
-            services.AddSingleton<Common.IApplicationContext, Common.WindowsFormsApplicationContext>();
+            services.AddSingleton<Common.IApplicationContext, Common.WindowsFormsApplicationContext>((sp) =>
+            {
+                return new Common.WindowsFormsApplicationContext(sp.GetRequiredService<MainView>());
+            });
             // ....
             services.AddTransient(typeof(VehicleCategorySearchViewModel));
+            services.AddTransient(typeof(ViewModels.NavigatorViewModel));
+            // ....
+            services.AddSingleton(typeof(MainView));
+            services.AddSingleton(typeof(NavigatorView));
+            services.AddTransient(typeof(VehicleCategoriesView));
             // ....
 
         }

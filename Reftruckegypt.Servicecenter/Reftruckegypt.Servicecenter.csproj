@@ -194,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\IApplicationContext.cs" />
+    <Compile Include="Common\WindowsFormsApplicationContext.cs" />
     <Compile Include="Data\Abstractions\IDriverRepository.cs" />
     <Compile Include="Data\Abstractions\IExternalAutoRepairShop.cs" />
     <Compile Include="Data\Abstractions\IExternalRepairBillRepository.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Data\Abstractions\ISparePartsPriceListRepository.cs" />
     <Compile Include="Data\Abstractions\IUnitOfWork.cs" />
     <Compile Include="Data\Abstractions\IUomRepository.cs" />
+    <Compile Include="Data\Abstractions\IUserCommandRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleCategoryRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleKilometerReadingRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleModelRepository.cs" />
@@ -228,11 +230,15 @@
     <Compile Include="Data\EF\Repository.cs" />
     <Compile Include="Data\EF\SparePartRepository.cs" />
     <Compile Include="Data\EF\SparePartsBillRepository.cs" />
+    <Compile Include="Data\EF\SparePartsPriceListRepository.cs" />
     <Compile Include="Data\EF\UnitOfWork.cs" />
     <Compile Include="Data\EF\UomRepository.cs" />
+    <Compile Include="Data\EF\UserCommandRepository.cs" />
     <Compile Include="Data\EF\VehicleCategoryRepository.cs" />
+    <Compile Include="Data\EF\VehicleKilometerReadingRepository.cs" />
     <Compile Include="Data\EF\VehicleModelRepository.cs" />
     <Compile Include="Data\EF\VehicleRepository.cs" />
+    <Compile Include="Data\EF\VehicleStateChangeRepository.cs" />
     <Compile Include="Data\EF\VehicleViolationRepository.cs" />
     <Compile Include="Data\EF\ViolationTypeRepository.cs" />
     <Compile Include="Models\Driver.cs" />
@@ -251,6 +257,7 @@
     <Compile Include="Models\SparePartsPriceList.cs" />
     <Compile Include="Models\Uom.cs" />
     <Compile Include="Models\UomConversion.cs" />
+    <Compile Include="Models\UserCommand.cs" />
     <Compile Include="Models\Validation\DriverValidator.cs" />
     <Compile Include="Models\Validation\ExternalAutoRepairShopValidator.cs" />
     <Compile Include="Models\Validation\ExternalRepairBillValidator.cs" />
@@ -285,7 +292,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidationErrors.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\NavigatorViewModel.cs" />
+    <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategorySearchViewModel.cs" />
+    <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
@@ -293,11 +303,23 @@
     <Compile Include="Views\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\NavigatorView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\NavigatorView.Designer.cs">
+      <DependentUpon>NavigatorView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\VehicleCategoryViews\VehicleCategoriesView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\VehicleCategoryViews\VehicleCategoriesView.Designer.cs">
       <DependentUpon>VehicleCategoriesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VehicleCategoryViews\VehicleCategoryEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VehicleCategoryViews\VehicleCategoryEditView.Designer.cs">
+      <DependentUpon>VehicleCategoryEditView.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -315,8 +337,14 @@
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\NavigatorView.resx">
+      <DependentUpon>NavigatorView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\VehicleCategoryViews\VehicleCategoriesView.resx">
       <DependentUpon>VehicleCategoriesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VehicleCategoryViews\VehicleCategoryEditView.resx">
+      <DependentUpon>VehicleCategoryEditView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

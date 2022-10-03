@@ -206,7 +206,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<Vehicle>()
                 .HasRequired(e => e.VehicleCategory)
-                .WithMany()
+                .WithMany(e=>e.Vehicles)
                 .HasForeignKey(e => e.VehicleCategoryId)
                 .WillCascadeOnDelete(false);
             modelBuilder
@@ -649,6 +649,31 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<VehicleStateChange>()
                 .Property(e => e.Notes)
                 .HasMaxLength(VehicleStateChange.MaxNotesLength);
+            // ... UserCommand
+            modelBuilder
+                .Entity<UserCommand>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("UserCommands");
+                });
+            modelBuilder
+                .Entity<UserCommand>()
+                .HasIndex(e => e.Name)
+                .IsUnique(true)
+                .HasName("IDX_UNQ_UCOMMAND_NAME");
+            modelBuilder
+                .Entity<UserCommand>()
+                .Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(250);
+            modelBuilder
+                .Entity<UserCommand>()
+                .Property(e => e.DisplayName)
+                .HasMaxLength(500);
+            _ = modelBuilder
+                .Entity<UserCommand>()
+                .Ignore(e => e.Execute);
         }
         public DbSet<Location> Locations { get; set; }
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
@@ -672,5 +697,6 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         public DbSet<SparePartsPriceList> SparePartsPriceLists { get; set; }
         public DbSet<VehicleKilometerReading> VehicleKilometerReadings { get; set; }
         public DbSet<VehicleStateChange> VehicleStateChanges { get; set; }
+        public DbSet<UserCommand> UserCommands { get; set; }
     }
 }
