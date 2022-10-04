@@ -42,6 +42,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                             _applicationContext.DisplayExternalAutoRepairShopsView();
                         };
                         break;
+                    case "ExternalRepairBill":
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayExternalRepairBillsView();
+                        };
+                        break;
                 }
                 UserCommands.Add(command);
             }

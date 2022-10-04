@@ -193,7 +193,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DialogResult.cs" />
     <Compile Include="Common\IApplicationContext.cs" />
+    <Compile Include="Common\MessageBoxButtons.cs" />
+    <Compile Include="Common\MessageBoxIcon.cs" />
     <Compile Include="Common\WindowsFormsApplicationContext.cs" />
     <Compile Include="Data\Abstractions\IDriverRepository.cs" />
     <Compile Include="Data\Abstractions\IExternalAutoRepairShop.cs" />
@@ -295,6 +298,9 @@
     <Compile Include="ViewModels\ExternalAutoRepairShopViewModels\ExternalAutoRepairShopEditViewModel.cs" />
     <Compile Include="ViewModels\ExternalAutoRepairShopViewModels\ExternalAutoRepairShopSearchViewModel.cs" />
     <Compile Include="ViewModels\ExternalAutoRepairShopViewModels\ExternalAutoRepairShopViewModel.cs" />
+    <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillEditViewModel.cs" />
+    <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillSearchViewModel.cs" />
+    <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillVieModel.cs" />
     <Compile Include="ViewModels\NavigatorViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategorySearchViewModel.cs" />
@@ -314,6 +320,18 @@
     </Compile>
     <Compile Include="Views\ExternalAutoRepairShopViews\ExternalAutoRepairShopsView.Designer.cs">
       <DependentUpon>ExternalAutoRepairShopsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExternalRepairBillViews\ExternalRepairBillEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ExternalRepairBillViews\ExternalRepairBillEditView.Designer.cs">
+      <DependentUpon>ExternalRepairBillEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExternalRepairBillViews\ExternalRepairBillsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ExternalRepairBillViews\ExternalRepairBillsView.Designer.cs">
+      <DependentUpon>ExternalRepairBillsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
@@ -369,6 +387,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ExternalAutoRepairShopViews\ExternalAutoRepairShopsView.resx">
       <DependentUpon>ExternalAutoRepairShopsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ExternalRepairBillViews\ExternalRepairBillEditView.resx">
+      <DependentUpon>ExternalRepairBillEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ExternalRepairBillViews\ExternalRepairBillsView.resx">
+      <DependentUpon>ExternalRepairBillsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

@@ -23,7 +23,10 @@ namespace Reftruckegypt.Servicecenter.Models.Validation
         {
             foreach (KeyValuePair<string, List<string>> kvp in modelState._errors)
             {
-                _errors.Add(kvp.Key, kvp.Value);
+                if (!_errors.ContainsKey(kvp.Key))
+                    _errors.Add(kvp.Key, kvp.Value);
+                else
+                    _errors[kvp.Key].AddRange(kvp.Value);
             }
         }
         public string Error

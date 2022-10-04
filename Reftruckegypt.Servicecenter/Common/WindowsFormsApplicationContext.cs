@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using System;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalAutoRepairShopViewModels;
 using Microsoft.Extensions.Hosting;
@@ -8,35 +7,13 @@ using Reftruckegypt.Servicecenter.Views.VehicleCategoryViews;
 using Reftruckegypt.Servicecenter.Views;
 using System.Collections.Generic;
 using Reftruckegypt.Servicecenter.Views.VehicleModelViews;
+using Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews;
 using Reftruckegypt.Servicecenter.Views.ExternalAutoRepairShopViews;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
-    public enum MessageBoxButtons
-    {
-        OK = 0,
-        YesNo = 4,
-        YesNoCancel = 8,
-    }
-    public enum MessageBoxIcon
-    {
-        Error = 16,
-        Question = 32,
-        Information = 64
-    }
-    public enum DialogResult
-    {
-
-        None = 0,
-        OK = 1,
-        Cancel = 2,
-        Abort = 3,
-        Retry = 4,
-        Ignore = 5,
-        Yes = 6,
-        No = 7
-    }
     public class WindowsFormsApplicationContext : IApplicationContext
     {
         private readonly Form _mdiParent = null;
@@ -81,6 +58,18 @@ namespace Reftruckegypt.Servicecenter.Common
             externalAutoRepairShopsView.MdiParent = _mdiParent;
             externalAutoRepairShopsView.Show();
         }
+        public void DisplayExternalRepairBillsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            ExternalRepairBillsView externalRepairBillsView = scope.ServiceProvider.GetRequiredService<ExternalRepairBillsView>();
+            _scopes[externalRepairBillsView] = scope;
+            externalRepairBillsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            externalRepairBillsView.MdiParent = _mdiParent;
+            externalRepairBillsView.Show();
+        }
         private void FormClosed(Form sender)
         {
             if (sender != null && _scopes.ContainsKey(sender))
@@ -106,6 +95,11 @@ namespace Reftruckegypt.Servicecenter.Common
         {
             ExternalAutoRepairShopEditView externalAutoRepairShopEditView = new ExternalAutoRepairShopEditView(editModel);
             externalAutoRepairShopEditView.ShowDialog(_mdiParent);
+        }
+        public void DisplayExternalRepaiBillEditView(ExternalRepairBillEditViewModel editViewModel)
+        {
+            ExternalRepairBillEditView externalRepairBillEditView = new ExternalRepairBillEditView(editViewModel);
+            externalRepairBillEditView.ShowDialog(_mdiParent);
         }
         public DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon)
         {

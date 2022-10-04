@@ -26,8 +26,18 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     AddressLine = ""
                 }
             };
+            // ...
+            Period[] periods = new Period[]
+            {
+                new Period()
+                {
+                    FromDate = new System.DateTime(2022, 8, 1),
+                    ToDate = new System.DateTime(2022, 8, 31),
+                    Name = "Aug-2022",
+                    State = PeriodStates.OpenState
+                }
+            };
             // ....
-           
             FuelType[] fuelTypes = new FuelType[]
             {
                 new FuelType()
@@ -110,6 +120,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     IsEnabled = true
                 }
             };
+            // ....
             // ........
             Uom[] uoms = new Uom[]
             {
@@ -349,6 +360,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2011,
                     WorkLocation = locations[0],
+                    InternalCode = "9735",
                     FuelCard = new FuelCard()
                     {
                         Number = "88434",
@@ -364,6 +376,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2012,
                     WorkLocation = locations[0],
+                    InternalCode = "1295",
                     FuelCard = new FuelCard()
                     {
                         Number = "139562",
@@ -379,6 +392,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2011,
                     WorkLocation = locations[0],
+                    InternalCode = "9736",
                     FuelCard = new FuelCard()
                     {
                         Number = "88435",
@@ -394,6 +408,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2015,
                     WorkLocation = locations[0],
+                    InternalCode = "2736",
                     FuelCard = new FuelCard()
                     {
                         Number = "138900",
@@ -409,6 +424,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2015,
                     WorkLocation = locations[0],
+                    InternalCode = "2735",
                     FuelCard = new FuelCard()
                     {
                         Number = "138904",
@@ -424,6 +440,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2013,
                     WorkLocation = locations[0],
+                    InternalCode = "1832",
                     FuelCard = new FuelCard()
                     {
                         Number = "88432",
@@ -439,6 +456,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2016,
                     WorkLocation = locations[0],
+                    InternalCode = "2764",
                     FuelCard = new FuelCard()
                     {
                         Number = "138858",
@@ -454,6 +472,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2012,
                     WorkLocation = locations[0],
+                    InternalCode = "1485",
                     FuelCard = new FuelCard()
                     {
                         Number = "145088",
@@ -469,6 +488,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2015,
                     WorkLocation = locations[0],
+                    InternalCode = "2435",
                     FuelCard = new FuelCard()
                     {
                         Number = "148580",
@@ -484,6 +504,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2015,
                     WorkLocation = locations[0],
+                    InternalCode = "8716",
                     FuelCard = new FuelCard()
                     {
                         Number = "88430",
@@ -499,6 +520,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2015,
                     WorkLocation = locations[0],
+                    InternalCode = "2431",
                     FuelCard = new FuelCard()
                     {
                         Number = "138908",
@@ -514,6 +536,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2017,
                     WorkLocation = locations[0],
+                    InternalCode = "3165",
                     FuelCard = new FuelCard()
                     {
                         Number = "138907",
@@ -529,6 +552,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2021,
                     WorkLocation = locations[0],
+                    InternalCode = "3248",
                     FuelCard = new FuelCard()
                     {
                         Number = "99185",
@@ -544,6 +568,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2021,
                     WorkLocation = locations[0],
+                    InternalCode = "3249",
                     FuelCard = new FuelCard()
                     {
                         Number = "187952",
@@ -559,12 +584,27 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     WorkingState = VehicleStates.Working,
                     ModelYear = 2019,
                     WorkLocation = locations[0],
+                    InternalCode = "1739",
                     FuelCard = new FuelCard()
                     {
                         Number = "88423",
                         Name = "Foton",
                         Registration = "1739C L R"
                     }
+                }
+            };
+            // ...
+            ExternalRepairBill[] externalRepairBills = new ExternalRepairBill[]
+            {
+                new ExternalRepairBill()
+                {
+                    BillDate = new System.DateTime(2022, 8, 16),
+                    Repairs = "تيل + قبقاب حديد",
+                    Period = periods[0],
+                    ExternalAutoRepairShop = externalAutoRepairShops[0],
+                    Vehicle = vehicles[0],
+                    SupplierBillNumber = "B-01-01",
+                    TotalAmountInEGP = 3121.0M
                 }
             };
             // ...
@@ -587,6 +627,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Sequence = 30,
                     Name = "ExternalAutoRepairShop",
                     DisplayName = "External Auto Repair Shops"
+                },
+                new UserCommand()
+                {
+                    Sequence = 40,
+                    Name = "ExternalRepairBill",
+                    DisplayName = "External Repair Bills"
                 }
             };
             // ...
@@ -600,6 +646,8 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             context.ViolationTypes.AddRange(violationTypes);
             context.Vehicels.AddRange(vehicles);
             context.UserCommands.AddRange(userCommands);
+            context.Periods.AddRange(periods);
+            context.ExternalRepairBills.AddRange(externalRepairBills);
             // ........
             context.SaveChanges();
         }

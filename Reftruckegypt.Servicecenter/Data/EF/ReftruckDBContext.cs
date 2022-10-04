@@ -197,11 +197,26 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Property(e => e.Id)
                 .HasColumnAnnotation("ForeignKey", "Vehicle");
             // ....... Vehicle
-            modelBuilder.Entity<Vehicle>().Map(m =>
+            modelBuilder
+                .Entity<Vehicle>()
+                .Map(m =>
             {
                 m.MapInheritedProperties();
                 m.ToTable("Vehicles");
             });
+            modelBuilder
+                .Entity<Vehicle>()
+                .HasIndex(e => e.InternalCode)
+                .IsUnique(true)
+                .HasName("IDX_UNQ_VEHICLE_INTER_CODE");
+            modelBuilder
+                .Entity<Vehicle>()
+                .Property(e => e.InternalCode)
+                .HasMaxLength(50)
+                .IsRequired();
+            modelBuilder
+                .Entity<Vehicle>()
+                .Ignore(e => e.Self);
             modelBuilder
                 .Entity<Vehicle>()
                 .Property(e => e.ChassisNumber)
@@ -375,6 +390,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 });
             modelBuilder
                 .Entity<ExternalAutoRepairShop>()
+                .Ignore(e => e.Self);
+            modelBuilder
+                .Entity<ExternalAutoRepairShop>()
                 .HasIndex(e => e.Name)
                 .IsUnique(true)
                 .HasName("IDX_UNQ_SHOP_NAME");
@@ -399,6 +417,16 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     m.MapInheritedProperties();
                     m.ToTable("ExternalRepairBills");
                 });
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .HasIndex(e => e.BillDate)
+                .IsUnique(false)
+                .HasName("IDX_EXT_REP_BILL_DATE");
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .HasIndex(e => e.Number)
+                .IsUnique(true)
+                .HasName("IDX_UNQ_EXT_REP_BILL_NUM");
             modelBuilder
                 .Entity<ExternalRepairBill>()
                 .HasRequired(e => e.Vehicle)

@@ -8,8 +8,9 @@ namespace Reftruckegypt.Servicecenter.Models
         public virtual VehicleCategory VehicleCategory { get; set; }
         public virtual VehicleModel VehicleModel { get; set; }
         public string ChassisNumber { get; set; }
-        // For SpeedVilation Report
+        // For SpeedViolation Report
         public string VehicelCode { get; set; }
+        public string InternalCode { get; set; }
         public virtual FuelCard FuelCard { get; set; }
         public virtual VehicleOvallState OvallState { get; set; }
         public Guid? OverallStateId { get; set; }
@@ -24,6 +25,8 @@ namespace Reftruckegypt.Servicecenter.Models
         public virtual Driver Driver { get; set; }
         public Guid? DriverId { get; set; }
         public int ModelYear { get; set; } = DateTime.Now.Year;
+
+        public Vehicle Self => this;
     }
    
     public static class VehicleStates

@@ -18,6 +18,8 @@ using Reftruckegypt.Servicecenter.Views.VehicleModelViews;
 using Reftruckegypt.Servicecenter.Views.ExternalAutoRepairShopViews;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalAutoRepairShopViewModels;
+using Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews;
+using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -85,12 +87,14 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(ViewModels.NavigatorViewModel));
             services.AddTransient(typeof(VehicleModelSearchViewModel));
             services.AddTransient(typeof(ExternalAutoRepairShopSearchViewModel));
+            services.AddTransient(typeof(ExternalRepairBillSearchViewModel));
             // ....
             services.AddSingleton(typeof(MainView));
             services.AddSingleton(typeof(NavigatorView));
             services.AddTransient(typeof(VehicleCategoriesView));
             services.AddTransient(typeof(VehicleModelsView));
             services.AddTransient(typeof(ExternalAutoRepairShopsView));
+            services.AddTransient(typeof(ExternalRepairBillsView));
             // ....
 
         }
