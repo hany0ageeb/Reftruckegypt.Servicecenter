@@ -14,6 +14,8 @@ using Reftruckegypt.Servicecenter.Models;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
 using Reftruckegypt.Servicecenter.Views.VehicleCategoryViews;
 using Reftruckegypt.Servicecenter.Views;
+using Reftruckegypt.Servicecenter.Views.VehicleModelViews;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -79,10 +81,12 @@ namespace Reftruckegypt.Servicecenter
             // ....
             services.AddTransient(typeof(VehicleCategorySearchViewModel));
             services.AddTransient(typeof(ViewModels.NavigatorViewModel));
+            services.AddTransient(typeof(VehicleModelSearchViewModel));
             // ....
             services.AddSingleton(typeof(MainView));
             services.AddSingleton(typeof(NavigatorView));
             services.AddTransient(typeof(VehicleCategoriesView));
+            services.AddTransient(typeof(VehicleModelsView));
             // ....
 
         }

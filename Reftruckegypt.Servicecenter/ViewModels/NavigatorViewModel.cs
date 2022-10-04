@@ -30,6 +30,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                             _applicationContext.DisplayVehicleCategoriesView();
                         };
                         break;
+                    case "VehicleModel":
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayVehicleModelsView();
+                        };
+                        break;
                 }
                 UserCommands.Add(command);
             }

@@ -114,6 +114,13 @@ namespace Reftruckegypt.Servicecenter.Models.Validation
             }
             return stringBuilder.ToString();
         }
+        public void Clear(string propertyName)
+        {
+            if (_errors.ContainsKey(propertyName))
+            {
+                _errors[propertyName].Clear();
+            }
+        }
         public void Clear()
         {
             _errors.Clear();

@@ -22,14 +22,16 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels
     }
     public class VehicleCategorySearchViewModel : ViewModelBase, IDisposable
     {
-        private IUnitOfWork _unitOfWork;
-        private Common.IApplicationContext _applicationContext;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly Common.IApplicationContext _applicationContext;
+        private readonly IValidator<VehicleCategory> _validator;
         private int _selectedIndex = -1;
         private bool _isDisposed = false;
         public event SelectedVehicleCategoryChangedEventHandler SelectedVehicleCategoryChanged;
-        public VehicleCategorySearchViewModel(IUnitOfWork unitOfWork, Common.IApplicationContext applicationContext)
+        public VehicleCategorySearchViewModel(IUnitOfWork unitOfWork, Common.IApplicationContext applicationContext, IValidator<VehicleCategory> validator)
         {
             _unitOfWork = unitOfWork;
+            _validator = validator;
             _applicationContext = applicationContext;
             _name = "";
         }
@@ -102,8 +104,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels
         }
         public void Create()
         {
-            IValidator<VehicleCategory> validator = Program.ServiceProvider.GetRequiredService<IValidator<VehicleCategory>>();
-            VehicleCategoryEditViewModel editModel = new VehicleCategoryEditViewModel(validator, _unitOfWork,_applicationContext);
+            
+            VehicleCategoryEditViewModel editModel = new VehicleCategoryEditViewModel(_validator, _unitOfWork,_applicationContext);
             _applicationContext.DisplayVehicleCategoryEditView(editModel);
             Search();
         }
@@ -125,8 +127,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels
         {
             if (_selectedIndex >= 0 && _selectedIndex < VehicleCategoryViews.Count)
             {
-                IValidator<VehicleCategory> validator = Program.ServiceProvider.GetRequiredService<IValidator<VehicleCategory>>();
-                VehicleCategoryEditViewModel editModel = new VehicleCategoryEditViewModel(_unitOfWork.VehicleCategoryRepository.Find(VehicleCategoryViews[_selectedIndex].Id), validator,_unitOfWork, _applicationContext);
+                
+                VehicleCategoryEditViewModel editModel = new VehicleCategoryEditViewModel(_unitOfWork.VehicleCategoryRepository.Find(VehicleCategoryViews[_selectedIndex].Id), _validator,_unitOfWork, _applicationContext);
                 _applicationContext.DisplayVehicleCategoryEditView(editModel);
                 Search();
             }

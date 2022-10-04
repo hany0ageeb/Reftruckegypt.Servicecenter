@@ -573,7 +573,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 new UserCommand()
                 {
                     Name = "VehicleCategory",
-                    DisplayName = "Vehicle Category"
+                    DisplayName = "Vehicle Categories"
+                },
+                new UserCommand()
+                {
+                    Name = "VehicleModel",
+                    DisplayName = "Vehicle Models"
                 }
             };
             // ...

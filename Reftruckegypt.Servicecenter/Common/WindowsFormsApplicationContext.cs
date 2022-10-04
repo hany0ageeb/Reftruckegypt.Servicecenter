@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Reftruckegypt.Servicecenter.Views.VehicleCategoryViews;
 using Reftruckegypt.Servicecenter.Views;
 using System.Collections.Generic;
+using Reftruckegypt.Servicecenter.Views.VehicleModelViews;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -18,7 +20,8 @@ namespace Reftruckegypt.Servicecenter.Common
     public enum MessageBoxIcon
     {
         Error = 16,
-        Question = 32
+        Question = 32,
+        Information = 64
     }
     public enum DialogResult
     {
@@ -52,6 +55,18 @@ namespace Reftruckegypt.Servicecenter.Common
             };
             vehicleCategoriesView.Show();
         }
+        public void DisplayVehicleModelsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            VehicleModelsView vehicleModelsView = scope.ServiceProvider.GetRequiredService<VehicleModelsView>();
+            _scopes[vehicleModelsView] = scope;
+            vehicleModelsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            vehicleModelsView.MdiParent = _mdiParent;
+            vehicleModelsView.Show();
+        }
         private void FormClosed(Form sender)
         {
             if (sender != null && _scopes.ContainsKey(sender))
@@ -67,6 +82,11 @@ namespace Reftruckegypt.Servicecenter.Common
                 //MdiParent = _mdiParent
             };
             vehicleCategoryEditView.ShowDialog(_mdiParent);
+        }
+        public void DisplayVehicleModelEditView(VehicleModelEditViewModel editModel)
+        {
+            VehicleModelEditView vehicleModelEditView = new VehicleModelEditView(editModel);
+            vehicleModelEditView.ShowDialog(_mdiParent);
         }
         public DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon)
         {
@@ -90,6 +110,9 @@ namespace Reftruckegypt.Servicecenter.Common
                         case MessageBoxIcon.Question:
                             result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.YesNoCancel, System.Windows.Forms.MessageBoxIcon.Question);
                             break;
+                        case MessageBoxIcon.Information:
+                            result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.YesNoCancel, System.Windows.Forms.MessageBoxIcon.Information);
+                            break;
                         default:
                             result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.YesNoCancel, System.Windows.Forms.MessageBoxIcon.Information);
                             break;
@@ -101,6 +124,9 @@ namespace Reftruckegypt.Servicecenter.Common
                     {
                         case MessageBoxIcon.Question:
                             result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Question);
+                            break;
+                        case MessageBoxIcon.Information:
+                            result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
                             break;
                         default:
                             result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);

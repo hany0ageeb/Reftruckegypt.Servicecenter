@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +11,10 @@ namespace Reftruckegypt.Servicecenter.Common
     public interface IApplicationContext
     {
         DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon);
-        void DisplayVehicleCategoryEditView(ViewModels.VehicleCategoryViewModels.VehicleCategoryEditViewModel _editModel);
-
+        void DisplayVehicleCategoryEditView(VehicleCategoryEditViewModel _editModel);
+        void DisplayVehicleModelEditView(VehicleModelEditViewModel editModel);
         void DisplayVehicleCategoriesView();
+        void DisplayVehicleModelsView();
     }
    
 }

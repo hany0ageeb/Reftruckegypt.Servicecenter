@@ -296,6 +296,9 @@
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategorySearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryViewModel.cs" />
+    <Compile Include="ViewModels\VehicleModelViewModels\VehicelModelEditViewModel.cs" />
+    <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelSearchViewModel.cs" />
+    <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
@@ -321,6 +324,18 @@
     <Compile Include="Views\VehicleCategoryViews\VehicleCategoryEditView.Designer.cs">
       <DependentUpon>VehicleCategoryEditView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\VehicleModelViews\VehicleModelEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VehicleModelViews\VehicleModelEditView.Designer.cs">
+      <DependentUpon>VehicleModelEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VehicleModelViews\VehicleModelsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VehicleModelViews\VehicleModelsView.Designer.cs">
+      <DependentUpon>VehicleModelsView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -345,6 +360,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\VehicleCategoryViews\VehicleCategoryEditView.resx">
       <DependentUpon>VehicleCategoryEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VehicleModelViews\VehicleModelEditView.resx">
+      <DependentUpon>VehicleModelEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VehicleModelViews\VehicleModelsView.resx">
+      <DependentUpon>VehicleModelsView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -67,6 +67,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             });
             modelBuilder
                 .Entity<FuelType>()
+                .Ignore(e => e.Self);
+            modelBuilder
+                .Entity<FuelType>()
                 .HasIndex(e => e.Name)
                 .HasName("IDX_UNQ_FUEL_TYPE_NAME")
                 .IsUnique(true);
