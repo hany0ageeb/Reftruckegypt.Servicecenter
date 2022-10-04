@@ -61,6 +61,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels
                 {
                     CanEditVehicleModel = false;
                 }
+                else
+                {
+                    CanEditVehicleModel = true;
+                }
             }
         }
         public bool CanEditVehicleModel

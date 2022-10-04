@@ -13,6 +13,7 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
         TEntity Find(TKey key);
         IEnumerable<TEntity> Find();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        IEnumerable<TEntity> Find(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy);
         bool Exists(Expression<Func<TEntity, bool>> predicate);
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy);
         void Add(TEntity entity);

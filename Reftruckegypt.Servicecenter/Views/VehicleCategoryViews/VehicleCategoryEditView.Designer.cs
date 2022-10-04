@@ -141,6 +141,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleCategoryViews
             // 
             // btnClose
             // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Location = new System.Drawing.Point(764, 286);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(84, 28);
@@ -158,6 +159,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleCategoryViews
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(860, 326);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);

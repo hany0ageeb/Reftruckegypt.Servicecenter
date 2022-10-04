@@ -292,6 +292,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidationErrors.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ExternalAutoRepairShopViewModels\ExternalAutoRepairShopEditViewModel.cs" />
+    <Compile Include="ViewModels\ExternalAutoRepairShopViewModels\ExternalAutoRepairShopSearchViewModel.cs" />
+    <Compile Include="ViewModels\ExternalAutoRepairShopViewModels\ExternalAutoRepairShopViewModel.cs" />
     <Compile Include="ViewModels\NavigatorViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategorySearchViewModel.cs" />
@@ -300,6 +303,18 @@
     <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelSearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\ExternalAutoRepairShopViews\ExternalAutoRepairShopEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ExternalAutoRepairShopViews\ExternalAutoRepairShopEditView.Designer.cs">
+      <DependentUpon>ExternalAutoRepairShopEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExternalAutoRepairShopViews\ExternalAutoRepairShopsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ExternalAutoRepairShopViews\ExternalAutoRepairShopsView.Designer.cs">
+      <DependentUpon>ExternalAutoRepairShopsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -348,6 +363,12 @@
     <EmbeddedResource Include="ValidationErrors.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidationErrors.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ExternalAutoRepairShopViews\ExternalAutoRepairShopEditView.resx">
+      <DependentUpon>ExternalAutoRepairShopEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ExternalAutoRepairShopViews\ExternalAutoRepairShopsView.resx">
+      <DependentUpon>ExternalAutoRepairShopsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

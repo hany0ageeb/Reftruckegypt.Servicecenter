@@ -572,13 +572,21 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             {
                 new UserCommand()
                 {
+                    Sequence = 10,
                     Name = "VehicleCategory",
                     DisplayName = "Vehicle Categories"
                 },
                 new UserCommand()
                 {
+                    Sequence = 20,
                     Name = "VehicleModel",
                     DisplayName = "Vehicle Models"
+                },
+                new UserCommand()
+                {
+                    Sequence = 30,
+                    Name = "ExternalAutoRepairShop",
+                    DisplayName = "External Auto Repair Shops"
                 }
             };
             // ...

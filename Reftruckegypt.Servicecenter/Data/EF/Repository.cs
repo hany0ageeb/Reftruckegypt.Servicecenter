@@ -40,6 +40,10 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         {
             return _context.Set<TEntity>().Where(predicate).AsEnumerable();
         }
+        public IEnumerable<TEntity> Find(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy)
+        {
+            return orderBy(_context.Set<TEntity>()).AsEnumerable();
+        }
         public bool Exists(Expression<Func<TEntity, bool>> predicate)
         {
             return _context.Set<TEntity>().Count(predicate) > 0;

@@ -674,7 +674,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<UserCommand>()
                 .Property(e => e.DisplayName)
                 .HasMaxLength(500);
-            _ = modelBuilder
+            modelBuilder
                 .Entity<UserCommand>()
                 .Ignore(e => e.Execute);
         }

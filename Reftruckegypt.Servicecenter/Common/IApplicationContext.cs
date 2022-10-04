@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
+﻿using Reftruckegypt.Servicecenter.ViewModels.ExternalAutoRepairShopViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplayVehicleModelEditView(VehicleModelEditViewModel editModel);
         void DisplayVehicleCategoriesView();
         void DisplayVehicleModelsView();
+        void DisplayExternalAutoRepairShopsView();
+        void DisplayExternalRepairShopEditView(ExternalAutoRepairShopEditViewModel editModel);
     }
    
 }

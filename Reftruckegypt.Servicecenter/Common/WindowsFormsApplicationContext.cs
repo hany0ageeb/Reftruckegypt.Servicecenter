@@ -1,12 +1,14 @@
 ﻿using System.Windows.Forms;
 using System;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.ExternalAutoRepairShopViewModels;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Reftruckegypt.Servicecenter.Views.VehicleCategoryViews;
 using Reftruckegypt.Servicecenter.Views;
 using System.Collections.Generic;
 using Reftruckegypt.Servicecenter.Views.VehicleModelViews;
+using Reftruckegypt.Servicecenter.Views.ExternalAutoRepairShopViews;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
@@ -67,6 +69,18 @@ namespace Reftruckegypt.Servicecenter.Common
             vehicleModelsView.MdiParent = _mdiParent;
             vehicleModelsView.Show();
         }
+        public void DisplayExternalAutoRepairShopsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            ExternalAutoRepairShopsView externalAutoRepairShopsView = scope.ServiceProvider.GetRequiredService<ExternalAutoRepairShopsView>();
+            _scopes[externalAutoRepairShopsView] = scope;
+            externalAutoRepairShopsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            externalAutoRepairShopsView.MdiParent = _mdiParent;
+            externalAutoRepairShopsView.Show();
+        }
         private void FormClosed(Form sender)
         {
             if (sender != null && _scopes.ContainsKey(sender))
@@ -87,6 +101,11 @@ namespace Reftruckegypt.Servicecenter.Common
         {
             VehicleModelEditView vehicleModelEditView = new VehicleModelEditView(editModel);
             vehicleModelEditView.ShowDialog(_mdiParent);
+        }
+        public void DisplayExternalRepairShopEditView(ExternalAutoRepairShopEditViewModel editModel)
+        {
+            ExternalAutoRepairShopEditView externalAutoRepairShopEditView = new ExternalAutoRepairShopEditView(editModel);
+            externalAutoRepairShopEditView.ShowDialog(_mdiParent);
         }
         public DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon)
         {

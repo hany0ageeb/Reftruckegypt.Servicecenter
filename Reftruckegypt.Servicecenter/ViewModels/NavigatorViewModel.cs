@@ -18,7 +18,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels
         {
             _unitOfWork = unitOfWork;
             _applicationContext = applicationContext;
-            var commands = _unitOfWork.UserCommandRepository.Find().ToList();
+            var commands = _unitOfWork.UserCommandRepository.Find(orderBy: q=>q.OrderBy(e=>e.Sequence)).ToList();
             UserCommands.Clear();
             foreach(var command in commands)
             {
@@ -34,6 +34,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                         command.Execute = () =>
                         {
                             _applicationContext.DisplayVehicleModelsView();
+                        };
+                        break;
+                    case "ExternalAutoRepairShop":
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayExternalAutoRepairShopsView();
                         };
                         break;
                 }
