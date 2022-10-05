@@ -17,6 +17,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         private readonly IApplicationContext _applicationContext;
         private readonly IValidator<ExternalRepairBill> _validator;
 
+        private int _selectedIndex = -1;
+        private bool _canEditOrDeleteBill = false;
+
         private long? _numberFrom = null;
         private long? _numberTo = null;
         private string _supplierBillNumber = "";
@@ -46,6 +49,38 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                 InternalCode = "--ALL--"
             });
             _vehicle = Vehicles[0];
+        }
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                if (_selectedIndex != value)
+                {
+                    _selectedIndex = value;
+                    CanEditOrDeleteBill = IsBillPeriodOpened(_selectedIndex);
+                }
+            }
+        }
+        public bool CanEditOrDeleteBill
+        {
+            get => _canEditOrDeleteBill;
+            set
+            {
+                if(_canEditOrDeleteBill != value)
+                {
+                    _canEditOrDeleteBill = value;
+                    OnPropertyChanged(this, nameof(CanEditOrDeleteBill));
+                }
+            }
+        }
+        private bool IsBillPeriodOpened(int index)
+        {
+            if(index >=0 && index < ExternalRepairBillVieModels.Count)
+            {
+                return ExternalRepairBillVieModels[index].State == PeriodStates.OpenState;
+            }
+            return false;
         }
         public long? NumberFrom
         {
@@ -192,6 +227,42 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         {
             ExternalRepairBillEditViewModel editViewModel = new ExternalRepairBillEditViewModel(_unitOfWork, _validator);
             _applicationContext.DisplayExternalRepaiBillEditView(editViewModel);
+        }
+        public void Delete()
+        {
+            if(_selectedIndex >=0 && _selectedIndex < ExternalRepairBillVieModels.Count)
+            {
+                var bill = _unitOfWork.ExternalRepairBillRepository.Find(ExternalRepairBillVieModels[_selectedIndex].Id);
+                if (bill != null)
+                {
+                    var result = _applicationContext.DisplayMessage("Confirm Delete", $"Are You Sure You Want To Delete Bill# {bill.Number}?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if(result == DialogResult.Yes)
+                    {
+                        _unitOfWork.ExternalRepairBillRepository.Remove(bill);
+                        _unitOfWork.Complete();
+                        Search();
+                    }
+                }
+                else
+                {
+                    _applicationContext.DisplayMessage("Error", $"External Bill With Number ${ExternalRepairBillVieModels[_selectedIndex].Number} is no longer exist\npleas click search button to reload the data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        public void Edit()
+        {
+            if (_selectedIndex >= 0 && _selectedIndex < ExternalRepairBillVieModels.Count)
+            {
+                var oldBill = _unitOfWork.ExternalRepairBillRepository.Find(ExternalRepairBillVieModels[_selectedIndex].Id);
+                if (oldBill != null)
+                {
+                    _applicationContext.DisplayExternalRepaiBillEditView(new ExternalRepairBillEditViewModel(oldBill, _unitOfWork, _validator));
+                }
+                else
+                {
+                    _ = _applicationContext.DisplayMessage("Error", $"External Bill With Number ${ExternalRepairBillVieModels[_selectedIndex].Number} is no longer exist\npleas click search button to reload the data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
         public BindingList<ExternalRepairBillVieModel> ExternalRepairBillVieModels { get; private set; } = new BindingList<ExternalRepairBillVieModel>();
         public List<ExternalAutoRepairShop> ExternalAutoRepairShops { get; private set; } = new List<ExternalAutoRepairShop>();

@@ -47,6 +47,22 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
             }
             _period = _unitOfWork.PeriodRepository.FindOpenPeriod(_billDate);
         }
+        public ExternalRepairBillEditViewModel(ExternalRepairBill externalRepairBill, IUnitOfWork unitOfWork, IValidator<ExternalRepairBill> validator)
+        {
+            _unitOfWork = unitOfWork;
+            _validator = validator;
+
+            Id = externalRepairBill.Id;
+            Number = externalRepairBill.Number.ToString();
+            BillDate = externalRepairBill.BillDate;
+            BillImageFilePath = externalRepairBill.BillImageFilePath;
+            Repairs = externalRepairBill.Repairs;
+            TotalAmountInEGP = externalRepairBill.TotalAmountInEGP;
+            SupplierBillNumber = externalRepairBill.SupplierBillNumber;
+
+            ExternalAutoRepairShops.AddRange(_unitOfWork.ExternalAutoRepairShopRepository.Find(e => e.IsEnabled, q => q.OrderBy(e => e.Name)));
+            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q => q.OrderBy(e => e.InternalCode)));
+        }
         public Guid Id { get; private set; }
         public ExternalRepairBill ExternalRepairBill => new ExternalRepairBill()
         {
@@ -65,6 +81,15 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         {
             _modelState.Clear();
             ExternalRepairBill externalRepairBill = ExternalRepairBill;
+            _period = _unitOfWork.PeriodRepository.FindOpenPeriod(_billDate);
+            if(_period == null)
+            {
+                _modelState.AddError(nameof(BillDate), $"No Open Period For Date ${_billDate}");
+            }
+            else
+            {
+                externalRepairBill.Period = _period;
+            }
             var modelstate = _validator.Validate(externalRepairBill);
             if (!modelstate.HasErrors)
             {
@@ -120,7 +145,6 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                 if (_billDate != value)
                 {
                     _billDate = value;
-                    _period = _unitOfWork.PeriodRepository.FindOpenPeriod(_billDate);
                     Validate();
                     OnPropertyChanged(this, nameof(BillDate));
                     HasChanged = true;

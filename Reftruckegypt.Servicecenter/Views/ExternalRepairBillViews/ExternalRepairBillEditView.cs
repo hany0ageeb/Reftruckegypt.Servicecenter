@@ -92,6 +92,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                         cboVehicles.Enabled = false;
                         txtRepairs.ReadOnly = true;
                         txtSupplierBillNumber.Enabled = true;
+                        btnSave.Enabled = false;
                     }
                     else
                     {
@@ -104,6 +105,55 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                 }
             };
             // ...
+            _editModel.PropertyChanged += (o, e) =>
+             {
+                 if (e.PropertyName == nameof(_editModel.BillImageFilePath))
+                 {
+                     try
+                     {
+                         if (!string.IsNullOrEmpty(_editModel.BillImageFilePath) && System.IO.File.Exists(_editModel.BillImageFilePath))
+                         {
+                             pictureBox1.Image = Image.FromFile(_editModel.BillImageFilePath);
+                             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                             errorProvider1.SetError(pictureBox1, "");
+                         }
+                         else
+                         {
+                             if (!string.IsNullOrEmpty(_editModel.BillImageFilePath))
+                             {
+                                 errorProvider1.SetError(pictureBox1, "Invalid Image File");
+                             }
+                         }
+                         
+                     }
+                     catch(Exception ex)
+                     {
+                         errorProvider1.SetError(pictureBox1, ex.Message);
+                     }
+                  }
+             };
+            // ..
+            openFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|*.jpeg";
+            openFileDialog1.RestoreDirectory = true;
+            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            openFileDialog1.CheckFileExists = true;
+            openFileDialog1.CheckPathExists = true;
+            // ...
+            if(!string.IsNullOrEmpty(_editModel.BillImageFilePath) && System.IO.File.Exists(_editModel.BillImageFilePath) && (_editModel.BillImageFilePath.EndsWith(".jpg") || _editModel.BillImageFilePath.EndsWith(".jpeg")))
+            {
+                pictureBox1.Image = Image.FromFile(_editModel.BillImageFilePath);
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                errorProvider1.SetError(pictureBox1, "");
+            }
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            var result = openFileDialog1.ShowDialog(this);
+            if(result == DialogResult.OK)
+            {
+                _editModel.BillImageFilePath = openFileDialog1.FileName;
+            }
         }
     }
 }

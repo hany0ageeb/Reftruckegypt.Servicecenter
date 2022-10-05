@@ -209,6 +209,17 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                     ReadOnly = true
                 });
             gridbills.DataSource = _searchModel.ExternalRepairBillVieModels;
+            gridbills.SelectionChanged += (o, e) =>
+            {
+                if(gridbills.SelectedCells.Count > 0)
+                {
+                    _searchModel.SelectedIndex = gridbills.SelectedCells[0].RowIndex;
+                }
+                else
+                {
+                    _searchModel.SelectedIndex = -1;
+                }
+            };
             // ...
             btnSearch.Click += (o, e) =>
             {
@@ -219,6 +230,27 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             {
                 _searchModel.Create();
             };
+            // ...
+            btnDelete.DataBindings.Clear();
+            btnDelete.DataBindings.Add(new Binding(nameof(btnDelete.Enabled), _searchModel, nameof(_searchModel.CanEditOrDeleteBill))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            btnDelete.Click += (o, e) =>
+            {
+                _searchModel.Delete();
+            };
+            // ...
+            btnEdit.DataBindings.Clear();
+            btnEdit.DataBindings.Add(new Binding(nameof(btnEdit.Enabled), _searchModel, nameof(_searchModel.CanEditOrDeleteBill))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            btnEdit.Click += (o, e) =>
+            {
+                _searchModel.Edit();
+            };
+            // ...
         }
 
         private void btnClose_Click(object sender, EventArgs e)

@@ -50,16 +50,19 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.txtFilePath = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.12903F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83.87096F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.85124F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.14876F));
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
@@ -81,17 +84,17 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 176F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 166F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(868, 374);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(542, 374);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 197);
+            this.label7.Location = new System.Drawing.Point(3, 207);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(45, 15);
             this.label7.TabIndex = 11;
@@ -100,7 +103,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 162);
+            this.label6.Location = new System.Drawing.Point(3, 172);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(83, 15);
             this.label6.TabIndex = 9;
@@ -111,7 +114,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(3, 131);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 15);
+            this.label5.Size = new System.Drawing.Size(76, 30);
             this.label5.TabIndex = 7;
             this.label5.Text = "Ext.Shop Bill Number";
             // 
@@ -139,9 +142,9 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             this.cboShops.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboShops.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cboShops.FormattingEnabled = true;
-            this.cboShops.Location = new System.Drawing.Point(142, 36);
+            this.cboShops.Location = new System.Drawing.Point(99, 36);
             this.cboShops.Name = "cboShops";
-            this.cboShops.Size = new System.Drawing.Size(490, 23);
+            this.cboShops.Size = new System.Drawing.Size(440, 23);
             this.cboShops.TabIndex = 1;
             // 
             // label2
@@ -164,10 +167,10 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // txtNumber
             // 
-            this.txtNumber.Location = new System.Drawing.Point(142, 3);
+            this.txtNumber.Location = new System.Drawing.Point(99, 3);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.ReadOnly = true;
-            this.txtNumber.Size = new System.Drawing.Size(490, 23);
+            this.txtNumber.Size = new System.Drawing.Size(440, 23);
             this.txtNumber.TabIndex = 0;
             // 
             // cboVehicles
@@ -176,39 +179,39 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             this.cboVehicles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVehicles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cboVehicles.FormattingEnabled = true;
-            this.cboVehicles.Location = new System.Drawing.Point(142, 69);
+            this.cboVehicles.Location = new System.Drawing.Point(99, 69);
             this.cboVehicles.Name = "cboVehicles";
-            this.cboVehicles.Size = new System.Drawing.Size(490, 23);
+            this.cboVehicles.Size = new System.Drawing.Size(440, 23);
             this.cboVehicles.TabIndex = 2;
             // 
             // pickBillDate
             // 
-            this.pickBillDate.Location = new System.Drawing.Point(142, 101);
+            this.pickBillDate.Location = new System.Drawing.Point(99, 101);
             this.pickBillDate.Name = "pickBillDate";
-            this.pickBillDate.Size = new System.Drawing.Size(490, 23);
+            this.pickBillDate.Size = new System.Drawing.Size(440, 23);
             this.pickBillDate.TabIndex = 3;
             // 
             // txtSupplierBillNumber
             // 
-            this.txtSupplierBillNumber.Location = new System.Drawing.Point(142, 134);
+            this.txtSupplierBillNumber.Location = new System.Drawing.Point(99, 134);
             this.txtSupplierBillNumber.Name = "txtSupplierBillNumber";
-            this.txtSupplierBillNumber.Size = new System.Drawing.Size(490, 23);
+            this.txtSupplierBillNumber.Size = new System.Drawing.Size(440, 23);
             this.txtSupplierBillNumber.TabIndex = 4;
             // 
             // txtAmounts
             // 
             this.txtAmounts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtAmounts.Location = new System.Drawing.Point(142, 165);
+            this.txtAmounts.Location = new System.Drawing.Point(99, 175);
             this.txtAmounts.Name = "txtAmounts";
-            this.txtAmounts.Size = new System.Drawing.Size(490, 23);
+            this.txtAmounts.Size = new System.Drawing.Size(440, 23);
             this.txtAmounts.TabIndex = 5;
             // 
             // txtRepairs
             // 
-            this.txtRepairs.Location = new System.Drawing.Point(142, 200);
+            this.txtRepairs.Location = new System.Drawing.Point(99, 210);
             this.txtRepairs.Multiline = true;
             this.txtRepairs.Name = "txtRepairs";
-            this.txtRepairs.Size = new System.Drawing.Size(708, 151);
+            this.txtRepairs.Size = new System.Drawing.Size(440, 151);
             this.txtRepairs.TabIndex = 6;
             // 
             // btnClose
@@ -238,28 +241,42 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 391);
+            this.label8.Location = new System.Drawing.Point(503, 386);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 15);
+            this.label8.Size = new System.Drawing.Size(61, 15);
             this.label8.TabIndex = 12;
-            this.label8.Text = "Bill Image File";
+            this.label8.Text = "Image File";
             // 
             // txtFilePath
             // 
-            this.txtFilePath.Location = new System.Drawing.Point(142, 389);
+            this.txtFilePath.Location = new System.Drawing.Point(570, 383);
             this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(631, 23);
+            this.txtFilePath.Size = new System.Drawing.Size(210, 23);
             this.txtFilePath.TabIndex = 13;
             // 
-            // button1
+            // btnBrowse
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(779, 384);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 28);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Brows ...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnBrowse.Enabled = false;
+            this.btnBrowse.Location = new System.Drawing.Point(786, 379);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(77, 28);
+            this.btnBrowse.TabIndex = 9;
+            this.btnBrowse.Text = "Browse ...";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(548, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(315, 371);
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "jpg files (*.jpg) | (*.jpg)";
             // 
             // ExternalRepairBillEditView
             // 
@@ -268,8 +285,9 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(875, 485);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -283,6 +301,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -310,6 +329,8 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtFilePath;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
