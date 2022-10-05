@@ -9,7 +9,7 @@ namespace Reftruckegypt.Servicecenter.Models
         public string Name { get; set; }
         public string Registration { get; set; }
         public virtual Vehicle Vehicle { get; set; }
-     
+        public FuelCard Self => this;
         public const int MaxFuelCardNumberLength = 20;
         public const int MaxFuelCardNameLength = 250;
         public const int MaxFuelCardRegistrationLength = 20;

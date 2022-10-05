@@ -15,6 +15,8 @@ using Reftruckegypt.Servicecenter.Views.PeriodViews;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
 using Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
+using Reftruckegypt.Servicecenter.Views.FuelConsumptionViews;
+using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -37,6 +39,18 @@ namespace Reftruckegypt.Servicecenter.Common
                 FormClosed(o as Form);
             };
             vehicleCategoriesView.Show();
+        }
+        public void DisplayFuelConsumptionsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            FuelConsumptionsView fuelConsumptionsView = scope.ServiceProvider.GetRequiredService<FuelConsumptionsView>();
+            fuelConsumptionsView.MdiParent = _mdiParent;
+            _scopes[fuelConsumptionsView] = scope;
+            fuelConsumptionsView.FormClosed += (o, e) =>
+             {
+                 FormClosed(o as Form);
+             };
+            fuelConsumptionsView.Show();
         }
         public void DisplayVehicleModelsView()
         {
@@ -105,6 +119,11 @@ namespace Reftruckegypt.Servicecenter.Common
                 _scopes[sender].Dispose();
                 _scopes.Remove(sender);
             }
+        }
+        public void DisplayFuelConsumptionEditView(FuelConsumptionEditViewModel fuelConsumptionEditViewModel)
+        {
+            FuelConsumptionEditView fuelConsumptionEditView = new FuelConsumptionEditView(fuelConsumptionEditViewModel);
+            fuelConsumptionEditView.ShowDialog(_mdiParent);
         }
         public void DisplayKilometerReadingEditView(VehicleKilometerReadingEditViewModel model)
         {

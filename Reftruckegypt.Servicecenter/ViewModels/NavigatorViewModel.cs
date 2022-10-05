@@ -61,6 +61,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                             _applicationContext.DisplayKilometerReadingsView();
                         };
                         break;
+                    case nameof(FuelConsumption):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayFuelConsumptionsView();
+                        };
+                        break;
                 }
                 UserCommands.Add(command);
             }

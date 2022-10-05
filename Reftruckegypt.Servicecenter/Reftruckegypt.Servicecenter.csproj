@@ -301,6 +301,7 @@
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillEditViewModel.cs" />
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillSearchViewModel.cs" />
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillVieModel.cs" />
+    <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionSearchViewModel.cs" />
     <Compile Include="ViewModels\NavigatorViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodEditViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodSearchViewModel.cs" />
@@ -338,6 +339,18 @@
     </Compile>
     <Compile Include="Views\ExternalRepairBillViews\ExternalRepairBillsView.Designer.cs">
       <DependentUpon>ExternalRepairBillsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelConsumptionViews\FuelConsumptionEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FuelConsumptionViews\FuelConsumptionEditView.Designer.cs">
+      <DependentUpon>FuelConsumptionEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelConsumptionViews\FuelConsumptionsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FuelConsumptionViews\FuelConsumptionsView.Designer.cs">
+      <DependentUpon>FuelConsumptionsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
@@ -423,6 +436,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ExternalRepairBillViews\ExternalRepairBillsView.resx">
       <DependentUpon>ExternalRepairBillsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FuelConsumptionViews\FuelConsumptionEditView.resx">
+      <DependentUpon>FuelConsumptionEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FuelConsumptionViews\FuelConsumptionsView.resx">
+      <DependentUpon>FuelConsumptionsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

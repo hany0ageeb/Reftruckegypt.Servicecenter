@@ -8,7 +8,7 @@ namespace Reftruckegypt.Servicecenter.Models
         public string Description { get; set; }
         public virtual FuelType DefaultFuelType { get; set;}
         public Guid? DefaultFuelTypeId { get; set; }
-
+        public VehicleModel Self => this;
         public const int NameMaxLength = 250;
         public const int DescriptionMaxLength = 500;
     }

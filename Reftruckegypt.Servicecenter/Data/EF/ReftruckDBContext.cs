@@ -47,6 +47,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             });
             modelBuilder
                 .Entity<VehicleCategory>()
+                .Ignore(e => e.Self);
+            modelBuilder
+                .Entity<VehicleCategory>()
                 .HasIndex(e => e.Name)
                 .IsUnique(true)
                 .HasName("IDX_UNQ_CATEGORY_NAME");
@@ -88,6 +91,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 m.MapInheritedProperties();
                 m.ToTable("VehicleModels");
             });
+            modelBuilder
+                .Entity<VehicleModel>()
+                .Ignore(e => e.Self);
             modelBuilder
                 .Entity<VehicleModel>()
                 .HasIndex(e => e.Name)
@@ -168,6 +174,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 m.MapInheritedProperties();
                 m.ToTable("FuelCards");
             });
+            modelBuilder
+                .Entity<FuelCard>()
+                .Ignore(e => e.Self);
             modelBuilder
                 .Entity<FuelCard>()
                 .HasIndex(e => e.Number)
@@ -381,6 +390,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<FuelConsumption>()
                 .Property(e => e.Notes)
                 .HasMaxLength(FuelConsumption.MaxFuelConsumptionNotesLength);
+            modelBuilder
+                .Entity<FuelConsumption>()
+                .HasRequired(e => e.FuelType)
+                .WithMany()
+                .HasForeignKey(e => e.FuelTypeId)
+                .WillCascadeOnDelete(false);
             // .... ExternalAutoRepairShop
             modelBuilder
                 .Entity<ExternalAutoRepairShop>()
