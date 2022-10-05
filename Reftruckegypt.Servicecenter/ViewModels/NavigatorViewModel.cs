@@ -1,5 +1,6 @@
 ﻿using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
+using Reftruckegypt.Servicecenter.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,34 +25,40 @@ namespace Reftruckegypt.Servicecenter.ViewModels
             {
                 switch (command.Name)
                 {
-                    case "VehicleCategory":
+                    case nameof(VehicleCategory):
                         command.Execute = () =>
                         {
                             _applicationContext.DisplayVehicleCategoriesView();
                         };
                         break;
-                    case "VehicleModel":
+                    case nameof(VehicleModel):
                         command.Execute = () =>
                         {
                             _applicationContext.DisplayVehicleModelsView();
                         };
                         break;
-                    case "ExternalAutoRepairShop":
+                    case nameof(ExternalAutoRepairShop):
                         command.Execute = () =>
                         {
                             _applicationContext.DisplayExternalAutoRepairShopsView();
                         };
                         break;
-                    case "ExternalRepairBill":
+                    case nameof(ExternalRepairBill):
                         command.Execute = () =>
                         {
                             _applicationContext.DisplayExternalRepairBillsView();
                         };
                         break;
-                    case "Period":
+                    case nameof(Period):
                         command.Execute = () =>
                         {
                             _applicationContext.DisplayPeriodsView();
+                        };
+                        break;
+                    case nameof(VehicleKilometerReading):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayKilometerReadingsView();
                         };
                         break;
                 }

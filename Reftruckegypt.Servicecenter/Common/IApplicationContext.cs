@@ -2,6 +2,7 @@
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplayExternalRepaiBillEditView(ExternalRepairBillEditViewModel editViewModel);
         void DisplayPeriodsView();
         void DisplayPeriodEditView(PeriodEditViewModel periodEditViewModel);
+        void DisplayKilometerReadingsView();
+        void DisplayKilometerReadingEditView(VehicleKilometerReadingEditViewModel model);
     }
    
 }

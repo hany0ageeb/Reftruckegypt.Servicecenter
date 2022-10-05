@@ -7,7 +7,7 @@ namespace Reftruckegypt.Servicecenter.Models
     {
         public virtual Vehicle Vehicle { get; set; }
         public DateTime ReadingDate { get; set; } = DateTime.Now;
-        public Period Period { get; set; }
+        public virtual Period Period { get; set; }
         [Range(0.0, double.MaxValue)]
         public decimal Reading { get; set; }
         public string Notes { get; set; }

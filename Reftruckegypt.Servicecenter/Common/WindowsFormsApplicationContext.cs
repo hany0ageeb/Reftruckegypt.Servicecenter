@@ -13,6 +13,8 @@ using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.Views.PeriodViews;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
+using Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -84,6 +86,18 @@ namespace Reftruckegypt.Servicecenter.Common
             periodsView.MdiParent = _mdiParent;
             periodsView.Show();
         }
+        public void DisplayKilometerReadingsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            VehicleKilometerReadingsView vehicleKilometerReadingsView = scope.ServiceProvider.GetRequiredService<VehicleKilometerReadingsView>();
+            _scopes[vehicleKilometerReadingsView] = scope;
+            vehicleKilometerReadingsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            vehicleKilometerReadingsView.MdiParent = _mdiParent;
+            vehicleKilometerReadingsView.Show();
+        }
         private void FormClosed(Form sender)
         {
             if (sender != null && _scopes.ContainsKey(sender))
@@ -91,6 +105,11 @@ namespace Reftruckegypt.Servicecenter.Common
                 _scopes[sender].Dispose();
                 _scopes.Remove(sender);
             }
+        }
+        public void DisplayKilometerReadingEditView(VehicleKilometerReadingEditViewModel model)
+        {
+            VehicleKilometerReadingEditView vehicleKilometerReadingEditView = new VehicleKilometerReadingEditView(model);
+            _ = vehicleKilometerReadingEditView.ShowDialog(_mdiParent);
         }
         public void DisplayVehicleCategoryEditView(VehicleCategoryEditViewModel _editModel)
         {

@@ -22,6 +22,8 @@ using Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
 using Reftruckegypt.Servicecenter.Views.PeriodViews;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
+using Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -91,6 +93,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(ExternalAutoRepairShopSearchViewModel));
             services.AddTransient(typeof(ExternalRepairBillSearchViewModel));
             services.AddTransient(typeof(PeriodSearchViewModel));
+            services.AddTransient(typeof(VehicleKilometerReadingSearchViewModel));
             // ....
             services.AddSingleton(typeof(MainView));
             services.AddSingleton(typeof(NavigatorView));
@@ -99,6 +102,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(ExternalAutoRepairShopsView));
             services.AddTransient(typeof(ExternalRepairBillsView));
             services.AddTransient(typeof(PeriodsView));
+            services.AddTransient(typeof(VehicleKilometerReadingsView));
             // ....
 
         }

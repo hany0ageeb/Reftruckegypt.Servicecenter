@@ -307,6 +307,10 @@
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategorySearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryViewModel.cs" />
+    <Compile Include="ViewModels\VehicleKilometerReadingViewModels\VehicleKilometerReadingEditViewModel.cs" />
+    <Compile Include="ViewModels\VehicleKilometerReadingViewModels\VehicleKilometerReadingLineEditViewModel.cs" />
+    <Compile Include="ViewModels\VehicleKilometerReadingViewModels\VehicleKilometerReadingSearchViewModel.cs" />
+    <Compile Include="ViewModels\VehicleKilometerReadingViewModels\VehicleKilometerReadingViewModel.cs" />
     <Compile Include="ViewModels\VehicleModelViewModels\VehicelModelEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelSearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelViewModel.cs" />
@@ -371,6 +375,18 @@
     <Compile Include="Views\VehicleCategoryViews\VehicleCategoryEditView.Designer.cs">
       <DependentUpon>VehicleCategoryEditView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\VehicleKilometerReadingViews\VehicleKilometerReadingEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VehicleKilometerReadingViews\VehicleKilometerReadingEditView.Designer.cs">
+      <DependentUpon>VehicleKilometerReadingEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VehicleKilometerReadingViews\VehicleKilometerReadingsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VehicleKilometerReadingViews\VehicleKilometerReadingsView.Designer.cs">
+      <DependentUpon>VehicleKilometerReadingsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\VehicleModelViews\VehicleModelEditView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -425,6 +441,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\VehicleCategoryViews\VehicleCategoryEditView.resx">
       <DependentUpon>VehicleCategoryEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VehicleKilometerReadingViews\VehicleKilometerReadingEditView.resx">
+      <DependentUpon>VehicleKilometerReadingEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VehicleKilometerReadingViews\VehicleKilometerReadingsView.resx">
+      <DependentUpon>VehicleKilometerReadingsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\VehicleModelViews\VehicleModelEditView.resx">
       <DependentUpon>VehicleModelEditView.cs</DependentUpon>
