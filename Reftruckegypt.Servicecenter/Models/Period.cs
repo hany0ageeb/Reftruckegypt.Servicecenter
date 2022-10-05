@@ -9,6 +9,19 @@ namespace Reftruckegypt.Servicecenter.Models
         public DateTime ToDate { get; set; }
         public string State { get; set; } = PeriodStates.OpenState;
 
+        public void ReverseState()
+        {
+            if(State == PeriodStates.OpenState)
+            {
+                State = PeriodStates.ClosedState;
+            }
+            else
+            {
+                State = PeriodStates.OpenState;
+            }
+        }
+        public virtual SparePartsPriceList SparePartsPriceList { get; set; }
+
         public const int MaxPeriodNameLength = 250;
         public const int MaxPeriodStateLength = 50;
     }
@@ -20,5 +33,6 @@ namespace Reftruckegypt.Servicecenter.Models
         {
             return state == OpenState || state == ClosedState;
         }
+        public static string[] AllStates = { OpenState, ClosedState };
     }
 }

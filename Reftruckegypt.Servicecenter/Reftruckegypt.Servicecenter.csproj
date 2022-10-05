@@ -302,6 +302,8 @@
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillSearchViewModel.cs" />
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillVieModel.cs" />
     <Compile Include="ViewModels\NavigatorViewModel.cs" />
+    <Compile Include="ViewModels\PeriodViewModels\PeriodEditViewModel.cs" />
+    <Compile Include="ViewModels\PeriodViewModels\PeriodSearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategorySearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryViewModel.cs" />
@@ -344,6 +346,18 @@
     </Compile>
     <Compile Include="Views\NavigatorView.Designer.cs">
       <DependentUpon>NavigatorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodViews\PeriodEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PeriodViews\PeriodEditView.Designer.cs">
+      <DependentUpon>PeriodEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodViews\PeriodsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PeriodViews\PeriodsView.Designer.cs">
+      <DependentUpon>PeriodsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\VehicleCategoryViews\VehicleCategoriesView.cs">
       <SubType>Form</SubType>
@@ -399,6 +413,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\NavigatorView.resx">
       <DependentUpon>NavigatorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PeriodViews\PeriodEditView.resx">
+      <DependentUpon>PeriodEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PeriodViews\PeriodsView.resx">
+      <DependentUpon>PeriodsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\VehicleCategoryViews\VehicleCategoriesView.resx">
       <DependentUpon>VehicleCategoriesView.cs</DependentUpon>

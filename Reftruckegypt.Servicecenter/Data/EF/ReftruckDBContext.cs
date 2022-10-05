@@ -547,7 +547,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<SparePartsPriceList>()
                 .HasRequired(e => e.Period)
-                .WithOptional()
+                .WithOptional(e=>e.SparePartsPriceList)
                 .WillCascadeOnDelete(true);
             modelBuilder
                 .Entity<SparePartsPriceList>()
@@ -664,12 +664,6 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .HasRequired(e => e.Vehicle)
                 .WithMany()
                 .HasForeignKey(e => e.VehicleId)
-                .WillCascadeOnDelete(false);
-            modelBuilder
-                .Entity<VehicleStateChange>()
-                .HasRequired(e => e.Period)
-                .WithMany()
-                .HasForeignKey(e => e.PeriodId)
                 .WillCascadeOnDelete(false);
             modelBuilder
                 .Entity<VehicleStateChange>()

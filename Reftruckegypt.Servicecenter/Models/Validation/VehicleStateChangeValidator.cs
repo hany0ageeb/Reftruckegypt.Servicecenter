@@ -5,10 +5,6 @@
         public ModelState Validate(VehicleStateChange vehicleStateChange)
         {
             ModelState modelState = new ModelState();
-            if(vehicleStateChange.Period == null)
-            {
-                modelState.AddError(nameof(vehicleStateChange.Period), string.Format(ValidationErrors.RequiredField, nameof(vehicleStateChange.Period)));
-            }
             if(vehicleStateChange.Vehicle == null)
             {
                 modelState.AddError(nameof(vehicleStateChange.Vehicle), string.Format(ValidationErrors.RequiredField, nameof(vehicleStateChange.Vehicle)));

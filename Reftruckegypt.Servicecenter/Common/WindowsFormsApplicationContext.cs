@@ -11,6 +11,8 @@ using Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews;
 using Reftruckegypt.Servicecenter.Views.ExternalAutoRepairShopViews;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
+using Reftruckegypt.Servicecenter.Views.PeriodViews;
+using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -70,6 +72,18 @@ namespace Reftruckegypt.Servicecenter.Common
             externalRepairBillsView.MdiParent = _mdiParent;
             externalRepairBillsView.Show();
         }
+        public void DisplayPeriodsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            PeriodsView periodsView = scope.ServiceProvider.GetRequiredService<PeriodsView>();
+            _scopes[periodsView] = scope;
+            periodsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            periodsView.MdiParent = _mdiParent;
+            periodsView.Show();
+        }
         private void FormClosed(Form sender)
         {
             if (sender != null && _scopes.ContainsKey(sender))
@@ -100,6 +114,11 @@ namespace Reftruckegypt.Servicecenter.Common
         {
             ExternalRepairBillEditView externalRepairBillEditView = new ExternalRepairBillEditView(editViewModel);
             externalRepairBillEditView.ShowDialog(_mdiParent);
+        }
+        public void DisplayPeriodEditView(PeriodEditViewModel periodEditViewModel)
+        {
+            PeriodEditView periodEditView = new PeriodEditView(periodEditViewModel);
+            periodEditView.ShowDialog(_mdiParent);
         }
         public DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon)
         {

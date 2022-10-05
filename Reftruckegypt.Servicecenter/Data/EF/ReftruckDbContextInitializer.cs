@@ -633,6 +633,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Sequence = 40,
                     Name = "ExternalRepairBill",
                     DisplayName = "External Repair Bills"
+                },
+                new UserCommand()
+                {
+                    Sequence = 50,
+                    Name = "Period",
+                    DisplayName = "Periods"
                 }
             };
             // ...
