@@ -67,6 +67,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                             _applicationContext.DisplayFuelConsumptionsView();
                         };
                         break;
+                    case nameof(VehicleViolation):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayVehicleViolationsView();
+                        };
+                        break;
                 }
                 UserCommands.Add(command);
             }

@@ -5,6 +5,7 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public bool IsEnabled { get; set; } = false;
+        public ViolationType Self => this;
 
         public const int MaxNameLength = 250;
         public const int MaxDescriptionLength = 500;

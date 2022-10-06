@@ -17,6 +17,8 @@ using Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
 using Reftruckegypt.Servicecenter.Views.FuelConsumptionViews;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
+using Reftruckegypt.Servicecenter.Views.VehicleViolationViews;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -39,6 +41,18 @@ namespace Reftruckegypt.Servicecenter.Common
                 FormClosed(o as Form);
             };
             vehicleCategoriesView.Show();
+        }
+        public void DisplayVehicleViolationsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            VehicleViolationsView vehicleViolationsView = scope.ServiceProvider.GetRequiredService<VehicleViolationsView>();
+            _scopes[vehicleViolationsView] = scope;
+            vehicleViolationsView.MdiParent = _mdiParent;
+            vehicleViolationsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            vehicleViolationsView.Show();
         }
         public void DisplayFuelConsumptionsView()
         {
@@ -123,11 +137,13 @@ namespace Reftruckegypt.Servicecenter.Common
         public void DisplayFuelConsumptionEditView(FuelConsumptionEditViewModel fuelConsumptionEditViewModel)
         {
             FuelConsumptionEditView fuelConsumptionEditView = new FuelConsumptionEditView(fuelConsumptionEditViewModel);
+            fuelConsumptionEditView.ShowInTaskbar = false;
             fuelConsumptionEditView.ShowDialog(_mdiParent);
         }
         public void DisplayKilometerReadingEditView(VehicleKilometerReadingEditViewModel model)
         {
             VehicleKilometerReadingEditView vehicleKilometerReadingEditView = new VehicleKilometerReadingEditView(model);
+            vehicleKilometerReadingEditView.ShowInTaskbar = false;
             _ = vehicleKilometerReadingEditView.ShowDialog(_mdiParent);
         }
         public void DisplayVehicleCategoryEditView(VehicleCategoryEditViewModel _editModel)
@@ -138,24 +154,35 @@ namespace Reftruckegypt.Servicecenter.Common
             };
             vehicleCategoryEditView.ShowDialog(_mdiParent);
         }
+
+        public void DisplayVehicleViolationEditView(VehicleViolationEditViewModel vehicleVilationEditViewModel)
+        {
+            VehicleViolationEditView vehicleViolationEditView = new VehicleViolationEditView(vehicleVilationEditViewModel);
+            vehicleViolationEditView.ShowInTaskbar = false;
+            vehicleViolationEditView.Show(_mdiParent);
+        }
         public void DisplayVehicleModelEditView(VehicleModelEditViewModel editModel)
         {
             VehicleModelEditView vehicleModelEditView = new VehicleModelEditView(editModel);
+            vehicleModelEditView.ShowInTaskbar = false;
             vehicleModelEditView.ShowDialog(_mdiParent);
         }
         public void DisplayExternalRepairShopEditView(ExternalAutoRepairShopEditViewModel editModel)
         {
             ExternalAutoRepairShopEditView externalAutoRepairShopEditView = new ExternalAutoRepairShopEditView(editModel);
+            externalAutoRepairShopEditView.ShowInTaskbar = false;
             externalAutoRepairShopEditView.ShowDialog(_mdiParent);
         }
         public void DisplayExternalRepaiBillEditView(ExternalRepairBillEditViewModel editViewModel)
         {
             ExternalRepairBillEditView externalRepairBillEditView = new ExternalRepairBillEditView(editViewModel);
+            externalRepairBillEditView.ShowInTaskbar = false;
             externalRepairBillEditView.ShowDialog(_mdiParent);
         }
         public void DisplayPeriodEditView(PeriodEditViewModel periodEditViewModel)
         {
             PeriodEditView periodEditView = new PeriodEditView(periodEditViewModel);
+            periodEditView.ShowInTaskbar = false;
             periodEditView.ShowDialog(_mdiParent);
         }
         public DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon)
@@ -218,5 +245,6 @@ namespace Reftruckegypt.Servicecenter.Common
                     return DialogResult.None;
             }
         }
+
     }
 }

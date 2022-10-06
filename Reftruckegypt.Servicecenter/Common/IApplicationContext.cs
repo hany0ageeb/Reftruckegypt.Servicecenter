@@ -5,6 +5,7 @@ using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,8 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplayKilometerReadingEditView(VehicleKilometerReadingEditViewModel model);
         void DisplayFuelConsumptionsView();
         void DisplayFuelConsumptionEditView(FuelConsumptionEditViewModel fuelConsumptionEditViewModel);
+        void DisplayVehicleViolationsView();
+        void DisplayVehicleViolationEditView(VehicleViolationEditViewModel vehicleVilationEditViewModel);
     }
    
 }

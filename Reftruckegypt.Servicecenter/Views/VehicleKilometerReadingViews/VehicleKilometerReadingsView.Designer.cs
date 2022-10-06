@@ -51,7 +51,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.60486F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.39513F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbovehicles, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
@@ -123,7 +123,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(628, 60);
+            this.btnSearch.Location = new System.Drawing.Point(627, 60);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(101, 30);
             this.btnSearch.TabIndex = 6;

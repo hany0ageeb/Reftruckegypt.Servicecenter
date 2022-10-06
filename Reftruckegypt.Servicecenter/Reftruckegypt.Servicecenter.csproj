@@ -301,7 +301,10 @@
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillEditViewModel.cs" />
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillSearchViewModel.cs" />
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillVieModel.cs" />
+    <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionEditViewModel.cs" />
+    <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionLineEditViewModel.cs" />
     <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionSearchViewModel.cs" />
+    <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionViewModel.cs" />
     <Compile Include="ViewModels\NavigatorViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodEditViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodSearchViewModel.cs" />
@@ -315,6 +318,10 @@
     <Compile Include="ViewModels\VehicleModelViewModels\VehicelModelEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelSearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelViewModel.cs" />
+    <Compile Include="ViewModels\VehicleViolationViewModels\VehicleViolationEditViewModel.cs" />
+    <Compile Include="ViewModels\VehicleViolationViewModels\VehicleViolationLineEditViewModel.cs" />
+    <Compile Include="ViewModels\VehicleViolationViewModels\VehicleViolationSearchViewModel.cs" />
+    <Compile Include="ViewModels\VehicleViolationViewModels\VehicleViolationViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\ExternalAutoRepairShopViews\ExternalAutoRepairShopEditView.cs">
       <SubType>Form</SubType>
@@ -412,6 +419,18 @@
     <Compile Include="Views\VehicleModelViews\VehicleModelsView.Designer.cs">
       <DependentUpon>VehicleModelsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\VehicleViolationViews\VehicleViolationEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VehicleViolationViews\VehicleViolationEditView.Designer.cs">
+      <DependentUpon>VehicleViolationEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VehicleViolationViews\VehicleViolationsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VehicleViolationViews\VehicleViolationsView.Designer.cs">
+      <DependentUpon>VehicleViolationsView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -472,6 +491,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\VehicleModelViews\VehicleModelsView.resx">
       <DependentUpon>VehicleModelsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VehicleViolationViews\VehicleViolationEditView.resx">
+      <DependentUpon>VehicleViolationEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VehicleViolationViews\VehicleViolationsView.resx">
+      <DependentUpon>VehicleViolationsView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

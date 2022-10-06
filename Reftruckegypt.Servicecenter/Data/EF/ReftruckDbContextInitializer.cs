@@ -651,6 +651,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Sequence = 70,
                     Name = nameof(FuelConsumption),
                     DisplayName = "Fuel Consumption"
+                },
+                new UserCommand()
+                {
+                    Sequence = 80,
+                    Name = nameof(VehicleViolation),
+                    DisplayName = "Vehicle Violations"
                 }
             };
             // ...

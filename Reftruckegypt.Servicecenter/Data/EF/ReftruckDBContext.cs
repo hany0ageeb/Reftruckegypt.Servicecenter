@@ -277,6 +277,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             });
             modelBuilder
                 .Entity<ViolationType>()
+                .Ignore(e => e.Self);
+            modelBuilder
+                .Entity<ViolationType>()
                 .HasIndex(e => e.Name)
                 .IsUnique(true)
                 .HasName("IDX_UNQ_VIOLATION_NAME");
