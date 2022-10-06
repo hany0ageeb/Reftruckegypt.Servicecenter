@@ -735,11 +735,14 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         public DbSet<ExternalAutoRepairShop> ExternalAutoRepairShops { get; set; }
         public DbSet<ExternalRepairBill> ExternalRepairBills { get; set; }
         public DbSet<SparePartsBill> SparePartsBills { get; set; }
+        public DbSet<SparePartsBillLine> SparePartsBillLines { get; set; }
         public DbSet<Period> Periods { get; set; }
         public DbSet<FuelConsumption> FuelConsumptions { get; set; }
         public DbSet<SparePartsPriceList> SparePartsPriceLists { get; set; }
+        public DbSet<SparePartPriceListLine> SparePartPriceListLines { get; set; }
         public DbSet<VehicleKilometerReading> VehicleKilometerReadings { get; set; }
         public DbSet<VehicleStateChange> VehicleStateChanges { get; set; }
         public DbSet<UserCommand> UserCommands { get; set; }
+        
     }
 }

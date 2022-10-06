@@ -19,6 +19,8 @@ using Reftruckegypt.Servicecenter.Views.FuelConsumptionViews;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 using Reftruckegypt.Servicecenter.Views.VehicleViolationViews;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
+using Reftruckegypt.Servicecenter.Views.UomViews;
+using Reftruckegypt.Servicecenter.ViewModels.UomViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -29,6 +31,18 @@ namespace Reftruckegypt.Servicecenter.Common
         public WindowsFormsApplicationContext(Form mdiParent)
         {
             _mdiParent = mdiParent;
+        }
+        public void DisplayUomsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            UomsView uomsView = scope.ServiceProvider.GetRequiredService<UomsView>();
+            _scopes[uomsView] = scope;
+            uomsView.MdiParent = _mdiParent;
+            uomsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            uomsView.Show();
         }
         public void DisplayVehicleCategoriesView()
         {
@@ -133,6 +147,12 @@ namespace Reftruckegypt.Servicecenter.Common
                 _scopes[sender].Dispose();
                 _scopes.Remove(sender);
             }
+        }
+        public void DisplayUomEditView(UomEditViewModel uomEditViewModel)
+        {
+            UomEditView uomEditView = new UomEditView(uomEditViewModel);
+            uomEditView.ShowInTaskbar = false;
+            uomEditView.ShowDialog(_mdiParent);
         }
         public void DisplayFuelConsumptionEditView(FuelConsumptionEditViewModel fuelConsumptionEditViewModel)
         {
@@ -246,5 +266,6 @@ namespace Reftruckegypt.Servicecenter.Common
             }
         }
 
+        
     }
 }

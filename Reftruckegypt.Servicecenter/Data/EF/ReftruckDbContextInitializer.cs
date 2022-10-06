@@ -657,6 +657,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Sequence = 80,
                     Name = nameof(VehicleViolation),
                     DisplayName = "Vehicle Violations"
+                },
+                new UserCommand()
+                {
+                    Sequence = 90,
+                    Name = nameof(Uom),
+                    DisplayName = "Units Of Measure"
                 }
             };
             // ...

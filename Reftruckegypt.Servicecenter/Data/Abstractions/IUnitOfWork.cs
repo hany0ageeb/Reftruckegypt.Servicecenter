@@ -24,6 +24,9 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
         IVehicleViolationRepository VehicleViolationRepository { get; }
         IVehicleStateChangeRepository VehicleStateChangeRepository { get; }
         IUserCommandRepository UserCommandRepository { get; }
+        ISparePartsBillLineRepository SparePartsBillLineRepository { get; }
+        ISparePartPriceListLineRepository SparePartPriceListLineRepository { get; }
+        IUomConversionRepository UomConversionRepository { get; }
         int Complete();
     }
 }

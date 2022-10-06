@@ -19,7 +19,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels
         {
             _unitOfWork = unitOfWork;
             _applicationContext = applicationContext;
-            var commands = _unitOfWork.UserCommandRepository.Find(orderBy: q=>q.OrderBy(e=>e.Sequence)).ToList();
+            var commands = _unitOfWork.UserCommandRepository.Find(
+                predicate: com => com.IsEnabled,
+                orderBy: q=>q.OrderBy(e=>e.Sequence)).ToList();
             UserCommands.Clear();
             foreach(var command in commands)
             {
@@ -71,6 +73,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                         command.Execute = () =>
                         {
                             _applicationContext.DisplayVehicleViolationsView();
+                        };
+                        break;
+                    case nameof(Uom):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayUomsView();
                         };
                         break;
                 }

@@ -207,10 +207,13 @@
     <Compile Include="Data\Abstractions\ILocationRepository.cs" />
     <Compile Include="Data\Abstractions\IPeriodReposiory.cs" />
     <Compile Include="Data\Abstractions\IRepository.cs" />
+    <Compile Include="Data\Abstractions\ISparePartPriceListLineRepository.cs" />
     <Compile Include="Data\Abstractions\ISparePartRepository.cs" />
+    <Compile Include="Data\Abstractions\ISparePartsBillLineRepository.cs" />
     <Compile Include="Data\Abstractions\ISparePartsBillRepository.cs" />
     <Compile Include="Data\Abstractions\ISparePartsPriceListRepository.cs" />
     <Compile Include="Data\Abstractions\IUnitOfWork.cs" />
+    <Compile Include="Data\Abstractions\IUomConversionRepository.cs" />
     <Compile Include="Data\Abstractions\IUomRepository.cs" />
     <Compile Include="Data\Abstractions\IUserCommandRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleCategoryRepository.cs" />
@@ -231,10 +234,13 @@
     <Compile Include="Data\EF\ReftruckDBContext.cs" />
     <Compile Include="Data\EF\ReftruckDbContextInitializer.cs" />
     <Compile Include="Data\EF\Repository.cs" />
+    <Compile Include="Data\EF\SparePartPriceListLineRepository.cs" />
     <Compile Include="Data\EF\SparePartRepository.cs" />
+    <Compile Include="Data\EF\SparePartsBillLineRepository.cs" />
     <Compile Include="Data\EF\SparePartsBillRepository.cs" />
     <Compile Include="Data\EF\SparePartsPriceListRepository.cs" />
     <Compile Include="Data\EF\UnitOfWork.cs" />
+    <Compile Include="Data\EF\UomConversionRepository.cs" />
     <Compile Include="Data\EF\UomRepository.cs" />
     <Compile Include="Data\EF\UserCommandRepository.cs" />
     <Compile Include="Data\EF\VehicleCategoryRepository.cs" />
@@ -308,6 +314,8 @@
     <Compile Include="ViewModels\NavigatorViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodEditViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodSearchViewModel.cs" />
+    <Compile Include="ViewModels\UomViewModels\UomEditViewModel.cs" />
+    <Compile Include="ViewModels\UomViewModels\UomSearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategorySearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryViewModel.cs" />
@@ -382,6 +390,18 @@
     </Compile>
     <Compile Include="Views\PeriodViews\PeriodsView.Designer.cs">
       <DependentUpon>PeriodsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UomViews\UomEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UomViews\UomEditView.Designer.cs">
+      <DependentUpon>UomEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UomViews\UomsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UomViews\UomsView.Designer.cs">
+      <DependentUpon>UomsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\VehicleCategoryViews\VehicleCategoriesView.cs">
       <SubType>Form</SubType>
@@ -473,6 +493,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PeriodViews\PeriodsView.resx">
       <DependentUpon>PeriodsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UomViews\UomEditView.resx">
+      <DependentUpon>UomEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UomViews\UomsView.resx">
+      <DependentUpon>UomsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\VehicleCategoryViews\VehicleCategoriesView.resx">
       <DependentUpon>VehicleCategoriesView.cs</DependentUpon>

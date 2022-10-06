@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Reftruckegypt.Servicecenter.Data.Abstractions
 {
-    public interface IPeriodRepository : IRepository<Models.Period, Guid>
+    public interface IPeriodRepository : IRepository<Period, Guid>
     {
         Period FindOpenPeriod(DateTime date);
         IEnumerable<Period> Find(

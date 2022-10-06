@@ -29,6 +29,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             SparePartsPriceListRepository = new SparePartsPriceListRepository(context);
             VehicleStateChangeRepository = new VehicleStateChangeRepository(context);
             UserCommandRepository = new UserCommandRepository(context);
+            SparePartsBillLineRepository = new SparePartsBillLineRepository(context);
+            SparePartPriceListLineRepository = new SparePartPriceListLineRepository(context);
+            UomConversionRepository = new UomConversionRepository(context);
         }
 
         public IDriverRepository DriverRepository { get; private set; }
@@ -69,6 +72,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
 
         public IVehicleStateChangeRepository VehicleStateChangeRepository { get; private set; }
         public IUserCommandRepository UserCommandRepository { get; private set; }
+
+        public ISparePartsBillLineRepository SparePartsBillLineRepository { get; private set; }
+
+        public ISparePartPriceListLineRepository SparePartPriceListLineRepository { get; private set; }
+
+        public IUomConversionRepository UomConversionRepository { get; private set; }
 
         public int Complete()
         {

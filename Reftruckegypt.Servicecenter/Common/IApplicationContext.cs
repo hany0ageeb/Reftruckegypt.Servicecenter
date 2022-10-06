@@ -2,6 +2,7 @@
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.UomViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
@@ -33,6 +34,8 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplayFuelConsumptionEditView(FuelConsumptionEditViewModel fuelConsumptionEditViewModel);
         void DisplayVehicleViolationsView();
         void DisplayVehicleViolationEditView(VehicleViolationEditViewModel vehicleVilationEditViewModel);
+        void DisplayUomsView();
+        void DisplayUomEditView(UomEditViewModel uomEditViewModel);
     }
    
 }
