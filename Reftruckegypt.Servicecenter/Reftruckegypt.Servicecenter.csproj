@@ -278,6 +278,7 @@
     <Compile Include="Models\Validation\ModelState.cs" />
     <Compile Include="Models\Validation\PeriodValidator.cs" />
     <Compile Include="Models\Validation\SparePartValidator.cs" />
+    <Compile Include="Models\Validation\UomConversionValidator.cs" />
     <Compile Include="Models\Validation\UomValidator.cs" />
     <Compile Include="Models\Validation\VehicleCategoryValidator.cs" />
     <Compile Include="Models\Validation\VehicleKilometerReadingValidator.cs" />
@@ -317,6 +318,10 @@
     <Compile Include="ViewModels\SparePartViewModels\SparePartEditViewModel.cs" />
     <Compile Include="ViewModels\SparePartViewModels\SparePartSearchViewModel.cs" />
     <Compile Include="ViewModels\SparePartViewModels\SparePartViewModel.cs" />
+    <Compile Include="ViewModels\UomConversionViewModels\UomConversionEditViewModel.cs" />
+    <Compile Include="ViewModels\UomConversionViewModels\UomConversionLineEditViewModel.cs" />
+    <Compile Include="ViewModels\UomConversionViewModels\UomConversionSearchViewModel.cs" />
+    <Compile Include="ViewModels\UomConversionViewModels\UomConversionViewModel.cs" />
     <Compile Include="ViewModels\UomViewModels\UomEditViewModel.cs" />
     <Compile Include="ViewModels\UomViewModels\UomSearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleCategoryViewModels\VehicleCategoryEditViewModel.cs" />
@@ -405,6 +410,18 @@
     </Compile>
     <Compile Include="Views\SparePartViews\SparePartsView.Designer.cs">
       <DependentUpon>SparePartsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UomConversionViews\UomConversionEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UomConversionViews\UomConversionEditView.Designer.cs">
+      <DependentUpon>UomConversionEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UomConversionViews\UomConversionsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UomConversionViews\UomConversionsView.Designer.cs">
+      <DependentUpon>UomConversionsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UomViews\UomEditView.cs">
       <SubType>Form</SubType>
@@ -514,6 +531,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SparePartViews\SparePartsView.resx">
       <DependentUpon>SparePartsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UomConversionViews\UomConversionEditView.resx">
+      <DependentUpon>UomConversionEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UomConversionViews\UomConversionsView.resx">
+      <DependentUpon>UomConversionsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UomViews\UomEditView.resx">
       <DependentUpon>UomEditView.cs</DependentUpon>

@@ -515,6 +515,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 });
             modelBuilder
                 .Entity<SparePart>()
+                .Ignore(e => e.Self);
+            modelBuilder
+                .Entity<SparePart>()
                 .HasIndex(e => e.Code)
                 .IsUnique(true)
                 .HasName("IDX_UNQ_PART_CODE");
@@ -537,14 +540,26 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             // UomConversion ...
             modelBuilder
                 .Entity<UomConversion>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("UomConversions");
+                });
+            modelBuilder
+                .Entity<UomConversion>()
+                .HasIndex(e => new { e.FromUomId, e.ToUomId, e.SparePartId })
+                .IsUnique(true)
+                .HasName("IDX_UNQ_FRM_UM_TO_UM_PART");
+            modelBuilder
+                .Entity<UomConversion>()
                 .HasRequired(e => e.FromUom)
-                .WithMany()
-                .HasForeignKey(e => e.ToUomId)
+                .WithMany(e=>e.FromUomConversions)
+                .HasForeignKey(e => e.FromUomId)
                 .WillCascadeOnDelete(false);
             modelBuilder
                 .Entity<UomConversion>()
                 .HasRequired(e => e.ToUom)
-                .WithMany()
+                .WithMany(e=>e.ToUomConversions)
                 .HasForeignKey(e => e.ToUomId)
                 .WillCascadeOnDelete(false);
             modelBuilder
@@ -553,6 +568,14 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .WithMany()
                 .HasForeignKey(e => e.SparePartId)
                 .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<UomConversion>()
+                .Property(e => e.Rate)
+                .HasPrecision(18, 6);
+            modelBuilder
+                .Entity<UomConversion>()
+                .Property(e => e.Notes)
+                .HasMaxLength(UomConversion.MaxNotesLength);
             // SparePartPriceList
             modelBuilder
                 .Entity<SparePartsPriceList>()
@@ -575,6 +598,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .HasMany(e => e.Lines)
                 .WithRequired(e => e.SparePartsPriceList)
                 .WillCascadeOnDelete(true);
+           
             // SparePartPriceList
             modelBuilder
                 .Entity<SparePartPriceListLine>()
@@ -595,6 +619,10 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .WithMany()
                 .HasForeignKey(e => e.UomId)
                 .WillCascadeOnDelete(false);
+            modelBuilder
+               .Entity<SparePartPriceListLine>()
+               .Property(e => e.UomConversionRate)
+               .HasPrecision(18, 6);
             // SparePartsBill
             modelBuilder
                 .Entity<SparePartsBill>()
@@ -648,6 +676,10 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .WithMany()
                 .HasForeignKey(e => e.UomId)
                 .WillCascadeOnDelete(false);
+            modelBuilder
+              .Entity<SparePartsBillLine>()
+              .Property(e => e.UomConversionRate)
+              .HasPrecision(18, 6);
             // VehicleKilometerReading
             modelBuilder
                 .Entity<VehicleKilometerReading>()

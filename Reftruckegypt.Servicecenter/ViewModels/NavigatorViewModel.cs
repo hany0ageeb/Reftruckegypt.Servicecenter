@@ -87,6 +87,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                             _applicationContext.DisplaySparePartsView();
                         };
                         break;
+                    case nameof(UomConversion):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayUomConversionsView();
+                        };
+                        break;
                 }
                 UserCommands.Add(command);
             }

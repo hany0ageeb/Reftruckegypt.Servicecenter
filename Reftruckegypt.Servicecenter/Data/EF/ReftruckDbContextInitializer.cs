@@ -669,6 +669,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Sequence = 100,
                     Name = nameof(SparePart),
                     DisplayName = "Spare Parts"
+                },
+                new UserCommand()
+                {
+                    Sequence = 110,
+                    Name = nameof(UomConversion),
+                    DisplayName = "Units Of Measure Conversions"
                 }
             };
             // ...

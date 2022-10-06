@@ -1,7 +1,7 @@
 ﻿namespace Reftruckegypt.Servicecenter.Models.Validation
 {
-     public class UomValidator : IValidator<Uom>
-     {
+    public class UomValidator : IValidator<Uom>
+    {
         public ModelState Validate(Uom uom)
         {
             ModelState modelState = new ModelState();

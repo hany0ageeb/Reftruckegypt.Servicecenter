@@ -47,7 +47,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartViews
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.2649F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.7351F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtCodeOrName, 1, 0);
@@ -60,7 +60,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartViews
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(758, 3);
+            this.btnSearch.Location = new System.Drawing.Point(757, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 24);
             this.btnSearch.TabIndex = 5;
@@ -78,7 +78,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartViews
             // 
             // txtCodeOrName
             // 
-            this.txtCodeOrName.Location = new System.Drawing.Point(156, 3);
+            this.txtCodeOrName.Location = new System.Drawing.Point(155, 3);
             this.txtCodeOrName.Name = "txtCodeOrName";
             this.txtCodeOrName.Size = new System.Drawing.Size(514, 23);
             this.txtCodeOrName.TabIndex = 7;
@@ -129,6 +129,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartViews
             this.btnClose.TabIndex = 20;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // SparePartsView
             // 

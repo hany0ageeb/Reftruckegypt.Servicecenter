@@ -32,6 +32,8 @@ using Reftruckegypt.Servicecenter.Views.UomViews;
 using Reftruckegypt.Servicecenter.ViewModels.UomViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels;
 using Reftruckegypt.Servicecenter.Views.SparePartViews;
+using Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels;
+using Reftruckegypt.Servicecenter.Views.UomConversionViews;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -89,6 +91,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddSingleton<IValidator<VehicleViolation>, VehicleViolationValidator>();
             services.AddSingleton<IValidator<ViolationType>, ViolationTypeValidator>();
             services.AddSingleton<IValidator<SparePart>, SparePartValidator>();
+            services.AddSingleton<IValidator<UomConversion>, UomConversionValidator>();
             // ....
             services.AddSingleton<Common.IApplicationContext, Common.WindowsFormsApplicationContext>((sp) =>
             {
@@ -106,6 +109,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(VehicleViolationSearchViewModel));
             services.AddTransient(typeof(UomSearchViewModel));
             services.AddTransient(typeof(SparePartSearchViewModel));
+            services.AddTransient(typeof(UomConversionSearchViewModel));
             // ....
             services.AddSingleton(typeof(MainView));
             services.AddSingleton(typeof(NavigatorView));
@@ -119,6 +123,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(VehicleViolationsView));
             services.AddTransient(typeof(UomsView));
             services.AddTransient(typeof(SparePartsView));
+            services.AddTransient(typeof(UomConversionsView));
             // ....
 
         }

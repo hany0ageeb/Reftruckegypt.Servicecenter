@@ -23,6 +23,8 @@ using Reftruckegypt.Servicecenter.Views.UomViews;
 using Reftruckegypt.Servicecenter.ViewModels.UomViewModels;
 using Reftruckegypt.Servicecenter.Views.SparePartViews;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels;
+using Reftruckegypt.Servicecenter.Views.UomConversionViews;
+using Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -34,6 +36,19 @@ namespace Reftruckegypt.Servicecenter.Common
         public WindowsFormsApplicationContext(Form mdiParent)
         {
             _mdiParent = mdiParent;
+        }
+
+        public void DisplayUomConversionsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            UomConversionsView uomConversionsView = scope.ServiceProvider.GetRequiredService<UomConversionsView>();
+            _scopes[uomConversionsView] = scope;
+            uomConversionsView.MdiParent = _mdiParent;
+            uomConversionsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            uomConversionsView.Show();
         }
         public void DisplaySparePartsView()
         {
@@ -195,7 +210,6 @@ namespace Reftruckegypt.Servicecenter.Common
             };
             vehicleCategoryEditView.ShowDialog(_mdiParent);
         }
-
         public void DisplayVehicleViolationEditView(VehicleViolationEditViewModel vehicleVilationEditViewModel)
         {
             VehicleViolationEditView vehicleViolationEditView = new VehicleViolationEditView(vehicleVilationEditViewModel);
@@ -225,6 +239,12 @@ namespace Reftruckegypt.Servicecenter.Common
             PeriodEditView periodEditView = new PeriodEditView(periodEditViewModel);
             periodEditView.ShowInTaskbar = false;
             periodEditView.ShowDialog(_mdiParent);
+        }
+        public void DisplayUomConversionEditView(UomConversionEditViewModel editModel)
+        {
+            UomConversionEditView uomConversionEditView = new UomConversionEditView(editModel);
+            uomConversionEditView.ShowInTaskbar = false;
+            uomConversionEditView.ShowDialog(_mdiParent);
         }
         public DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon)
         {
@@ -298,5 +318,6 @@ namespace Reftruckegypt.Servicecenter.Common
                 _isDisposed = true;
             }
         }
+
     }
 }

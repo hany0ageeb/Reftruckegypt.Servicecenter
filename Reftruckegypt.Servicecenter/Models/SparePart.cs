@@ -9,6 +9,7 @@ namespace Reftruckegypt.Servicecenter.Models
         public virtual Uom PrimaryUom { get; set; }
         public Guid PrimaryUomId { get; set; }
         public bool IsEnabled { get; set; } = true;
+        public SparePart Self => this;
 
         public const int MaxSparePartCodeLength = 100;
         public const int MaxSparePartNameLength = 500;
