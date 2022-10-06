@@ -490,6 +490,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 });
             modelBuilder
                 .Entity<Uom>()
+                .Ignore(e => e.Self);
+            modelBuilder
+                .Entity<Uom>()
                 .HasIndex(e => e.Code)
                 .IsUnique(true)
                 .HasName("IDX_UNQ_UOM_CODE");

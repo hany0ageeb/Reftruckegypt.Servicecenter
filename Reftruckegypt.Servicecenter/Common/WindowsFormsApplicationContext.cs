@@ -21,6 +21,8 @@ using Reftruckegypt.Servicecenter.Views.VehicleViolationViews;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
 using Reftruckegypt.Servicecenter.Views.UomViews;
 using Reftruckegypt.Servicecenter.ViewModels.UomViewModels;
+using Reftruckegypt.Servicecenter.Views.SparePartViews;
+using Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -28,9 +30,22 @@ namespace Reftruckegypt.Servicecenter.Common
     {
         private readonly Form _mdiParent = null;
         private readonly Dictionary<Form, IServiceScope> _scopes = new Dictionary<Form, IServiceScope>();
+        private bool _isDisposed = false;
         public WindowsFormsApplicationContext(Form mdiParent)
         {
             _mdiParent = mdiParent;
+        }
+        public void DisplaySparePartsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            SparePartsView sparePartsView = scope.ServiceProvider.GetRequiredService<SparePartsView>();
+            _scopes[sparePartsView] = scope;
+            sparePartsView.MdiParent = _mdiParent;
+            sparePartsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            sparePartsView.Show();
         }
         public void DisplayUomsView()
         {
@@ -147,6 +162,12 @@ namespace Reftruckegypt.Servicecenter.Common
                 _scopes[sender].Dispose();
                 _scopes.Remove(sender);
             }
+        }
+        public void DisplaySparePartEditView(SparePartEditViewModel editModel)
+        {
+            SparePartEditView sparePartEditView = new SparePartEditView(editModel);
+            sparePartEditView.ShowInTaskbar = false;
+            sparePartEditView.ShowDialog(_mdiParent);
         }
         public void DisplayUomEditView(UomEditViewModel uomEditViewModel)
         {
@@ -266,6 +287,16 @@ namespace Reftruckegypt.Servicecenter.Common
             }
         }
 
-        
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                foreach(var kvp in _scopes)
+                {
+                    kvp.Value?.Dispose();
+                }
+                _isDisposed = true;
+            }
+        }
     }
 }

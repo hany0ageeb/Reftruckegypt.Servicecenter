@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.UomViewModels
 {
-    public class UomSearchViewModel : ViewModelBase
+    public class UomSearchViewModel : ViewModelBase, IDisposable
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IApplicationContext _applicationContext;
@@ -20,6 +20,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomViewModels
         private bool _isDeleteEnabled = false;
         private bool _isEditEnabled = true;
         private int _selectedIndex = -1;
+        private bool _isDisposed = false;
         public UomSearchViewModel(IUnitOfWork unitOfWork, IApplicationContext applicationContext, IValidator<Uom> validator)
         {
             _unitOfWork = unitOfWork;
@@ -129,6 +130,16 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomViewModels
                 }
             }
         }
+        #region IDisposable
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                _unitOfWork.Dispose();
+                _isDisposed = true;
+            }
+        }
+        #endregion IDisposable
         public BindingList<Uom> Uoms { get; private set; } = new BindingList<Uom>();
     }
 }

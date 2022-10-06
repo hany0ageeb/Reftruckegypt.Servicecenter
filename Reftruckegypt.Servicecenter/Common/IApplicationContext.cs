@@ -2,6 +2,7 @@
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.UomViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
-    public interface IApplicationContext
+    public interface IApplicationContext : IDisposable
     {
         DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon);
         void DisplayVehicleCategoryEditView(VehicleCategoryEditViewModel _editModel);
@@ -36,6 +37,8 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplayVehicleViolationEditView(VehicleViolationEditViewModel vehicleVilationEditViewModel);
         void DisplayUomsView();
         void DisplayUomEditView(UomEditViewModel uomEditViewModel);
+        void DisplaySparePartsView();
+        void DisplaySparePartEditView(SparePartEditViewModel editModel);
     }
    
 }

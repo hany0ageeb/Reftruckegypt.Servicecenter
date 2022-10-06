@@ -81,6 +81,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                             _applicationContext.DisplayUomsView();
                         };
                         break;
+                    case nameof(SparePart):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplaySparePartsView();
+                        };
+                        break;
                 }
                 UserCommands.Add(command);
             }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels
 {
-    public class VehicleKilometerReadingSearchViewModel : ViewModelBase
+    public class VehicleKilometerReadingSearchViewModel : ViewModelBase, IDisposable
     {
         private readonly IUnitOfWork _untitOfWork;
         private readonly IApplicationContext _applicationContext;
@@ -26,6 +26,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewMode
         private DateTime? _toDate = null;
         private Vehicle _vehicle;
 
+        private bool _isDisposed = false;
         public VehicleKilometerReadingSearchViewModel(IUnitOfWork unitOfWork,
                                                       IApplicationContext applicationContext,
                                                       IValidator<VehicleKilometerReading> validator)
@@ -190,6 +191,15 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewMode
                 return VehicleKilometerReadingViewModels[_selectedIndex].State == PeriodStates.OpenState;
             }
             return false;
+        }
+
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                _untitOfWork.Dispose();
+                _isDisposed = true;
+            }
         }
     }
 }

@@ -30,6 +30,8 @@ using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
 using Reftruckegypt.Servicecenter.Views.VehicleViolationViews;
 using Reftruckegypt.Servicecenter.Views.UomViews;
 using Reftruckegypt.Servicecenter.ViewModels.UomViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels;
+using Reftruckegypt.Servicecenter.Views.SparePartViews;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -103,6 +105,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(FuelConsumptionSearchViewModel));
             services.AddTransient(typeof(VehicleViolationSearchViewModel));
             services.AddTransient(typeof(UomSearchViewModel));
+            services.AddTransient(typeof(SparePartSearchViewModel));
             // ....
             services.AddSingleton(typeof(MainView));
             services.AddSingleton(typeof(NavigatorView));
@@ -115,6 +118,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(FuelConsumptionsView));
             services.AddTransient(typeof(VehicleViolationsView));
             services.AddTransient(typeof(UomsView));
+            services.AddTransient(typeof(SparePartsView));
             // ....
 
         }
