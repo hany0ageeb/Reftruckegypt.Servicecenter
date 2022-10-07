@@ -27,6 +27,7 @@ using Reftruckegypt.Servicecenter.Views.UomConversionViews;
 using Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
 using Reftruckegypt.Servicecenter.Views.DriverViews;
+using Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -39,7 +40,18 @@ namespace Reftruckegypt.Servicecenter.Common
         {
             _mdiParent = mdiParent;
         }
-
+        public void DisplayPriceListsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            Views.SparePartsPriceListViews.PriceListsView priceListsView = scope.ServiceProvider.GetRequiredService<Views.SparePartsPriceListViews.PriceListsView>();
+            _scopes[priceListsView] = scope;
+            priceListsView.MdiParent = _mdiParent;
+            priceListsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            priceListsView.Show();
+        }
         public void DisplayUomConversionsView()
         {
             var scope = Program.ServiceProvider.CreateScope();
@@ -266,6 +278,12 @@ namespace Reftruckegypt.Servicecenter.Common
             driverEditView.ShowInTaskbar = false;
             _ = driverEditView.ShowDialog(_mdiParent);
         }
+        public void DisplayPriceListEditView(SparePartPriceListEditViewModel sparePartPriceListEditViewModel)
+        {
+            Views.SparePartsPriceListViews.SparePartsPriceListEditView sparePartsPriceListEditView = new Views.SparePartsPriceListViews.SparePartsPriceListEditView(sparePartPriceListEditViewModel);
+            sparePartsPriceListEditView.ShowInTaskbar = false;
+            _ = sparePartsPriceListEditView.ShowDialog(_mdiParent);
+        }
         public DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon)
         {
             System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.None;
@@ -339,6 +357,5 @@ namespace Reftruckegypt.Servicecenter.Common
             }
         }
 
-       
     }
 }

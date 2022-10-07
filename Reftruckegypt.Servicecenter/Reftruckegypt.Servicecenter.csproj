@@ -277,6 +277,8 @@
     <Compile Include="Models\Validation\LocationValidator.cs" />
     <Compile Include="Models\Validation\ModelState.cs" />
     <Compile Include="Models\Validation\PeriodValidator.cs" />
+    <Compile Include="Models\Validation\SparePartPriceListLineValidator.cs" />
+    <Compile Include="Models\Validation\SparePartsPriceListValidator.cs" />
     <Compile Include="Models\Validation\SparePartValidator.cs" />
     <Compile Include="Models\Validation\UomConversionValidator.cs" />
     <Compile Include="Models\Validation\UomValidator.cs" />
@@ -317,6 +319,11 @@
     <Compile Include="ViewModels\NavigatorViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodEditViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodSearchViewModel.cs" />
+    <Compile Include="ViewModels\SparePartsPriceListViewModels\SparePartPriceListEditViewModel.cs" />
+    <Compile Include="ViewModels\SparePartsPriceListViewModels\SparePartPriceListLineEditViewModel.cs" />
+    <Compile Include="ViewModels\SparePartsPriceListViewModels\SparePartsPriceListHeaderViewModel.cs" />
+    <Compile Include="ViewModels\SparePartsPriceListViewModels\SparePartsPriceListLineViewModel.cs" />
+    <Compile Include="ViewModels\SparePartsPriceListViewModels\SparePartsPriceListSearchViewModel.cs" />
     <Compile Include="ViewModels\SparePartViewModels\SparePartEditViewModel.cs" />
     <Compile Include="ViewModels\SparePartViewModels\SparePartSearchViewModel.cs" />
     <Compile Include="ViewModels\SparePartViewModels\SparePartViewModel.cs" />
@@ -412,6 +419,18 @@
     </Compile>
     <Compile Include="Views\PeriodViews\PeriodsView.Designer.cs">
       <DependentUpon>PeriodsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SparePartsPriceListViews\PriceListsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SparePartsPriceListViews\PriceListsView.Designer.cs">
+      <DependentUpon>PriceListsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SparePartsPriceListViews\SparePartsPriceListEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SparePartsPriceListViews\SparePartsPriceListEditView.Designer.cs">
+      <DependentUpon>SparePartsPriceListEditView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SparePartViews\SparePartEditView.cs">
       <SubType>Form</SubType>
@@ -545,6 +564,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PeriodViews\PeriodsView.resx">
       <DependentUpon>PeriodsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SparePartsPriceListViews\PriceListsView.resx">
+      <DependentUpon>PriceListsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SparePartsPriceListViews\SparePartsPriceListEditView.resx">
+      <DependentUpon>SparePartsPriceListEditView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SparePartViews\SparePartEditView.resx">
       <DependentUpon>SparePartEditView.cs</DependentUpon>

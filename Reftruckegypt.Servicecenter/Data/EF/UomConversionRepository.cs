@@ -35,5 +35,33 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 return orderBy(query).AsEnumerable();
             return query.AsEnumerable();
         }
+
+        public decimal? FindUomConversionRate(
+            Guid fromUomId, 
+            Guid toUomId, 
+            Guid? sparePartId = null)
+        {
+            IQueryable<UomConversion> query = ReftruckDbContext.UomConversions.Where(x => x.FromUomId == fromUomId && x.ToUomId == toUomId);
+            if(sparePartId!=null && sparePartId != Guid.Empty)
+            {
+                return 
+                    query
+                    .Where(x => x.SparePartId == null || x.SparePartId == sparePartId)
+                    .OrderByDescending(x=>x.SparePartId.HasValue)
+                    .ThenBy(x=>x.SparePartId)
+                    .FirstOrDefault()?.Rate;
+
+            }
+            else
+            {
+                return 
+                    query
+                    .Where(x => x.SparePartId == null)
+                    .OrderBy(x=>x.SparePartId.HasValue)
+                    .FirstOrDefault()
+                    ?.Rate;
+            }
+
+        }
     }
 }

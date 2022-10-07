@@ -3,6 +3,7 @@ using Reftruckegypt.Servicecenter.ViewModels.ExternalAutoRepairShopViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.UomViewModels;
@@ -45,6 +46,8 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplayUomConversionEditView(UomConversionEditViewModel editModel);
         void DisplayDriverEditView(DriverEditViewModel driverEditViewModel);
         void DisplayDriversView();
+        void DisplayPriceListEditView(SparePartPriceListEditViewModel sparePartPriceListEditViewModel);
+        void DisplayPriceListsView();
     }
    
 }

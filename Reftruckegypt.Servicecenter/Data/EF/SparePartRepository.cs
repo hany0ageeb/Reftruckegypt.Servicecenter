@@ -1,5 +1,8 @@
 ﻿using Reftruckegypt.Servicecenter.Data.Abstractions;
+using Reftruckegypt.Servicecenter.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Reftruckegypt.Servicecenter.Data.EF
 {
@@ -10,5 +13,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         {
 
         }
+        public ReftruckDbContext ReftruckDbContext => _context as ReftruckDbContext;
+        
     }
 }

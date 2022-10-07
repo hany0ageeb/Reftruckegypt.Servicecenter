@@ -21,9 +21,10 @@ namespace Reftruckegypt.Servicecenter.Models
             }
         }
         public virtual SparePartsPriceList SparePartsPriceList { get; set; }
+        public Period Self => this;
 
-        public const int MaxPeriodNameLength = 250;
         public const int MaxPeriodStateLength = 50;
+        public const int MaxPeriodNameLength = 250;
     }
     public static class PeriodStates
     {

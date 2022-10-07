@@ -326,6 +326,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 });
             modelBuilder
                 .Entity<Period>()
+                .Ignore(e => e.Self);
+            modelBuilder
+                .Entity<Period>()
                 .HasIndex(e => e.Name)
                 .IsUnique(true)
                 .HasName("IDX_UNQ_PRD_NAME");
@@ -598,6 +601,10 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .HasMany(e => e.Lines)
                 .WithRequired(e => e.SparePartsPriceList)
                 .WillCascadeOnDelete(true);
+            modelBuilder
+                .Entity<SparePartsPriceList>()
+                .Property(e => e.Name)
+                .HasMaxLength(SparePartsPriceList.MaxPriceListNameLength);
            
             // SparePartPriceList
             modelBuilder

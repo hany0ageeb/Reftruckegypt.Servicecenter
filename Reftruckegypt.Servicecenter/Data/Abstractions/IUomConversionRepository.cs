@@ -12,5 +12,7 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
             Guid? fromUomId = null,
             Guid? toUomId = null,
             Func<IQueryable<UomConversion>, IOrderedQueryable<UomConversion>> orderBy = null);
+
+        decimal? FindUomConversionRate(Guid fromUomId, Guid toUomId, Guid? sparePartId = null);
     }
 }
