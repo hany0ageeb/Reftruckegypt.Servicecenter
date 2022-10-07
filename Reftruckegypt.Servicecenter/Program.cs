@@ -34,6 +34,8 @@ using Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels;
 using Reftruckegypt.Servicecenter.Views.SparePartViews;
 using Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels;
 using Reftruckegypt.Servicecenter.Views.UomConversionViews;
+using Reftruckegypt.Servicecenter.Views.DriverViews;
+using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -110,6 +112,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(UomSearchViewModel));
             services.AddTransient(typeof(SparePartSearchViewModel));
             services.AddTransient(typeof(UomConversionSearchViewModel));
+            services.AddTransient(typeof(DriverSearchViewModel));
             // ....
             services.AddSingleton(typeof(MainView));
             services.AddSingleton(typeof(NavigatorView));
@@ -124,6 +127,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(UomsView));
             services.AddTransient(typeof(SparePartsView));
             services.AddTransient(typeof(UomConversionsView));
+            services.AddTransient(typeof(DriversView));
             // ....
 
         }

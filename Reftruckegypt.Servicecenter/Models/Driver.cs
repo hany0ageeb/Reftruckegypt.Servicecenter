@@ -14,5 +14,7 @@ namespace Reftruckegypt.Servicecenter.Models
 
         public const int MaxLicenseNumberLength = 250;
 
+        public const int MaxTrafficDepartmentNameLength = 250;
+
     }
 }

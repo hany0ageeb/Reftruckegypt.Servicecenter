@@ -25,6 +25,8 @@ using Reftruckegypt.Servicecenter.Views.SparePartViews;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels;
 using Reftruckegypt.Servicecenter.Views.UomConversionViews;
 using Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
+using Reftruckegypt.Servicecenter.Views.DriverViews;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -170,6 +172,18 @@ namespace Reftruckegypt.Servicecenter.Common
             vehicleKilometerReadingsView.MdiParent = _mdiParent;
             vehicleKilometerReadingsView.Show();
         }
+        public void DisplayDriversView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            DriversView driversView = scope.ServiceProvider.GetRequiredService<DriversView>();
+            _scopes[driversView] = scope;
+            driversView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            driversView.MdiParent = _mdiParent;
+            driversView.Show();
+        }
         private void FormClosed(Form sender)
         {
             if (sender != null && _scopes.ContainsKey(sender))
@@ -246,6 +260,12 @@ namespace Reftruckegypt.Servicecenter.Common
             uomConversionEditView.ShowInTaskbar = false;
             uomConversionEditView.ShowDialog(_mdiParent);
         }
+        public void DisplayDriverEditView(DriverEditViewModel driverEditViewModel)
+        {
+            DriverEditView driverEditView = new DriverEditView(driverEditViewModel);
+            driverEditView.ShowInTaskbar = false;
+            _ = driverEditView.ShowDialog(_mdiParent);
+        }
         public DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon)
         {
             System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.None;
@@ -319,5 +339,6 @@ namespace Reftruckegypt.Servicecenter.Common
             }
         }
 
+       
     }
 }

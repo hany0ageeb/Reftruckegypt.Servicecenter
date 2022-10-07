@@ -93,6 +93,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                             _applicationContext.DisplayUomConversionsView();
                         };
                         break;
+                    case nameof(Driver):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayDriversView();
+                        };
+                        break;
                 }
                 UserCommands.Add(command);
             }

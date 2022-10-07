@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.ViewModels.ExternalAutoRepairShopViewModels;
+﻿using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.ExternalAutoRepairShopViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
@@ -42,6 +43,8 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplaySparePartEditView(SparePartEditViewModel editModel);
         void DisplayUomConversionsView();
         void DisplayUomConversionEditView(UomConversionEditViewModel editModel);
+        void DisplayDriverEditView(DriverEditViewModel driverEditViewModel);
+        void DisplayDriversView();
     }
    
 }

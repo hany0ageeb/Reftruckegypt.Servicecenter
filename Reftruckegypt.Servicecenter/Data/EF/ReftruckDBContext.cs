@@ -315,7 +315,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<Driver>()
                 .Property(e => e.TrafficDepartmentName)
-                .HasMaxLength(250);
+                .HasMaxLength(Driver.MaxTrafficDepartmentNameLength);
 
             // ... Period
             modelBuilder
