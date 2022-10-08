@@ -708,6 +708,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Sequence = 140,
                     Name = nameof(SparePartsBill),
                     DisplayName = "Internal Repair Invoices"
+                },
+                new UserCommand()
+                {
+                    Sequence = 150,
+                    Name = nameof(FuelCard),
+                    DisplayName = "Vehicle Fuel Cards"
                 }
             };
             // ...

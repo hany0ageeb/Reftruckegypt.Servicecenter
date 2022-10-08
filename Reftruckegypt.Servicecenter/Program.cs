@@ -40,6 +40,8 @@ using Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews;
 using Reftruckegypt.Servicecenter.Views.SparePartsBillViews;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels;
+using Reftruckegypt.Servicecenter.Views.FuelCardViews;
+using Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -124,6 +126,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(DriverSearchViewModel));
             services.AddTransient(typeof(SparePartsPriceListSearchViewModel));
             services.AddTransient(typeof(SparePartsBillSearchViewModel));
+            services.AddTransient(typeof(FuelCardSearchViewModel));
             // ....
             services.AddSingleton(typeof(MainView));
             services.AddSingleton(typeof(NavigatorView));
@@ -141,6 +144,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(DriversView));
             services.AddTransient(typeof(PriceListsView));
             services.AddTransient(typeof(SparePartsBillsView));
+            services.AddTransient(typeof(FuelCardsView));
             // ....
 
         }

@@ -1,6 +1,7 @@
 ﻿using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalAutoRepairShopViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels;
@@ -51,6 +52,9 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplayPriceListsView();
         void DisplaySparePartsBillEditView(SparePartsBillEditViewModel sparePartsBillEditViewModel);
         void DisplaySparePartsBillsView();
+        void DisplayFuelCardsView();
+        void DisplauFuelCardEditView(FuelCardEditViewModel editModel);
+        void DisplayFuelCardEditView(FuelCardEditViewModel fuelCardEditViewModel);
     }
    
 }

@@ -30,6 +30,8 @@ using Reftruckegypt.Servicecenter.Views.DriverViews;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels;
 using Reftruckegypt.Servicecenter.Views.SparePartsBillViews;
+using Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels;
+using Reftruckegypt.Servicecenter.Views.FuelCardViews;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -41,6 +43,26 @@ namespace Reftruckegypt.Servicecenter.Common
         public WindowsFormsApplicationContext(Form mdiParent)
         {
             _mdiParent = mdiParent;
+        }
+
+        public void DisplayFuelCardsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            FuelCardsView fuelCardsView = scope.ServiceProvider.GetRequiredService<FuelCardsView>();
+            _scopes[fuelCardsView] = scope;
+            fuelCardsView.MdiParent = _mdiParent;
+            fuelCardsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            fuelCardsView.Show();
+        }
+
+        public void DisplauFuelCardEditView(FuelCardEditViewModel editModel)
+        {
+            FuelCardEditView fuelCardEditView = new FuelCardEditView(editModel);
+            fuelCardEditView.ShowInTaskbar = false;
+            fuelCardEditView.ShowDialog(_mdiParent);
         }
         public void DisplaySparePartsBillEditView(SparePartsBillEditViewModel sparePartsBillEditViewModel)
         {
@@ -378,6 +400,11 @@ namespace Reftruckegypt.Servicecenter.Common
             }
         }
 
-        
+        public void DisplayFuelCardEditView(FuelCardEditViewModel fuelCardEditViewModel)
+        {
+            FuelCardEditView fuelCardEditView = new FuelCardEditView(fuelCardEditViewModel);
+            fuelCardEditView.ShowInTaskbar = false;
+            fuelCardEditView.ShowDialog(_mdiParent);
+        }
     }
 }

@@ -8,7 +8,7 @@
     <ProjectGuid>{8B19225D-1F56-4E55-8991-CEC504469C82}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Reftruckegypt.Servicecenter</RootNamespace>
-    <AssemblyName>Reftruckegypt.Servicecenter</AssemblyName>
+    <AssemblyName>licationContext</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -307,6 +307,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidationErrors.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Abstractions\EditViewModel.cs" />
+    <Compile Include="ViewModels\Abstractions\SearchViewModelBase.cs" />
     <Compile Include="ViewModels\DriverViewModels\DriverEditViewModel.cs" />
     <Compile Include="ViewModels\DriverViewModels\DriverSearchViewModel.cs" />
     <Compile Include="ViewModels\ExternalAutoRepairShopViewModels\ExternalAutoRepairShopEditViewModel.cs" />
@@ -315,6 +317,9 @@
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillEditViewModel.cs" />
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillSearchViewModel.cs" />
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillVieModel.cs" />
+    <Compile Include="ViewModels\FuelCardViewModels\FuelCardEditViewModel.cs" />
+    <Compile Include="ViewModels\FuelCardViewModels\FuelCardSearchViewModel.cs" />
+    <Compile Include="ViewModels\FuelCardViewModels\FuelCardViewModel.cs" />
     <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionEditViewModel.cs" />
     <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionLineEditViewModel.cs" />
     <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionSearchViewModel.cs" />
@@ -391,6 +396,18 @@
     </Compile>
     <Compile Include="Views\ExternalRepairBillViews\ExternalRepairBillsView.Designer.cs">
       <DependentUpon>ExternalRepairBillsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelCardViews\FuelCardEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FuelCardViews\FuelCardEditView.Designer.cs">
+      <DependentUpon>FuelCardEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelCardViews\FuelCardsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FuelCardViews\FuelCardsView.Designer.cs">
+      <DependentUpon>FuelCardsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\FuelConsumptionViews\FuelConsumptionEditView.cs">
       <SubType>Form</SubType>
@@ -566,6 +583,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ExternalRepairBillViews\ExternalRepairBillsView.resx">
       <DependentUpon>ExternalRepairBillsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FuelCardViews\FuelCardEditView.resx">
+      <DependentUpon>FuelCardEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FuelCardViews\FuelCardsView.resx">
+      <DependentUpon>FuelCardsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FuelConsumptionViews\FuelConsumptionEditView.resx">
       <DependentUpon>FuelConsumptionEditView.cs</DependentUpon>
