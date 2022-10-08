@@ -361,6 +361,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2011,
                     WorkLocation = locations[0],
                     InternalCode = "9735",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "88434",
@@ -377,6 +378,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2012,
                     WorkLocation = locations[0],
                     InternalCode = "1295",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "139562",
@@ -393,6 +395,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2011,
                     WorkLocation = locations[0],
                     InternalCode = "9736",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "88435",
@@ -409,6 +412,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2015,
                     WorkLocation = locations[0],
                     InternalCode = "2736",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "138900",
@@ -425,6 +429,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2015,
                     WorkLocation = locations[0],
                     InternalCode = "2735",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "138904",
@@ -441,6 +446,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2013,
                     WorkLocation = locations[0],
                     InternalCode = "1832",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "88432",
@@ -457,6 +463,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2016,
                     WorkLocation = locations[0],
                     InternalCode = "2764",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "138858",
@@ -473,6 +480,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2012,
                     WorkLocation = locations[0],
                     InternalCode = "1485",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "145088",
@@ -489,6 +497,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2015,
                     WorkLocation = locations[0],
                     InternalCode = "2435",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "148580",
@@ -505,6 +514,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2015,
                     WorkLocation = locations[0],
                     InternalCode = "8716",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "88430",
@@ -521,6 +531,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2015,
                     WorkLocation = locations[0],
                     InternalCode = "2431",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "138908",
@@ -537,6 +548,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2017,
                     WorkLocation = locations[0],
                     InternalCode = "3165",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "138907",
@@ -553,6 +565,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2021,
                     WorkLocation = locations[0],
                     InternalCode = "3248",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "99185",
@@ -569,6 +582,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2021,
                     WorkLocation = locations[0],
                     InternalCode = "3249",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "187952",
@@ -585,6 +599,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     ModelYear = 2019,
                     WorkLocation = locations[0],
                     InternalCode = "1739",
+                    FuelType = fuelTypes[0],
                     FuelCard = new FuelCard()
                     {
                         Number = "88423",
@@ -632,7 +647,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 {
                     Sequence = 40,
                     Name = nameof(ExternalRepairBill),
-                    DisplayName = "External Repair Bills"
+                    DisplayName = "External Repair Invoices"
                 },
                 new UserCommand()
                 {
@@ -687,6 +702,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Sequence = 130,
                     Name = nameof(SparePartsPriceList),
                     DisplayName = "Spare Parts Price Lists"
+                },
+                new UserCommand()
+                {
+                    Sequence = 140,
+                    Name = nameof(SparePartsBill),
+                    DisplayName = "Internal Repair Invoices"
                 }
             };
             // ...

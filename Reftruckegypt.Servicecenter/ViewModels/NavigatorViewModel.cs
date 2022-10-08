@@ -105,6 +105,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                             _applicationContext.DisplayPriceListsView();
                         };
                         break;
+                    case nameof(SparePartsBill):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplaySparePartsBillsView();
+                        };
+                        break;
                 }
                 UserCommands.Add(command);
             }

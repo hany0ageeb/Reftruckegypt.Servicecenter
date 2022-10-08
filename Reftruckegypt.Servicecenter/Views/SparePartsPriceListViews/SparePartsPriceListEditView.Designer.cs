@@ -52,7 +52,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.09632F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.90369F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 362F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 364F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtNumber, 1, 0);
@@ -70,7 +70,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(388, 0);
+            this.label3.Location = new System.Drawing.Point(386, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 15);
             this.label3.TabIndex = 4;
@@ -87,7 +87,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             // 
             // txtNumber
             // 
-            this.txtNumber.Location = new System.Drawing.Point(88, 3);
+            this.txtNumber.Location = new System.Drawing.Point(87, 3);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.ReadOnly = true;
             this.txtNumber.Size = new System.Drawing.Size(284, 23);
@@ -96,7 +96,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 27);
+            this.label2.Location = new System.Drawing.Point(3, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 15);
             this.label2.TabIndex = 2;
@@ -105,14 +105,14 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             // cboPeriods
             // 
             this.cboPeriods.FormattingEnabled = true;
-            this.cboPeriods.Location = new System.Drawing.Point(88, 30);
+            this.cboPeriods.Location = new System.Drawing.Point(87, 31);
             this.cboPeriods.Name = "cboPeriods";
             this.cboPeriods.Size = new System.Drawing.Size(284, 23);
             this.cboPeriods.TabIndex = 3;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(464, 3);
+            this.txtName.Location = new System.Drawing.Point(462, 3);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(337, 23);
             this.txtName.TabIndex = 5;

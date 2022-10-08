@@ -37,6 +37,9 @@ using Reftruckegypt.Servicecenter.Views.UomConversionViews;
 using Reftruckegypt.Servicecenter.Views.DriverViews;
 using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
 using Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews;
+using Reftruckegypt.Servicecenter.Views.SparePartsBillViews;
+using Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -83,6 +86,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddSingleton<IValidator<Driver>,DriverValidator>();
             services.AddSingleton<IValidator<ExternalAutoRepairShop>, ExternalAutoRepairShopValidator>();
             services.AddSingleton<IValidator<ExternalRepairBill>, ExternalRepairBillValidator>();
+
             services.AddSingleton<IValidator<FuelCard>, FuelCardValidator>();
             services.AddSingleton<IValidator<FuelConsumption>, FuelConsumptionValidator>();
             services.AddSingleton<IValidator<FuelType>, FuelTypeValidator>();
@@ -97,6 +101,8 @@ namespace Reftruckegypt.Servicecenter
             services.AddSingleton<IValidator<ViolationType>, ViolationTypeValidator>();
             services.AddSingleton<IValidator<SparePart>, SparePartValidator>();
             services.AddSingleton<IValidator<UomConversion>, UomConversionValidator>();
+            services.AddSingleton<IValidator<SparePartsBill>, SparePartsBillValidator>();
+            services.AddSingleton<IValidator<SparePartsBillLine>, SparePartsBillLineValidator>();
             // ....
             services.AddSingleton<Common.IApplicationContext, Common.WindowsFormsApplicationContext>((sp) =>
             {
@@ -116,7 +122,8 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(SparePartSearchViewModel));
             services.AddTransient(typeof(UomConversionSearchViewModel));
             services.AddTransient(typeof(DriverSearchViewModel));
-            services.AddTransient(typeof(ViewModels.SparePartsPriceListViewModels.SparePartsPriceListSearchViewModel));
+            services.AddTransient(typeof(SparePartsPriceListSearchViewModel));
+            services.AddTransient(typeof(SparePartsBillSearchViewModel));
             // ....
             services.AddSingleton(typeof(MainView));
             services.AddSingleton(typeof(NavigatorView));
@@ -133,6 +140,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(UomConversionsView));
             services.AddTransient(typeof(DriversView));
             services.AddTransient(typeof(PriceListsView));
+            services.AddTransient(typeof(SparePartsBillsView));
             // ....
 
         }

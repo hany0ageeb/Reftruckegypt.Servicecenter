@@ -11,5 +11,7 @@ namespace Reftruckegypt.Servicecenter.Models
         public Guid SparePartId { get; set; }
         public decimal? UomConversionRate { get; set; } = null;
         public virtual SparePartsPriceList SparePartsPriceList { get; set;}
+        public decimal PrimaryUomUnitPrice => UomConversionRate.HasValue ? UnitPrice * UomConversionRate.Value : UnitPrice;
+
     }
 }

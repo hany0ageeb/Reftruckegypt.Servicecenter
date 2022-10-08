@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Reftruckegypt.Servicecenter.Models
 {
@@ -10,9 +11,11 @@ namespace Reftruckegypt.Servicecenter.Models
         public virtual Vehicle Vehicle { get; set; }
         public virtual Period Period { get; set; }
         public string Repairs { get; set; }
-        public virtual ICollection<SparePartsBillLine> Lines { get; set; } = new HashSet<SparePartsBillLine>();
+        public virtual IList<SparePartsBillLine> Lines { get; set; } = new List<SparePartsBillLine>();
         public Guid VehicleId { get; set; }
         public Guid PeriodId { get; set; }
+        public decimal TotalAmount => Lines.Sum(e => e.TotalAmount);
+        public const int MaxRepairsLength = 500;
 
     }
 }

@@ -28,6 +28,8 @@ using Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
 using Reftruckegypt.Servicecenter.Views.DriverViews;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels;
+using Reftruckegypt.Servicecenter.Views.SparePartsBillViews;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -39,6 +41,25 @@ namespace Reftruckegypt.Servicecenter.Common
         public WindowsFormsApplicationContext(Form mdiParent)
         {
             _mdiParent = mdiParent;
+        }
+        public void DisplaySparePartsBillEditView(SparePartsBillEditViewModel sparePartsBillEditViewModel)
+        {
+            SparePartsBillEditView sparePartsBillEditView = new SparePartsBillEditView(sparePartsBillEditViewModel);
+            sparePartsBillEditView.ShowInTaskbar = false;
+            sparePartsBillEditView.ShowDialog(_mdiParent);
+        }
+
+        public void DisplaySparePartsBillsView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            SparePartsBillsView billsView = scope.ServiceProvider.GetRequiredService<SparePartsBillsView>();
+            _scopes[billsView] = scope;
+            billsView.MdiParent = _mdiParent;
+            billsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            billsView.Show();
         }
         public void DisplayPriceListsView()
         {
@@ -357,5 +378,6 @@ namespace Reftruckegypt.Servicecenter.Common
             }
         }
 
+        
     }
 }

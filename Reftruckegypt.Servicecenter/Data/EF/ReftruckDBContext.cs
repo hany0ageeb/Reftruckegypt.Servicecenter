@@ -148,11 +148,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<VehicleLicense>()
                 .Property(e => e.Notes)
                 .HasMaxLength(500);
-            modelBuilder
-                .Entity<VehicleLicense>()
-                .HasRequired(e => e.FuelType)
-                .WithMany()
-                .HasForeignKey(e => e.FuelTypeId);
+            
             modelBuilder
                 .Entity<VehicleLicense>()
                 .HasRequired(e => e.Vehicel)
@@ -269,6 +265,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .HasOptional(e => e.FuelCard)
                 .WithRequired(e => e.Vehicle)
                 .WillCascadeOnDelete(true);
+            _ = modelBuilder
+                .Entity<Vehicle>()
+                .HasRequired(e => e.FuelType)
+                .WithMany()
+                .HasForeignKey(e => e.FuelTypeId);
             // ... ViolationType
             modelBuilder.Entity<ViolationType>().Map(m =>
             {
@@ -616,6 +617,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 });
             modelBuilder
                 .Entity<SparePartPriceListLine>()
+                .Ignore(e => e.PrimaryUomUnitPrice);
+            modelBuilder
+                .Entity<SparePartPriceListLine>()
                 .HasRequired(e => e.SparePart)
                 .WithMany()
                 .HasForeignKey(e => e.SparePartId)
@@ -640,6 +644,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 });
             modelBuilder
                 .Entity<SparePartsBill>()
+                .Ignore(e => e.TotalAmount);
+            modelBuilder
+                .Entity<SparePartsBill>()
                 .HasRequired(e => e.Vehicle)
                 .WithMany()
                 .HasForeignKey(e => e.VehicleId)
@@ -662,7 +669,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<SparePartsBill>()
                 .Property(e => e.Repairs)
-                .HasMaxLength(500);
+                .HasMaxLength(SparePartsBill.MaxRepairsLength);
             // SparePartsBillLine
             modelBuilder
                 .Entity<SparePartsBillLine>()
@@ -671,6 +678,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     m.MapInheritedProperties();
                     m.ToTable("SparePartsBillLines");
                 });
+            modelBuilder
+                .Entity<SparePartsBillLine>()
+                .Ignore(e => e.TotalAmount);
             modelBuilder
                 .Entity<SparePartsBillLine>()
                 .HasRequired(e => e.SparePart)
@@ -687,6 +697,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
               .Entity<SparePartsBillLine>()
               .Property(e => e.UomConversionRate)
               .HasPrecision(18, 6);
+            modelBuilder
+                .Entity<SparePartsBillLine>()
+                .Property(e => e.Notes)
+                .HasMaxLength(SparePartsBillLine.MaxNotesLength);
+
             // VehicleKilometerReading
             modelBuilder
                 .Entity<VehicleKilometerReading>()

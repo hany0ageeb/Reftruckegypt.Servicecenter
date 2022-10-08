@@ -8,8 +8,6 @@ namespace Reftruckegypt.Servicecenter.Models
         public string PlateNumber { get; set; }
         public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime EndDate { get; set; } = DateTime.Now;
-        public FuelType FuelType { get; set; }
-        public Guid FuelTypeId { get; set; }
         public virtual Vehicle Vehicel { get; set; }
         public Guid VehicleId { get; set; }
         public string Notes { get; set; }

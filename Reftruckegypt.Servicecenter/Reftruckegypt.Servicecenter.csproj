@@ -197,6 +197,7 @@
     <Compile Include="Common\IApplicationContext.cs" />
     <Compile Include="Common\MessageBoxButtons.cs" />
     <Compile Include="Common\MessageBoxIcon.cs" />
+    <Compile Include="Common\NotFoundUomConversionException.cs" />
     <Compile Include="Common\WindowsFormsApplicationContext.cs" />
     <Compile Include="Data\Abstractions\IDriverRepository.cs" />
     <Compile Include="Data\Abstractions\IExternalAutoRepairShop.cs" />
@@ -278,6 +279,8 @@
     <Compile Include="Models\Validation\ModelState.cs" />
     <Compile Include="Models\Validation\PeriodValidator.cs" />
     <Compile Include="Models\Validation\SparePartPriceListLineValidator.cs" />
+    <Compile Include="Models\Validation\SparePartsBillLineValidator.cs" />
+    <Compile Include="Models\Validation\SparePartsBillValidator.cs" />
     <Compile Include="Models\Validation\SparePartsPriceListValidator.cs" />
     <Compile Include="Models\Validation\SparePartValidator.cs" />
     <Compile Include="Models\Validation\UomConversionValidator.cs" />
@@ -319,6 +322,11 @@
     <Compile Include="ViewModels\NavigatorViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodEditViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodSearchViewModel.cs" />
+    <Compile Include="ViewModels\SparePartsBillViewModels\SparePartsBillEditViewModel.cs" />
+    <Compile Include="ViewModels\SparePartsBillViewModels\SparePartsBillHeaderViewModel.cs" />
+    <Compile Include="ViewModels\SparePartsBillViewModels\SparePartsBillLineEditViewModel.cs" />
+    <Compile Include="ViewModels\SparePartsBillViewModels\SparePartsBillLineViewModel.cs" />
+    <Compile Include="ViewModels\SparePartsBillViewModels\SparePartsBillSearchViewModel.cs" />
     <Compile Include="ViewModels\SparePartsPriceListViewModels\SparePartPriceListEditViewModel.cs" />
     <Compile Include="ViewModels\SparePartsPriceListViewModels\SparePartPriceListLineEditViewModel.cs" />
     <Compile Include="ViewModels\SparePartsPriceListViewModels\SparePartsPriceListHeaderViewModel.cs" />
@@ -419,6 +427,18 @@
     </Compile>
     <Compile Include="Views\PeriodViews\PeriodsView.Designer.cs">
       <DependentUpon>PeriodsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SparePartsBillViews\SparePartsBillEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SparePartsBillViews\SparePartsBillEditView.Designer.cs">
+      <DependentUpon>SparePartsBillEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SparePartsBillViews\SparePartsBillsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SparePartsBillViews\SparePartsBillsView.Designer.cs">
+      <DependentUpon>SparePartsBillsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SparePartsPriceListViews\PriceListsView.cs">
       <SubType>Form</SubType>
@@ -564,6 +584,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PeriodViews\PeriodsView.resx">
       <DependentUpon>PeriodsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SparePartsBillViews\SparePartsBillEditView.resx">
+      <DependentUpon>SparePartsBillEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SparePartsBillViews\SparePartsBillsView.resx">
+      <DependentUpon>SparePartsBillsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SparePartsPriceListViews\PriceListsView.resx">
       <DependentUpon>PriceListsView.cs</DependentUpon>

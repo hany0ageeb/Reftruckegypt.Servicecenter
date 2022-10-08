@@ -35,33 +35,57 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 return orderBy(query).AsEnumerable();
             return query.AsEnumerable();
         }
-
         public decimal? FindUomConversionRate(
             Guid fromUomId, 
             Guid toUomId, 
             Guid? sparePartId = null)
         {
-            IQueryable<UomConversion> query = ReftruckDbContext.UomConversions.Where(x => x.FromUomId == fromUomId && x.ToUomId == toUomId);
-            if(sparePartId!=null && sparePartId != Guid.Empty)
+            
+            IQueryable<UomConversion> query = ReftruckDbContext.UomConversions;
+            if(sparePartId != null && sparePartId != Guid.Empty)
             {
-                return 
-                    query
+
+                decimal? rate = query
+                    .Where(x => x.FromUomId == fromUomId && x.ToUomId == toUomId)
                     .Where(x => x.SparePartId == null || x.SparePartId == sparePartId)
-                    .OrderByDescending(x=>x.SparePartId.HasValue)
-                    .ThenBy(x=>x.SparePartId)
+                    .OrderByDescending(x => x.SparePartId.HasValue)
+                    .ThenBy(x => x.SparePartId)
                     .FirstOrDefault()?.Rate;
+                if (!rate.HasValue)
+                {
+                    rate = query
+                    .Where(x => x.FromUomId == toUomId && x.ToUomId == fromUomId)
+                    .Where(x => x.SparePartId == null || x.SparePartId == sparePartId)
+                    .OrderByDescending(x => x.SparePartId.HasValue)
+                    .ThenBy(x => x.SparePartId)
+                    .FirstOrDefault()?.Rate;
+                    if (rate.HasValue)
+                        return 1.0M / rate;
+                }
+                return rate;
 
             }
             else
             {
-                return 
-                    query
+                decimal? rate = query
+                    .Where(x => x.FromUomId == fromUomId && x.ToUomId == toUomId)
                     .Where(x => x.SparePartId == null)
                     .OrderBy(x=>x.SparePartId.HasValue)
                     .FirstOrDefault()
                     ?.Rate;
+                if (!rate.HasValue)
+                {
+                    rate = query
+                    .Where(x => x.FromUomId == toUomId && x.ToUomId == fromUomId)
+                    .Where(x => x.SparePartId == null)
+                    .OrderBy(x => x.SparePartId.HasValue)
+                    .FirstOrDefault()
+                    ?.Rate;
+                    if (rate.HasValue)
+                        return 1.0M / rate;
+                }
+                return rate;
             }
-
         }
     }
 }

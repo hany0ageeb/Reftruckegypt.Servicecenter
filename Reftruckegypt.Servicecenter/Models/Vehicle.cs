@@ -18,6 +18,8 @@ namespace Reftruckegypt.Servicecenter.Models
         public Guid VehicelModelId { get; set; }
         public string WorkingState { get; set; } = VehicleStates.Working;
         public virtual Location WorkLocation { get; set; }
+        public virtual FuelType FuelType { get; set; }
+        public Guid FuelTypeId { get; set; }
         public Guid? WorkLocationId { get; set; }
         public virtual Location MaintenanceLocation { get; set; }
         public Guid? MaintenanceLocationId { get; set; }

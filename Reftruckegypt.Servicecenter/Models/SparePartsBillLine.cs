@@ -12,7 +12,10 @@ namespace Reftruckegypt.Servicecenter.Models
         public Guid UomId { get; set; }
         public Guid SparePartId { get; set; }
         public decimal UnitPrice { get; set; }
+        public decimal TotalAmount => Quantity * UnitPrice;
         public decimal? UomConversionRate { get; set; } = null;
         public virtual SparePartsBill SparePartsBill { get; set; }
+        public string Notes { get; set; }
+        public const int MaxNotesLength = 500;
     }
 }
