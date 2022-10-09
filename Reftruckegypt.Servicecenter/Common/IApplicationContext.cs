@@ -12,6 +12,7 @@ using Reftruckegypt.Servicecenter.ViewModels.UomViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
 using System;
 using System.Collections.Generic;
@@ -53,8 +54,10 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplaySparePartsBillEditView(SparePartsBillEditViewModel sparePartsBillEditViewModel);
         void DisplaySparePartsBillsView();
         void DisplayFuelCardsView();
-        void DisplauFuelCardEditView(FuelCardEditViewModel editModel);
-        void DisplayFuelCardEditView(FuelCardEditViewModel fuelCardEditViewModel);
+        void DisplayFuelCardEditView(FuelCardEditViewModel editModel);
+        
+        void DisplayVehiclesView();
+        void DisplayVehicleEditView(VehicleEditViewModel editModel);
     }
    
 }

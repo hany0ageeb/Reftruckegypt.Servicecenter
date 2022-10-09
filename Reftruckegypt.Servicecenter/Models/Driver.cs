@@ -9,6 +9,9 @@ namespace Reftruckegypt.Servicecenter.Models
         public string TrafficDepartmentName { get; set; }
         public DateTime LicenseEndDate { get; set; }
         public bool IsEnabled { get; set; } = true;
+        public Driver Self => this;
+
+        public readonly static Driver Empty = new Driver() { Id = Guid.Empty, Name = "" };
 
         public const int MaxNameLength = 250;
 

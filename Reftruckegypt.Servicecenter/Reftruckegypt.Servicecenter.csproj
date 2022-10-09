@@ -220,6 +220,7 @@
     <Compile Include="Data\Abstractions\IVehicleCategoryRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleKilometerReadingRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleModelRepository.cs" />
+    <Compile Include="Data\Abstractions\IVehicleOverAllState.cs" />
     <Compile Include="Data\Abstractions\IVehicleRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleStateChangeRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleViolationRepository.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Data\EF\VehicleCategoryRepository.cs" />
     <Compile Include="Data\EF\VehicleKilometerReadingRepository.cs" />
     <Compile Include="Data\EF\VehicleModelRepository.cs" />
+    <Compile Include="Data\EF\VehicleOverAllStateRepository.cs" />
     <Compile Include="Data\EF\VehicleRepository.cs" />
     <Compile Include="Data\EF\VehicleStateChangeRepository.cs" />
     <Compile Include="Data\EF\VehicleViolationRepository.cs" />
@@ -287,8 +289,10 @@
     <Compile Include="Models\Validation\UomValidator.cs" />
     <Compile Include="Models\Validation\VehicleCategoryValidator.cs" />
     <Compile Include="Models\Validation\VehicleKilometerReadingValidator.cs" />
+    <Compile Include="Models\Validation\VehicleLicenseValidator.cs" />
     <Compile Include="Models\Validation\VehicleModelValidator.cs" />
     <Compile Include="Models\Validation\VehicleStateChangeValidator.cs" />
+    <Compile Include="Models\Validation\VehicleValidator.cs" />
     <Compile Include="Models\Validation\VehicleViolationValidator.cs" />
     <Compile Include="Models\Validation\ViolationTypeValidator.cs" />
     <Compile Include="Models\Vehicle.cs" />
@@ -356,6 +360,10 @@
     <Compile Include="ViewModels\VehicleModelViewModels\VehicelModelEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelSearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelViewModel.cs" />
+    <Compile Include="ViewModels\VehicleViewModels\VehicleEditViewModel.cs" />
+    <Compile Include="ViewModels\VehicleViewModels\VehicleLicenseEditViewmodel.cs" />
+    <Compile Include="ViewModels\VehicleViewModels\VehicleSearchViewModel.cs" />
+    <Compile Include="ViewModels\VehicleViewModels\VehicleViewModel.cs" />
     <Compile Include="ViewModels\VehicleViolationViewModels\VehicleViolationEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleViolationViewModels\VehicleViolationLineEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleViolationViewModels\VehicleViolationSearchViewModel.cs" />
@@ -541,6 +549,18 @@
     <Compile Include="Views\VehicleModelViews\VehicleModelsView.Designer.cs">
       <DependentUpon>VehicleModelsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\VehicleViews\VehicleEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VehicleViews\VehicleEditView.Designer.cs">
+      <DependentUpon>VehicleEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VehicleViews\VehiclesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VehicleViews\VehiclesView.Designer.cs">
+      <DependentUpon>VehiclesView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\VehicleViolationViews\VehicleViolationEditView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -655,6 +675,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\VehicleModelViews\VehicleModelsView.resx">
       <DependentUpon>VehicleModelsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VehicleViews\VehicleEditView.resx">
+      <DependentUpon>VehicleEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VehicleViews\VehiclesView.resx">
+      <DependentUpon>VehiclesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\VehicleViolationViews\VehicleViolationEditView.resx">
       <DependentUpon>VehicleViolationEditView.cs</DependentUpon>

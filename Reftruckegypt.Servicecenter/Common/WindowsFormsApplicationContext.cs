@@ -32,6 +32,8 @@ using Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels;
 using Reftruckegypt.Servicecenter.Views.SparePartsBillViews;
 using Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels;
 using Reftruckegypt.Servicecenter.Views.FuelCardViews;
+using Reftruckegypt.Servicecenter.Views.VehicleViews;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -57,8 +59,13 @@ namespace Reftruckegypt.Servicecenter.Common
             };
             fuelCardsView.Show();
         }
-
-        public void DisplauFuelCardEditView(FuelCardEditViewModel editModel)
+        public void DisplayVehicleEditView(VehicleEditViewModel editModel)
+        {
+            VehicleEditView vehicleEditView = new VehicleEditView(editModel);
+            vehicleEditView.ShowInTaskbar = true;
+            vehicleEditView.ShowDialog(_mdiParent);
+        }
+        public void DisplayFuelCardEditView(FuelCardEditViewModel editModel)
         {
             FuelCardEditView fuelCardEditView = new FuelCardEditView(editModel);
             fuelCardEditView.ShowInTaskbar = false;
@@ -239,6 +246,18 @@ namespace Reftruckegypt.Servicecenter.Common
             driversView.MdiParent = _mdiParent;
             driversView.Show();
         }
+        public void DisplayVehiclesView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            VehiclesView vehiclesView = scope.ServiceProvider.GetRequiredService<VehiclesView>();
+            _scopes[vehiclesView] = scope;
+            vehiclesView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            vehiclesView.MdiParent = _mdiParent;
+            vehiclesView.Show();
+        }
         private void FormClosed(Form sender)
         {
             if (sender != null && _scopes.ContainsKey(sender))
@@ -400,11 +419,6 @@ namespace Reftruckegypt.Servicecenter.Common
             }
         }
 
-        public void DisplayFuelCardEditView(FuelCardEditViewModel fuelCardEditViewModel)
-        {
-            FuelCardEditView fuelCardEditView = new FuelCardEditView(fuelCardEditViewModel);
-            fuelCardEditView.ShowInTaskbar = false;
-            fuelCardEditView.ShowDialog(_mdiParent);
-        }
+       
     }
 }

@@ -42,6 +42,8 @@ using Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels;
 using Reftruckegypt.Servicecenter.Views.FuelCardViews;
 using Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels;
+using Reftruckegypt.Servicecenter.Views.VehicleViews;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -83,28 +85,30 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IVehicleCategoryRepository, VehicleCategoryRepository>();
             // Validators .....
-            services.AddSingleton<IValidator<SparePartsPriceList>, SparePartsPriceListValidator>();
-            services.AddSingleton<IValidator<SparePartPriceListLine>, SparePartPriceListLineValidator>();
-            services.AddSingleton<IValidator<Driver>,DriverValidator>();
-            services.AddSingleton<IValidator<ExternalAutoRepairShop>, ExternalAutoRepairShopValidator>();
-            services.AddSingleton<IValidator<ExternalRepairBill>, ExternalRepairBillValidator>();
-
-            services.AddSingleton<IValidator<FuelCard>, FuelCardValidator>();
-            services.AddSingleton<IValidator<FuelConsumption>, FuelConsumptionValidator>();
-            services.AddSingleton<IValidator<FuelType>, FuelTypeValidator>();
-            services.AddSingleton<IValidator<Location>, LocationValidator>();
-            services.AddSingleton<IValidator<Period>, PeriodValidator>();
-            services.AddSingleton<IValidator<Uom>, UomValidator>();
-            services.AddSingleton<IValidator<VehicleCategory>, VehicleCategoryValidator>();
-            services.AddSingleton<IValidator<VehicleKilometerReading>, VehicleKilometerReadingValidator>();
-            services.AddSingleton<IValidator<VehicleModel>, VehicleModelValidator>();
-            services.AddSingleton<IValidator<VehicleStateChange>, VehicleStateChangeValidator>();
-            services.AddSingleton<IValidator<VehicleViolation>, VehicleViolationValidator>();
-            services.AddSingleton<IValidator<ViolationType>, ViolationTypeValidator>();
-            services.AddSingleton<IValidator<SparePart>, SparePartValidator>();
-            services.AddSingleton<IValidator<UomConversion>, UomConversionValidator>();
-            services.AddSingleton<IValidator<SparePartsBill>, SparePartsBillValidator>();
-            services.AddSingleton<IValidator<SparePartsBillLine>, SparePartsBillLineValidator>();
+            services
+                .AddSingleton<IValidator<SparePartsPriceList>, SparePartsPriceListValidator>()
+                .AddSingleton<IValidator<SparePartPriceListLine>, SparePartPriceListLineValidator>()
+                .AddSingleton<IValidator<Driver>,DriverValidator>()
+                .AddSingleton<IValidator<ExternalAutoRepairShop>, ExternalAutoRepairShopValidator>()
+                .AddSingleton<IValidator<ExternalRepairBill>, ExternalRepairBillValidator>()
+                .AddSingleton<IValidator<Vehicle>, VehicleValidator>()
+                .AddSingleton<IValidator<VehicleLicense>, VehicleLicenseValidator>()
+                .AddSingleton<IValidator<FuelCard>, FuelCardValidator>()
+                .AddSingleton<IValidator<FuelConsumption>, FuelConsumptionValidator>()
+                .AddSingleton<IValidator<FuelType>, FuelTypeValidator>()
+                .AddSingleton<IValidator<Location>, LocationValidator>()
+                .AddSingleton<IValidator<Period>, PeriodValidator>()
+                .AddSingleton<IValidator<Uom>, UomValidator>()
+                .AddSingleton<IValidator<VehicleCategory>, VehicleCategoryValidator>()
+                .AddSingleton<IValidator<VehicleKilometerReading>, VehicleKilometerReadingValidator>()
+                .AddSingleton<IValidator<VehicleModel>, VehicleModelValidator>()
+                .AddSingleton<IValidator<VehicleStateChange>, VehicleStateChangeValidator>()
+                .AddSingleton<IValidator<VehicleViolation>, VehicleViolationValidator>()
+                .AddSingleton<IValidator<ViolationType>, ViolationTypeValidator>()
+                .AddSingleton<IValidator<SparePart>, SparePartValidator>()
+                .AddSingleton<IValidator<UomConversion>, UomConversionValidator>()
+                .AddSingleton<IValidator<SparePartsBill>, SparePartsBillValidator>()
+                .AddSingleton<IValidator<SparePartsBillLine>, SparePartsBillLineValidator>();
             // ....
             services.AddSingleton<Common.IApplicationContext, Common.WindowsFormsApplicationContext>((sp) =>
             {
@@ -127,6 +131,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(SparePartsPriceListSearchViewModel));
             services.AddTransient(typeof(SparePartsBillSearchViewModel));
             services.AddTransient(typeof(FuelCardSearchViewModel));
+            services.AddTransient(typeof(VehicleSearchViewModel));
             // ....
             services.AddSingleton(typeof(MainView));
             services.AddSingleton(typeof(NavigatorView));
@@ -145,6 +150,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(PriceListsView));
             services.AddTransient(typeof(SparePartsBillsView));
             services.AddTransient(typeof(FuelCardsView));
+            services.AddTransient(typeof(VehiclesView));
             // ....
 
         }

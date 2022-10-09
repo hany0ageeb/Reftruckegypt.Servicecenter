@@ -9,10 +9,10 @@ namespace Reftruckegypt.Servicecenter.Models
         public virtual VehicleModel VehicleModel { get; set; }
         public string ChassisNumber { get; set; }
         // For SpeedViolation Report
-        public string VehicelCode { get; set; }
+        public string VehicleCode { get; set; }
         public string InternalCode { get; set; }
         public virtual FuelCard FuelCard { get; set; }
-        public virtual VehicleOvallState OvallState { get; set; }
+        public virtual VehicleOverAllState OverAllState { get; set; }
         public Guid? OverallStateId { get; set; }
         public Guid VehicleCategoryId { get; set; }
         public Guid VehicelModelId { get; set; }
@@ -24,11 +24,16 @@ namespace Reftruckegypt.Servicecenter.Models
         public virtual Location MaintenanceLocation { get; set; }
         public Guid? MaintenanceLocationId { get; set; }
         public virtual ICollection<VehicleLicense> VehicelLicenses { get; set; } = new HashSet<VehicleLicense>();
+        public virtual ICollection<VehicleStateChange> VehicleStateChanges { get; set; } = new HashSet<VehicleStateChange>();
         public virtual Driver Driver { get; set; }
         public Guid? DriverId { get; set; }
         public int ModelYear { get; set; } = DateTime.Now.Year;
-
         public Vehicle Self => this;
+
+        public const int MaxInternalCodeLength = 50;
+        public const int MaxChassisNumberLength = 250;
+        public const int MaxVehicelCodeLength = 250;
+        public const int MaxWorkingStateLength = 50;
     }
    
     public static class VehicleStates

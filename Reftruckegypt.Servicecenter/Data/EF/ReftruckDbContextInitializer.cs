@@ -53,29 +53,29 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             };
             // .....
            
-            VehicleOvallState[] overallStates =
+            VehicleOverAllState[] overallStates =
             {
-                new VehicleOvallState()
+                new VehicleOverAllState()
                 {
                     Name = "حالة ممتازة",
                     Description = ""
                 },
-                new VehicleOvallState()
+                new VehicleOverAllState()
                 {
                     Name = "حالة جيدة جدا",
                     Description = ""
                 },
-                new VehicleOvallState()
+                new VehicleOverAllState()
                 {
                     Name = "حالة جيدة",
                     Description = ""
                 },
-                new VehicleOvallState()
+                new VehicleOverAllState()
                 {
                     Name = "حالة متوسطة",
                     Description = ""
                 },
-                new VehicleOvallState()
+                new VehicleOverAllState()
                 {
                     Name = "حالة متهالكة",
                     Description = ""
@@ -714,6 +714,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Sequence = 150,
                     Name = nameof(FuelCard),
                     DisplayName = "Vehicle Fuel Cards"
+                },
+                new UserCommand()
+                {
+                    Sequence = 160,
+                    Name = nameof(Vehicle),
+                    DisplayName = "Vehicles"
                 }
             };
             // ...
