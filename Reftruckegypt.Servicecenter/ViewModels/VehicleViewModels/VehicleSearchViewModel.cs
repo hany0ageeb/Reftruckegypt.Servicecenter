@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Npoi.Mapper;
 using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
@@ -296,6 +297,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
             }
             return false;
         }
+
+        internal void ExportToFile(string fileName)
+        {
+            Mapper mapper = new Mapper();
+            mapper.Save(fileName, SearchResult);
+        }
+
         public void Search()
         {
             Guid? fuelCardId = null;

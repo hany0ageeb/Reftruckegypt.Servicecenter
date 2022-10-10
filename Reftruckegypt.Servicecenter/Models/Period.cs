@@ -5,7 +5,9 @@ namespace Reftruckegypt.Servicecenter.Models
     public class Period : EntityBase
     {
         public string Name { get; set; }
+        [Npoi.Mapper.Attributes.Column("From Date")]
         public DateTime FromDate { get; set; }
+        [Npoi.Mapper.Attributes.Column("To Date")]
         public DateTime ToDate { get; set; }
         public string State { get; set; } = PeriodStates.OpenState;
 
@@ -20,7 +22,9 @@ namespace Reftruckegypt.Servicecenter.Models
                 State = PeriodStates.OpenState;
             }
         }
+        [Npoi.Mapper.Attributes.Ignore()]
         public virtual SparePartsPriceList SparePartsPriceList { get; set; }
+        [Npoi.Mapper.Attributes.Ignore()]
         public Period Self => this;
 
         public const int MaxPeriodStateLength = 50;

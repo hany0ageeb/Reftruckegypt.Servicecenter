@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Npoi.Mapper.Attributes;
 using Reftruckegypt.Servicecenter.Models;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
@@ -30,18 +31,31 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                 PlateNumber = "";
             }
         }
+        [Ignore]
         public Guid Id { get; private set; }
+        [Column("Internal Code")]
         public string InternalCode { get; private set; }
+        [Column("Chassis Number")]
         public string ChassisNumber { get; private set; }
+        [Column("Driver Name")]
         public string DriverName { get; private set; }
+        [Column("Fuel Card Number")]
         public string FuelCardNumber { get; private set; }
+        [Column("Fuel Type Name")]
         public string FuelTypeName { get; private set; }
+        [Column("Maintenance Location")]
         public string MaintenanceLocationName { get; private set; }
+        [Column("Working Location")]
         public string WorkingLocationName { get; private set; }
+        [Column("Model Year")]
         public string ModelYear { get; private set; }
+        [Column("Over all State")]
         public string OvallStateName { get; private set; }
+        [Column("Model Name")]
         public string ModelName { get; private set; }
+        [Column("State")]
         public string WorkingState { get; private set; }
+        [Column("Plate Number")]
         public string PlateNumber { get; private set; }
     }
 }

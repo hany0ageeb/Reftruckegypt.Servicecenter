@@ -44,6 +44,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViolations)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +56,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.27055F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.72944F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 296F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
@@ -85,7 +86,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(413, 0);
+            this.label2.Location = new System.Drawing.Point(412, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 15);
             this.label2.TabIndex = 1;
@@ -103,7 +104,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(413, 37);
+            this.label4.Location = new System.Drawing.Point(412, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 15);
             this.label4.TabIndex = 3;
@@ -111,7 +112,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(815, 40);
+            this.btnSearch.Location = new System.Drawing.Point(814, 40);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 24);
             this.btnSearch.TabIndex = 4;
@@ -133,7 +134,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
             this.cboViolationTypes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboViolationTypes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboViolationTypes.FormattingEnabled = true;
-            this.cboViolationTypes.Location = new System.Drawing.Point(519, 3);
+            this.cboViolationTypes.Location = new System.Drawing.Point(518, 3);
             this.cboViolationTypes.Name = "cboViolationTypes";
             this.cboViolationTypes.Size = new System.Drawing.Size(277, 23);
             this.cboViolationTypes.TabIndex = 6;
@@ -150,7 +151,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
             // pickToDate
             // 
             this.pickToDate.Checked = false;
-            this.pickToDate.Location = new System.Drawing.Point(519, 40);
+            this.pickToDate.Location = new System.Drawing.Point(518, 40);
             this.pickToDate.Name = "pickToDate";
             this.pickToDate.ShowCheckBox = true;
             this.pickToDate.Size = new System.Drawing.Size(277, 23);
@@ -247,5 +248,6 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

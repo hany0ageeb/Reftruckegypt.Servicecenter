@@ -134,11 +134,39 @@ namespace Reftruckegypt.Servicecenter.Views.PeriodViews
                 _searchModel.Edit();
             };
             // ...
+            saveFileDialog1.Filter = "Excel Files (*.xlsx) | *.xlsx";
+            saveFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveFileDialog1.OverwritePrompt = true;
+            saveFileDialog1.CheckPathExists = true;
+            saveFileDialog1.RestoreDirectory = true;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        public void ExportToFile()
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (_searchModel.Periods.Count > 0)
+                {
+                    if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
+                    {
+                        _searchModel.ExportToFile(saveFileDialog1.FileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
     }
 }

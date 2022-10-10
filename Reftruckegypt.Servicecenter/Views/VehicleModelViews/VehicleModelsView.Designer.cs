@@ -38,6 +38,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleModelViews
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleModelsGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -99,7 +100,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleModelViews
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.26667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.73333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtName, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 2, 0);
@@ -123,12 +124,12 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleModelViews
             // 
             this.txtName.Location = new System.Drawing.Point(220, 3);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(546, 23);
+            this.txtName.Size = new System.Drawing.Size(545, 23);
             this.txtName.TabIndex = 1;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(772, 3);
+            this.btnSearch.Location = new System.Drawing.Point(771, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(93, 23);
             this.btnSearch.TabIndex = 2;
@@ -172,5 +173,6 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleModelViews
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

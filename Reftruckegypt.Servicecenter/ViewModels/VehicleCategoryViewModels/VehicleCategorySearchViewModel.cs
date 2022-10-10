@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Npoi.Mapper;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
 using Reftruckegypt.Servicecenter.Models.Validation;
@@ -141,6 +142,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels
                 _unitOfWork.Dispose();
                 _isDisposed = true;
             }
+        }
+
+        internal void ExportToFile(string fileName)
+        {
+            Mapper mapper = new Mapper();
+            mapper.Save(fileName, VehicleCategoryViews);
         }
 
         public BindingList<VehicleCategoryViewModel> VehicleCategoryViews { get; private set; } = new BindingList<VehicleCategoryViewModel>();

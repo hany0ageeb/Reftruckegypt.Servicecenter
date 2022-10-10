@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.Models;
+﻿using Npoi.Mapper.Attributes;
+using Reftruckegypt.Servicecenter.Models;
 using System;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.VehicleStateChangeViewModels
@@ -14,11 +15,16 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleStateChangeViewModels
             Notes = vehicleStateChange.Notes;
             Vehicle = vehicleStateChange.Vehicle;
         }
+        [Ignore]
         public Guid Id { get; private set; }
+        [Column("Vehicle Internal Code")]
         public string VehicleInternalCode { get; private set; }
+        [Column("From Date")]
         public DateTime FromDate { get; private set; }
+        [Column("To Date")]
         public DateTime? ToDate { get; private set; }
         public string Notes { get; private set; }
+        [Ignore]
         public Vehicle Vehicle { get; private set; }
         public VehicleStateChange VehicleStateChange => 
             new VehicleStateChange()

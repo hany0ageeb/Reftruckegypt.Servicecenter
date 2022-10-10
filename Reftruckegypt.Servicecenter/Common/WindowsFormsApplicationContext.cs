@@ -72,12 +72,6 @@ namespace Reftruckegypt.Servicecenter.Common
             fuelCardsView.FormClosed += (o, e) =>
             {
                 FormClosed(o as Form);
-                if (_mdiParent.IsExportEnabled)
-                {
-                    _mdiParent.RemoveExportAction(_exportActions[fuelCardsView]);
-                    _exportActions.Remove(fuelCardsView);
-                }
-                _mdiParent.IsExportEnabled = false;
             };
             fuelCardsView.Show();
         }
@@ -100,7 +94,7 @@ namespace Reftruckegypt.Servicecenter.Common
             sparePartsBillEditView.ShowDialog(_mdiParent);
         }
 
-        public void DisplaySparePartsBillsView()
+        public void DisplaySparePartsBillsView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();
             SparePartsBillsView billsView = scope.ServiceProvider.GetRequiredService<SparePartsBillsView>();
@@ -110,9 +104,18 @@ namespace Reftruckegypt.Servicecenter.Common
             {
                 FormClosed(o as Form);
             };
+            if (isExportEnabled)
+            {
+                _mdiParent.IsExportEnabled = true;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(billsView, (o, e) =>
+                 {
+                     billsView.ExportToFile();
+                 });
+            }
             billsView.Show();
         }
-        public void DisplayPriceListsView()
+        public void DisplayPriceListsView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();
             Views.SparePartsPriceListViews.PriceListsView priceListsView = scope.ServiceProvider.GetRequiredService<Views.SparePartsPriceListViews.PriceListsView>();
@@ -122,6 +125,15 @@ namespace Reftruckegypt.Servicecenter.Common
             {
                 FormClosed(o as Form);
             };
+            if (isExportEnabled)
+            {
+                _mdiParent.IsExportEnabled = true;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(priceListsView, (o, e) =>
+                {
+                    priceListsView.ExportToFile();
+                });
+            }
             priceListsView.Show();
         }
         public void DisplayUomConversionsView()
@@ -136,7 +148,7 @@ namespace Reftruckegypt.Servicecenter.Common
             };
             uomConversionsView.Show();
         }
-        public void DisplaySparePartsView()
+        public void DisplaySparePartsView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();
             SparePartsView sparePartsView = scope.ServiceProvider.GetRequiredService<SparePartsView>();
@@ -144,8 +156,19 @@ namespace Reftruckegypt.Servicecenter.Common
             sparePartsView.MdiParent = _mdiParent;
             sparePartsView.FormClosed += (o, e) =>
             {
+               
                 FormClosed(o as Form);
             };
+            if (isExportEnabled)
+            {
+                _mdiParent.IsExportEnabled = true;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(sparePartsView, (o, e) =>
+                {
+                    sparePartsView.ExportToFile();
+                });
+                _mdiParent.AddExportAction(_exportActions[sparePartsView]);
+            }
             sparePartsView.Show();
         }
         public void DisplayUomsView()
@@ -158,9 +181,10 @@ namespace Reftruckegypt.Servicecenter.Common
             {
                 FormClosed(o as Form);
             };
+
             uomsView.Show();
         }
-        public void DisplayVehicleCategoriesView()
+        public void DisplayVehicleCategoriesView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();
             VehicleCategoriesView vehicleCategoriesView = scope.ServiceProvider.GetRequiredService<VehicleCategoriesView>();
@@ -170,9 +194,19 @@ namespace Reftruckegypt.Servicecenter.Common
             {
                 FormClosed(o as Form);
             };
+            if (isExportEnabled)
+            {
+                _mdiParent.IsExportEnabled = true;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(vehicleCategoriesView, (o, e) =>
+                {
+                    vehicleCategoriesView.ExportToFile();
+                });
+                _mdiParent.AddExportAction(_exportActions[vehicleCategoriesView]);
+            }
             vehicleCategoriesView.Show();
         }
-        public void DisplayVehicleViolationsView()
+        public void DisplayVehicleViolationsView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();
             VehicleViolationsView vehicleViolationsView = scope.ServiceProvider.GetRequiredService<VehicleViolationsView>();
@@ -182,6 +216,16 @@ namespace Reftruckegypt.Servicecenter.Common
             {
                 FormClosed(o as Form);
             };
+            if (isExportEnabled)
+            {
+                _mdiParent.IsExportEnabled = true;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(vehicleViolationsView, (o, e) =>
+                {
+                    vehicleViolationsView.ExportToFile();
+                });
+                _mdiParent.AddExportAction(_exportActions[vehicleViolationsView]);
+            }
             vehicleViolationsView.Show();
         }
         public void DisplayFuelConsumptionsView(bool isExportEnabled = false, string exportDisplayName = "Export")
@@ -192,13 +236,6 @@ namespace Reftruckegypt.Servicecenter.Common
             _scopes[fuelConsumptionsView] = scope;
             fuelConsumptionsView.FormClosed += (o, e) =>
              {
-                 if (_exportActions.ContainsKey(fuelConsumptionsView))
-                 {
-                     _mdiParent.RemoveExportAction(_exportActions[fuelConsumptionsView]);
-                     _exportActions.Remove(fuelConsumptionsView);
-                 }
-                 _mdiParent.IsExportEnabled = false;
-                 _mdiParent.SetExportDisplayName("Expoert");
                  FormClosed(o as Form);
              };
             if (isExportEnabled)
@@ -211,9 +248,10 @@ namespace Reftruckegypt.Servicecenter.Common
                 });
                 _mdiParent.AddExportAction(_exportActions[fuelConsumptionsView]);
             }
+            
             fuelConsumptionsView.Show();
         }
-        public void DisplayVehicleModelsView()
+        public void DisplayVehicleModelsView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();
             VehicleModelsView vehicleModelsView = scope.ServiceProvider.GetRequiredService<VehicleModelsView>();
@@ -223,6 +261,16 @@ namespace Reftruckegypt.Servicecenter.Common
                 FormClosed(o as Form);
             };
             vehicleModelsView.MdiParent = _mdiParent;
+            if (isExportEnabled)
+            {
+                _mdiParent.IsExportEnabled = true;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(vehicleModelsView, (o, e) =>
+                {
+                    vehicleModelsView.ExportToFile();
+                });
+                _mdiParent.AddExportAction(_exportActions[vehicleModelsView]);
+            }
             vehicleModelsView.Show();
         }
         public void DisplayExternalAutoRepairShopsView(bool isExportEnabled = false, string displayName = "Export")
@@ -233,13 +281,6 @@ namespace Reftruckegypt.Servicecenter.Common
             externalAutoRepairShopsView.FormClosed += (o, e) =>
             {
                 FormClosed(o as Form);
-                if (_mdiParent.IsExportEnabled)
-                {
-                    _mdiParent.RemoveExportAction(_exportActions[externalAutoRepairShopsView]);
-                    _exportActions.Remove(externalAutoRepairShopsView);
-                }
-                _mdiParent.IsExportEnabled = false;
-                _mdiParent.SetExportDisplayName("Export");
             };
             externalAutoRepairShopsView.MdiParent = _mdiParent;
             _mdiParent.IsExportEnabled = isExportEnabled;
@@ -261,13 +302,6 @@ namespace Reftruckegypt.Servicecenter.Common
             _scopes[externalRepairBillsView] = scope;
             externalRepairBillsView.FormClosed += (o, e) =>
             {
-                if (_exportActions.ContainsKey(externalRepairBillsView))
-                {
-                    _mdiParent.RemoveExportAction(_exportActions[externalRepairBillsView]);
-                    _exportActions.Remove(externalRepairBillsView);
-                }
-                _mdiParent.IsExportEnabled = false;
-                _mdiParent.SetExportDisplayName("Export");
                 FormClosed(o as Form);
             };
             externalRepairBillsView.MdiParent = _mdiParent;
@@ -283,7 +317,7 @@ namespace Reftruckegypt.Servicecenter.Common
             }
             externalRepairBillsView.Show();
         }
-        public void DisplayPeriodsView()
+        public void DisplayPeriodsView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();
             PeriodsView periodsView = scope.ServiceProvider.GetRequiredService<PeriodsView>();
@@ -293,9 +327,19 @@ namespace Reftruckegypt.Servicecenter.Common
                 FormClosed(o as Form);
             };
             periodsView.MdiParent = _mdiParent;
+            if (isExportEnabled)
+            {
+                _mdiParent.IsExportEnabled = isExportEnabled;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(periodsView, (o, e) =>
+                {
+                    periodsView.ExportToFile();
+                });
+                _mdiParent.AddExportAction(_exportActions[periodsView]);
+            }
             periodsView.Show();
         }
-        public void DisplayKilometerReadingsView()
+        public void DisplayKilometerReadingsView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();
             VehicleKilometerReadingsView vehicleKilometerReadingsView = scope.ServiceProvider.GetRequiredService<VehicleKilometerReadingsView>();
@@ -305,10 +349,20 @@ namespace Reftruckegypt.Servicecenter.Common
                 FormClosed(o as Form);
             };
             vehicleKilometerReadingsView.MdiParent = _mdiParent;
+            if (isExportEnabled)
+            {
+                _mdiParent.IsExportEnabled = isExportEnabled;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(vehicleKilometerReadingsView, (o, e) =>
+                {
+                    vehicleKilometerReadingsView.ExportToFile();
+                });
+                _mdiParent.AddExportAction(_exportActions[vehicleKilometerReadingsView]);
+            }
             vehicleKilometerReadingsView.Show();
         }
 
-        public void DisplayVehicleSatetChangesView()
+        public void DisplayVehicleSatetChangesView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();
             VehicleStateChangesView vehicleKilometerReadingsView = scope.ServiceProvider.GetRequiredService<VehicleStateChangesView>();
@@ -318,6 +372,16 @@ namespace Reftruckegypt.Servicecenter.Common
                 FormClosed(o as Form);
             };
             vehicleKilometerReadingsView.MdiParent = _mdiParent;
+            if (isExportEnabled)
+            {
+                _mdiParent.IsExportEnabled = isExportEnabled;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(vehicleKilometerReadingsView, (o, e) =>
+                {
+                    vehicleKilometerReadingsView.ExportToFile();
+                });
+                _mdiParent.AddExportAction(_exportActions[vehicleKilometerReadingsView]);
+            }
             vehicleKilometerReadingsView.Show();
         }
         public void DisplayDriversView(bool enableExport = false, string exportDisplayName = "Export")
@@ -327,12 +391,6 @@ namespace Reftruckegypt.Servicecenter.Common
             _scopes[driversView] = scope;
             driversView.FormClosed += (o, e) =>
             {
-                if (_exportActions.ContainsKey(driversView))
-                {
-                    _mdiParent.RemoveExportAction(_exportActions[driversView]);
-                    _mdiParent.IsExportEnabled = false;
-                    _exportActions.Remove(driversView);
-                }
                 FormClosed(o as Form);
             };
             if (enableExport)
@@ -348,7 +406,7 @@ namespace Reftruckegypt.Servicecenter.Common
             driversView.MdiParent = _mdiParent;
             driversView.Show();
         }
-        public void DisplayVehiclesView()
+        public void DisplayVehiclesView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();
             VehiclesView vehiclesView = scope.ServiceProvider.GetRequiredService<VehiclesView>();
@@ -358,12 +416,29 @@ namespace Reftruckegypt.Servicecenter.Common
                 FormClosed(o as Form);
             };
             vehiclesView.MdiParent = _mdiParent;
+            if (isExportEnabled)
+            {
+                _mdiParent.IsExportEnabled = isExportEnabled;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(vehiclesView, (o, e) =>
+                {
+                    vehiclesView.ExportToFile();
+                });
+                _mdiParent.AddExportAction(_exportActions[vehiclesView]);
+            }
             vehiclesView.Show();
         }
         private void FormClosed(Form sender)
         {
             if (sender != null && _scopes.ContainsKey(sender))
             {
+                if (_exportActions.ContainsKey(sender))
+                {
+                    _mdiParent.RemoveExportAction(_exportActions[sender]);
+                    _exportActions.Remove(sender);
+                }
+                _mdiParent.IsExportEnabled = false;
+                _mdiParent.SetExportDisplayName("Export");
                 _scopes[sender].Dispose();
                 _scopes.Remove(sender);
             }

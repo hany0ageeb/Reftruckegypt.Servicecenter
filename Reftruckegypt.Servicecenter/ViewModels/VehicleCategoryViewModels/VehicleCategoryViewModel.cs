@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npoi.Mapper.Attributes;
+using System;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels
 {
@@ -20,10 +21,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels
             IsFuelCardRequired = vehicleCategory.IsFuelCardRequired;
             Id = vehicleCategory.Id;
         }
+        [Ignore]
         public Guid Id { get; private set; }
         public string Name { get; private set; }
         public string Description { get; private set; }
+        [Ignore]
         public bool IsChassisNumberRequired { get; private set; }
+        [Ignore]
         public bool IsFuelCardRequired { get; private set; }
 
     }

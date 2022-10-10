@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.Common;
+﻿using Npoi.Mapper;
+using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
 using Reftruckegypt.Servicecenter.Models.Validation;
@@ -309,6 +310,20 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                 }
             }
         }
+
+        public void ExportToFile(string fileName)
+        {
+            Mapper mapper = new Mapper();
+            if(Headers.Count > 0)
+            {
+                mapper.Save(fileName, Headers);
+            }
+            else if(Lines.Count > 0)
+            {
+                mapper.Save(fileName, Lines);
+            }
+        }
+
         public void Delete()
         {
             if (_displayResultByHeader)

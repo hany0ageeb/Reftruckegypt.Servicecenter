@@ -30,13 +30,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                     case nameof(VehicleCategory):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayVehicleCategoriesView();
+                            _applicationContext.DisplayVehicleCategoriesView(true, "Export Vehicle Categories");
                         };
                         break;
                     case nameof(VehicleModel):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayVehicleModelsView();
+                            _applicationContext.DisplayVehicleModelsView(true, "Export Vehicle Models");
                         };
                         break;
                     case nameof(ExternalAutoRepairShop):
@@ -54,13 +54,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                     case nameof(Period):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayPeriodsView();
+                            _applicationContext.DisplayPeriodsView(true, "Export Periods");
                         };
                         break;
                     case nameof(VehicleKilometerReading):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayKilometerReadingsView();
+                            _applicationContext.DisplayKilometerReadingsView(true, "Export Kilometer Readings");
                         };
                         break;
                     case nameof(FuelConsumption):
@@ -72,7 +72,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                     case nameof(VehicleViolation):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayVehicleViolationsView();
+                            _applicationContext.DisplayVehicleViolationsView(true, "Export Vehicle Violations");
                         };
                         break;
                     case nameof(Uom):
@@ -84,7 +84,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                     case nameof(SparePart):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplaySparePartsView();
+                            _applicationContext.DisplaySparePartsView(true, "Export Spare Parts");
                         };
                         break;
                     case nameof(UomConversion):
@@ -102,13 +102,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                     case nameof(SparePartsPriceList):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayPriceListsView();
+                            _applicationContext.DisplayPriceListsView(true, "Export Price Lists");
                         };
                         break;
                     case nameof(SparePartsBill):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplaySparePartsBillsView();
+                            _applicationContext.DisplaySparePartsBillsView(true, "Export");
                         };
                         break;
                     case nameof(FuelCard):
@@ -120,13 +120,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                     case nameof(Vehicle):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayVehiclesView();
+                            _applicationContext.DisplayVehiclesView(true, "EXport Vehicles");
                         };
                         break;
                     case nameof(VehicleStateChange):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayVehicleSatetChangesView();
+                            _applicationContext.DisplayVehicleSatetChangesView(true, "Export");
                         };
                         break;
                 }

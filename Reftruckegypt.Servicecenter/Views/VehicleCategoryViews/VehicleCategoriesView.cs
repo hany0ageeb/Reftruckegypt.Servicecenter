@@ -113,6 +113,13 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleCategoryViews
                      vehicleCategoriesGrid.Rows[e.Index].Selected = true;
                  }
              };
+            // ....
+            // ....
+            saveFileDialog1.Filter = "Excel Files (*.xlsx) | *.xlsx";
+            saveFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveFileDialog1.OverwritePrompt = true;
+            saveFileDialog1.CheckPathExists = true;
+            saveFileDialog1.RestoreDirectory = true;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -123,6 +130,26 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleCategoryViews
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        internal void ExportToFile()
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    _searchModel.ExportToFile(saveFileDialog1.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
     }
 }

@@ -42,6 +42,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleStateChangeViews
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridResults)).BeginInit();
             this.SuspendLayout();
@@ -220,5 +221,6 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleStateChangeViews
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

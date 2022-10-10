@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.Common;
+﻿using Npoi.Mapper;
+using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
 using Reftruckegypt.Servicecenter.Models.Validation;
@@ -161,6 +162,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels
                 }
             }
         }
+
+        internal void ExportToFile(string fileName)
+        {
+            Mapper mapper = new Mapper();
+            mapper.Save(fileName, Periods);
+        }
+
         public void Create()
         {
             _applicationContext.DisplayPeriodEditView(new PeriodEditViewModel(_unitOfWork, _applicationContext, _validator));

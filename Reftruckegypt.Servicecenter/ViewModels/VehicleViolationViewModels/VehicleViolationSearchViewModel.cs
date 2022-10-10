@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.Common;
+﻿using Npoi.Mapper;
+using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
 using System;
@@ -202,6 +203,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
                 }
             }
         }
+
+        public void ExportToFile(string fileName)
+        {
+            Mapper mapper = new Mapper();
+            mapper.Save(fileName, VehicleViolationViewModels);
+        }
+
         public BindingList<VehicleViolationViewModel> VehicleViolationViewModels { get; private set; } = new BindingList<VehicleViolationViewModel>();
         public List<Vehicle> Vehicles { get; private set; } = new List<Vehicle>();
         public List<ViolationType> ViolationTypes { get; private set; } = new List<ViolationType>();

@@ -111,6 +111,12 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
                   _searchModel.Search();
                   InitializeGrid();
             };
+            // ....
+            saveFileDialog1.Filter = "Excel Files (*.xlsx) | *.xlsx";
+            saveFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveFileDialog1.OverwritePrompt = true;
+            saveFileDialog1.CheckPathExists = true;
+            saveFileDialog1.RestoreDirectory = true;
         }
         private void InitializeGrid()
         {
@@ -206,6 +212,26 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
                     Name = nameof(SparePartsPriceListLineViewModel.State)
                 });
                 gridResults.DataSource = _searchModel.Lines;
+            }
+        }
+
+        public void ExportToFile()
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    _searchModel.ExportToFile(saveFileDialog1.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
             }
         }
 

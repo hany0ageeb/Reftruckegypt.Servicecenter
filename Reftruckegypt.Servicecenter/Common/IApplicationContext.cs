@@ -29,38 +29,38 @@ namespace Reftruckegypt.Servicecenter.Common
         DialogResult DisplayMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon);
         void DisplayVehicleCategoryEditView(VehicleCategoryEditViewModel _editModel);
         void DisplayVehicleModelEditView(VehicleModelEditViewModel editModel);
-        void DisplayVehicleCategoriesView();
-        void DisplayVehicleModelsView();
+        void DisplayVehicleCategoriesView(bool isExportEnabled = false, string exportDisplayName = "Export");
+        void DisplayVehicleModelsView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplayExternalAutoRepairShopsView(bool isExportEnabled = false, string displayName = "Export");
         void DisplayExternalRepairShopEditView(ExternalAutoRepairShopEditViewModel editModel);
         void DisplayExternalRepairBillsView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplayExternalRepaiBillEditView(ExternalRepairBillEditViewModel editViewModel);
-        void DisplayPeriodsView();
+        void DisplayPeriodsView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplayPeriodEditView(PeriodEditViewModel periodEditViewModel);
-        void DisplayKilometerReadingsView();
+        void DisplayKilometerReadingsView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplayKilometerReadingEditView(VehicleKilometerReadingEditViewModel model);
         void DisplayFuelConsumptionsView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplayFuelConsumptionEditView(FuelConsumptionEditViewModel fuelConsumptionEditViewModel);
-        void DisplayVehicleViolationsView();
+        void DisplayVehicleViolationsView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplayVehicleViolationEditView(VehicleViolationEditViewModel vehicleVilationEditViewModel);
         void DisplayUomsView();
         void DisplayUomEditView(UomEditViewModel uomEditViewModel);
-        void DisplaySparePartsView();
+        void DisplaySparePartsView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplaySparePartEditView(SparePartEditViewModel editModel);
         void DisplayUomConversionsView();
         void DisplayUomConversionEditView(UomConversionEditViewModel editModel);
         void DisplayDriverEditView(DriverEditViewModel driverEditViewModel);
         void DisplayDriversView(bool enableExport = false, string exportDisplayName = "Export");
         void DisplayPriceListEditView(SparePartPriceListEditViewModel sparePartPriceListEditViewModel);
-        void DisplayPriceListsView();
+        void DisplayPriceListsView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplaySparePartsBillEditView(SparePartsBillEditViewModel sparePartsBillEditViewModel);
-        void DisplaySparePartsBillsView();
+        void DisplaySparePartsBillsView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplayFuelCardsView(bool isExportEnabled = false, string displayName = "Export");
         void DisplayFuelCardEditView(FuelCardEditViewModel editModel);
-        void DisplayVehiclesView();
+        void DisplayVehiclesView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplayVehicleEditView(VehicleEditViewModel editModel);
         void DisplayVehicleStateChangeEditView(VehicleStateChangesEditModel vehicleStateChangesEditModel);
-        void DisplayVehicleSatetChangesView();
+        void DisplayVehicleSatetChangesView(bool isExportEnabled = false, string exportDisplayName = "Export");
     }
    
 }

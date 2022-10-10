@@ -38,6 +38,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartViews
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridParts)).BeginInit();
             this.SuspendLayout();
@@ -47,7 +48,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartViews
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.2649F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.7351F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtCodeOrName, 1, 0);
@@ -60,7 +61,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartViews
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(757, 3);
+            this.btnSearch.Location = new System.Drawing.Point(756, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 24);
             this.btnSearch.TabIndex = 5;
@@ -168,5 +169,6 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartViews
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
