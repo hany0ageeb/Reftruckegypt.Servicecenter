@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.Common;
+﻿using Npoi.Mapper;
+using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
 using Reftruckegypt.Servicecenter.Models.Validation;
@@ -23,6 +24,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.DriverViewModels
         private bool _isDisposed = false;
         private int _selectedIndex = -1;
         private bool _isEditEnabled = false;
+
+        internal void ExportToFile(string fileName)
+        {
+            Mapper mapper = new Mapper();
+            mapper.Save(fileName, Drivers);
+        }
+
         private bool _isDeleteEnabled = false;
 
         public DriverSearchViewModel(

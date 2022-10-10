@@ -18,6 +18,7 @@ using Reftruckegypt.Servicecenter.Views;
 using Reftruckegypt.Servicecenter.Views.VehicleCategoryViews;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
+using Reftruckegypt.Servicecenter.Views.Abstractions;
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -31,7 +32,7 @@ namespace Reftruckegypt.Servicecenter
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            using (Views.MainView view = ServiceProvider.GetRequiredService<Views.MainView>())
+            using (MainViewBase view = ServiceProvider.GetRequiredService<MainViewBase>())
             {
                 Application.Run(view);
             }
@@ -84,10 +85,7 @@ namespace Reftruckegypt.Servicecenter
                 .AddSingleton<IValidator<SparePartsBill>, SparePartsBillValidator>()
                 .AddSingleton<IValidator<SparePartsBillLine>, SparePartsBillLineValidator>();
             // ....
-            services.AddSingleton<Common.IApplicationContext, Common.WindowsFormsApplicationContext>((sp) =>
-            {
-                return new Common.WindowsFormsApplicationContext(sp.GetRequiredService<Views.MainView>());
-            });
+            services.AddSingleton<Common.IApplicationContext, Common.WindowsFormsApplicationContext>();
             // ....
             services.AddTransient(typeof(ViewModels.VehicleCategoryViewModels.VehicleCategorySearchViewModel));
             services.AddTransient(typeof(ViewModels.NavigatorViewModel));
@@ -108,7 +106,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(ViewModels.VehicleViewModels.VehicleSearchViewModel))
                 .AddTransient(typeof(ViewModels.VehicleStateChangeViewModels.VehicleStateChangeSearchViewModel));
             // ....
-            services.AddSingleton(typeof(Views.MainView));
+            services.AddSingleton<MainViewBase,MainView>();
             services.AddSingleton(typeof(NavigatorView));
             services.AddTransient(typeof(VehicleCategoriesView));
             services.AddTransient(typeof(Views.VehicleModelViews.VehicleModelsView));

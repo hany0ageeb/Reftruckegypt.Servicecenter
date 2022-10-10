@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.Common;
+﻿using Npoi.Mapper;
+using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
 using Reftruckegypt.Servicecenter.Models.Validation;
@@ -189,6 +190,11 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                     OnPropertyChanged(this, nameof(Vehicle));
                 }
             }
+        }
+        public void ExportToFile(string fileName)
+        {
+            Mapper mapper = new Mapper();
+            mapper.Save(fileName, ExternalRepairBillVieModels);
         }
         public void Search()
         {

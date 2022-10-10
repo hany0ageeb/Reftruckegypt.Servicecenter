@@ -20,6 +20,23 @@ namespace Reftruckegypt.Servicecenter.Views.FuelCardViews
             InitializeComponent();
             Initialize();
         }
+        public void ExportToFile()
+        {
+            try
+            {
+                if (_searchModel.SearchResult.Count > 0)
+                {
+                    if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
+                    {
+                        _searchModel.ExportToFile(saveFileDialog1.FileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
         private void Initialize()
         {
             // ...
@@ -113,6 +130,11 @@ namespace Reftruckegypt.Servicecenter.Views.FuelCardViews
             });
             btnEdit.Click += (o, e) => _searchModel.Edit();
             // ...
+            saveFileDialog1.Filter = "Excel Files (*.xlsx) | *.xlsx";
+            saveFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveFileDialog1.OverwritePrompt = true;
+            saveFileDialog1.CheckPathExists = true;
+            saveFileDialog1.RestoreDirectory = true;
 
         }
         private void btnClose_Click(object sender, EventArgs e)

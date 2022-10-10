@@ -44,6 +44,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelCardViews
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridResults)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +56,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelCardViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.62408F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 290F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtNumber, 1, 0);
@@ -93,7 +94,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelCardViews
             // 
             // txtNumber
             // 
-            this.txtNumber.Location = new System.Drawing.Point(77, 3);
+            this.txtNumber.Location = new System.Drawing.Point(76, 3);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(266, 23);
             this.txtNumber.TabIndex = 2;
@@ -101,7 +102,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelCardViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(349, 0);
+            this.label2.Location = new System.Drawing.Point(348, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 15);
             this.label2.TabIndex = 1;
@@ -109,14 +110,14 @@ namespace Reftruckegypt.Servicecenter.Views.FuelCardViews
             // 
             // txtRegistration
             // 
-            this.txtRegistration.Location = new System.Drawing.Point(438, 3);
+            this.txtRegistration.Location = new System.Drawing.Point(437, 3);
             this.txtRegistration.Name = "txtRegistration";
             this.txtRegistration.Size = new System.Drawing.Size(272, 23);
             this.txtRegistration.TabIndex = 3;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(77, 36);
+            this.txtName.Location = new System.Drawing.Point(76, 36);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(266, 23);
             this.txtName.TabIndex = 5;
@@ -124,7 +125,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelCardViews
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(349, 33);
+            this.label4.Location = new System.Drawing.Point(348, 33);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 15);
             this.label4.TabIndex = 6;
@@ -133,14 +134,14 @@ namespace Reftruckegypt.Servicecenter.Views.FuelCardViews
             // cboVehicles
             // 
             this.cboVehicles.FormattingEnabled = true;
-            this.cboVehicles.Location = new System.Drawing.Point(438, 36);
+            this.cboVehicles.Location = new System.Drawing.Point(437, 36);
             this.cboVehicles.Name = "cboVehicles";
             this.cboVehicles.Size = new System.Drawing.Size(272, 23);
             this.cboVehicles.TabIndex = 7;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(728, 36);
+            this.btnSearch.Location = new System.Drawing.Point(727, 36);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(85, 27);
             this.btnSearch.TabIndex = 8;
@@ -236,5 +237,6 @@ namespace Reftruckegypt.Servicecenter.Views.FuelCardViews
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

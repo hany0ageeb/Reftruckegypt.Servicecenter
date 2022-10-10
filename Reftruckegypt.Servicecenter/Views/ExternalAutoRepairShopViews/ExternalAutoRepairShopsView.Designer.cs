@@ -40,6 +40,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalAutoRepairShopViews
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtAddress = new System.Windows.Forms.TextBox();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.shopsGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -99,7 +100,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalAutoRepairShopViews
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.12389F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.87611F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtName, 1, 0);
@@ -140,7 +141,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalAutoRepairShopViews
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(833, 33);
+            this.btnSearch.Location = new System.Drawing.Point(832, 33);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(93, 23);
             this.btnSearch.TabIndex = 3;
@@ -192,5 +193,6 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalAutoRepairShopViews
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

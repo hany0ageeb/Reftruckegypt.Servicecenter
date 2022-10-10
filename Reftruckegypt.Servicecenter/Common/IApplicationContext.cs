@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
+﻿using Reftruckegypt.Servicecenter.Models;
+using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalAutoRepairShopViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels;
@@ -30,15 +31,15 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplayVehicleModelEditView(VehicleModelEditViewModel editModel);
         void DisplayVehicleCategoriesView();
         void DisplayVehicleModelsView();
-        void DisplayExternalAutoRepairShopsView();
+        void DisplayExternalAutoRepairShopsView(bool isExportEnabled = false, string displayName = "Export");
         void DisplayExternalRepairShopEditView(ExternalAutoRepairShopEditViewModel editModel);
-        void DisplayExternalRepairBillsView();
+        void DisplayExternalRepairBillsView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplayExternalRepaiBillEditView(ExternalRepairBillEditViewModel editViewModel);
         void DisplayPeriodsView();
         void DisplayPeriodEditView(PeriodEditViewModel periodEditViewModel);
         void DisplayKilometerReadingsView();
         void DisplayKilometerReadingEditView(VehicleKilometerReadingEditViewModel model);
-        void DisplayFuelConsumptionsView();
+        void DisplayFuelConsumptionsView(bool isExportEnabled = false, string exportDisplayName = "Export");
         void DisplayFuelConsumptionEditView(FuelConsumptionEditViewModel fuelConsumptionEditViewModel);
         void DisplayVehicleViolationsView();
         void DisplayVehicleViolationEditView(VehicleViolationEditViewModel vehicleVilationEditViewModel);
@@ -49,14 +50,13 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplayUomConversionsView();
         void DisplayUomConversionEditView(UomConversionEditViewModel editModel);
         void DisplayDriverEditView(DriverEditViewModel driverEditViewModel);
-        void DisplayDriversView();
+        void DisplayDriversView(bool enableExport = false, string exportDisplayName = "Export");
         void DisplayPriceListEditView(SparePartPriceListEditViewModel sparePartPriceListEditViewModel);
         void DisplayPriceListsView();
         void DisplaySparePartsBillEditView(SparePartsBillEditViewModel sparePartsBillEditViewModel);
         void DisplaySparePartsBillsView();
-        void DisplayFuelCardsView();
+        void DisplayFuelCardsView(bool isExportEnabled = false, string displayName = "Export");
         void DisplayFuelCardEditView(FuelCardEditViewModel editModel);
-        
         void DisplayVehiclesView();
         void DisplayVehicleEditView(VehicleEditViewModel editModel);
         void DisplayVehicleStateChangeEditView(VehicleStateChangesEditModel vehicleStateChangesEditModel);

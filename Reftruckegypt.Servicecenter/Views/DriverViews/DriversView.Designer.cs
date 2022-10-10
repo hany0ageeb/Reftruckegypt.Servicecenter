@@ -44,6 +44,7 @@ namespace Reftruckegypt.Servicecenter.Views.DriverViews
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDrivers)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +56,7 @@ namespace Reftruckegypt.Servicecenter.Views.DriverViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.29269F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 256F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.tableLayoutPanel1.Controls.Add(this.txtLicenseNumber, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -75,7 +76,7 @@ namespace Reftruckegypt.Servicecenter.Views.DriverViews
             // 
             // txtLicenseNumber
             // 
-            this.txtLicenseNumber.Location = new System.Drawing.Point(489, 3);
+            this.txtLicenseNumber.Location = new System.Drawing.Point(488, 3);
             this.txtLicenseNumber.Name = "txtLicenseNumber";
             this.txtLicenseNumber.Size = new System.Drawing.Size(234, 23);
             this.txtLicenseNumber.TabIndex = 8;
@@ -83,7 +84,7 @@ namespace Reftruckegypt.Servicecenter.Views.DriverViews
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(369, 0);
+            this.label3.Location = new System.Drawing.Point(368, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 15);
             this.label3.TabIndex = 5;
@@ -100,7 +101,7 @@ namespace Reftruckegypt.Servicecenter.Views.DriverViews
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(745, 37);
+            this.btnSearch.Location = new System.Drawing.Point(744, 37);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(80, 28);
             this.btnSearch.TabIndex = 1;
@@ -120,14 +121,14 @@ namespace Reftruckegypt.Servicecenter.Views.DriverViews
             // 
             this.txtName.Location = new System.Drawing.Point(119, 3);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(244, 23);
+            this.txtName.Size = new System.Drawing.Size(243, 23);
             this.txtName.TabIndex = 3;
             // 
             // pickfromdate
             // 
             this.pickfromdate.Location = new System.Drawing.Point(119, 37);
             this.pickfromdate.Name = "pickfromdate";
-            this.pickfromdate.Size = new System.Drawing.Size(244, 23);
+            this.pickfromdate.Size = new System.Drawing.Size(243, 23);
             this.pickfromdate.TabIndex = 4;
             // 
             // label4
@@ -136,7 +137,7 @@ namespace Reftruckegypt.Servicecenter.Views.DriverViews
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(369, 34);
+            this.label4.Location = new System.Drawing.Point(368, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(114, 34);
             this.label4.TabIndex = 6;
@@ -145,7 +146,7 @@ namespace Reftruckegypt.Servicecenter.Views.DriverViews
             // 
             // picktodate
             // 
-            this.picktodate.Location = new System.Drawing.Point(489, 37);
+            this.picktodate.Location = new System.Drawing.Point(488, 37);
             this.picktodate.Name = "picktodate";
             this.picktodate.Size = new System.Drawing.Size(234, 23);
             this.picktodate.TabIndex = 7;
@@ -238,5 +239,6 @@ namespace Reftruckegypt.Servicecenter.Views.DriverViews
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

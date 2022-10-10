@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.Models;
+﻿using Npoi.Mapper.Attributes;
+using Reftruckegypt.Servicecenter.Models;
 using System;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
@@ -17,15 +18,25 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
             QuantityInLiters = fuelConsumption.TotalConsumedQuanityInLiteres;
             AmountInEGP = fuelConsumption.TotalAmountInEGP;
         }
+        [Ignore]
         public Guid Id { get; private set; }
+        [Column("State")]
         public string State { get; private set; }
+        [Column("Vehicle Internal Code")]
         public string VehicleInternalCode { get; private set; }
+        [Column("Fuel Card Number")]
         public string FuelCardNumber { get; private set; }
+        [Column("Fuel Card Name")]
         public string FuelCardName { get; private set; }
+        [Column("Consumption Date")]
         public DateTime ConsumptionDate { get; private set; }
+        [Column("Quantity In Liters")]
         public decimal QuantityInLiters { get; private set; }
+        [Column("Fuel Type")]
         public string FuelTypeName { get; private set; }
+        [Column("Amount In EGP")]
         public decimal AmountInEGP { get; private set; }
+        [Column("Notes")]
         public string Notes { get; private set; }
     }
 }

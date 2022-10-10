@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.Common;
+﻿using Npoi.Mapper;
+using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
 using Reftruckegypt.Servicecenter.Models.Validation;
@@ -24,6 +25,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels
         private string _number = "";
         private string _name = "";
         private string _registration = "";
+
+        public void ExportToFile(string fileName)
+        {
+            Mapper mapper = new Mapper();
+            mapper.Save(fileName, SearchResult);
+        }
+
         private Vehicle _vehicle;
 
         public FuelCardSearchViewModel(

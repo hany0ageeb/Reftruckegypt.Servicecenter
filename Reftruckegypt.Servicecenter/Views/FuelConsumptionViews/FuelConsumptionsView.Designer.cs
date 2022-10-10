@@ -50,6 +50,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridConsumptions)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +62,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.25742F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 310F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel1.Controls.Add(this.cboFuelTypes, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.pickFromDate, 1, 3);
@@ -116,7 +117,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(349, 96);
+            this.label2.Location = new System.Drawing.Point(348, 96);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 15);
             this.label2.TabIndex = 2;
@@ -125,7 +126,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
             // pickToDate
             // 
             this.pickToDate.Checked = false;
-            this.pickToDate.Location = new System.Drawing.Point(455, 99);
+            this.pickToDate.Location = new System.Drawing.Point(454, 99);
             this.pickToDate.Name = "pickToDate";
             this.pickToDate.ShowCheckBox = true;
             this.pickToDate.Size = new System.Drawing.Size(238, 23);
@@ -160,7 +161,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(349, 0);
+            this.label7.Location = new System.Drawing.Point(348, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(96, 15);
             this.label7.TabIndex = 12;
@@ -169,7 +170,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
             // cboCategories
             // 
             this.cboCategories.FormattingEnabled = true;
-            this.cboCategories.Location = new System.Drawing.Point(455, 3);
+            this.cboCategories.Location = new System.Drawing.Point(454, 3);
             this.cboCategories.Name = "cboCategories";
             this.cboCategories.Size = new System.Drawing.Size(238, 23);
             this.cboCategories.TabIndex = 13;
@@ -177,7 +178,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
             // cboVehicles
             // 
             this.cboVehicles.FormattingEnabled = true;
-            this.cboVehicles.Location = new System.Drawing.Point(455, 37);
+            this.cboVehicles.Location = new System.Drawing.Point(454, 37);
             this.cboVehicles.Name = "cboVehicles";
             this.cboVehicles.Size = new System.Drawing.Size(238, 23);
             this.cboVehicles.TabIndex = 5;
@@ -185,7 +186,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(349, 34);
+            this.label3.Location = new System.Drawing.Point(348, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 15);
             this.label3.TabIndex = 4;
@@ -210,7 +211,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(765, 99);
+            this.btnSearch.Location = new System.Drawing.Point(764, 99);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(83, 23);
             this.btnSearch.TabIndex = 14;
@@ -312,5 +313,6 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

@@ -42,13 +42,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                     case nameof(ExternalAutoRepairShop):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayExternalAutoRepairShopsView();
+                            _applicationContext.DisplayExternalAutoRepairShopsView(true, "Export External Shops");
                         };
                         break;
                     case nameof(ExternalRepairBill):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayExternalRepairBillsView();
+                            _applicationContext.DisplayExternalRepairBillsView(isExportEnabled: true, exportDisplayName: "Export External Repair Bills");
                         };
                         break;
                     case nameof(Period):
@@ -66,7 +66,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                     case nameof(FuelConsumption):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayFuelConsumptionsView();
+                            _applicationContext.DisplayFuelConsumptionsView(isExportEnabled: true, exportDisplayName: "Export Fuel Consumptions Data");
                         };
                         break;
                     case nameof(VehicleViolation):
@@ -96,7 +96,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                     case nameof(Driver):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayDriversView();
+                            _applicationContext.DisplayDriversView(enableExport: true, exportDisplayName: "Export Drivers Data");
                         };
                         break;
                     case nameof(SparePartsPriceList):
@@ -114,7 +114,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                     case nameof(FuelCard):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplayFuelCardsView();
+                            _applicationContext.DisplayFuelCardsView(true, "Export Fuel Cards");
                         };
                         break;
                     case nameof(Vehicle):

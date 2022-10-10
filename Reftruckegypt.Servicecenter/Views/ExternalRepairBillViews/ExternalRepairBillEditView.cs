@@ -133,7 +133,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                   }
              };
             // ..
-            openFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|*.jpeg";
+            openFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|(*.jpeg)|*.jpeg";
             openFileDialog1.RestoreDirectory = true;
             openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             openFileDialog1.CheckFileExists = true;

@@ -1,5 +1,6 @@
 ﻿using Reftruckegypt.Servicecenter.Models;
 using System;
+using Npoi.Mapper.Attributes;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
 {
@@ -20,14 +21,23 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
             TotalAmount = externalRepairBill.TotalAmountInEGP;
             State = externalRepairBill.Period.State;
         }
+        [Ignore]
         public Guid Id { get;  set; }
+        [Column("Number")]
         public long Number { get;  set; }
+        [Column("Bill Date")]
         public DateTime BillDate { get;  set; }
+        [Column("Supplier Bill Number")]
         public string SupplierBillNumber { get;  set; }
+        [Column("External Auto Repair Shop Name")]
         public string ExternalAutoRepairShopName { get;  set; }
+        [Column("Vehicle Internal Code")]
         public string VehicleInternalCode { get;  set; }
+        [Column("Repairs")]
         public string Repairs { get; set; }
+        [Column("Total Amount")]
         public decimal TotalAmount { get;  set; }
+        [Column("State")]
         public string State { get;  set; }
 
     }

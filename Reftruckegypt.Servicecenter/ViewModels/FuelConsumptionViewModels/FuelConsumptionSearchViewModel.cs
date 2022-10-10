@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.Common;
+﻿using Npoi.Mapper;
+using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
 using System;
@@ -249,6 +250,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                 _unitOfWork.Dispose();
                 _isDisposed = true;
             }
+        }
+
+        public void ExportToFile(string fileName)
+        {
+            Mapper mapper = new Mapper();
+            mapper.Save(fileName, FuelConsumptions);
         }
         #endregion IDisposable
     }
