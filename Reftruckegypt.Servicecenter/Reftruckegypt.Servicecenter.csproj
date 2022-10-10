@@ -360,6 +360,10 @@
     <Compile Include="ViewModels\VehicleModelViewModels\VehicelModelEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelSearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleModelViewModels\VehicleModelViewModel.cs" />
+    <Compile Include="ViewModels\VehicleStateChangeViewModels\VehicleStateChangeEditModel.cs" />
+    <Compile Include="ViewModels\VehicleStateChangeViewModels\VehicleStateChangeSearchViewModel.cs" />
+    <Compile Include="ViewModels\VehicleStateChangeViewModels\VehicleStateChangesEditModel.cs" />
+    <Compile Include="ViewModels\VehicleStateChangeViewModels\VehicleStateChangeViewModel.cs" />
     <Compile Include="ViewModels\VehicleViewModels\VehicleEditViewModel.cs" />
     <Compile Include="ViewModels\VehicleViewModels\VehicleLicenseEditViewmodel.cs" />
     <Compile Include="ViewModels\VehicleViewModels\VehicleSearchViewModel.cs" />
@@ -549,6 +553,18 @@
     <Compile Include="Views\VehicleModelViews\VehicleModelsView.Designer.cs">
       <DependentUpon>VehicleModelsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\VehicleStateChangeViews\VehicleStateChangesEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VehicleStateChangeViews\VehicleStateChangesEditView.Designer.cs">
+      <DependentUpon>VehicleStateChangesEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VehicleStateChangeViews\VehicleStateChangesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VehicleStateChangeViews\VehicleStateChangesView.Designer.cs">
+      <DependentUpon>VehicleStateChangesView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\VehicleViews\VehicleEditView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -675,6 +691,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\VehicleModelViews\VehicleModelsView.resx">
       <DependentUpon>VehicleModelsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VehicleStateChangeViews\VehicleStateChangesEditView.resx">
+      <DependentUpon>VehicleStateChangesEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VehicleStateChangeViews\VehicleStateChangesView.resx">
+      <DependentUpon>VehicleStateChangesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\VehicleViews\VehicleEditView.resx">
       <DependentUpon>VehicleEditView.cs</DependentUpon>

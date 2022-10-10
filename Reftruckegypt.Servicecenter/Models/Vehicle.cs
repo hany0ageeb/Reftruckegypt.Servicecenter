@@ -29,6 +29,7 @@ namespace Reftruckegypt.Servicecenter.Models
         public Guid? DriverId { get; set; }
         public int ModelYear { get; set; } = DateTime.Now.Year;
         public Vehicle Self => this;
+        public readonly static Vehicle Empty = new Vehicle() { Id = Guid.Empty, InternalCode = "" };
 
         public const int MaxInternalCodeLength = 50;
         public const int MaxChassisNumberLength = 250;

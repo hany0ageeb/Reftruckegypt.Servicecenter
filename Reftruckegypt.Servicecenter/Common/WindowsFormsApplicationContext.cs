@@ -34,6 +34,8 @@ using Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels;
 using Reftruckegypt.Servicecenter.Views.FuelCardViews;
 using Reftruckegypt.Servicecenter.Views.VehicleViews;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleStateChangeViewModels;
+using Reftruckegypt.Servicecenter.Views.VehicleStateChangeViews;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -234,6 +236,19 @@ namespace Reftruckegypt.Servicecenter.Common
             vehicleKilometerReadingsView.MdiParent = _mdiParent;
             vehicleKilometerReadingsView.Show();
         }
+
+        public void DisplayVehicleSatetChangesView()
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            VehicleStateChangesView vehicleKilometerReadingsView = scope.ServiceProvider.GetRequiredService<VehicleStateChangesView>();
+            _scopes[vehicleKilometerReadingsView] = scope;
+            vehicleKilometerReadingsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            vehicleKilometerReadingsView.MdiParent = _mdiParent;
+            vehicleKilometerReadingsView.Show();
+        }
         public void DisplayDriversView()
         {
             var scope = Program.ServiceProvider.CreateScope();
@@ -419,6 +434,12 @@ namespace Reftruckegypt.Servicecenter.Common
             }
         }
 
-       
+        public void DisplayVehicleStateChangeEditView(VehicleStateChangesEditModel vehicleStateChangesEditModel)
+        {
+            Views.VehicleStateChangeViews.VehicleStateChangesEditView vehicleStateChangesEditView = new Views.VehicleStateChangeViews.VehicleStateChangesEditView(vehicleStateChangesEditModel);
+            vehicleStateChangesEditView.ShowInTaskbar = false;
+            vehicleStateChangesEditView.ShowDialog(_mdiParent);
+        }
+
     }
 }

@@ -12,6 +12,7 @@ using Reftruckegypt.Servicecenter.ViewModels.UomViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleCategoryViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleModelViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleStateChangeViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
 using System;
@@ -58,6 +59,8 @@ namespace Reftruckegypt.Servicecenter.Common
         
         void DisplayVehiclesView();
         void DisplayVehicleEditView(VehicleEditViewModel editModel);
+        void DisplayVehicleStateChangeEditView(VehicleStateChangesEditModel vehicleStateChangesEditModel);
+        void DisplayVehicleSatetChangesView();
     }
    
 }

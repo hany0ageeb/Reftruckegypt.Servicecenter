@@ -123,6 +123,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                             _applicationContext.DisplayVehiclesView();
                         };
                         break;
+                    case nameof(VehicleStateChange):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayVehicleSatetChangesView();
+                        };
+                        break;
                 }
                 UserCommands.Add(command);
             }
