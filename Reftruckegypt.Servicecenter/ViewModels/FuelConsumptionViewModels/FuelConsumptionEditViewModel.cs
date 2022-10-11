@@ -1,4 +1,5 @@
-﻿using Reftruckegypt.Servicecenter.Common;
+﻿using Npoi.Mapper;
+using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
 using Reftruckegypt.Servicecenter.Models.Validation;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
 {
@@ -20,29 +22,36 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
 
         private DateTime _consumptionDate;
         public FuelConsumptionEditViewModel(IUnitOfWork unitOfWork, IApplicationContext applicationContext)
+            : this(null, unitOfWork, applicationContext)
         {
-            _unitOfWork = unitOfWork;
-            _applicationContext = applicationContext;
-
-            FuelCards.AddRange(_unitOfWork.FuelCardRepository.Find(orderBy: q => q.OrderBy(e => e.Number)));
-            FuelTypes.AddRange(_unitOfWork.FuelTypeRepository.Find(orderBy: q=>q.OrderBy(x=>x.Name)));
-            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(orderBy: q => q.OrderBy(x => x.InternalCode)));
-
-            ConsumptionDate = DateTime.Now;
+            
         }
         public FuelConsumptionEditViewModel(FuelConsumption line, IUnitOfWork unitOfWork, IApplicationContext applicationContext)
         {
-            _unitOfWork = unitOfWork;
-            _applicationContext = applicationContext;
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
 
-            FuelCards.AddRange(_unitOfWork.FuelCardRepository.Find(orderBy: q => q.OrderBy(e => e.Number)));
-            FuelTypes.AddRange(_unitOfWork.FuelTypeRepository.Find(orderBy: q => q.OrderBy(x => x.Name)));
-            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(orderBy: q => q.OrderBy(x => x.InternalCode)));
-
-            Lines.Add(new FuelConsumptionLineEditViewModel(line));
-
-            ConsumptionDate = line.ConsumptionDate;
+            FuelCards.AddRange(_unitOfWork.FuelCardRepository.Find(q => q.OrderBy(e => e.Number)));
+            FuelTypes.AddRange(_unitOfWork.FuelTypeRepository.Find(q => q.OrderBy(x => x.Name)));
+            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q => q.OrderBy(x => x.InternalCode)));
+            if (line != null)
+            {
+                Lines.Add(new FuelConsumptionLineEditViewModel(line));
+                ConsumptionDate = line.ConsumptionDate;
+            }
+            else
+            {
+                _consumptionDate = DateTime.Now;
+            }
+            Lines.ListChanged += (o, e) =>
+            {
+                if(e.PropertyDescriptor?.Name != nameof(HasChanged))
+                {
+                    HasChanged = true;
+                }
+            };
         }
+        
         public DateTime ConsumptionDate
         {
             get => _consumptionDate;

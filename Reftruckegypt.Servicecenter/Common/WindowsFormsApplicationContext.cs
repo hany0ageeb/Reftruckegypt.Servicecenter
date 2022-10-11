@@ -36,7 +36,7 @@ using Reftruckegypt.Servicecenter.Views.VehicleViews;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleStateChangeViewModels;
 using Reftruckegypt.Servicecenter.Views.VehicleStateChangeViews;
-using Reftruckegypt.Servicecenter.Views.Abstractions;
+
 using Reftruckegypt.Servicecenter.Models;
 using System;
 
@@ -44,11 +44,11 @@ namespace Reftruckegypt.Servicecenter.Common
 {
     public class WindowsFormsApplicationContext : IApplicationContext
     {
-        private readonly MainViewBase _mdiParent = null;
+        private readonly MainView _mdiParent = null;
         private readonly Dictionary<Form, EventHandler> _exportActions = new Dictionary<Form, EventHandler>();
         private readonly Dictionary<Form, IServiceScope> _scopes = new Dictionary<Form, IServiceScope>();
         private bool _isDisposed = false;
-        public WindowsFormsApplicationContext(MainViewBase mdiParent)
+        public WindowsFormsApplicationContext(MainView mdiParent)
         {
             _mdiParent = mdiParent;
         }

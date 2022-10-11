@@ -2,6 +2,7 @@
 using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
+using Reftruckegypt.Servicecenter.Models.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IApplicationContext _applicationContext;
+        private readonly IValidator<FuelConsumption> _validator;
 
         private int _selectedIndex = -1;
         private bool _isEditEnabled = false;
@@ -29,10 +31,14 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
         private FuelType _fuelType;
         private VehicleCategory _vehicleCategory;
         private VehicleModel _vehicleModel;
-        public FuelConsumptionSearchViewModel(IUnitOfWork unitOfWork, IApplicationContext applicationContext)
+        public FuelConsumptionSearchViewModel(
+            IUnitOfWork unitOfWork,
+            IApplicationContext applicationContext,
+            IValidator<FuelConsumption> validator)
         {
-            _unitOfWork = unitOfWork;
-            _applicationContext = applicationContext;
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+            _validator = validator ?? throw new ArgumentNullException(nameof(validator));
 
             FuelTypes.AddRange(_unitOfWork.FuelTypeRepository.Find(orderBy: q => q.OrderBy(f => f.Name)));
             FuelTypes.Insert(0, new FuelType() { Id = Guid.Empty, Name = "--ALL--" });
@@ -40,7 +46,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
             FuelCards.AddRange(_unitOfWork.FuelCardRepository.Find(orderBy: q=>q.OrderBy(c=>c.Number)));
             FuelCards.Insert(0, new FuelCard() { Id = Guid.Empty, Number = "--ALL--" });
             _fuelCard = FuelCards[0];
-            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(orderBy: q => q.OrderBy(v => v.InternalCode)));
+            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q => q.OrderBy(v => v.InternalCode)));
             Vehicles.Insert(0, new Vehicle() { Id = Guid.Empty, InternalCode = "--ALL--" });
             _vehicle = Vehicles[0];
             VehicleCategories.AddRange(_unitOfWork.VehicleCategoryRepository.Find(orderBy: q=>q.OrderBy(e=>e.Name)));
@@ -75,6 +81,149 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                 }
             }
         }
+
+        public Task<string> ImportFromExcelFile(Mapper mapper, IProgress<int> progress)
+        {
+            return Task.Run<string>(() =>
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                IList<FuelConsumptionViewModel> consumptions = mapper.Take<FuelConsumptionViewModel>().Select(r => r.Value).ToList();
+                List<FuelConsumption> data = new List<FuelConsumption>();
+                for(int index = 0; index < consumptions.Count(); index++)
+                {
+                    FuelConsumptionViewModel consumption = consumptions[index];
+                    FuelConsumption fuelConsumption = new FuelConsumption();
+                    fuelConsumption.ConsumptionDate = consumption.ConsumptionDate;
+                    fuelConsumption.Notes = consumption.Notes;
+                    fuelConsumption.TotalAmountInEGP = consumption.AmountInEGP;
+                    fuelConsumption.TotalConsumedQuanityInLiteres = consumption.QuantityInLiters;
+                    Vehicle vehicle = 
+                        _unitOfWork
+                        .VehicleRepository
+                        .Find(x => x.InternalCode.Equals(consumption.VehicleInternalCode))
+                        .FirstOrDefault();
+                    if (vehicle != null)
+                    {
+                        fuelConsumption.Vehicle = vehicle;
+                        if (string.IsNullOrEmpty(consumption.FuelCardNumber))
+                        {
+                            if(vehicle.FuelCard != null)
+                            {
+                                fuelConsumption.FuelCard = vehicle.FuelCard;
+                                if (string.IsNullOrEmpty(consumption.FuelTypeName))
+                                {
+                                    fuelConsumption.FuelType = vehicle.FuelType;
+                                    ModelState modelState = Validate(fuelConsumption);
+                                    if (!modelState.HasErrors)
+                                    {
+                                        data.Add(fuelConsumption);
+                                    }
+                                    else
+                                    {
+                                        stringBuilder.AppendLine($"Errors At Row {index + 1}: {modelState.Error}");
+                                    }
+                                }
+                                else
+                                {
+                                    fuelConsumption.FuelType = 
+                                        _unitOfWork
+                                        .FuelTypeRepository
+                                        .Find(x => x.Equals(consumption.FuelTypeName))
+                                        .FirstOrDefault();
+                                    if(fuelConsumption.FuelType is null)
+                                    {
+                                        _ = stringBuilder.AppendLine($"Invalid Fuel Type Name {consumption.FuelTypeName} At Row {index + 1}");
+                                    }
+                                    else
+                                    {
+                                        ModelState modelState = Validate(fuelConsumption);
+                                        if (!modelState.HasErrors)
+                                        {
+                                            data.Add(fuelConsumption);
+                                        }
+                                        else
+                                        {
+                                            stringBuilder.AppendLine($"Errors At Row {index + 1}: {modelState.Error}");
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                _ = stringBuilder.AppendLine($"Invalid Fuel card Number At Row {index+1}");
+                            }
+                        }
+                        else
+                        {
+                            fuelConsumption.FuelCard = _unitOfWork.FuelCardRepository.Find(x => x.Number == consumption.FuelCardNumber).FirstOrDefault();
+                            if (fuelConsumption.FuelCard != null)
+                            {
+                                fuelConsumption.FuelCard = vehicle.FuelCard;
+                                if (string.IsNullOrEmpty(consumption.FuelTypeName))
+                                {
+                                    fuelConsumption.FuelType = vehicle.FuelType;
+                                    ModelState modelState = Validate(fuelConsumption);
+                                    if (!modelState.HasErrors)
+                                    {
+                                        data.Add(fuelConsumption);
+                                    }
+                                    else
+                                    {
+                                        stringBuilder.AppendLine($"Errors At Row {index + 1}: {modelState.Error}");
+                                    }
+                                }
+                                else
+                                {
+                                    fuelConsumption.FuelType =
+                                        _unitOfWork
+                                        .FuelTypeRepository
+                                        .Find(x => x.Equals(consumption.FuelTypeName))
+                                        .FirstOrDefault();
+                                    if (fuelConsumption.FuelType is null)
+                                    {
+                                        _ = stringBuilder.AppendLine($"Invalid Fuel Type Name {consumption.FuelTypeName} At Row {index + 1}");
+                                    }
+                                    else
+                                    {
+                                        ModelState modelState = Validate(fuelConsumption);
+                                        if (!modelState.HasErrors)
+                                        {
+                                            data.Add(fuelConsumption);
+                                        }
+                                        else
+                                        {
+                                            stringBuilder.AppendLine($"Errors At Row {index + 1}: {modelState.Error}");
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                _ = stringBuilder.AppendLine($"Invalid Fuel Card Number {consumption.FuelCardNumber} At Row {index + 1}");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        _ = stringBuilder.AppendLine($"Invalid Vehicle Internal code: {consumption.VehicleInternalCode} At Row # {index + 1}");
+                    }
+                    progress.Report((int)(index / consumptions.Count * 100.0));
+                }
+                progress.Report(50);
+                _unitOfWork.FuelConsumptionRepository.Add(data);
+                _unitOfWork.Complete();
+                progress.Report(100);
+                return stringBuilder.ToString();
+            });
+        }
+        public ModelState Validate(FuelConsumption fuelConsumption)
+        {
+            ModelState modelState = new ModelState();
+            fuelConsumption.Period = _unitOfWork.PeriodRepository.FindOpenPeriod(fuelConsumption.ConsumptionDate);
+            modelState.AddErrors(_validator.Validate(fuelConsumption));
+            return modelState;
+
+        }
         public bool IsDeleteEnabled
         {
             get => _isDeleteEnabled;
@@ -105,7 +254,23 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
         }
         public void Search()
         {
-
+            FuelConsumptions.Clear();
+            IEnumerable<FuelConsumption> consumptions =
+                _unitOfWork
+                .FuelConsumptionRepository
+                .Find(
+                    categoryId: _vehicleCategory.Id, 
+                    modelId: _vehicleModel.Id,
+                    vehicleId: _vehicle.Id,
+                    fuelCardId: _fuelCard.Id,
+                    fuelTypeId: _fuelType.Id,
+                    fromDate: _fromDate,
+                    toDate: _toDate,
+                    orderBy: q=>q.OrderBy(x=>x.ConsumptionDate).ThenBy(x=>x.Vehicle.InternalCode));
+            foreach(var consumption in consumptions)
+            {
+                FuelConsumptions.Add(new FuelConsumptionViewModel(consumption));
+            }
         }
         public VehicleCategory VehicleCategory
         {
@@ -210,10 +375,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                     {
                         _unitOfWork.FuelConsumptionRepository.Remove(fuelConsumption);
                         _unitOfWork.Complete();
+                        Search();
                     }
                     else
                     {
-                        _ = _applicationContext.DisplayMessage("Error", $"This Record has been deleted and no longer exist!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //_ = _applicationContext.DisplayMessage("Error", $"This Record has been deleted and no longer exist!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Search();
                     }
                 }
             }

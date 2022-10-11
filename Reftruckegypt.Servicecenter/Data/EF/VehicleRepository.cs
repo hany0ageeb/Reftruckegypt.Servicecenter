@@ -62,7 +62,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             {
                 query = query.Where(x => x.FuelTypeId == fuelTypeId);
             }
-            if(fuelCardId==null || fuelCardId != Guid.Empty)
+            if(fuelCardId == null || fuelCardId != Guid.Empty)
             {
                 query = query.Where(x => x.FuelCard.Id == fuelCardId || x.FuelCard == null);
             }

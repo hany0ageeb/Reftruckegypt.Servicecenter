@@ -208,6 +208,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
                 _searchModel.Create();
             };
             // ....
+            btnSearch.Click += (o, e) => _searchModel.Search();
             // ...
             saveFileDialog1.Filter = "Excel Files (*.xlsx) | *.xlsx";
             saveFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);

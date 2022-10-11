@@ -12,11 +12,16 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
             State = fuelConsumption.Period.State;
             Notes = fuelConsumption.Notes;
             ConsumptionDate = fuelConsumption.ConsumptionDate;
+            VehicleInternalCode = fuelConsumption.Vehicle.InternalCode;
             FuelCardNumber = fuelConsumption.FuelCard.Number;
             FuelCardName = fuelConsumption.FuelCard.Name;
             FuelTypeName = fuelConsumption.FuelType.Name;
             QuantityInLiters = fuelConsumption.TotalConsumedQuanityInLiteres;
             AmountInEGP = fuelConsumption.TotalAmountInEGP;
+        }
+        public FuelConsumptionViewModel()
+        {
+
         }
         [Ignore]
         public Guid Id { get; private set; }
@@ -38,5 +43,6 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
         public decimal AmountInEGP { get; private set; }
         [Column("Notes")]
         public string Notes { get; private set; }
+
     }
 }

@@ -394,9 +394,6 @@
     <Compile Include="ViewModels\VehicleViolationViewModels\VehicleViolationSearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleViolationViewModels\VehicleViolationViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Views\Abstractions\MainViewBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Views\DriverViews\DriverEditView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -456,6 +453,18 @@
     </Compile>
     <Compile Include="Views\FuelConsumptionViews\FuelConsumptionsView.Designer.cs">
       <DependentUpon>FuelConsumptionsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImportErrorsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ImportErrorsView.Designer.cs">
+      <DependentUpon>ImportErrorsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImportMappingViews\FuelConsumptionMappingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ImportMappingViews\FuelConsumptionMappingView.Designer.cs">
+      <DependentUpon>FuelConsumptionMappingView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
@@ -655,6 +664,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FuelConsumptionViews\FuelConsumptionsView.resx">
       <DependentUpon>FuelConsumptionsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ImportErrorsView.resx">
+      <DependentUpon>ImportErrorsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ImportMappingViews\FuelConsumptionMappingView.resx">
+      <DependentUpon>FuelConsumptionMappingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

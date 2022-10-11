@@ -18,7 +18,7 @@ using Reftruckegypt.Servicecenter.Views;
 using Reftruckegypt.Servicecenter.Views.VehicleCategoryViews;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
-using Reftruckegypt.Servicecenter.Views.Abstractions;
+
 
 namespace Reftruckegypt.Servicecenter
 {
@@ -32,7 +32,7 @@ namespace Reftruckegypt.Servicecenter
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            using (MainViewBase view = ServiceProvider.GetRequiredService<MainViewBase>())
+            using (MainView view = ServiceProvider.GetRequiredService<MainView>())
             {
                 Application.Run(view);
             }
@@ -106,7 +106,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(ViewModels.VehicleViewModels.VehicleSearchViewModel))
                 .AddTransient(typeof(ViewModels.VehicleStateChangeViewModels.VehicleStateChangeSearchViewModel));
             // ....
-            services.AddSingleton<MainViewBase,MainView>();
+            services.AddSingleton<MainView, MainView>();
             services.AddSingleton(typeof(NavigatorView));
             services.AddTransient(typeof(VehicleCategoriesView));
             services.AddTransient(typeof(Views.VehicleModelViews.VehicleModelsView));
