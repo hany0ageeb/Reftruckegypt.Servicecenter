@@ -52,7 +52,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.60486F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.39513F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbovehicles, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
@@ -81,7 +81,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             // cbovehicles
             // 
             this.cbovehicles.FormattingEnabled = true;
-            this.cbovehicles.Location = new System.Drawing.Point(125, 3);
+            this.cbovehicles.Location = new System.Drawing.Point(124, 3);
             this.cbovehicles.Name = "cbovehicles";
             this.cbovehicles.Size = new System.Drawing.Size(482, 23);
             this.cbovehicles.TabIndex = 1;
@@ -98,7 +98,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             // pickfromDate
             // 
             this.pickfromDate.Checked = false;
-            this.pickfromDate.Location = new System.Drawing.Point(125, 32);
+            this.pickfromDate.Location = new System.Drawing.Point(124, 32);
             this.pickfromDate.Name = "pickfromDate";
             this.pickfromDate.ShowCheckBox = true;
             this.pickfromDate.Size = new System.Drawing.Size(482, 23);
@@ -116,7 +116,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             // picktoDate
             // 
             this.picktoDate.Checked = false;
-            this.picktoDate.Location = new System.Drawing.Point(125, 60);
+            this.picktoDate.Location = new System.Drawing.Point(124, 60);
             this.picktoDate.Name = "picktoDate";
             this.picktoDate.ShowCheckBox = true;
             this.picktoDate.Size = new System.Drawing.Size(482, 23);
@@ -124,7 +124,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(625, 60);
+            this.btnSearch.Location = new System.Drawing.Point(623, 60);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(101, 30);
             this.btnSearch.TabIndex = 6;
@@ -176,6 +176,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             this.btnClose.TabIndex = 14;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // VehicleKilometerReadingsView
             // 

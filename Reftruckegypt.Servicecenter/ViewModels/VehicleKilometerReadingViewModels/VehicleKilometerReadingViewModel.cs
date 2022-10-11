@@ -15,6 +15,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewMode
             Notes = kilometerReading.Notes;
             State = kilometerReading.Period.State;
         }
+        public VehicleKilometerReadingViewModel()
+        {
+
+        }
         [Ignore()]
         public Guid Id { get; private set; }
         [Column("Vehicle Internal Code")]

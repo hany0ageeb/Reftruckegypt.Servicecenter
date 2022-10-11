@@ -99,27 +99,28 @@ namespace Reftruckegypt.Servicecenter.Views
             // fuelConsumptionsToolStripMenuItem
             // 
             this.fuelConsumptionsToolStripMenuItem.Name = "fuelConsumptionsToolStripMenuItem";
-            this.fuelConsumptionsToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.fuelConsumptionsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.fuelConsumptionsToolStripMenuItem.Text = "Fuel Consumptions";
             this.fuelConsumptionsToolStripMenuItem.Click += new System.EventHandler(this.fuelConsumptionsToolStripMenuItem_ClickAsync);
             // 
             // vehiclesViolationsToolStripMenuItem
             // 
             this.vehiclesViolationsToolStripMenuItem.Name = "vehiclesViolationsToolStripMenuItem";
-            this.vehiclesViolationsToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.vehiclesViolationsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.vehiclesViolationsToolStripMenuItem.Text = "Vehicles Violations";
             this.vehiclesViolationsToolStripMenuItem.Click += new System.EventHandler(this.vehiclesViolationsToolStripMenuItem_Click);
             // 
             // vehicleKilmeterReadingsToolStripMenuItem
             // 
             this.vehicleKilmeterReadingsToolStripMenuItem.Name = "vehicleKilmeterReadingsToolStripMenuItem";
-            this.vehicleKilmeterReadingsToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.vehicleKilmeterReadingsToolStripMenuItem.Text = "Vehicle Kilmeter Readings";
+            this.vehicleKilmeterReadingsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.vehicleKilmeterReadingsToolStripMenuItem.Text = "Vehicle Kilometer Readings";
+            this.vehicleKilmeterReadingsToolStripMenuItem.Click += new System.EventHandler(this.vehicleKilmeterReadingsToolStripMenuItem_Click);
             // 
             // externalRepairInvoicesToolStripMenuItem
             // 
             this.externalRepairInvoicesToolStripMenuItem.Name = "externalRepairInvoicesToolStripMenuItem";
-            this.externalRepairInvoicesToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.externalRepairInvoicesToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.externalRepairInvoicesToolStripMenuItem.Text = "External Repair Invoices";
             // 
             // exportToolStripMenuItem

@@ -2,6 +2,7 @@
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,49 @@ namespace Reftruckegypt.Servicecenter.Views
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _navigatorView.Close();
+        }
+        private async void vehicleKilmeterReadingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName);
+                    using(ImportMappingViews.VehicleKilometerReadingMappingView vehicleKilometerReadingMapping = new ImportMappingViews.VehicleKilometerReadingMappingView(headers, openFileDialog1.FileName))
+                    {
+                        if(vehicleKilometerReadingMapping.ShowDialog(this) == DialogResult.OK && vehicleKilometerReadingMapping.Mapper != null)
+                        {
+                            using (var scope = Program.ServiceProvider.CreateScope())
+                            {
+                                VehicleKilometerReadingSearchViewModel searchViewModel = scope.ServiceProvider.GetRequiredService<VehicleKilometerReadingSearchViewModel>();
+                                Progress<int> progress = new Progress<int>();
+                                toolStripProgressBar1.Visible = true;
+                                toolStripProgressBar1.Value = 0;
+                                progress.ProgressChanged += Progress_ProgressChanged;
+                                string errorMessage = await searchViewModel.ImportFromExcelFile(vehicleKilometerReadingMapping.Mapper, progress);
+                                if (!string.IsNullOrEmpty(errorMessage))
+                                {
+                                    using (ImportErrorsView errorsView = new ImportErrorsView(errorMessage))
+                                    {
+                                        errorsView.ShowDialog(this);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                toolStripProgressBar1.Visible = false;
+                toolStripProgressBar1.Value = 0;
+                Cursor = Cursors.Default;
+            }
         }
         private async void vehiclesViolationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -199,6 +243,6 @@ namespace Reftruckegypt.Servicecenter.Views
             return columnsHeaders;
         }
 
-       
+        
     }
 }

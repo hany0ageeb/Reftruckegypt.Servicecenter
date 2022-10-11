@@ -36,7 +36,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewMode
             _applicationContext = applicationContext;
             _validator = validator;
 
-            Vehicels.AddRange(_untitOfWork.VehicleRepository.Find().ToList());
+            Vehicels.AddRange(_untitOfWork.VehicleRepository.Find(q=>q.OrderBy(x=>x.InternalCode)).ToList());
             Vehicels.Insert(0, new Vehicle() { Id = Guid.Empty, InternalCode = "--ALL--" });
         }
         public Vehicle Vehicle
@@ -93,9 +93,64 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewMode
         }
         public void Create()
         {
-            VehicleKilometerReadingEditViewModel model = new VehicleKilometerReadingEditViewModel(_untitOfWork, _applicationContext, _validator);
+            VehicleKilometerReadingEditViewModel model = 
+                new VehicleKilometerReadingEditViewModel(_untitOfWork, _applicationContext, _validator);
             _applicationContext.DisplayKilometerReadingEditView(model);
+            Search();
         }
+
+        internal Task<string> ImportFromExcelFile(Mapper mapper, IProgress<int> progress)
+        {
+            return Task.Run<string>(() =>
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                List<VehicleKilometerReading> data = new List<VehicleKilometerReading>();
+                IList<VehicleKilometerReadingViewModel> readings = mapper.Take<VehicleKilometerReadingViewModel>().Select(r => r.Value).ToList();
+                progress.Report(0);
+                for(int index =0; index < readings.Count; index++)
+                {
+                    VehicleKilometerReadingViewModel vehicleKilometerReadingViewModel = readings[index];
+                    VehicleKilometerReading vehicleKilometerReading = new VehicleKilometerReading()
+                    {
+                        Notes = vehicleKilometerReadingViewModel.Notes,
+                        ReadingDate = vehicleKilometerReadingViewModel.ReadingDate,
+                        Reading = vehicleKilometerReadingViewModel.Reading
+                    };
+                    if (!string.IsNullOrEmpty(vehicleKilometerReadingViewModel.VehicleInternalCode))
+                    {
+                        Vehicle vehicle =
+                            _untitOfWork.VehicleRepository.Find(x => x.InternalCode.Equals(vehicleKilometerReadingViewModel.VehicleInternalCode)).FirstOrDefault();
+                        vehicleKilometerReading.Vehicle = vehicle;
+                        if (vehicle != null)
+                        {
+                            ModelState modelState = Validate(vehicleKilometerReading);
+                            if (!modelState.HasErrors)
+                            {
+                                data.Add(vehicleKilometerReading);
+                            }
+                            else
+                            {
+                                _ = stringBuilder.AppendLine($"Invalid Row At {index + 2}: {modelState.Error}");
+                            }
+                        }
+                        else
+                        {
+                            _ = stringBuilder.AppendLine($"Invalid Internal Code: {vehicleKilometerReadingViewModel.VehicleInternalCode} At Row {index + 2}");
+                        }
+                    }
+                    else
+                    {
+                        _ = stringBuilder.AppendLine($"Invalid Internal Code At Row {index + 2}");
+                    }
+                    progress.Report((int)((double)index / (double)readings.Count / 100.0));
+                }
+                progress.Report(50);
+                _untitOfWork.VehicleKilometerReadingRepository.Add(data);
+                _untitOfWork.Complete();
+                return stringBuilder.ToString();
+            });
+        }
+
         public void Edit()
         {
             if(_selectedIndex >= 0 && _selectedIndex< VehicleKilometerReadingViewModels.Count)
@@ -139,6 +194,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewMode
                     }
                 }
             }
+        }
+        public ModelState Validate(VehicleKilometerReading vehicleKilometerReading)
+        {
+            ModelState modelState = new ModelState();
+            vehicleKilometerReading.Period = _untitOfWork.PeriodRepository.FindOpenPeriod(vehicleKilometerReading.ReadingDate);
+            modelState.AddErrors(_validator.Validate(vehicleKilometerReading));
+            return modelState;
         }
         public bool IsDeleteEnabled
         {

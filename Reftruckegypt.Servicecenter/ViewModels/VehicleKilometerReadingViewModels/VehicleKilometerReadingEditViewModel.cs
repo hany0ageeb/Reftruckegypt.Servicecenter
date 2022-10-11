@@ -20,17 +20,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewMode
             IUnitOfWork unitOfWork, 
             IApplicationContext applicationContext, 
             IValidator<VehicleKilometerReading> validator)
+            : this(null, unitOfWork, applicationContext, validator)
         {
-            _unitOfWork = unitOfWork;
-            _applicationContext = applicationContext;
-            _validator = validator;
             
-            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(orderBy: q => q.OrderBy(v => v.InternalCode)));
-            
-            Lines.ListChanged += OnNewLineAdded;
-
-            ReadingDate = DateTime.Now;
-            HasChanged = false;
         }
         public VehicleKilometerReadingEditViewModel(
             VehicleKilometerReading line,
@@ -38,14 +30,17 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewMode
             IApplicationContext applicationContext,
             IValidator<VehicleKilometerReading> validator)
         {
-            _unitOfWork = unitOfWork;
-            _applicationContext = applicationContext;
-            _validator = validator;
-
-            Lines.Add(new VehicleKilometerReadingLineEditViewModel(line));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+            _validator = validator ?? throw new ArgumentNullException(nameof(validator));
+            if (line!=null)
+                Lines.Add(new VehicleKilometerReadingLineEditViewModel(line));
             Lines.ListChanged += OnNewLineAdded;
-            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(orderBy: q => q.OrderBy(v => v.InternalCode)));
-            ReadingDate = line.ReadingDate;
+            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q => q.OrderBy(v => v.InternalCode)));
+            if (line != null)
+                ReadingDate = line.ReadingDate;
+            else
+                ReadingDate = DateTime.Now;
             HasChanged = false;
         }
         public bool HasChanged

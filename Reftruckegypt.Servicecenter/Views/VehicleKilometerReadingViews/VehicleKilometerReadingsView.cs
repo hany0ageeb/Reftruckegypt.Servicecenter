@@ -171,5 +171,10 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
                 Cursor = Cursors.Default;
             }
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
