@@ -394,6 +394,12 @@
     <Compile Include="ViewModels\VehicleViolationViewModels\VehicleViolationSearchViewModel.cs" />
     <Compile Include="ViewModels\VehicleViolationViewModels\VehicleViolationViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AboutView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AboutView.Designer.cs">
+      <DependentUpon>AboutView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\DriverViews\DriverEditView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -459,6 +465,12 @@
     </Compile>
     <Compile Include="Views\ImportErrorsView.Designer.cs">
       <DependentUpon>ImportErrorsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImportMappingViews\DriverMappingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ImportMappingViews\DriverMappingView.Designer.cs">
+      <DependentUpon>DriverMappingView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ImportMappingViews\ExternalRepairBillMappingView.cs">
       <SubType>Form</SubType>
@@ -653,6 +665,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidationErrors.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\AboutView.resx">
+      <DependentUpon>AboutView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\DriverViews\DriverEditView.resx">
       <DependentUpon>DriverEditView.cs</DependentUpon>
     </EmbeddedResource>
@@ -685,6 +700,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ImportErrorsView.resx">
       <DependentUpon>ImportErrorsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ImportMappingViews\DriverMappingView.resx">
+      <DependentUpon>DriverMappingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ImportMappingViews\ExternalRepairBillMappingView.resx">
       <DependentUpon>ExternalRepairBillMappingView.cs</DependentUpon>

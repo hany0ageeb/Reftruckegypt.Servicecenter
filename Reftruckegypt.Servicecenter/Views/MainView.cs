@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
@@ -65,6 +66,50 @@ namespace Reftruckegypt.Servicecenter.Views
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _navigatorView.Close();
+        }
+
+        private async void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName);
+                    using (ImportMappingViews.DriverMappingView driverMappingView = new ImportMappingViews.DriverMappingView(headers, openFileDialog1.FileName))
+                    {
+                        if (driverMappingView.ShowDialog(this) == DialogResult.OK && driverMappingView.Mapper != null)
+                        {
+                            using (var scope = Program.ServiceProvider.CreateScope())
+                            {
+                                DriverSearchViewModel driverSearchViewModel = scope.ServiceProvider.GetRequiredService<DriverSearchViewModel>();
+                                Progress<int> progress = new Progress<int>();
+                                toolStripProgressBar1.Visible = true;
+                                toolStripProgressBar1.Value = 0;
+                                progress.ProgressChanged += Progress_ProgressChanged;
+                                string errorMessage = await driverSearchViewModel.ImportFromExcelFile(driverMappingView.Mapper, progress);
+                                if (!string.IsNullOrEmpty(errorMessage))
+                                {
+                                    using (ImportErrorsView errorsView = new ImportErrorsView(errorMessage))
+                                    {
+                                        errorsView.ShowDialog(this);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                toolStripProgressBar1.Visible = false;
+                toolStripProgressBar1.Value = 0;
+                Cursor = Cursors.Default;
+            }
         }
         private async void externalRepairInvoicesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -287,6 +332,12 @@ namespace Reftruckegypt.Servicecenter.Views
             return columnsHeaders;
         }
 
-        
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(AboutView aboutView = new AboutView())
+            {
+                aboutView.ShowDialog(this);
+            }
+        }
     }
 }

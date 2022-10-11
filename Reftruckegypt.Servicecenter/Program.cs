@@ -49,6 +49,7 @@ namespace Reftruckegypt.Servicecenter
             ConfigureServices(serviceCollection);
             ServiceProvider = serviceCollection.BuildServiceProvider();
         }
+        public static string Version { get; private set; } = "0.0.9";
         private static void ConfigureServices(IServiceCollection services)
         {
             // DbContext ...

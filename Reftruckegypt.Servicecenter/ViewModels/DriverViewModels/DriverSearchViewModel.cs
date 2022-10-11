@@ -125,6 +125,35 @@ namespace Reftruckegypt.Servicecenter.ViewModels.DriverViewModels
                 Drivers.Add(driver);
             }
         }
+
+        public Task<string> ImportFromExcelFile(Mapper mapper, IProgress<int> progress)
+        {
+            return Task.Run<string>(() =>
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                IList<Driver> drivers = mapper.Take<Driver>().Select(r => r.Value).ToList();
+                List<Driver> data = new List<Driver>();
+                for (int index = 0; index<drivers.Count; index++)
+                {
+                    ModelState modelState = _validator.Validate(drivers[index]);
+                    if(!modelState.HasErrors)
+                    {
+                        data.Add(drivers[index]);
+                    }
+                    else
+                    {
+                        stringBuilder.AppendLine($"Errors At Row {index + 2} : {modelState.Error}");
+                    }
+                    progress.Report((int)((double)index / (double)drivers.Count * 100.0));
+                }
+                progress.Report(50);
+                _unitOfWork.DriverRepository.Add(data);
+                _unitOfWork.Complete();
+                progress.Report(100);
+                return stringBuilder.ToString();
+            });
+        }
+
         public void Create()
         {
             DriverEditViewModel driverEditViewModel = new DriverEditViewModel(_unitOfWork, _applicationContext, _validator);

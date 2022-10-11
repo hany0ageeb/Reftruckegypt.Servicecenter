@@ -10,7 +10,7 @@ namespace Reftruckegypt.Servicecenter.Models
         [Npoi.Mapper.Attributes.Column("Traffic Department Name")]
         public string TrafficDepartmentName { get; set; }
         [Npoi.Mapper.Attributes.Column("License End Date")]
-        public DateTime LicenseEndDate { get; set; }
+        public DateTime LicenseEndDate { get; set; } = DateTime.Now;
         [Npoi.Mapper.Attributes.Column("Enabled")]
         public bool IsEnabled { get; set; } = true;
         [Npoi.Mapper.Attributes.Ignore()]
