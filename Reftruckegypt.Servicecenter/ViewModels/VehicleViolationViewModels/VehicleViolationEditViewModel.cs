@@ -13,33 +13,48 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IApplicationContext _applicationContext;
+        private readonly IValidator<VehicleViolation> _validator;
 
         private ModelState _modelState = new ModelState();
 
         private DateTime _violationDate;
         private bool _hasChanged = false;
 
-        public VehicleViolationEditViewModel(IUnitOfWork unitOfWork, IApplicationContext applicationContext)
+        public VehicleViolationEditViewModel(IUnitOfWork unitOfWork, IApplicationContext applicationContext, IValidator<VehicleViolation> validator)
+            : this(null, unitOfWork, applicationContext, validator)
         {
-            _unitOfWork = unitOfWork;
-            _applicationContext = applicationContext;
-            ViolationDate = DateTime.Now;
-            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(orderBy: q => q.OrderBy(x => x.InternalCode)));
-            ViolationTypes.AddRange(_unitOfWork.ViolationTypeRepository.Find(predicate: x => x.IsEnabled, orderBy: q => q.OrderBy(x => x.Name)));
-            HasChanged = false;
+           
         }
-        public VehicleViolationEditViewModel(VehicleViolation line, IUnitOfWork unitOfWork, IApplicationContext applicationContext)
+        public VehicleViolationEditViewModel(
+            VehicleViolation line, 
+            IUnitOfWork unitOfWork, 
+            IApplicationContext applicationContext,
+            IValidator<VehicleViolation> validator)
         {
-            _unitOfWork = unitOfWork;
-            _applicationContext = applicationContext;
-            ViolationDate = line.ViolationDate;
-            Lines.Add(new VehicleViolationLineEditViewModel(line));
-            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(orderBy: q => q.OrderBy(x => x.InternalCode)));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+            _validator = validator ?? throw new ArgumentNullException(nameof(validator));
+
+            if (line != null)
+                ViolationDate = line.ViolationDate;
+            if(line != null)
+                Lines.Add(new VehicleViolationLineEditViewModel(line));
+            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q => q.OrderBy(x => x.InternalCode)));
             ViolationTypes.AddRange(_unitOfWork.ViolationTypeRepository.Find(predicate: x => x.IsEnabled, orderBy: q => q.OrderBy(x => x.Name)));
-            if (!ViolationTypes.Contains(line.ViolationType))
+            if (line != null)
             {
-                ViolationTypes.Add(line.ViolationType);
+                if (!ViolationTypes.Contains(line.ViolationType))
+                {
+                    ViolationTypes.Add(line.ViolationType);
+                }
             }
+            Lines.ListChanged += (o, e) =>
+            {
+                if(e.PropertyDescriptor?.Name != nameof(HasChanged))
+                {
+                    HasChanged = true;
+                }
+            };
             HasChanged = false;
         }
         public bool HasChanged

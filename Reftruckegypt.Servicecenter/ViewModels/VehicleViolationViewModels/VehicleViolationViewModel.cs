@@ -16,6 +16,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
             Notes = violation.Notes;
             Count = violation.Count;
         }
+        public VehicleViolationViewModel()
+        {
+
+        }
         [Ignore]
         public Guid Id { get; private set; }
         public string State { get; private set; }

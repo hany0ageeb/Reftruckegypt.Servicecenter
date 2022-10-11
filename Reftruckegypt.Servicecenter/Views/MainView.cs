@@ -2,6 +2,7 @@
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,7 +64,49 @@ namespace Reftruckegypt.Servicecenter.Views
         {
             _navigatorView.Close();
         }
-        
+        private async void vehiclesViolationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName);
+                    using(ImportMappingViews.VehicleViolationMappingView violationMappingView = new ImportMappingViews.VehicleViolationMappingView(headers, openFileDialog1.FileName))
+                    {
+                        if(violationMappingView.ShowDialog(this) == DialogResult.OK && violationMappingView.Mapper != null)
+                        {
+                            using (var scope = Program.ServiceProvider.CreateScope())
+                            {
+                                VehicleViolationSearchViewModel searchViewModel = scope.ServiceProvider.GetRequiredService<VehicleViolationSearchViewModel>();
+                                Progress<int> progress = new Progress<int>();
+                                toolStripProgressBar1.Visible = true;
+                                toolStripProgressBar1.Value = 0;
+                                progress.ProgressChanged += Progress_ProgressChanged;
+                                string errorMessage = await searchViewModel.ImportFromExcelFile(violationMappingView.Mapper, progress);
+                                if (!string.IsNullOrEmpty(errorMessage))
+                                {
+                                    using (ImportErrorsView errorsView = new ImportErrorsView(errorMessage))
+                                    {
+                                        errorsView.ShowDialog(this);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                toolStripProgressBar1.Visible = false;
+                toolStripProgressBar1.Value = 0;
+                Cursor = Cursors.Default;
+            }
+        }
         private async void fuelConsumptionsToolStripMenuItem_ClickAsync(object sender, EventArgs e)
         {
             try
@@ -155,5 +198,7 @@ namespace Reftruckegypt.Servicecenter.Views
             }
             return columnsHeaders;
         }
+
+       
     }
 }

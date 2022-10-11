@@ -2,6 +2,7 @@
 using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
+using Reftruckegypt.Servicecenter.Models.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IApplicationContext _applicationContext;
+        private readonly IValidator<VehicleViolation> _validator;
 
         private bool _isDisposed = false;
 
@@ -29,15 +31,17 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
 
         public VehicleViolationSearchViewModel(
             IUnitOfWork unitOfWork, 
-            IApplicationContext applicationContext)
+            IApplicationContext applicationContext,
+            IValidator<VehicleViolation> validator)
         {
-            _unitOfWork = unitOfWork;
-            _applicationContext = applicationContext;
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+            _validator = validator ?? throw new ArgumentNullException(nameof(validator));
 
-            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(orderBy: q => q.OrderBy(e => e.InternalCode)));
+            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q => q.OrderBy(e => e.InternalCode)));
             Vehicles.Insert(0, new Vehicle() { Id = Guid.Empty, InternalCode = "--ALL--" });
             Vehicle = Vehicles[0];
-            ViolationTypes.AddRange(_unitOfWork.ViolationTypeRepository.Find(orderBy: q => q.OrderBy(x => x.Name)));
+            ViolationTypes.AddRange(_unitOfWork.ViolationTypeRepository.Find(q => q.OrderBy(x => x.Name)));
             ViolationTypes.Insert(0, new ViolationType() { Id = Guid.Empty, Name = "--ALL--"});
             ViolationType = ViolationTypes[0];
         }
@@ -114,6 +118,90 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
                 }
             }
         }
+
+        public Task<string> ImportFromExcelFile(Mapper mapper, IProgress<int> progress)
+        {
+            return Task<string>.Run(() =>
+            {
+                IList<VehicleViolationViewModel> violations = mapper.Take<VehicleViolationViewModel>().Select(r => r.Value).ToList();
+                List<VehicleViolation> data = new List<VehicleViolation>();
+                progress.Report(0);
+                StringBuilder stringBuilder = new StringBuilder();
+                for(int index = 0; index < violations.Count; index++)
+                {
+                    VehicleViolationViewModel vehicleViolation = violations[index];
+                    VehicleViolation violation = new VehicleViolation();
+                    violation.Count = vehicleViolation.Count;
+                    violation.Notes = vehicleViolation.Notes;
+                    violation.ViolationDate = vehicleViolation.ViolationDate;
+                    if (!string.IsNullOrEmpty(vehicleViolation.VehicleInternalCode))
+                    {
+                        Vehicle vehicle = 
+                        _unitOfWork
+                        .VehicleRepository
+                        .Find(x => x.InternalCode.Equals(vehicleViolation.VehicleInternalCode))
+                        .FirstOrDefault();
+                        if (vehicle != null)
+                        {
+                            violation.Vehicle = vehicle;
+                            if (!string.IsNullOrEmpty(vehicleViolation.ViolationTypeName))
+                            {
+                                violation.ViolationType =  _unitOfWork.ViolationTypeRepository.Find(x => x.Name.Equals(vehicleViolation.ViolationTypeName)).FirstOrDefault();
+                                if (violation.ViolationType != null)
+                                {
+                                    ModelState modelState = Validate(violation);
+                                    if (!modelState.HasErrors)
+                                    {
+                                        data.Add(violation);
+                                    }
+                                    else
+                                    {
+                                        stringBuilder.AppendLine(modelState.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    stringBuilder.AppendLine($"Invalid Violation Type Name {vehicleViolation.ViolationTypeName} At Row {index + 1}");
+                                }
+                            }
+                            else
+                            {
+                                violation.ViolationType = _unitOfWork.ViolationTypeRepository.Find().FirstOrDefault();
+                                ModelState modelState = Validate(violation);
+                                if (!modelState.HasErrors)
+                                {
+                                    data.Add(violation);
+                                }
+                                else
+                                {
+                                    stringBuilder.AppendLine(modelState.Error);
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            stringBuilder.AppendLine($"Invalid Vehicle Internal Code {vehicleViolation.VehicleInternalCode} At Row {index + 1}");
+                        }
+                    }
+                    else
+                    {
+                        stringBuilder.AppendLine($"Invalid Vehicle Internal Code At Row {index+1}");
+                    }
+                    progress.Report((int)((double)index / (double)violations.Count * 100.0));
+                }
+                progress.Report(50);
+                _unitOfWork.VehicleViolationRepository.Add(data);
+                _unitOfWork.Complete();
+                return stringBuilder.ToString();
+            });
+            
+        }
+        public ModelState Validate(VehicleViolation violation)
+        {
+            violation.Period = _unitOfWork.PeriodRepository.FindOpenPeriod(violation.ViolationDate);
+            return _validator.Validate(violation);
+        }
         public bool IsEditEnabled
         {
             get => _isEditEnabled;
@@ -159,7 +247,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
         }
         public void Create()
         {
-            VehicleViolationEditViewModel editModel = new VehicleViolationEditViewModel(_unitOfWork, _applicationContext);
+            VehicleViolationEditViewModel editModel = new VehicleViolationEditViewModel(_unitOfWork, _applicationContext, _validator);
             _applicationContext.DisplayVehicleViolationEditView(editModel);
             Search();
         }
@@ -170,7 +258,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
                 VehicleViolation vehicleViolation = _unitOfWork.VehicleViolationRepository.Find(key: VehicleViolationViewModels[_selectedIndex].Id);
                 if (vehicleViolation != null)
                 {
-                    VehicleViolationEditViewModel editModel = new VehicleViolationEditViewModel(vehicleViolation, _unitOfWork, _applicationContext);
+                    VehicleViolationEditViewModel editModel = new VehicleViolationEditViewModel(vehicleViolation, _unitOfWork, _applicationContext, _validator);
                     _applicationContext.DisplayVehicleViolationEditView(editModel);
                     Search();
                 }
@@ -198,7 +286,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
                 }
                 else
                 {
-                    _ = _applicationContext.DisplayMessage("Error", $"The Selected Record is no longer Exist!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //_ = _applicationContext.DisplayMessage("Error", $"The Selected Record is no longer Exist!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Search();
                 }
             }

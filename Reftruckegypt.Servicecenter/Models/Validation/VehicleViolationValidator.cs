@@ -17,7 +17,7 @@
             {
                 modelState.AddError(nameof(vehicleViolation.ViolationType), string.Format(ValidationErrors.RequiredField, nameof(vehicleViolation.ViolationType)));
             }
-            if(vehicleViolation.Count < 0)
+            if(vehicleViolation.Count <= 0)
             {
                 modelState.AddError(nameof(vehicleViolation.Count), string.Format(ValidationErrors.InvalidViolationsCount, vehicleViolation.Count));
             }

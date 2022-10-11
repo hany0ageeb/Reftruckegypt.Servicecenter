@@ -30,6 +30,7 @@ namespace Reftruckegypt.Servicecenter.Views
         private void InitializeComponent()
         {
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,7 +43,6 @@ namespace Reftruckegypt.Servicecenter.Views
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +56,12 @@ namespace Reftruckegypt.Servicecenter.Views
             this.statusStrip1.Size = new System.Drawing.Size(930, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressBar1.Visible = false;
             // 
             // menuStrip1
             // 
@@ -87,7 +93,7 @@ namespace Reftruckegypt.Servicecenter.Views
             this.vehicleKilmeterReadingsToolStripMenuItem,
             this.externalRepairInvoicesToolStripMenuItem});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importToolStripMenuItem.Text = "Import";
             // 
             // fuelConsumptionsToolStripMenuItem
@@ -102,6 +108,7 @@ namespace Reftruckegypt.Servicecenter.Views
             this.vehiclesViolationsToolStripMenuItem.Name = "vehiclesViolationsToolStripMenuItem";
             this.vehiclesViolationsToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.vehiclesViolationsToolStripMenuItem.Text = "Vehicles Violations";
+            this.vehiclesViolationsToolStripMenuItem.Click += new System.EventHandler(this.vehiclesViolationsToolStripMenuItem_Click);
             // 
             // vehicleKilmeterReadingsToolStripMenuItem
             // 
@@ -118,19 +125,19 @@ namespace Reftruckegypt.Servicecenter.Views
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(131, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -143,12 +150,6 @@ namespace Reftruckegypt.Servicecenter.Views
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // toolStripProgressBar1
-            // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
-            this.toolStripProgressBar1.Visible = false;
             // 
             // MainView
             // 
