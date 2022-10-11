@@ -4,13 +4,13 @@ using Npoi.Mapper.Attributes;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
 {
-    public class ExternalRepairBillVieModel
+    public class ExternalRepairBillViewModel
     {
-        public ExternalRepairBillVieModel()
+        public ExternalRepairBillViewModel()
         {
 
         }
-        public ExternalRepairBillVieModel(ExternalRepairBill externalRepairBill)
+        public ExternalRepairBillViewModel(ExternalRepairBill externalRepairBill)
         {
             Id = externalRepairBill.Id;
             Number = externalRepairBill.Number;

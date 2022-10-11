@@ -177,57 +177,57 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             gridbills.Columns.AddRange(
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = nameof(ExternalRepairBillVieModel.Number),
-                    DataPropertyName = nameof(ExternalRepairBillVieModel.Number),
+                    Name = nameof(ExternalRepairBillViewModel.Number),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.Number),
                     HeaderText = "Number",
                     ReadOnly = true
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = nameof(ExternalRepairBillVieModel.BillDate),
-                    DataPropertyName = nameof(ExternalRepairBillVieModel.BillDate),
+                    Name = nameof(ExternalRepairBillViewModel.BillDate),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.BillDate),
                     HeaderText = "Date",
                     ReadOnly = true
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = nameof(ExternalRepairBillVieModel.SupplierBillNumber),
-                    DataPropertyName = nameof(ExternalRepairBillVieModel.SupplierBillNumber),
+                    Name = nameof(ExternalRepairBillViewModel.SupplierBillNumber),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.SupplierBillNumber),
                     HeaderText = "Supplier Bill Num",
                     ReadOnly = true
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = nameof(ExternalRepairBillVieModel.ExternalAutoRepairShopName),
-                    DataPropertyName = nameof(ExternalRepairBillVieModel.ExternalAutoRepairShopName),
+                    Name = nameof(ExternalRepairBillViewModel.ExternalAutoRepairShopName),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.ExternalAutoRepairShopName),
                     HeaderText = "Ext Repair Shop",
                     ReadOnly = true
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = nameof(ExternalRepairBillVieModel.VehicleInternalCode),
-                    DataPropertyName = nameof(ExternalRepairBillVieModel.VehicleInternalCode),
+                    Name = nameof(ExternalRepairBillViewModel.VehicleInternalCode),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.VehicleInternalCode),
                     HeaderText = "Vehicle",
                     ReadOnly = true
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = nameof(ExternalRepairBillVieModel.Repairs),
-                    DataPropertyName = nameof(ExternalRepairBillVieModel.Repairs),
+                    Name = nameof(ExternalRepairBillViewModel.Repairs),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.Repairs),
                     HeaderText = "Repairs",
                     ReadOnly = true
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = nameof(ExternalRepairBillVieModel.TotalAmount),
-                    DataPropertyName = nameof(ExternalRepairBillVieModel.TotalAmount),
+                    Name = nameof(ExternalRepairBillViewModel.TotalAmount),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.TotalAmount),
                     HeaderText = "Amount(EGP)",
                     ReadOnly = true
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = nameof(ExternalRepairBillVieModel.State),
-                    DataPropertyName = nameof(ExternalRepairBillVieModel.State),
+                    Name = nameof(ExternalRepairBillViewModel.State),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.State),
                     HeaderText = "State",
                     ReadOnly = true
                 });

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
@@ -64,6 +65,49 @@ namespace Reftruckegypt.Servicecenter.Views
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _navigatorView.Close();
+        }
+        private async void externalRepairInvoicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName);
+                    using (ImportMappingViews.ExternalRepairBillMappingView externalRepairBillMappingView = new ImportMappingViews.ExternalRepairBillMappingView(headers, openFileDialog1.FileName))
+                    {
+                        if(externalRepairBillMappingView.ShowDialog(this) == DialogResult.OK && externalRepairBillMappingView.Mapper != null)
+                        {
+                            using (var scope = Program.ServiceProvider.CreateScope())
+                            {
+                                ExternalRepairBillSearchViewModel searchViewModel = scope.ServiceProvider.GetRequiredService<ExternalRepairBillSearchViewModel>();
+                                Progress<int> progress = new Progress<int>();
+                                toolStripProgressBar1.Visible = true;
+                                toolStripProgressBar1.Value = 0;
+                                progress.ProgressChanged += Progress_ProgressChanged;
+                                string errorMessage = await searchViewModel.ImportFromExcelFile(externalRepairBillMappingView.Mapper, progress);
+                                if (!string.IsNullOrEmpty(errorMessage))
+                                {
+                                    using (ImportErrorsView errorsView = new ImportErrorsView(errorMessage))
+                                    {
+                                        errorsView.ShowDialog(this);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                toolStripProgressBar1.Visible = false;
+                toolStripProgressBar1.Value = 0;
+                Cursor = Cursors.Default;
+            }
         }
         private async void vehicleKilmeterReadingsToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -107,6 +107,69 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                 }
             }
         }
+        public ModelState Validate(ExternalRepairBill bill)
+        {
+            bill.Period = _unitOfWork.PeriodRepository.FindOpenPeriod(bill.BillDate);
+            return _validator.Validate(bill);
+        }
+        public Task<string> ImportFromExcelFile(Mapper mapper, IProgress<int> progress)
+        {
+            return Task.Run<string>(() =>
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                
+
+                IList<ExternalRepairBillViewModel> externalBillsViewModel = mapper.Take<ExternalRepairBillViewModel>().Select(r => r.Value).ToList();
+                List<ExternalRepairBill> data = new List<ExternalRepairBill>();
+                for(int index=0;index< externalBillsViewModel.Count; index++)
+                {
+                    ExternalRepairBillViewModel viewModel = externalBillsViewModel[index];
+                    if (!string.IsNullOrEmpty(viewModel.VehicleInternalCode))
+                    {
+                        Vehicle vehicle = _unitOfWork.VehicleRepository.Find(x=>x.InternalCode.Equals(viewModel.VehicleInternalCode)).FirstOrDefault();
+                        if(vehicle != null)
+                        {
+                            ExternalAutoRepairShop shop = _unitOfWork.ExternalAutoRepairShopRepository.Find(x=>x.Name.Equals(viewModel.ExternalAutoRepairShopName)).FirstOrDefault();
+                            if (shop != null)
+                            {
+                                var bill = new ExternalRepairBill()
+                                {
+                                    BillDate = viewModel.BillDate,
+                                    ExternalAutoRepairShop = shop,
+                                    Repairs = viewModel.Repairs,
+                                    SupplierBillNumber = viewModel.SupplierBillNumber,
+                                    TotalAmountInEGP = viewModel.TotalAmount,
+                                    Vehicle = vehicle
+                                };
+                                ModelState modelState = Validate(bill);
+                                if (!modelState.HasErrors)
+                                    data.Add(bill);
+                                else
+                                    stringBuilder.AppendLine(modelState.Error);
+                            }
+                            else
+                            {
+                                stringBuilder.AppendLine($"Invalid External Repair Shop Name {viewModel.ExternalAutoRepairShopName} At Row {index + 2}");
+                            }
+                        }
+                        else
+                        {
+                            stringBuilder.AppendLine($"Invalid Vehicle Code {viewModel.VehicleInternalCode} At Row {index + 2}");
+                        }
+                    }
+                    else
+                    {
+                        stringBuilder.AppendLine($"Invalid Vehicle Code At Row {index + 2}");
+                    }
+                    progress.Report((int)(index / externalBillsViewModel.Count * 100.0));
+                }
+                progress.Report(50);
+                _unitOfWork.ExternalRepairBillRepository.Add(data);
+                _unitOfWork.Complete();
+                return stringBuilder.ToString();
+            });
+        }
+
         public string SupplierBillNumber
         {
             get => _supplierBillNumber;
@@ -200,7 +263,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         {
             ExternalRepairBillVieModels.Clear();
             var bills =
-                _unitOfWork.ExternalRepairBillRepository.Find((bill) => new ExternalRepairBillVieModel()
+                _unitOfWork.ExternalRepairBillRepository.Find((bill) => new ExternalRepairBillViewModel()
                 {
                     Id = bill.Id,
                     Number = bill.Number,
@@ -270,7 +333,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                 }
             }
         }
-        public BindingList<ExternalRepairBillVieModel> ExternalRepairBillVieModels { get; private set; } = new BindingList<ExternalRepairBillVieModel>();
+        public BindingList<ExternalRepairBillViewModel> ExternalRepairBillVieModels { get; private set; } = new BindingList<ExternalRepairBillViewModel>();
         public List<ExternalAutoRepairShop> ExternalAutoRepairShops { get; private set; } = new List<ExternalAutoRepairShop>();
         public List<Vehicle> Vehicles { get; private set; } = new List<Vehicle>();
         #region IDisposable

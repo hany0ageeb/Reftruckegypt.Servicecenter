@@ -122,6 +122,7 @@ namespace Reftruckegypt.Servicecenter.Views
             this.externalRepairInvoicesToolStripMenuItem.Name = "externalRepairInvoicesToolStripMenuItem";
             this.externalRepairInvoicesToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.externalRepairInvoicesToolStripMenuItem.Text = "External Repair Invoices";
+            this.externalRepairInvoicesToolStripMenuItem.Click += new System.EventHandler(this.externalRepairInvoicesToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 

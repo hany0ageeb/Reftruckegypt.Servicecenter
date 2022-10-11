@@ -33,9 +33,9 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             cboInternalCodes.DataSource = new List<string>(_headers);
             cboInternalCodes.SelectedIndex = 0;
             cboKilometerReading.DataSource = new List<string>(_headers);
-            cboKilometerReading.SelectedIndex = 1;
+            cboKilometerReading.SelectedIndex = 2;
             cboReadingDate.DataSource = new List<string>(_headers);
-            cboReadingDate.SelectedIndex = 2;
+            cboReadingDate.SelectedIndex = 1;
             List<string> temp = new List<string>(_headers);
             temp.Insert(0, "");
             cboNotes.DataSource = temp;

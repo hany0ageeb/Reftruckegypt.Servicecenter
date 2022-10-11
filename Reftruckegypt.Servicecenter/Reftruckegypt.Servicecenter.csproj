@@ -460,6 +460,12 @@
     <Compile Include="Views\ImportErrorsView.Designer.cs">
       <DependentUpon>ImportErrorsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ImportMappingViews\ExternalRepairBillMappingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ImportMappingViews\ExternalRepairBillMappingView.Designer.cs">
+      <DependentUpon>ExternalRepairBillMappingView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ImportMappingViews\FuelConsumptionMappingView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -679,6 +685,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ImportErrorsView.resx">
       <DependentUpon>ImportErrorsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ImportMappingViews\ExternalRepairBillMappingView.resx">
+      <DependentUpon>ExternalRepairBillMappingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ImportMappingViews\FuelConsumptionMappingView.resx">
       <DependentUpon>FuelConsumptionMappingView.cs</DependentUpon>
