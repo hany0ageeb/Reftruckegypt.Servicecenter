@@ -96,7 +96,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
             }
             Lines.ListChanged += (o, e) =>
              {
-                 HasChanged = true;
+                 if(e.PropertyDescriptor?.Name != "HasChanged")
+                    HasChanged = true;
                  if (e.ListChangedType == ListChangedType.ItemAdded && e.NewIndex >= 0 && e.NewIndex < Lines.Count)
                  {
                      Lines[e.NewIndex].Validator = _lineValidator;
@@ -108,6 +109,14 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
                          Lines[e.NewIndex].Uom = SpareParts[0].PrimaryUom;
                      }
                      Lines[e.NewIndex].UnitPrice = 1;
+                 }
+                 if(e.ListChangedType == ListChangedType.ItemChanged && e.NewIndex >= 0 && e.NewIndex < Lines.Count)
+                 {
+                     if(e.PropertyDescriptor?.Name == nameof(SparePartPriceListLineEditViewModel.SparePart) || e.PropertyDescriptor?.Name == nameof(SparePartPriceListLineEditViewModel.Uom))
+                     {
+                         if(Lines[e.NewIndex].SparePart!=null && Lines[e.NewIndex].Uom!=null)
+                            Lines[e.NewIndex].UomConversionRate = _unitOfWork.UomConversionRepository.FindUomConversionRate(Lines[e.NewIndex].Uom.Id, Lines[e.NewIndex].SparePart.PrimaryUom.Id, Lines[e.NewIndex].SparePart.Id);
+                     }
                  }
              };
         }
@@ -202,7 +211,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
                 {
                     if(Id == Guid.Empty)
                     {
-                        _unitOfWork.SparePartsPriceListRepository.Add(SparePartsPriceList);
+                        var list = SparePartsPriceList;
+                        list.Id = Guid.NewGuid();
+                        foreach (var l in list.Lines)
+                            l.Id = Guid.NewGuid();
+                        _unitOfWork.SparePartsPriceListRepository.Add(list);
+                        _unitOfWork.Complete();
+                        Number = list.Number.ToString();
                     }
                     else
                     {
@@ -235,9 +250,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
                             var toDeleteLines = originalLines.Where(l => !Lines.Select(x => x.Id).Contains(l.Id));
                             foreach (var l in toDeleteLines)
                                 oldList.Lines.Remove(l);
+                            _unitOfWork.Complete();
                         }
                     }
-                    _unitOfWork.Complete();
+                     
                     HasChanged = false;
                     return true;
                 }
@@ -275,6 +291,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
             return true;
         }
         public BindingList<SparePartPriceListLineEditViewModel> Lines { get; private set; } = new BindingList<SparePartPriceListLineEditViewModel>();
+
         private List<SparePartPriceListLine> originalLines = new List<SparePartPriceListLine>();
         public List<Period> Periods { get; private set; } = new List<Period>();
         public List<SparePart> SpareParts { get; private set; } = new List<SparePart>();

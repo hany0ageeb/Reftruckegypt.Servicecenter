@@ -39,7 +39,6 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
             {
                 throw new ArgumentNullException(nameof(applicationContext));
             }
-
             if (validator is null)
             {
                 throw new ArgumentNullException(nameof(validator));
@@ -52,6 +51,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
             Uoms.AddRange(_unitOfWork.UomRepository.Find(predicate: x => x.IsEnabled, orderBy: q => q.OrderBy(x => x.Code)));
             if (uomConversion != null)
             {
+                _originalLines.Add(uomConversion);
                 Lines.Add(
                     new UomConversionLineEditViewModel(uomConversion)
                     {
@@ -80,7 +80,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
             }
             Lines.ListChanged += (o, e) =>
             {
-                HasChanged = true;
+                if(e.PropertyDescriptor?.Name!="HasChanged")
+                    HasChanged = true;
                 // ... add default values ...
                 if (e.ListChangedType == ListChangedType.ItemAdded)
                 {
@@ -116,9 +117,133 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
                 }
             }
         }
+        public bool SaveOrUpdate()
+        {
+            if (_hasChanged)
+            {
+                ModelState modelState = Validate();
+                if (modelState.HasErrors)
+                {
+                    if (!string.IsNullOrEmpty(modelState.GetError("DuplicateLineError")))
+                    {
+                        _applicationContext.DisplayMessage("Error", modelState.GetError("DuplicateLineError"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    return false;
+                }
+                var deletedLines = _originalLines.Where(x => !Lines.Select(l => l.Id).Contains(x.Id)).ToList();
+                if (deletedLines.Count > 0)
+                    _unitOfWork.UomConversionRepository.Remove(deletedLines);
+                foreach (var line in Lines)
+                {
+                   
+                    var uomConversion = line.UomConversion;
+                    if (line.Id == Guid.Empty)
+                    {
+                        
+                        uomConversion.Id = Guid.NewGuid();
+                        _unitOfWork.UomConversionRepository.Add(uomConversion);
+                    }
+                    else
+                    {
+                        var oldLine = _unitOfWork.UomConversionRepository.Find(key: line.Id);
+                        if(oldLine != null)
+                        {
+                            oldLine.Notes = uomConversion.Notes;
+                            oldLine.Rate = uomConversion.Rate;
+                            oldLine.FromUom = uomConversion.FromUom;
+                            oldLine.ToUom = uomConversion.ToUom;
+                            oldLine.SparePart = uomConversion.SparePart;
+                        }
+                    }
+                    
+                }
+                _unitOfWork.Complete();
+                HasChanged = false;
+                return true;
+            }
+            return true;
+        }
+        public ModelState Validate()
+        {
+            ModelState modelState = new ModelState();
+            if (_hasChanged)
+            {
+                if (!modelState.HasErrors)
+                {
+                    var duplicateLines = Lines
+                        .Select(x => x.UomConversion)
+                        .GroupBy(x => new { FromUomId = x.FromUomId, ToUomId = x.ToUomId, SparePartId = x.SparePartId })
+                        .Where(g=>g.Count() >1)
+                        .SelectMany(x => x.Select(z=>z))
+                        .ToList();
+                    if (duplicateLines.Count > 0)
+                    {
+                        modelState.AddError("DuplicateLineError", $"Line From Uom = {duplicateLines[0].FromUom.Code}, To Uom = {duplicateLines[0].ToUom.Code} Is Duplicate.");
+                        return modelState;
+                    }
+                }
+                var deletedLines = _originalLines.Where(x => !Lines.Select(l => l.Id).Contains(x.Id)).ToList();
+                foreach (var line in Lines)
+                {
+                    var temp = line.Validate(true);
+                    if (temp.HasErrors)
+                    {
+                        modelState.AddErrors(temp);
+                    }
+                    else
+                    {
+                        if(line.Id == Guid.Empty)
+                        {
+                            if(_unitOfWork.UomConversionRepository.Exists(x => x.FromUomId == line.FromUom.Id && x.ToUom.Id == line.ToUom.Id && !deletedLines.Select(t => t.Id).Contains(x.Id)))
+                            {
+                                modelState.AddError("DuplicateLineError", $"Line From Uom = {line.FromUom.Code}, To Uom = {line.ToUom.Code} Is Duplicated.");
+                                return modelState;
+                            }
+                            
+                        }
+                        else
+                        {
+                            if (_unitOfWork.UomConversionRepository.Exists(x => x.Id != line.Id && x.FromUomId == line.FromUom.Id && x.ToUom.Id == line.ToUom.Id && !deletedLines.Select(t => t.Id).Contains(x.Id)))
+                            {
+                                modelState.AddError("DuplicateLineError", $"Line From Uom = {line.FromUom.Code}, To Uom = {line.ToUom.Code} Is Duplicated.");
+                                return modelState;
+                            }
+                        }
+                    }
+                }
+            }
+            return modelState;
+        }
+        public bool Close()
+        {
+            if (_hasChanged)
+            {
+                DialogResult result = _applicationContext.DisplayMessage(
+                    title: "Confirm Save", 
+                    message: "Do You Want To Save Changes?",
+                    buttons: MessageBoxButtons.YesNoCancel,
+                    icon: MessageBoxIcon.Question);
+                if(result == DialogResult.Yes)
+                {
+                    return SaveOrUpdate();
+                }
+                else if(result == DialogResult.No)
+                {
+                    HasChanged = false;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public List<SparePart> SpareParts { get; private set; } = new List<SparePart>();
         public List<Uom> Uoms { get; private set; } = new List<Uom>();
         public BindingList<UomConversionLineEditViewModel> Lines { get; private set; } = new BindingList<UomConversionLineEditViewModel>();
+
+        private List<UomConversion> _originalLines = new List<UomConversion>();
 
     }
 }

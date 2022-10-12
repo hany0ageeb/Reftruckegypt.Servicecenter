@@ -10,8 +10,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
         private SparePart _sparePart;
         private Uom _fromUom;
         private Uom _toUom;
-        private decimal _rate;
+        private decimal _rate = 1;
         private string _notes;
+        private bool _hasChanged = false;
         public IValidator<UomConversion> Validator { get; set; }
         public UomConversionLineEditViewModel()
         {
@@ -21,12 +22,24 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
         {
             Id = uomConversion.Id;
             _sparePart = uomConversion.SparePart;
+
             _fromUom = uomConversion.FromUom;
             _toUom = uomConversion.ToUom;
             _notes = uomConversion.Notes;
             _rate = uomConversion.Rate;
         }
         public Guid Id { get; private set; }
+        public bool HasChanged
+        {
+            get => _hasChanged;
+            private set
+            {
+                if (_hasChanged != value)
+                {
+                    _hasChanged = value;
+                }
+            }
+        }
         public SparePart SparePart
         {
             get => _sparePart;
@@ -35,7 +48,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
                 if (_sparePart != value)
                 {
                     _sparePart = value;
-                    Validate();
+                    HasChanged = true;
                     OnPropertyChanged(this, nameof(SparePart));
                 }
             }
@@ -48,8 +61,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
                 if (_fromUom != value)
                 {
                     _fromUom = value;
-                    _ = Validate();
                     OnPropertyChanged(this, nameof(FromUom));
+                    HasChanged = true;
                 }
             }
         }
@@ -61,8 +74,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
                 if (_toUom != value)
                 {
                     _toUom = value;
-                    _ = Validate();
+
                     OnPropertyChanged(this, nameof(ToUom));
+                    HasChanged = true;
                 }
             }
         }
@@ -74,8 +88,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
                 if (_rate != value)
                 {
                     _rate = value;
-                    _ = Validate();
                     OnPropertyChanged(this, nameof(Rate));
+                    HasChanged = true;
                 }
             }
         }
@@ -87,33 +101,54 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
                 if (_notes != value)
                 {
                     _notes = value;
-                    _ = Validate();
+
                     OnPropertyChanged(this, nameof(Notes));
+                    HasChanged = true;
                 }
             }
         }
-        public UomConversion UomConversion => new UomConversion()
+        public UomConversion UomConversion
         {
-            Id = Id,
-            FromUom = _fromUom,
-            ToUom = _toUom,
-            Rate = _rate,
-            Notes = _notes,
-            SparePart = _sparePart
-        };
+            get
+            {
+                UomConversion uomConversion = new UomConversion()
+                {
+                    Id = Id,
+                    Notes = _notes,
+                    Rate = _rate,
+                    FromUom = _fromUom,
+                    FromUomId = _fromUom.Id,
+                    ToUom = _toUom,
+                    ToUomId = _toUom.Id
+                };
+                if(_sparePart == null || _sparePart.Id == Guid.Empty)
+                {
+                    uomConversion.SparePart = null;
+                    uomConversion.SparePartId = null;
+                }
+                else
+                {
+                    uomConversion.SparePart = _sparePart;
+                    uomConversion.SparePartId = _sparePart.Id;
+                }
+                return uomConversion;
+            }
+        }
         public ModelState Validate(bool notify = false)
         {
-            _modelState.Clear();
-            var modelState = Validator.Validate(UomConversion);
-            _modelState.AddErrors(modelState);
-            if (notify)
-                OnPropertyChanged(this, nameof(SparePart));
+            ModelState modelState = new ModelState();
+            if (_hasChanged)
+            {
+                modelState.AddErrors (Validator.Validate(UomConversion));
+                if (notify && modelState.HasErrors)
+                    OnPropertyChanged(this, nameof(SparePart));
+            }
             return modelState;
         }
-        private readonly ModelState _modelState = new ModelState();
+        
         #region IDataErrorInfo
-        public string this[string columnName] => _modelState[columnName];
-        public string Error => _modelState.Error;
+        public string this[string columnName] => Validate()[columnName];
+        public string Error => Validate().Error;
         #endregion IDataErrorInfo
     }
 }

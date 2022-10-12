@@ -76,6 +76,13 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
                 DataPropertyName = nameof(SparePartPriceListLineEditViewModel.UnitPrice),
                 Name = nameof(SparePartPriceListLineEditViewModel.UnitPrice),
                 ReadOnly = false
+            },
+            new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "Uom Conversion Rate",
+                DataPropertyName = nameof(SparePartPriceListLineEditViewModel.UomConversionRate),
+                Name = nameof(SparePartPriceListLineEditViewModel.UomConversionRate),
+                ReadOnly = false
             });
 
             gridLines.DataSource = _editModel.Lines;

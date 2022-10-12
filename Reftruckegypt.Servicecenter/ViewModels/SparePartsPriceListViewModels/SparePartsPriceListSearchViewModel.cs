@@ -172,7 +172,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
                 {
                     _resultByHeader = value;
                     OnPropertyChanged(this, nameof(HeaderResult));
-                    LineResult = false;
+                   
                 }
             }
         }
@@ -185,7 +185,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
                 {
                     _resultByLine = value;
                     OnPropertyChanged(this, nameof(LineResult));
-                    HeaderResult = false;
+                    
                 }
             }
         }
@@ -227,6 +227,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
         {
             _applicationContext.DisplayPriceListEditView(
                 new SparePartPriceListEditViewModel(_unitOfWork, _applicationContext, _listValidator, _lineValidator));
+            Search();
         }
         public void Edit()
         {
@@ -235,14 +236,27 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
                 if (_isEditEnabled && _selectedIndex >= 0 && _selectedIndex < Headers.Count)
                 {
                     var list = _unitOfWork.SparePartsPriceListRepository.Find(key: Headers[_selectedIndex].Id);
-                    _applicationContext.DisplayPriceListEditView(
-                        new SparePartPriceListEditViewModel(
-                            list,
-                            _unitOfWork,
-                            _applicationContext,
-                            _listValidator,
-                            _lineValidator
-                            ));
+                    if (list != null)
+                    {
+                        _applicationContext.DisplayPriceListEditView(
+                            new SparePartPriceListEditViewModel(
+                                list,
+                                _unitOfWork,
+                                _applicationContext,
+                                _listValidator,
+                                _lineValidator
+                                ));
+                        Search();
+                    }
+                    else
+                    {
+                        _applicationContext.DisplayMessage(
+                            title: "Error", 
+                            message: $"{Headers[_selectedIndex].Name} has been deleted and no longer exist.", 
+                            buttons: MessageBoxButtons.OK, 
+                            icon: MessageBoxIcon.Error);
+                        Search();
+                    }
                 }
             }
             else if(Lines.Count > 0)
@@ -251,19 +265,32 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
                 {
                     var list = _unitOfWork.SparePartsPriceListRepository.Find(key: Lines[_selectedIndex].ListId);
                     var firstLine = list.Lines.Where(x => x.Id == Lines[_selectedIndex].Id).FirstOrDefault();
-                    if (firstLine != null)
+                    if (list != null)
                     {
-                        list.Lines.Remove(firstLine);
-                        list.Lines.Insert(0, firstLine);
+                        if (firstLine != null)
+                        {
+                            list.Lines.Remove(firstLine);
+                            list.Lines.Insert(0, firstLine);
+                        }
+                        _applicationContext.DisplayPriceListEditView(
+                            new SparePartPriceListEditViewModel(
+                                list,
+                                _unitOfWork,
+                                _applicationContext,
+                                _listValidator,
+                                _lineValidator
+                                ));
+                        Search();
                     }
-                    _applicationContext.DisplayPriceListEditView(
-                        new SparePartPriceListEditViewModel(
-                            list,
-                            _unitOfWork,
-                            _applicationContext,
-                            _listValidator,
-                            _lineValidator
-                            ));
+                    else
+                    {
+                        _ = _applicationContext.DisplayMessage(
+                           title: "Error",
+                           message: $"Price List: {Lines[_selectedIndex].Name} has been deleted and no longer exist.",
+                           buttons: MessageBoxButtons.OK,
+                           icon: MessageBoxIcon.Error);
+                        Search();
+                    }
                 }
             }
         }

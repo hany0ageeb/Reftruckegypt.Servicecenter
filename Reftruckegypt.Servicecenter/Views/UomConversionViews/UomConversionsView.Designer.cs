@@ -40,6 +40,8 @@ namespace Reftruckegypt.Servicecenter.Views.UomConversionViews
             this.gridConversions = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridConversions)).BeginInit();
             this.SuspendLayout();
@@ -51,7 +53,7 @@ namespace Reftruckegypt.Servicecenter.Views.UomConversionViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 291F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.93023F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.06977F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 92F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
             this.tableLayoutPanel1.Controls.Add(this.cbofromUoms, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -79,7 +81,7 @@ namespace Reftruckegypt.Servicecenter.Views.UomConversionViews
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(722, 37);
+            this.btnSearch.Location = new System.Drawing.Point(721, 37);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(85, 29);
             this.btnSearch.TabIndex = 0;
@@ -130,7 +132,7 @@ namespace Reftruckegypt.Servicecenter.Views.UomConversionViews
             this.cbotoUoms.FormattingEnabled = true;
             this.cbotoUoms.Location = new System.Drawing.Point(462, 37);
             this.cbotoUoms.Name = "cbotoUoms";
-            this.cbotoUoms.Size = new System.Drawing.Size(254, 23);
+            this.cbotoUoms.Size = new System.Drawing.Size(253, 23);
             this.cbotoUoms.TabIndex = 6;
             // 
             // gridConversions
@@ -164,6 +166,26 @@ namespace Reftruckegypt.Servicecenter.Views.UomConversionViews
             this.btnCreate.Text = "Create ..";
             this.btnCreate.UseVisualStyleBackColor = true;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(226, 561);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(96, 30);
+            this.btnDelete.TabIndex = 21;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Enabled = false;
+            this.btnEdit.Location = new System.Drawing.Point(115, 561);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(96, 30);
+            this.btnEdit.TabIndex = 20;
+            this.btnEdit.Text = "Edit ...";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            // 
             // UomConversionsView
             // 
             this.AcceptButton = this.btnSearch;
@@ -171,6 +193,8 @@ namespace Reftruckegypt.Servicecenter.Views.UomConversionViews
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(836, 602);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.gridConversions);
@@ -200,5 +224,7 @@ namespace Reftruckegypt.Servicecenter.Views.UomConversionViews
         private System.Windows.Forms.DataGridView gridConversions;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnEdit;
     }
 }

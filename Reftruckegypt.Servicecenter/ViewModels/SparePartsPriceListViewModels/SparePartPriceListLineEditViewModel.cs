@@ -44,6 +44,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
                 if (_sparePart != value)
                 {
                     _sparePart = value;
+                    if (_uom != null && _sparePart != null)
+                        UomConversionRate = UnitOfWork.UomConversionRepository.FindUomConversionRate(_uom.Id, _sparePart.PrimaryUom.Id, _sparePart.Id);
+                    else
+                        UomConversionRate = null;
                     OnPropertyChanged(this, nameof(SparePart));
                 }
             }
@@ -75,7 +79,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
         public decimal? UomConversionRate
         {
             get => _conversionRate;
-            private set
+            set
             {
                 if (_conversionRate != value)
                 {
@@ -101,17 +105,20 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
         public ModelState Validate(bool notify = false)
         {
             ModelState modelState = new ModelState();
-            if (_sparePart != null && _uom != null)
+            if (Validator != null)
             {
-                if(_sparePart.PrimaryUom.Id != _uom.Id && _conversionRate == null)
+                if (_sparePart != null && _uom != null)
                 {
-                    _conversionRate = UnitOfWork.UomConversionRepository.FindUomConversionRate(_uom.Id, _sparePart.PrimaryUom.Id, _sparePart.Id);
+                    if (_sparePart.PrimaryUom.Id != _uom.Id && _conversionRate == null)
+                    {
+                        _conversionRate = UnitOfWork.UomConversionRepository.FindUomConversionRate(_uom.Id, _sparePart.PrimaryUom.Id, _sparePart.Id);
+                    }
                 }
-            }
-            modelState.AddErrors(Validator.Validate(SparePartPriceListLine));
-            if(modelState.HasErrors && notify)
-            {
-                OnPropertyChanged(this, nameof(SparePart));
+                modelState.AddErrors(Validator.Validate(SparePartPriceListLine));
+                if (modelState.HasErrors && notify)
+                {
+                    OnPropertyChanged(this, nameof(SparePart));
+                }
             }
             return modelState;
         }

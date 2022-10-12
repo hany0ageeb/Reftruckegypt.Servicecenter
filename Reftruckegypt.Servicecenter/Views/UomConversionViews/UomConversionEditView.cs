@@ -29,7 +29,7 @@ namespace Reftruckegypt.Servicecenter.Views.UomConversionViews
             gridConversions.AutoGenerateColumns = false;
             gridConversions.ReadOnly = false;
             gridConversions.MultiSelect = false;
-            gridConversions.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            gridConversions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gridConversions.Columns.Clear();
             gridConversions.Columns.AddRange(new DataGridViewComboBoxColumn()
             {
@@ -73,6 +73,47 @@ namespace Reftruckegypt.Servicecenter.Views.UomConversionViews
                 DataPropertyName = nameof(UomConversionLineEditViewModel.Notes),
                 HeaderText = "Notes"
             });
+            gridConversions.EditingControlShowing += (o, e) =>
+            {
+                ComboBox editControl = e.Control as ComboBox;
+                if (editControl != null)
+                {
+                    editControl.DropDownStyle = ComboBoxStyle.DropDown;
+                    editControl.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    editControl.AutoCompleteSource = AutoCompleteSource.ListItems;
+                    e.CellStyle.BackColor = Color.Yellow;
+                }
+                
+            };
+            gridConversions.CellValidating += (o, e) =>
+            {
+                if(e.ColumnIndex == gridConversions.Columns[nameof(UomConversionLineEditViewModel.Rate)].Index)
+                {
+                    if (!string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                    {
+                        if(decimal.TryParse(e.FormattedValue.ToString(), out decimal rate))
+                        {
+                            if(rate <= 0)
+                            {
+                                e.Cancel = true;
+                                gridConversions.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Invalid Number should be > 0";
+                            }
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                            gridConversions.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Invalid Number";
+                        }
+                    }
+                }
+            };
+            gridConversions.CellValidated += (o, e) =>
+            {
+                if (e.ColumnIndex == gridConversions.Columns[nameof(UomConversionLineEditViewModel.Rate)].Index)
+                {
+                    gridConversions.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "";
+                }
+            };
             gridConversions.DataSource = _editModel.Lines;
             // ...
             btnSave.DataBindings.Clear();
@@ -80,7 +121,47 @@ namespace Reftruckegypt.Servicecenter.Views.UomConversionViews
             {
                 DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
+            btnSave.Click += (o, e) =>
+            {
+                try
+                {
+                    if (_editModel.SaveOrUpdate())
+                    {
+                        Close();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
             // ...
+            btnClose.Click += (o, e) =>
+            {
+                try
+                {
+                    if (_editModel.Close())
+                        Close();
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+            // ...
+            FormClosing += (o, e) =>
+            {
+                try
+                {
+                    if (_editModel.HasChanged)
+                        e.Cancel = !_editModel.Close();
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+            // ....
         }
     }
 }

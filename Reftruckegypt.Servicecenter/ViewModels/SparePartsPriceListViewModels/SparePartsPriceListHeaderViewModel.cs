@@ -10,6 +10,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
         {
             Id = priceList.Id;
             Name = priceList.Name;
+            Number = priceList.Number;
             FromDate = priceList.Period.FromDate;
             ToDate = priceList.Period.ToDate;
             State = priceList.Period.State;

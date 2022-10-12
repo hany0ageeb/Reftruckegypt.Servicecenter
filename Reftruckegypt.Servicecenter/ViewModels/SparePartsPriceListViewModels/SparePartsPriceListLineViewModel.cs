@@ -10,6 +10,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
         {
             Id = priceListLine.Id;
             ListId = priceListLine.SparePartsPriceList.Id;
+            Number = priceListLine.SparePartsPriceList.Number;
             Name = priceListLine.SparePartsPriceList.Name;
             FromDate = priceListLine.SparePartsPriceList.Period.FromDate;
             ToDate = priceListLine.SparePartsPriceList.Period.ToDate;
@@ -18,6 +19,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
             UomCode = priceListLine.Uom.Code;
             UnitPrice = priceListLine.UnitPrice;
             State = priceListLine.SparePartsPriceList.Period.State;
+            ConversionRate = priceListLine.UomConversionRate;
         }
         [Ignore]
         public Guid Id { get; private set; }
@@ -38,5 +40,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
         public string UomCode { get; private set; }
         [Column("Unit Price")]
         public decimal UnitPrice { get; private set; }
+        [Column("Uom Conversion Rate")]
+        public decimal? ConversionRate { get; private set; }
     }
 }

@@ -28,9 +28,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels
             IApplicationContext applicationContext, 
             IValidator<SparePart> validator)
         {
-            _unitOfWork = unitOfWork;
-            _applicationContext = applicationContext;
-            _validator = validator;
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+            _validator = validator ?? throw new ArgumentNullException(nameof(validator));
+
             Uoms.AddRange(_unitOfWork.UomRepository.Find(predicate: x => x.IsEnabled, orderBy: q => q.OrderBy(x => x.Code)));
             if (sparePart != null)
             {
@@ -54,6 +55,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels
             }
             else
             {
+                
                 Id = Guid.Empty;
                 _isEnabled = true;
                 if(Uoms.Count > 0)

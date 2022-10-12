@@ -8,7 +8,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomConversionViewModels
         public UomConversionViewModel(UomConversion uomConversion)
         {
             Id = uomConversion.Id;
-            SparePartCode = uomConversion.SparePart.Code;
+            SparePartCode = uomConversion.SparePart?.Code;
             FromUomCode = uomConversion.FromUom.Code;
             ToUomCode = uomConversion.ToUom.Code;
             ConversionRate = uomConversion.Rate;

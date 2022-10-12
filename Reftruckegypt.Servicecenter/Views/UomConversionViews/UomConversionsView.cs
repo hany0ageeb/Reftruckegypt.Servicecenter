@@ -86,16 +86,75 @@ namespace Reftruckegypt.Servicecenter.Views.UomConversionViews
                 DataPropertyName = nameof(UomConversionViewModel.Notes),
                 HeaderText = "Notes"
             });
+            gridConversions.SelectionChanged += (o, e) =>
+            {
+                if(gridConversions.SelectedCells.Count > 0)
+                {
+                    _searchModel.SelectedIndex =  gridConversions.SelectedCells[0].RowIndex;
+                }
+                else
+                {
+                    _searchModel.SelectedIndex = -1;
+                }
+            };
             gridConversions.DataSource = _searchModel.UomConversions;
             // ...
             btnSearch.Click += (o, e) =>
             {
-                _searchModel.Search();
+                try
+                {
+                    _searchModel.Search();
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             };
             // ...
             btnCreate.Click += (o, e) =>
             {
-                 _searchModel.Create();
+                try
+                {
+                    _searchModel.Create();
+                }
+                catch (Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+            // ...
+            btnEdit.DataBindings.Clear();
+            btnEdit.DataBindings.Add(new Binding(nameof(btnEdit.Enabled), _searchModel, nameof(_searchModel.IsEditEnabled))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            btnEdit.Click += (o, e) =>
+            {
+                try
+                {
+                    _searchModel.Edit();
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+            // ...
+            btnDelete.DataBindings.Clear();
+            btnDelete.DataBindings.Add(new Binding(nameof(btnDelete.Enabled), _searchModel, nameof(_searchModel.IsDeleteEnabled))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            btnDelete.Click += (o, e) =>
+            {
+                try
+                {
+                    _searchModel.Delete();
+                }
+                catch (Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             };
         }
         private void btnClose_Click(object sender, EventArgs e)

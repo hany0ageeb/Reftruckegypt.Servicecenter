@@ -207,6 +207,12 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
                 },
                 new DataGridViewTextBoxColumn()
                 {
+                    HeaderText = "Conversion Rate",
+                    DataPropertyName = nameof(SparePartsPriceListLineViewModel.ConversionRate),
+                    Name = nameof(SparePartsPriceListLineViewModel.ConversionRate)
+                },
+                new DataGridViewTextBoxColumn()
+                {
                     HeaderText = "State",
                     DataPropertyName = nameof(SparePartsPriceListLineViewModel.State),
                     Name = nameof(SparePartsPriceListLineViewModel.State)
