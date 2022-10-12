@@ -256,7 +256,6 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Enabled = false;
             this.btnBrowse.Location = new System.Drawing.Point(786, 379);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(77, 28);
@@ -267,9 +266,9 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(548, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(570, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(315, 371);
+            this.pictureBox1.Size = new System.Drawing.Size(293, 371);
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 

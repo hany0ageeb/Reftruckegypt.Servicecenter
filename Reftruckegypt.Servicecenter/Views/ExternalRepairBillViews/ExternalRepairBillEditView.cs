@@ -27,32 +27,39 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             txtAmounts.DataBindings.Clear();
             txtAmounts.DataBindings.Add(new Binding(nameof(txtAmounts.Text), _editModel, nameof(_editModel.TotalAmountInEGP))
             {
-
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
             txtNumber.DataBindings.Clear();
             txtNumber.DataBindings.Add(new Binding(nameof(txtNumber.Text), _editModel, nameof(_editModel.Number))
             {
-
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
             txtRepairs.DataBindings.Clear();
             txtRepairs.DataBindings.Add(new Binding(nameof(txtRepairs.Text),_editModel,nameof(_editModel.Repairs))
             {
-
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
             txtSupplierBillNumber.DataBindings.Clear();
             txtSupplierBillNumber.DataBindings.Add(new Binding(nameof(txtSupplierBillNumber.Text),_editModel,nameof(_editModel.SupplierBillNumber))
             {
-
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
             pickBillDate.DataBindings.Clear();
             pickBillDate.DataBindings.Add(new Binding(nameof(pickBillDate.Value), _editModel, nameof(_editModel.BillDate))
             {
-
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
+            // ...
+            txtFilePath.DataBindings.Clear();
+            txtFilePath.DataBindings.Add(new Binding(nameof(txtFilePath.Text), _editModel, nameof(_editModel.BillImageFilePath))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            
             // ...
             cboShops.DataBindings.Clear();
             cboShops.DataSource = _editModel.ExternalAutoRepairShops;
@@ -86,13 +93,14 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                     if (_editModel.SaveOrUpdate())
                     {
                         System.Media.SystemSounds.Beep.Play();
+                        
                         txtAmounts.ReadOnly = true;
                         txtFilePath.ReadOnly = true;
                         cboShops.Enabled = false;
                         cboVehicles.Enabled = false;
                         txtRepairs.ReadOnly = true;
                         txtSupplierBillNumber.Enabled = true;
-                        btnSave.Enabled = false;
+                        btnBrowse.Enabled = false;
                     }
                     else
                     {
@@ -104,6 +112,46 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                     _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             };
+            btnClose.Click += (o, e) =>
+            {
+                try
+                {
+                    if (_editModel.Close())
+                    {
+                        System.Media.SystemSounds.Beep.Play();
+                        txtAmounts.ReadOnly = true;
+                        txtFilePath.ReadOnly = true;
+                        cboShops.Enabled = false;
+                        cboVehicles.Enabled = false;
+                        txtRepairs.ReadOnly = true;
+                        txtSupplierBillNumber.Enabled = true;
+                        btnBrowse.Enabled = false;
+                    }
+                    else
+                    {
+                        System.Media.SystemSounds.Hand.Play();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, "Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+            // ...
+            FormClosing += (o, e) =>
+            {
+                if(_editModel.HasChanged && e.CloseReason == CloseReason.UserClosing)
+                {
+                    try
+                    {
+                        e.Cancel = !_editModel.Close();
+                    }
+                    catch(Exception ex)
+                    {
+                        _ = MessageBox.Show(this, "Error", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            };
             // ...
             _editModel.PropertyChanged += (o, e) =>
              {
@@ -111,7 +159,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                  {
                      try
                      {
-                         if (!string.IsNullOrEmpty(_editModel.BillImageFilePath) && System.IO.File.Exists(_editModel.BillImageFilePath))
+                         if (!string.IsNullOrEmpty(_editModel.BillImageFilePath) && System.IO.File.Exists(_editModel.BillImageFilePath) && (System.IO.Path.GetExtension(_editModel.BillImageFilePath).ToLower() == ".jpg" || System.IO.Path.GetExtension(_editModel.BillImageFilePath).ToLower() == ".jpeg"))
                          {
                              pictureBox1.Image = Image.FromFile(_editModel.BillImageFilePath);
                              pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;

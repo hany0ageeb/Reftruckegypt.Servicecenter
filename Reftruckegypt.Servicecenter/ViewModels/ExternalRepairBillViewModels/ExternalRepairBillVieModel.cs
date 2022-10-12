@@ -20,6 +20,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
             Repairs = externalRepairBill.Repairs;
             TotalAmount = externalRepairBill.TotalAmountInEGP;
             State = externalRepairBill.Period.State;
+            PeriodId = externalRepairBill.PeriodId;
         }
         [Ignore]
         public Guid Id { get;  set; }
@@ -39,6 +40,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         public decimal TotalAmount { get;  set; }
         [Column("State")]
         public string State { get;  set; }
+        [Ignore]
+        public Guid PeriodId { get; private set; }
 
     }
 }

@@ -31,13 +31,16 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         private ExternalAutoRepairShop _externalAutoRepairShop = null;
         private Vehicle _vehicle = null;
 
-        public ExternalRepairBillSearchViewModel(IUnitOfWork unitOfWork, IApplicationContext applicationContext, IValidator<ExternalRepairBill> validator)
+        public ExternalRepairBillSearchViewModel(
+            IUnitOfWork unitOfWork, 
+            IApplicationContext applicationContext, 
+            IValidator<ExternalRepairBill> validator)
         {
             _unitOfWork = unitOfWork;
             _applicationContext = applicationContext;
             _validator = validator;
             ExternalAutoRepairShops.AddRange(_unitOfWork.ExternalAutoRepairShopRepository.Find().ToList());
-            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find().ToList());
+            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q=>q.OrderBy(x=>x.InternalCode)).ToList());
             ExternalAutoRepairShops.Insert(0, new ExternalAutoRepairShop()
             {
                 Id = Guid.Empty,
@@ -79,7 +82,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         {
             if(index >=0 && index < ExternalRepairBillVieModels.Count)
             {
-                return ExternalRepairBillVieModels[index].State == PeriodStates.OpenState;
+                return _unitOfWork.PeriodRepository.Find(key: ExternalRepairBillVieModels[index].PeriodId)?.State == PeriodStates.OpenState;
             }
             return false;
         }
@@ -117,8 +120,6 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
             return Task.Run<string>(() =>
             {
                 StringBuilder stringBuilder = new StringBuilder();
-                
-
                 IList<ExternalRepairBillViewModel> externalBillsViewModel = mapper.Take<ExternalRepairBillViewModel>().Select(r => r.Value).ToList();
                 List<ExternalRepairBill> data = new List<ExternalRepairBill>();
                 for(int index=0;index< externalBillsViewModel.Count; index++)
@@ -294,8 +295,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         }
         public void Create()
         {
-            ExternalRepairBillEditViewModel editViewModel = new ExternalRepairBillEditViewModel(_unitOfWork, _validator);
+            ExternalRepairBillEditViewModel editViewModel = new ExternalRepairBillEditViewModel(_unitOfWork, _applicationContext,_validator);
             _applicationContext.DisplayExternalRepaiBillEditView(editViewModel);
+            Search();
         }
         public void Delete()
         {
@@ -325,11 +327,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                 var oldBill = _unitOfWork.ExternalRepairBillRepository.Find(ExternalRepairBillVieModels[_selectedIndex].Id);
                 if (oldBill != null)
                 {
-                    _applicationContext.DisplayExternalRepaiBillEditView(new ExternalRepairBillEditViewModel(oldBill, _unitOfWork, _validator));
+                    _applicationContext.DisplayExternalRepaiBillEditView(new ExternalRepairBillEditViewModel(oldBill, _unitOfWork, _applicationContext,_validator));
+                    Search();
                 }
                 else
                 {
                     _ = _applicationContext.DisplayMessage("Error", $"External Bill With Number ${ExternalRepairBillVieModels[_selectedIndex].Number} is no longer exist\npleas click search button to reload the data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Search();
                 }
             }
         }
