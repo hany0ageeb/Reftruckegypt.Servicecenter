@@ -118,21 +118,25 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels
         }
         public ModelState Validate()
         {
-            ModelState modelState = _validator.Validate(_fuelCard);
-            if (!modelState.HasErrors)
+            ModelState modelState = new ModelState();
+            if (_hasChanged)
             {
-                if(_fuelCard.Id == Guid.Empty)
+                modelState.AddErrors(_validator.Validate(_fuelCard));
+                if (!modelState.HasErrors)
                 {
-                    if (_unitOfWork.FuelCardRepository.Exists(x=>x.Number==_fuelCard.Number))
+                    if (_fuelCard.Id == Guid.Empty)
                     {
-                        modelState.AddError(nameof(_fuelCard.Name), $"Duplicate Fuel Card Number {_fuelCard.Number} already exist.");
+                        if (_unitOfWork.FuelCardRepository.Exists(x => x.Number == _fuelCard.Number))
+                        {
+                            modelState.AddError(nameof(_fuelCard.Number), $"Duplicate Fuel Card Number {_fuelCard.Number} already exist.");
+                        }
                     }
-                }
-                else
-                {
-                    if (_unitOfWork.FuelCardRepository.Exists(x => x.Id != _fuelCard.Id && x.Number == _fuelCard.Number))
+                    else
                     {
-                        modelState.AddError(nameof(_fuelCard.Name), $"Duplicate Fuel Card Number {_fuelCard.Number} already exist.");
+                        if (_unitOfWork.FuelCardRepository.Exists(x => x.Id != _fuelCard.Id && x.Number == _fuelCard.Number))
+                        {
+                            modelState.AddError(nameof(_fuelCard.Name), $"Duplicate Fuel Card Number {_fuelCard.Number} already exist.");
+                        }
                     }
                 }
             }

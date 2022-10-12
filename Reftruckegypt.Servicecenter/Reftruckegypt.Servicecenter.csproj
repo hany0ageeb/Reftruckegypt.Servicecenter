@@ -341,7 +341,7 @@
     <Compile Include="ViewModels\ExternalAutoRepairShopViewModels\ExternalAutoRepairShopViewModel.cs" />
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillEditViewModel.cs" />
     <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillSearchViewModel.cs" />
-    <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillVieModel.cs" />
+    <Compile Include="ViewModels\ExternalRepairBillViewModels\ExternalRepairBillViewModel.cs" />
     <Compile Include="ViewModels\FuelCardViewModels\FuelCardEditViewModel.cs" />
     <Compile Include="ViewModels\FuelCardViewModels\FuelCardSearchViewModel.cs" />
     <Compile Include="ViewModels\FuelCardViewModels\FuelCardViewModel.cs" />

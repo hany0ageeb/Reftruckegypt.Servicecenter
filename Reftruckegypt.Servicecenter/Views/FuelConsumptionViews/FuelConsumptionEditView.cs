@@ -64,7 +64,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
                     DataSource = _editModel.FuelTypes,
                     DisplayMember = nameof(Models.FuelType.Name),
                     ValueMember = nameof(Models.FuelType.Self),
-                    HeaderText = "Fuel Card"
+                    HeaderText = "Fuel Type"
                 },
                 new DataGridViewTextBoxColumn()
                 {
@@ -85,6 +85,16 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
                     HeaderText = "Notes"
                 }
             );
+            gridConsumptions.EditingControlShowing += (o, e) =>
+            {
+                ComboBox editControl = e.Control as ComboBox;
+                if (editControl != null)
+                {
+                    editControl.DropDownStyle = ComboBoxStyle.DropDown;
+                    editControl.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    editControl.AutoCompleteSource = AutoCompleteSource.ListItems;
+                }
+            };
             gridConsumptions.DataSource = _editModel.Lines;
             // ...
             btnSave.DataBindings.Clear();

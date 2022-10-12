@@ -16,24 +16,48 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
         private Period _period;
         private string _notes;
 
-        private ModelState _modelState = new ModelState();
-        private IValidator<FuelConsumption> _validator = new FuelConsumptionValidator();
+        private bool _hasChanged = false;
+        public IValidator<FuelConsumption> Validator { get; set; }
         public FuelConsumptionLineEditViewModel()
+            : this(null, null)
         {
-            Id = Guid.Empty;
-            _notes = "";
+           
         }
-        public FuelConsumptionLineEditViewModel(FuelConsumption fuelConsumption)
+        public FuelConsumptionLineEditViewModel(
+            FuelConsumption fuelConsumption, 
+            IValidator<FuelConsumption> validator)
         {
-            Id = fuelConsumption.Id;
-            _vehicle = fuelConsumption.Vehicle;
-            _fuelCard = fuelConsumption.FuelCard;
-            _fuelType = fuelConsumption.FuelType;
-            _amount = fuelConsumption.TotalAmountInEGP;
-            _quantity = fuelConsumption.TotalConsumedQuanityInLiteres;
-            _notes = FuelConsumption.Notes;
+            Validator = validator;
+            if (fuelConsumption != null)
+            {
+                Id = fuelConsumption.Id;
+                _vehicle = fuelConsumption.Vehicle;
+                _fuelCard = fuelConsumption.FuelCard;
+                _fuelType = fuelConsumption.FuelType;
+                _amount = fuelConsumption.TotalAmountInEGP;
+                _quantity = fuelConsumption.TotalConsumedQuanityInLiteres;
+                _notes = FuelConsumption.Notes;
+            }
+            else
+            {
+                Id = Guid.Empty;
+                _notes = "";
+                _quantity = 1;
+                _amount = 0;
+            }
         }
         public Guid Id { get; private set; }
+        public bool HasChanged
+        {
+            get => _hasChanged;
+            set
+            {
+                if (_hasChanged != value)
+                {
+                    _hasChanged = value;
+                }
+            }
+        }
         public Vehicle Vehicle
         {
             get => _vehicle;
@@ -42,7 +66,11 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                 if (_vehicle != value)
                 {
                     _vehicle = value;
+                    _fuelCard = value.FuelCard;
+                    _fuelType = value.FuelType;
                     OnPropertyChanged(this, nameof(Vehicle));
+                    OnPropertyChanged(this, nameof(FuelType));
+                    OnPropertyChanged(this, nameof(FuelCard));
                 }
             }
         }
@@ -79,6 +107,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                 {
                     _quantity = value;
                     OnPropertyChanged(this, nameof(TotalConsumedQuantityInLiteres));
+                    HasChanged = true;
                 }
             }
         }
@@ -91,6 +120,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                 {
                     _amount = value;
                     OnPropertyChanged(this, nameof(TotalAmountInEGP));
+                    HasChanged = true;
                 }
             }
         }
@@ -103,6 +133,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                 {
                     _consumptionDate = value;
                     OnPropertyChanged(this, nameof(ConsumptionDate));
+                    HasChanged = true;
                 }
             }
         }
@@ -115,6 +146,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                 {
                     _period = value;
                     OnPropertyChanged(this, nameof(Period));
+                    HasChanged = true;
                 }
             }
         }
@@ -127,35 +159,38 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                 {
                     _notes = value;
                     OnPropertyChanged(this, nameof(Notes));
+                    HasChanged = true;
                 }
             }
         }
         public FuelConsumption FuelConsumption => new FuelConsumption()
         {
             Id = Id,
-            Vehicle = Vehicle,
-            FuelCard = FuelCard,
-            FuelType = FuelType,
-            Notes = Notes,
-            ConsumptionDate = ConsumptionDate,
-            Period = Period,
-            TotalAmountInEGP = TotalAmountInEGP,
-            TotalConsumedQuanityInLiteres = TotalConsumedQuantityInLiteres
+            Vehicle = _vehicle,
+            FuelCard = _fuelCard,
+            FuelType = _fuelType,
+            Notes = _notes,
+            ConsumptionDate = _consumptionDate,
+            Period = _period,
+            TotalAmountInEGP = _amount,
+            TotalConsumedQuanityInLiteres = _quantity
         };
         public ModelState Validate(bool notify = false)
         {
-            ModelState modelState = _validator.Validate(FuelConsumption);
-            _modelState.Clear();
-            _modelState.AddErrors(modelState);
-            if (notify)
+            ModelState modelState = new ModelState();
+            if (_hasChanged) 
             {
-                OnPropertyChanged(this, nameof(Vehicle));
+                modelState.AddErrors(Validator.Validate(FuelConsumption));
+                if (notify)
+                {
+                    OnPropertyChanged(this, nameof(Vehicle));
+                }
             }
             return modelState;
         }
         #region IDataErrorInfo
-        public string Error => _modelState.Error;
-        public string this[string columnName] => _modelState[columnName];
+        public string Error => Validate().Error;
+        public string this[string columnName] => Validate()[columnName];
         #endregion IDataErrorInfo
     }
 }

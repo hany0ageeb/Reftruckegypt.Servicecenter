@@ -79,7 +79,7 @@ namespace Reftruckegypt.Servicecenter.Views.FuelCardViews
             {
                 Name= nameof(FuelCardViewModel.Number),
                 DataPropertyName = nameof(FuelCardViewModel.Number),
-                HeaderText = "Name"
+                HeaderText = "Number"
             },
             new DataGridViewTextBoxColumn()
             {

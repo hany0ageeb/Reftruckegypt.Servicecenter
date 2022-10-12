@@ -50,7 +50,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels
             }
             _applicationContext = applicationContext;
             _validator = validator ?? throw new ArgumentNullException(nameof(validator));
-            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(orderBy: q => q.OrderBy(x => x.InternalCode)));
+            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q => q.OrderBy(x => x.InternalCode)));
             Vehicles.Insert(0, new Vehicle() { Id = Guid.Empty, InternalCode = "--ALL--" });
             _vehicle = Vehicles[0];
         }

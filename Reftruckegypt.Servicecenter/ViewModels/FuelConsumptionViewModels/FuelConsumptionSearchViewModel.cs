@@ -393,7 +393,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                 FuelConsumption line = _unitOfWork.FuelConsumptionRepository.Find(key: FuelConsumptions[_selectedIndex].Id);
                 if (line != null)
                 {
-                    _applicationContext.DisplayFuelConsumptionEditView(new FuelConsumptionEditViewModel(line, _unitOfWork, _applicationContext));
+                    _applicationContext.DisplayFuelConsumptionEditView(new FuelConsumptionEditViewModel(line, _unitOfWork, _applicationContext,_validator));
                     Search();
                 }
                 else
@@ -406,7 +406,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
 
         public void Create()
         {
-            FuelConsumptionEditViewModel fuelConsumptionEditViewModel = new FuelConsumptionEditViewModel(_unitOfWork, _applicationContext);
+            FuelConsumptionEditViewModel fuelConsumptionEditViewModel = new FuelConsumptionEditViewModel(_unitOfWork, _applicationContext,_validator);
             _applicationContext.DisplayFuelConsumptionEditView(fuelConsumptionEditViewModel: fuelConsumptionEditViewModel);
         }
         #region IDisposable

@@ -262,6 +262,24 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         }
         public void Search()
         {
+            if(_fromDate.HasValue && _toDate.HasValue && _fromDate > _toDate)
+            {
+                _applicationContext.DisplayMessage(
+                    title: "Error",
+                    message: $"From Date {_fromDate.Value:G} Is Greater Than To Date {_toDate.Value:G} .",
+                    buttons: MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Error);
+                return;
+            }
+            if(_fromAmount.HasValue && _toAmount.HasValue && _fromAmount > _toAmount)
+            {
+                _applicationContext.DisplayMessage(
+                    title: "Error",
+                    message: $"From Amount {_fromAmount.Value} Is Greater Than To Date {_toAmount.Value} .",
+                    buttons: MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Error);
+                return;
+            }
             ExternalRepairBillVieModels.Clear();
             var bills =
                 _unitOfWork.ExternalRepairBillRepository.Find((bill) => new ExternalRepairBillViewModel()
@@ -285,7 +303,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                 _toAmount,
                 _externalAutoRepairShop.Id,
                 _vehicle.Id,
-                q => q.OrderBy(b => b.BillDate)
+                q => q.OrderByDescending(b => b.BillDate).ThenBy(b=>b.Vehicle.InternalCode)
             );
             foreach(var bill in bills)
             {

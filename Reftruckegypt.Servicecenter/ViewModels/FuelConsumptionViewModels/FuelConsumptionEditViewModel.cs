@@ -15,39 +15,60 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IApplicationContext _applicationContext;
+        private readonly IValidator<FuelConsumption> _validator;
 
         private bool _hasChanged = false;
 
         private ModelState _modelState = new ModelState();
 
         private DateTime _consumptionDate;
-        public FuelConsumptionEditViewModel(IUnitOfWork unitOfWork, IApplicationContext applicationContext)
-            : this(null, unitOfWork, applicationContext)
+        public FuelConsumptionEditViewModel(
+            IUnitOfWork unitOfWork,
+            IApplicationContext applicationContext,
+            IValidator<FuelConsumption> validator)
+            : this(null, unitOfWork, applicationContext,validator)
         {
             
         }
-        public FuelConsumptionEditViewModel(FuelConsumption line, IUnitOfWork unitOfWork, IApplicationContext applicationContext)
+        public FuelConsumptionEditViewModel(
+            FuelConsumption line,
+            IUnitOfWork unitOfWork,
+            IApplicationContext applicationContext,
+            IValidator<FuelConsumption> validator)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+            _validator = validator ?? throw new ArgumentNullException(nameof(validator));
 
             FuelCards.AddRange(_unitOfWork.FuelCardRepository.Find(q => q.OrderBy(e => e.Number)));
             FuelTypes.AddRange(_unitOfWork.FuelTypeRepository.Find(q => q.OrderBy(x => x.Name)));
             Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q => q.OrderBy(x => x.InternalCode)));
             if (line != null)
             {
-                Lines.Add(new FuelConsumptionLineEditViewModel(line));
+                Lines.Add(new FuelConsumptionLineEditViewModel(line,_validator));
                 ConsumptionDate = line.ConsumptionDate;
             }
             else
             {
-                _consumptionDate = DateTime.Now;
+                ConsumptionDate = DateTime.Now;
             }
             Lines.ListChanged += (o, e) =>
             {
                 if(e.PropertyDescriptor?.Name != nameof(HasChanged))
                 {
                     HasChanged = true;
+                }
+                if(e.ListChangedType == ListChangedType.ItemAdded && e.NewIndex >=0 && e.NewIndex < Lines.Count)
+                {
+                    Lines[e.NewIndex].Validator = _validator;
+                    if (Vehicles.Count > 0)
+                    {
+                        Lines[e.NewIndex].Vehicle = Vehicles[0];
+                        Lines[e.NewIndex].FuelCard = Vehicles[0].FuelCard;
+                        Lines[e.NewIndex].FuelType = Vehicles[0].FuelType;
+                        Lines[e.NewIndex].Period = _unitOfWork.PeriodRepository.FindOpenPeriod(_consumptionDate);
+                        Lines[e.NewIndex].ConsumptionDate = _consumptionDate;
+                    }
                 }
             };
         }
@@ -67,6 +88,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
         }
         public void Validate()
         {
+            _modelState.Clear();
             ValidateDate();
             if (!_modelState.HasErrors)
             {
@@ -84,6 +106,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
         private void ValidateDate()
         {
             Period period = _unitOfWork.PeriodRepository.FindOpenPeriod(_consumptionDate);
+            _modelState.Clear(nameof(ConsumptionDate));
             if (period == null)
             {
                 _modelState.AddError(nameof(ConsumptionDate), $"No Open Period For Date: {_consumptionDate}");
