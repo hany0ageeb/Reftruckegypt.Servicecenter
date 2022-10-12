@@ -18,6 +18,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         {
             return ReftruckDbContext.Periods.Where(e => e.State == PeriodStates.OpenState && e.FromDate <= date && e.ToDate >= date).FirstOrDefault();
         }
+        
         public IEnumerable<Period> Find(
             string name = "", 
             DateTime? date = null, 

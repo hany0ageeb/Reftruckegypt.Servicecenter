@@ -157,7 +157,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels
             {
                 if(Id == Guid.Empty)
                 {
-                    IList<Period> overlappingPeriods = _unitOfWork.PeriodRepository.Find("", _fromDate).ToList();
+                    IList<Period> overlappingPeriods = 
+                        _unitOfWork
+                        .PeriodRepository
+                        .Find(x => (x.FromDate >= _fromDate && x.FromDate <= _toDate) || (x.ToDate >= _fromDate && x.ToDate <= _toDate)||(x.FromDate <= _fromDate && x.ToDate >= _toDate)||(x.FromDate <= _fromDate && x.ToDate >= _toDate)).ToList();
                     if(overlappingPeriods.Count > 0)
                     {
                         modelState.AddError(nameof(period.FromDate), $"Overlapping Periods.\nPeriod {period.Name} overlaps with period {overlappingPeriods[0].Name}");
@@ -165,7 +168,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels
                 }
                 else
                 {
-                    IList<Period> overlappingPeriods = _unitOfWork.PeriodRepository.Find("", _fromDate).Where(p=>p.Id != period.Id).ToList();
+                    IList<Period> overlappingPeriods = 
+                        _unitOfWork
+                        .PeriodRepository
+                        .Find(x => x.Id != Id && ((x.FromDate >= _fromDate && x.FromDate <= _toDate) || (x.ToDate >= _fromDate && x.ToDate <= _toDate) || (x.FromDate <= _fromDate && x.ToDate >= _toDate) || (x.FromDate <= _fromDate && x.ToDate >= _toDate))).ToList();
                     if (overlappingPeriods.Count > 0)
                     {
                         modelState.AddError(nameof(period.FromDate), $"Overlapping Periods.\nPeriod {period.Name} overlaps with period {overlappingPeriods[0].Name}");
