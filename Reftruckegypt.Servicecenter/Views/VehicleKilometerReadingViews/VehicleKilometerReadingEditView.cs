@@ -81,6 +81,35 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
                     editControl.AutoCompleteSource = AutoCompleteSource.ListItems;
                 }
             };
+            gridReadings.CellValidating += (o, e) =>
+            {
+                if(e.ColumnIndex == gridReadings.Columns[nameof(VehicleKilometerReadingLineEditViewModel.Reading)].Index)
+                {
+                    if (!string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                    {
+                        if(decimal.TryParse(e.FormattedValue.ToString(),out decimal reading))
+                        {
+                            if (reading < 0)
+                            {
+                                e.Cancel = true;
+                                gridReadings.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Invalid Reading";
+                            }
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                            gridReadings.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Invalid Reading";
+                        }
+                    }
+                }
+            };
+            gridReadings.CellValidated += (o, e) =>
+            {
+                if (e.ColumnIndex == gridReadings.Columns[nameof(VehicleKilometerReadingLineEditViewModel.Reading)].Index)
+                {
+                    gridReadings.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "";
+                }
+            };
             // ...
             btnSave.DataBindings.Clear();
             btnSave.DataBindings.Add(new Binding(nameof(btnSave.Enabled), _editModel, nameof(_editModel.HasChanged))
@@ -89,9 +118,16 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             });
             btnSave.Click += (o, e) =>
             {
-                if (_editModel.SaveOrUpdate())
+                try
                 {
-                    Close();
+                    if (_editModel.SaveOrUpdate())
+                    {
+                        Close();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             };
             // ...

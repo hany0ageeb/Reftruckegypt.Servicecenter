@@ -13,8 +13,6 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
         private DateTime _violaionDate;
         private ViolationType _violationType;
         private string _notes;
-
-        private ModelState _modelState = new ModelState();
         public VehicleViolationLineEditViewModel()
         {
             Id = Guid.Empty;
@@ -53,7 +51,6 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
                 if (_count != value)
                 {
                     _count = value;
-                    
                     OnPropertyChanged(this, nameof(Count));
                 }
             }
@@ -79,7 +76,6 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
                 if (_violaionDate != value)
                 {
                     _violaionDate = value;
-                    Validate();
                     OnPropertyChanged(this, nameof(ViolationDate));
                 }
             }
@@ -92,7 +88,6 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
                 if (_violationType != value)
                 {
                     _violationType = value;
-                    Validate();
                     OnPropertyChanged(this, nameof(ViolationType));
                 }
             }
@@ -121,16 +116,16 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
         };
         public ModelState Validate(bool notify = false)
         {
-            _modelState.Clear();
+            
+
             ModelState modelState = Validator.Validate(VehicleViolation);
-            _modelState.AddErrors(modelState);
             if (notify)
                 OnPropertyChanged(this, nameof(Vehicle));
             return modelState;
         }
         #region IDataErrorInfo
-        public string this[string columnName] => _modelState[columnName];
-        public string Error => _modelState.Error;
+        public string this[string columnName] => Validate()[columnName];
+        public string Error => Validate().Error;
         #endregion IDataErrorInfo
     }
 }

@@ -81,6 +81,21 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleStateChangeViews
                 Name = nameof(VehicleStateChangeEditModel.Notes),
                 HeaderText = "Reason"
             });
+            gridLines.EditingControlShowing += (o, e) =>
+            {
+                ComboBox editingControl = e.Control as ComboBox;
+                if (editingControl != null)
+                {
+                    editingControl.DropDownStyle = ComboBoxStyle.DropDown;
+                    editingControl.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    editingControl.AutoCompleteSource = AutoCompleteSource.ListItems;
+                }
+            };
+            gridLines.DefaultValuesNeeded += (o, e) =>
+            {
+                if(_editModel.Vehicles.Count > 0)
+                    e.Row.Cells[nameof(VehicleStateChangeEditModel.Vehicle)].Value = _editModel.Vehicles[0];
+            };
             gridLines.DataSource = _editModel.Lines;
 
 

@@ -240,6 +240,7 @@
     <Compile Include="Data\Abstractions\IUserCommandRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleCategoryRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleKilometerReadingRepository.cs" />
+    <Compile Include="Data\Abstractions\IVehicleLicenseRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleModelRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleOverAllState.cs" />
     <Compile Include="Data\Abstractions\IVehicleRepository.cs" />
@@ -268,6 +269,7 @@
     <Compile Include="Data\EF\UserCommandRepository.cs" />
     <Compile Include="Data\EF\VehicleCategoryRepository.cs" />
     <Compile Include="Data\EF\VehicleKilometerReadingRepository.cs" />
+    <Compile Include="Data\EF\VehicleLicenseRepository.cs" />
     <Compile Include="Data\EF\VehicleModelRepository.cs" />
     <Compile Include="Data\EF\VehicleOverAllStateRepository.cs" />
     <Compile Include="Data\EF\VehicleRepository.cs" />

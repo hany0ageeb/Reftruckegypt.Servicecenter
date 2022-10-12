@@ -55,7 +55,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             gridLines.ReadOnly = false;
             gridLines.SelectionMode = DataGridViewSelectionMode.CellSelect;
             gridLines.AutoGenerateColumns = false;
-            //gridLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            
             gridLines.Columns.Clear();
             gridLines.Columns.AddRange(new DataGridViewComboBoxColumn()
             {
@@ -77,7 +77,8 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
                 DisplayMember = nameof(Models.Uom.Code),
                 ValueMember = nameof(Models.Uom.Self),
                 ValueType = typeof(Models.Uom),
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                ReadOnly = true
             },
             new DataGridViewTextBoxColumn()
             {
@@ -88,11 +89,80 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             },
             new DataGridViewTextBoxColumn()
             {
+                Name = nameof(SparePartsBillLineEditViewModel.UnitPrice),
+                DataPropertyName = nameof(SparePartsBillLineEditViewModel.UnitPrice),
+                HeaderText = "Unit Price",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            },
+            new DataGridViewTextBoxColumn()
+            {
                 Name = nameof(SparePartsBillLineEditViewModel.Notes),
                 DataPropertyName = nameof(SparePartsBillLineEditViewModel.Notes),
                 HeaderText = "Notes",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
+            gridLines.EditingControlShowing += (o, e) =>
+            {
+                ComboBox comboBox = e.Control as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DropDownStyle = ComboBoxStyle.DropDown;
+                    comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
+                }
+            };
+            gridLines.CellValidating += (o, e) =>
+            {
+                if(e.ColumnIndex == gridLines.Columns[nameof(SparePartsBillLineEditViewModel.Quantity)].Index)
+                {
+                    if (!string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                    {
+                        if (decimal.TryParse(e.FormattedValue.ToString(),out decimal q))
+                        {
+                            if (q <= 0)
+                            {
+                                e.Cancel = true;
+                                gridLines.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Invalid Quantity";
+                            }
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                            gridLines.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Invalid Quantity";
+                        }
+                    }
+                }
+                else if (e.ColumnIndex == gridLines.Columns[nameof(SparePartsBillLineEditViewModel.UnitPrice)].Index)
+                {
+                    if (!string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                    {
+                        if (decimal.TryParse(e.FormattedValue.ToString(), out decimal u))
+                        {
+                            if(u < 0)
+                            {
+                                e.Cancel = true;
+                                gridLines.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Invalid Unit Price";
+                            }
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                            gridLines.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Invalid Unit Price";
+                        }
+                    }
+                }
+            };
+            gridLines.CellValidated += (o, e) =>
+            {
+                if (e.ColumnIndex == gridLines.Columns[nameof(SparePartsBillLineEditViewModel.Quantity)].Index)
+                {
+                    gridLines.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "";
+                }
+                else if (e.ColumnIndex == gridLines.Columns[nameof(SparePartsBillLineEditViewModel.UnitPrice)].Index)
+                {
+                    gridLines.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "";
+                }
+            };
             gridLines.DataSource = _editModel.Lines;
             // ...
             btnSave.DataBindings.Clear();
@@ -102,38 +172,62 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             });
             btnSave.Click += (o, e) =>
             {
-                if (_editModel.SaveOrUpdate())
+                try
                 {
-                    txtRepairs.ReadOnly = true;
-                    pickbillDate.Enabled = false;
-                    cbovehicles.Enabled = false;
-                    btnSave.Enabled = false;
-                    gridLines.ReadOnly = true;
-                    System.Media.SystemSounds.Beep.Play();
+                    if (_editModel.SaveOrUpdate())
+                    {
+                        txtRepairs.ReadOnly = true;
+                        pickbillDate.Enabled = false;
+                        cbovehicles.Enabled = false;
+                        btnSave.Enabled = false;
+                        gridLines.ReadOnly = true;
+                        System.Media.SystemSounds.Beep.Play();
+                    }
+                    else
+                    {
+                        System.Media.SystemSounds.Hand.Play();
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    System.Media.SystemSounds.Hand.Play();
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             };
             // ...
             btnClose.Click += (o, e) =>
             {
-                 if (_editModel.Close())
-                 {
-                    Close();
-                 }
-                 else
-                 {
-                    System.Media.SystemSounds.Hand.Play();
-                 }
+                try
+                {
+                    if (_editModel.Close())
+                    {
+                        Close();
+                    }
+                    else
+                    {
+                        System.Media.SystemSounds.Hand.Play();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             };
             // ...
             FormClosing += (o, e) =>
             {
-                e.Cancel = !_editModel.Close();
-                if (e.Cancel)
-                    System.Media.SystemSounds.Hand.Play();
+                try
+                {
+                    if (_editModel.HasChanged)
+                    {
+                        e.Cancel = !_editModel.Close();
+                        if (e.Cancel)
+                            System.Media.SystemSounds.Hand.Play();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             };
             // ...
             errorProvider1.DataSource = _editModel;

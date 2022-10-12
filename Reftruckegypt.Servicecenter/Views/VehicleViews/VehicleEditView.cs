@@ -14,6 +14,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
     public partial class VehicleEditView : Form
     {
         private VehicleEditViewModel _editModel;
+        private bool _hasChanged = true;
         public VehicleEditView(VehicleEditViewModel editModel)
         {
             _editModel = editModel;
@@ -141,13 +142,13 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             },
             new DataGridViewTextBoxColumn()
             {
-                HeaderText = "Start Date",
+                HeaderText = "Start Date(dd/mm/yyyy)",
                 DataPropertyName = nameof(VehicleLicenseEditViewmodel.StartDate),
                 Name = nameof(VehicleLicenseEditViewmodel.StartDate)
             },
             new DataGridViewTextBoxColumn()
             {
-                HeaderText = "End Date",
+                HeaderText = "End Date(dd/mm/yyyy)",
                 DataPropertyName = nameof(VehicleLicenseEditViewmodel.EndDate),
                 Name = nameof(VehicleLicenseEditViewmodel.EndDate)
             },
@@ -167,18 +168,24 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             btnSave.Click += (o, e) =>
             {
                 if (_editModel.SaveOrUpdate())
+                {
                     Close();
+                    _hasChanged = false;
+                }
             };
             // ....
             btnClose.Click += (o, e) =>
             {
-                 if (_editModel.Close())
-                     Close();
+                if (_editModel.Close())
+                {
+                    _hasChanged = false;
+                    Close();
+                }
             };
             // ....
             FormClosing += (o, e) =>
             {
-                if(_editModel.HasChanged && e.CloseReason == CloseReason.UserClosing)
+                if(_hasChanged && _editModel.HasChanged && e.CloseReason == CloseReason.UserClosing)
                     e.Cancel = !_editModel.Close();
             };
             //....

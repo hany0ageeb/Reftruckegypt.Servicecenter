@@ -20,7 +20,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                 Id = vehicleLicense.Id,
                 EndDate = vehicleLicense.EndDate,
                 MotorNumber = vehicleLicense.MotorNumber,
-                PlateNumber = vehicleLicense.MotorNumber,
+                PlateNumber = vehicleLicense.PlateNumber,
                 StartDate = vehicleLicense.StartDate,
                 TrafficDepartmentName = vehicleLicense.TrafficDepartmentName,
                 RowVersion = vehicleLicense.RowVersion,

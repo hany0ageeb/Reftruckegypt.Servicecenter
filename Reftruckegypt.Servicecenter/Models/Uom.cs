@@ -18,14 +18,14 @@ namespace Reftruckegypt.Servicecenter.Models
         {
             if (sparePart == null || sparePart.Id == System.Guid.Empty) 
             {
-                UomConversion conversion = FromUomConversions.Where(x => x.ToUomId == toUom.Id && x.SparePartId == null).FirstOrDefault();
+                UomConversion conversion = ToUomConversions.Where(x => x.ToUomId == toUom.Id && x.SparePartId == null).FirstOrDefault();
                 if(conversion != null)
                 {
                     return quantity * conversion.Rate;
                 }
                 else
                 {
-                    conversion = ToUomConversions.Where(x => x.FromUomId == toUom.Id).FirstOrDefault();
+                    conversion = FromUomConversions.Where(x => x.FromUomId == toUom.Id).FirstOrDefault();
                     if (conversion != null)
                     {
                         return quantity * (1.0M / conversion.Rate);
@@ -38,14 +38,14 @@ namespace Reftruckegypt.Servicecenter.Models
             }
             else
             {
-                UomConversion conversion = FromUomConversions.Where(x => x.ToUomId == toUom.Id && x.SparePartId == sparePart.Id).FirstOrDefault();
+                UomConversion conversion = ToUomConversions.Where(x => x.ToUomId == toUom.Id && x.SparePartId == sparePart.Id).FirstOrDefault();
                 if(conversion != null)
                 {
                     return quantity * conversion.Rate;
                 }
                 else
                 {
-                    conversion = ToUomConversions.Where(x => x.FromUomId == toUom.Id && x.SparePartId == sparePart.Id).FirstOrDefault();
+                    conversion = FromUomConversions.Where(x => x.FromUomId == toUom.Id && x.SparePartId == sparePart.Id).FirstOrDefault();
                     if (conversion != null)
                     {
                         return quantity * (1.0M / conversion.Rate);

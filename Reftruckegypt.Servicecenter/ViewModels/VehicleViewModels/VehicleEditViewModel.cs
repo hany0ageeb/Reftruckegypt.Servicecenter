@@ -17,7 +17,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
         private readonly IValidator<VehicleLicense> _vehicleLicenseValidator;
         private readonly Vehicle _vehicle;
         private bool _hasChanged = false;
-        private List<VehicleLicense> deletedLicenses = new List<VehicleLicense>();
+        private List<VehicleLicense> originalLicenses = new List<VehicleLicense>();
 
         public VehicleEditViewModel(
             IUnitOfWork unitOfWork, 
@@ -108,10 +108,11 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                 {
                     Licenses.Add(new VehicleLicenseEditViewmodel(vehicleLicense));
                 }
+                originalLicenses.AddRange(vehicle.VehicelLicenses);
             }
             Licenses.ListChanged += (o, e) =>
             {
-                if(e.PropertyDescriptor?.Name != "HasChanged" && (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemChanged))
+                if(e.PropertyDescriptor?.Name != nameof(HasChanged) && (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemChanged))
                     HasChanged = true;
                 if(e.ListChangedType == ListChangedType.ItemAdded && e.NewIndex >=0 && e.NewIndex < Licenses.Count)
                 {
@@ -394,9 +395,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                         oldVehicle.VehicleCategory = _vehicle.VehicleCategory;
                         oldVehicle.VehicleCode = _vehicle.VehicleCode;
                         oldVehicle.OverAllState = vehicle.OverAllState;
-                        foreach (var lic in deletedLicenses)
+                        var deletedIds = originalLicenses.Where(l => !Licenses.Select(x => x.Id).Contains(l.Id)).Select(x=>x.Id).ToList();
+                        foreach(var deletedId in deletedIds)
                         {
-                            oldVehicle.VehicelLicenses.Remove(oldVehicle.VehicelLicenses.Where(x => x.Id == lic.Id).FirstOrDefault());
+                           _unitOfWork.VehicleLicenseRepository.Remove(oldVehicle.VehicelLicenses.Where(x => x.Id == deletedId).FirstOrDefault());
                         }
                         foreach(var lic in Licenses)
                         {
@@ -404,6 +406,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                             {
                                 var newLic = lic.VehicleLicense;
                                 newLic.Id = Guid.NewGuid();
+                                newLic.Vehicel = oldVehicle;
                                 oldVehicle.VehicelLicenses.Add(newLic);
                             }
                             else

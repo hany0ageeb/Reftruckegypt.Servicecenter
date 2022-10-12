@@ -9,10 +9,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
     {
         private SparePart _sparePart;
         private Uom _uom;
-        private decimal _quantity;
-        private decimal _unitPrice;
-        private string _notes;
-        private decimal? _conversionRate;
+        private decimal _quantity = 1;
+        private decimal _unitPrice = 0;
+        private string _notes = "";
+        private decimal? _conversionRate = null;
         public SparePartsBillLineEditViewModel()
         {
 
@@ -112,7 +112,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
             SparePart = _sparePart,
             Quantity = _quantity,
             Uom = _uom,
-            Notes = _notes
+            Notes = _notes,
+            UnitPrice = _unitPrice
         };
         public ModelState Validate(bool notify = false)
         {

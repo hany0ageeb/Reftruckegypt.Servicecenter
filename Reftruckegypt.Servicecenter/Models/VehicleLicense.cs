@@ -15,6 +15,6 @@ namespace Reftruckegypt.Servicecenter.Models
         public const int MaxMotorNumberLength = 250;
         
         public const int MaxTrafficDepartmentNameLength = 500;
-        public const int MaxPlatNumberLength = 7;
+        public const int MaxPlatNumberLength = 8;
     }
 }

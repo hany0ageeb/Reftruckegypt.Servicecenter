@@ -16,6 +16,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
         private readonly IValidator<VehicleViolation> _validator;
 
         private ModelState _modelState = new ModelState();
+        private Period _period;
 
         private DateTime _violationDate;
         private bool _hasChanged = false;
@@ -47,12 +48,30 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
                 {
                     ViolationTypes.Add(line.ViolationType);
                 }
+                _violationDate = line.ViolationDate;
+            }
+            else
+            {
+                ViolationDate = DateTime.Now;
             }
             Lines.ListChanged += (o, e) =>
             {
                 if(e.PropertyDescriptor?.Name != nameof(HasChanged))
                 {
                     HasChanged = true;
+                }
+                if(e.ListChangedType == ListChangedType.ItemAdded && e.NewIndex >=0 && e.NewIndex < Lines.Count)
+                {
+                    if(Vehicles.Count > 0)
+                    {
+                        if(Vehicles.Count > 0)
+                            Lines[e.NewIndex].Vehicle = Vehicles[0];
+                        if(ViolationTypes.Count > 0)
+                            Lines[e.NewIndex].ViolationType = ViolationTypes[0];
+                        Lines[e.NewIndex].Count = 1;
+                        Lines[e.NewIndex].ViolationDate = _violationDate;
+                        Lines[e.NewIndex].Period = _period;
+                    }
                 }
             };
             HasChanged = false;
@@ -86,14 +105,14 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
         private void ValidateDate()
         {
             _modelState.RemoveErrors(nameof(ViolationDate));
-            Period period = _unitOfWork.PeriodRepository.FindOpenPeriod(_violationDate);
-            if(period == null)
+            _period = _unitOfWork.PeriodRepository.FindOpenPeriod(_violationDate);
+            if(_period == null)
             {
                 _modelState.AddError(nameof(ViolationDate), $"No Open Period For Date: {_violationDate} Pleas Enter another Date Or create/open period for that date.");
             }
             foreach (var line in Lines)
             {
-                line.Period = period;
+                line.Period = _period;
                 line.ViolationDate = _violationDate;
             }
         }
@@ -152,7 +171,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
         {
             if (_hasChanged)
             {
-                DialogResult result = _applicationContext.DisplayMessage("Confirm Save", "Do You Want To Save Changes?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                DialogResult result = _applicationContext.DisplayMessage(
+                    title: "Confirm Save", 
+                    message:"Do You Want To Save Changes?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if(result == DialogResult.Yes)
                 {
                     return SaveOrUpdate();

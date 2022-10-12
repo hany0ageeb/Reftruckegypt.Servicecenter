@@ -18,10 +18,14 @@ namespace Reftruckegypt.Servicecenter.Models
                 return 0M;
             if(uom is null)
             {
-                return line.UnitPrice * line.UomConversionRate;
+                return line.UnitPrice * (1.0M / line.UomConversionRate);
             }
             else
             {
+                if (uom.Id == line.UomId)
+                    return line.UnitPrice;
+                if(uom.Id == line.SparePart.PrimaryUomId)
+                    return line.UnitPrice * (1.0M/line.UomConversionRate);
                 decimal? rate = sparePart.PrimaryUom.Convert(uom, 1, sparePart);
                 return line.UnitPrice * line.UomConversionRate * rate;
             }

@@ -51,7 +51,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
             _billValidator = billValidator ?? throw new ArgumentNullException(nameof(billValidator));
             _lineValidator = lineValidator ?? throw new ArgumentNullException(nameof(lineValidator));
 
-            Vehicles.AddRange(_untiOfWork.VehicleRepository.Find(orderBy: q => q.OrderBy(x => x.InternalCode)));
+            Vehicles.AddRange(_untiOfWork.VehicleRepository.Find(q => q.OrderBy(x => x.InternalCode)));
             SpareParts.AddRange(_untiOfWork.SparePartRepository.Find(predicate: x => x.IsEnabled, orderBy: q => q.OrderBy(x => x.Code)));
             Uoms.AddRange(_untiOfWork.UomRepository.Find(x => x.IsEnabled, q => q.OrderBy(x => x.Code)));
             if (bill != null)
@@ -84,7 +84,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
             }
             Lines.ListChanged += (o, e) =>
             {
-                HasChanged = true;
+                if(e.PropertyDescriptor?.Name!="HasChanged")
+                    HasChanged = true;
                 if (e.ListChangedType == ListChangedType.ItemAdded)
                 {
                     if (e.NewIndex >= 0 && e.NewIndex < Lines.Count)
@@ -95,6 +96,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                         {
                             Lines[e.NewIndex].SparePart = SpareParts[0];
                             Lines[e.NewIndex].Uom = SpareParts[0].PrimaryUom;
+                            Lines[e.NewIndex].UnitPrice = FindSparePartUnitPrice(Lines[e.NewIndex]);
                         }
                     }
                 }

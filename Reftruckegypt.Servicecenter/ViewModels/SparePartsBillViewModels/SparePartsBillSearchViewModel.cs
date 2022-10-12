@@ -44,7 +44,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
             SpareParts.AddRange(_unitOfWork.SparePartRepository.Find(orderBy: q => q.OrderBy(x => x.Code)));
             SpareParts.Insert(0, new SparePart() { Id = Guid.Empty, Code = "--ALL--" });
             _sparePart = SpareParts[0];
-            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(orderBy: q=>q.OrderBy(x => x.InternalCode)));
+            Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q=>q.OrderBy(x => x.InternalCode)));
             Vehicles.Insert(0, new Vehicle() { Id = Guid.Empty, InternalCode = "--ALL--" });
             _vehicle = Vehicles[0];
         }
