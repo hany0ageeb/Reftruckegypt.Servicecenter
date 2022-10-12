@@ -43,21 +43,42 @@ namespace Reftruckegypt.Servicecenter.Views.UomViews
             btnSave.DataBindings.Add(new Binding(nameof(btnSave.Enabled),_editModel, nameof(_editModel.HasChanged)) { DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged });
             btnSave.Click += (o, e) =>
             {
-                if (_editModel.SaveOrUpdate())
-                    Close();
+                try
+                {
+                    if (_editModel.SaveOrUpdate())
+                        Close();
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             };
             // ...
             btnClose.Click += (o, e) =>
             {
-                if (_editModel.Close())
-                    Close();
+                try
+                {
+                    if (_editModel.Close())
+                        Close();
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             };
             // ...
             FormClosing += (o, e) =>
             {
-                if (_editModel.HasChanged)
+                try
                 {
-                    e.Cancel = !_editModel.Close();
+                    if (_editModel.HasChanged)
+                    {
+                        e.Cancel = !_editModel.Close();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             };
             // ...

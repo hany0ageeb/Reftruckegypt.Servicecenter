@@ -69,11 +69,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.UomViewModels
             if(_selectedIndex >= 0 && _selectedIndex < Uoms.Count)
             {
                 Guid selectedUomId = Uoms[_selectedIndex].Id;
-               if ( 
+               if (
+                    _unitOfWork.SparePartRepository.Exists(
+                        x => x.PrimaryUomId == selectedUomId) ||
                     _unitOfWork.SparePartPriceListLineRepository.Exists(
-                        e=>e.UomId == selectedUomId ) ||
+                        e => e.UomId == selectedUomId) ||
                     _unitOfWork.SparePartsBillLineRepository.Exists(
-                        e=>e.UomId == selectedUomId ) ||
+                        e => e.UomId == selectedUomId) ||
                     _unitOfWork.UomConversionRepository.Exists(
                         e => e.FromUomId == selectedUomId || e.ToUomId == selectedUomId))
                 {
