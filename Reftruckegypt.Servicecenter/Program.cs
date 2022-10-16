@@ -126,8 +126,10 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(Views.FuelCardViews.FuelCardsView));
             services.AddTransient(typeof(VehiclesView))
                 .AddTransient(typeof(VehicleStateChangesView));
-            
+
             // ....
+            services.AddScoped(typeof(Reports.ReportsParameterViews.FuelConsumptionReportParametersView));
+            services.AddScoped(typeof(Reports.ReportsParameterViews.ExternalRepairInvoicesReportParametersView));
 
         }
         public static IServiceProvider ServiceProvider { get; private set; }

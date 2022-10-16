@@ -33,15 +33,24 @@ namespace Reftruckegypt.Servicecenter.Views
         {
             exportToolStripMenuItem.Text = displayName;
         }
-        public  void AddExportAction(EventHandler action)
+        public void AddExportAction(EventHandler action)
         {
-            
             exportToolStripMenuItem.Click += action;
         }
         public  void RemoveExportAction(EventHandler action)
         {
             
             exportToolStripMenuItem.Click -= action;
+        }
+        public void SetReportsMenu(IEnumerable<Models.UserReport> reports)
+        {
+            reportsToolStripMenuItem.DropDownItems.Clear();
+            foreach(var rpt in reports)
+            {
+                var menuItem = new ToolStripMenuItem(rpt.DisplayName);
+                menuItem.Click += (o, e) => rpt.Execute();
+                this.reportsToolStripMenuItem.DropDownItems.Add(menuItem);
+            }
         }
         public MainView()
         {

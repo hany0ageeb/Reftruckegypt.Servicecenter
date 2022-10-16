@@ -597,12 +597,27 @@ namespace Reftruckegypt.Servicecenter.Common
                 _isDisposed = true;
             }
         }
-
+        public void InitializeReportsMenu(IEnumerable<UserReport> reports)
+        {
+            _mdiParent.SetReportsMenu(reports);
+        }
         public void DisplayVehicleStateChangeEditView(VehicleStateChangesEditModel vehicleStateChangesEditModel)
         {
             VehicleStateChangesEditView vehicleStateChangesEditView = new Views.VehicleStateChangeViews.VehicleStateChangesEditView(vehicleStateChangesEditModel);
             vehicleStateChangesEditView.ShowInTaskbar = false;
             vehicleStateChangesEditView.ShowDialog(_mdiParent);
+        }
+        public void DisplayView(Type type)
+        {
+            IServiceScope scope = Program.ServiceProvider.CreateScope();
+            Form view = (Form)scope.ServiceProvider.GetRequiredService(type);
+            view.MdiParent = _mdiParent;
+            _scopes.Add(view, scope);
+            view.FormClosing += (o, e) =>
+            {
+                 FormClosed(o as Form);
+            };
+            view.Show();
         }
 
     }

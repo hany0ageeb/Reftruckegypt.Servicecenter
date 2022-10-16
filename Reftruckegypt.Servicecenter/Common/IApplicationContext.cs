@@ -61,6 +61,9 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplayVehicleEditView(VehicleEditViewModel editModel);
         void DisplayVehicleStateChangeEditView(VehicleStateChangesEditModel vehicleStateChangesEditModel);
         void DisplayVehicleSatetChangesView(bool isExportEnabled = false, string exportDisplayName = "Export");
+
+        void InitializeReportsMenu(IEnumerable<UserReport> reports);
+        void DisplayView(Type type);
     }
    
 }

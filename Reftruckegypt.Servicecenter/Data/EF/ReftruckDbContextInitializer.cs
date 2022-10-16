@@ -1,4 +1,5 @@
 ﻿using Reftruckegypt.Servicecenter.Models;
+using System;
 using System.Data.Entity;
 
 namespace Reftruckegypt.Servicecenter.Data.EF
@@ -729,6 +730,33 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 }
             };
             // ...
+            UserReport[] userReports =
+            {
+                new UserReport()
+                {
+                    Sequence = 10,
+                    Name = nameof(FuelConsumption),
+                    DisplayName = "Fuel Consumption Report",
+                    IsEnabled = true,
+                    ParameterViewTypeName = typeof(Reports.ReportsParameterViews.FuelConsumptionReportParametersView).FullName
+                },
+                new UserReport()
+                {
+                    Sequence = 10,
+                    Name = nameof(ExternalRepairBill),
+                    DisplayName = "External Repairs Invoices Report",
+                    IsEnabled = true,
+                    ParameterViewTypeName = typeof(Reports.ReportsParameterViews.ExternalRepairInvoicesReportParametersView).FullName
+                },
+                new UserReport()
+                {
+                    Sequence = 10,
+                    Name = nameof(SparePartsBill),
+                    DisplayName = "Internal Repairs Invoices Report",
+                    IsEnabled = true
+                }
+            };
+            // ...
             context.Locations.AddRange(locations);
             context.VehicleCategories.AddRange(vehicleCategories);
             context.FuelTypes.AddRange(fuelTypes);
@@ -739,6 +767,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             context.ViolationTypes.AddRange(violationTypes);
             context.Vehicels.AddRange(vehicles);
             context.UserCommands.AddRange(userCommands);
+            context.UserReports.AddRange(userReports);
             context.Periods.AddRange(periods);
             context.ExternalRepairBills.AddRange(externalRepairBills);
             // ........

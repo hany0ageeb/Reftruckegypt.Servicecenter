@@ -18,6 +18,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
             FuelTypeName = fuelConsumption.FuelType.Name;
             QuantityInLiters = fuelConsumption.TotalConsumedQuanityInLiteres;
             AmountInEGP = fuelConsumption.TotalAmountInEGP;
+            VehicleCategoryName = fuelConsumption.Vehicle.VehicleCategory?.Name;
+            VehicleModelName = fuelConsumption.Vehicle.VehicleModel?.Name;
         }
         public FuelConsumptionViewModel()
         {
@@ -29,6 +31,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
         public string State { get; private set; }
         [Column("Vehicle Internal Code")]
         public string VehicleInternalCode { get; private set; }
+        [Column("Vehicle Category Name")]
+        public string VehicleCategoryName { get; private set; }
+        [Column("Vehicle Model Name")]
+        public string VehicleModelName { get; private set; }
         [Column("Fuel Card Number")]
         public string FuelCardNumber { get; private set; }
         [Column("Fuel Card Name")]

@@ -795,9 +795,36 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<UserCommand>()
                 .Property(e => e.DisplayName)
+                .IsRequired()
                 .HasMaxLength(500);
             modelBuilder
                 .Entity<UserCommand>()
+                .Ignore(e => e.Execute);
+            // ... UserReport
+            modelBuilder
+                .Entity<UserReport>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("UserReports");
+                });
+            modelBuilder
+                .Entity<UserReport>()
+                .HasIndex(e => e.Name)
+                .IsUnique(true)
+                .HasName("IDX_)UNQ_USR_RPT_NAME");
+            modelBuilder
+                .Entity<UserReport>()
+                .Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(UserReport.MaxNameLength);
+            modelBuilder
+               .Entity<UserReport>()
+               .Property(e => e.DisplayName)
+               .IsRequired()
+               .HasMaxLength(UserReport.MaxDisplayNameLength);
+            modelBuilder
+                .Entity<UserReport>()
                 .Ignore(e => e.Execute);
         }
         public DbSet<Location> Locations { get; set; }
@@ -825,6 +852,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         public DbSet<VehicleKilometerReading> VehicleKilometerReadings { get; set; }
         public DbSet<VehicleStateChange> VehicleStateChanges { get; set; }
         public DbSet<UserCommand> UserCommands { get; set; }
+        public DbSet<UserReport> UserReports { get; set; }
         
     }
 }

@@ -126,6 +126,24 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.6.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.dll</HintPath>
     </Reference>
@@ -238,6 +256,7 @@
     <Compile Include="Data\Abstractions\IUomConversionRepository.cs" />
     <Compile Include="Data\Abstractions\IUomRepository.cs" />
     <Compile Include="Data\Abstractions\IUserCommandRepository.cs" />
+    <Compile Include="Data\Abstractions\IUserReportRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleCategoryRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleKilometerReadingRepository.cs" />
     <Compile Include="Data\Abstractions\IVehicleLicenseRepository.cs" />
@@ -267,6 +286,7 @@
     <Compile Include="Data\EF\UomConversionRepository.cs" />
     <Compile Include="Data\EF\UomRepository.cs" />
     <Compile Include="Data\EF\UserCommandRepository.cs" />
+    <Compile Include="Data\EF\UserReportRepository.cs" />
     <Compile Include="Data\EF\VehicleCategoryRepository.cs" />
     <Compile Include="Data\EF\VehicleKilometerReadingRepository.cs" />
     <Compile Include="Data\EF\VehicleLicenseRepository.cs" />
@@ -293,6 +313,7 @@
     <Compile Include="Models\Uom.cs" />
     <Compile Include="Models\UomConversion.cs" />
     <Compile Include="Models\UserCommand.cs" />
+    <Compile Include="Models\UserReport.cs" />
     <Compile Include="Models\Validation\DriverValidator.cs" />
     <Compile Include="Models\Validation\ExternalAutoRepairShopValidator.cs" />
     <Compile Include="Models\Validation\ExternalRepairBillValidator.cs" />
@@ -329,6 +350,31 @@
     <Compile Include="Models\ViolationType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\ReportsParameterViews\ExternalRepairInvoicesReportParametersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsParameterViews\ExternalRepairInvoicesReportParametersView.Designer.cs">
+      <DependentUpon>ExternalRepairInvoicesReportParametersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportsParameterViews\FuelConsumptionReportParametersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsParameterViews\FuelConsumptionReportParametersView.Designer.cs">
+      <DependentUpon>FuelConsumptionReportParametersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportsViews\ExternalRepairInvoicesReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsViews\ExternalRepairInvoicesReport.Designer.cs">
+      <DependentUpon>ExternalRepairInvoicesReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportsViews\FuelConsumptionReportView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsViews\FuelConsumptionReportView.Designer.cs">
+      <DependentUpon>FuelConsumptionReportView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="ValidationErrors.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -663,6 +709,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reports\FuelConsumptionReport.rdlc" />
+    <EmbeddedResource Include="Reports\ReportsParameterViews\ExternalRepairInvoicesReportParametersView.resx">
+      <DependentUpon>ExternalRepairInvoicesReportParametersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportsParameterViews\FuelConsumptionReportParametersView.resx">
+      <DependentUpon>FuelConsumptionReportParametersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ExternalRepairInvoicesReport.rdlc" />
+    <EmbeddedResource Include="Reports\ReportsViews\ExternalRepairInvoicesReport.resx">
+      <DependentUpon>ExternalRepairInvoicesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportsViews\FuelConsumptionReportView.resx">
+      <DependentUpon>FuelConsumptionReportView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ValidationErrors.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidationErrors.Designer.cs</LastGenOutput>
@@ -800,6 +860,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels.ExternalRepairBillViewModel.datasource" />
+    <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -814,7 +876,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

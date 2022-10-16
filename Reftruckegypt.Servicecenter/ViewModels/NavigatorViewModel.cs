@@ -17,11 +17,26 @@ namespace Reftruckegypt.Servicecenter.ViewModels
         private bool _isDisposed = false;
         public NavigatorViewModel(IUnitOfWork unitOfWork, IApplicationContext applicationContext)
         {
-            _unitOfWork = unitOfWork;
-            _applicationContext = applicationContext;
+            _unitOfWork = unitOfWork ??  throw new ArgumentNullException(nameof(unitOfWork));
+            _applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
             var commands = _unitOfWork.UserCommandRepository.Find(
                 predicate: com => com.IsEnabled,
                 orderBy: q=>q.OrderBy(e=>e.Sequence)).ToList();
+            var reports = _unitOfWork
+                .UserReportRepository
+                .Find(
+                predicate: rpt => rpt.IsEnabled,
+                orderBy: q => q.OrderBy(e=>e.Sequence));
+            // ... set each report action accoring to its name
+            foreach(var report in reports)
+            {
+                report.Execute = () =>
+                {
+                    _applicationContext.DisplayView(Type.GetType(report.ParameterViewTypeName));
+                };
+                break;
+            }
+            _applicationContext.InitializeReportsMenu(reports);
             UserCommands.Clear();
             foreach(var command in commands)
             {
