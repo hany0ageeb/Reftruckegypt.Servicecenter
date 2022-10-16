@@ -21,6 +21,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
         private Period _period;
 
         private bool _hasChanged = false;
+        private int _selectedIndex = -1;
 
         public SparePartPriceListEditViewModel(
             IUnitOfWork unitOfWork,
@@ -121,6 +122,33 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
              };
         }
         public Guid Id { get; private set; }
+
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                if (_selectedIndex != value)
+                {
+                    _selectedIndex = value;
+                    OnPropertyChanged(this, nameof(SparePartName));
+                }
+            }
+        }
+        public string SparePartName
+        {
+            get
+            {
+                if(_selectedIndex>=0 && _selectedIndex < Lines.Count)
+                {
+                    return Lines[_selectedIndex].SparePart.Name;
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
         public bool HasChanged
         {
             get => _hasChanged;

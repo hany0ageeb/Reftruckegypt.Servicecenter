@@ -14,12 +14,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
             ChassisNumber = vehicle.ChassisNumber;
             DriverName = vehicle.Driver?.Name;
             FuelCardNumber = vehicle.FuelCard?.Number;
-            FuelTypeName = vehicle.FuelType.Name;
+            FuelTypeName = vehicle.FuelType?.Name;
             MaintenanceLocationName = vehicle.MaintenanceLocation?.Name;
             WorkingLocationName = vehicle.WorkLocation?.Name;
             ModelYear = vehicle.ModelYear.ToString();
             OvallStateName = vehicle.OverAllState?.Name;
-            ModelName = vehicle.VehicleModel.Name;
+            ModelName = vehicle.VehicleModel?.Name;
             WorkingState = vehicle.WorkingState;
             if(vehicle.VehicelLicenses.Count > 0)
             {

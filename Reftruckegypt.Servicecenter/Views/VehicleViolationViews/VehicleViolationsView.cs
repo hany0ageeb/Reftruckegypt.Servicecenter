@@ -45,7 +45,10 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
             {
                 if (pickFromDate.Checked)
                 {
-                    _searchModel.FromDate = new DateTime(pickFromDate.Value.Year, pickFromDate.Value.Month, pickFromDate.Value.Day, 0, 0, 0);
+                    _searchModel.FromDate = new DateTime(
+                        pickFromDate.Value.Year, 
+                        pickFromDate.Value.Month, 
+                        pickFromDate.Value.Day, 0, 0, 0);
                 }
                 else
                 {
@@ -57,7 +60,10 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
             {
                 if (pickToDate.Checked)
                 {
-                    _searchModel.ToDate = new DateTime(pickToDate.Value.Year, pickToDate.Value.Month, pickToDate.Value.Day, 23, 59, 59);
+                    _searchModel.ToDate = new DateTime(
+                        pickToDate.Value.Year, 
+                        pickToDate.Value.Month, 
+                        pickToDate.Value.Day, 23, 59, 59);
                 }
                 else
                 {

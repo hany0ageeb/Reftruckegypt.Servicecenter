@@ -20,5 +20,7 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
             Guid? workingLocationId = null,
             Guid? maintenanceLocationId = null,
             Func<IQueryable<Vehicle>, IOrderedQueryable<Vehicle>> orderBy = null);
+
+        Vehicle FindVehicleWithFuelCard(Guid key);
     }
 }

@@ -169,8 +169,9 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             {
                 if (_editModel.SaveOrUpdate())
                 {
-                    Close();
                     _hasChanged = false;
+                    Close();
+                    
                 }
             };
             // ....

@@ -35,6 +35,12 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
 
             });
             // ...
+            txtsparePartName.DataBindings.Clear();
+            txtsparePartName.DataBindings.Add(new Binding(nameof(txtsparePartName.Text), _editModel, nameof(_editModel.SparePartName))
+            { 
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            // ...
             cboPeriods.DataBindings.Clear();
             cboPeriods.DataSource = _editModel.Periods;
             cboPeriods.DisplayMember = nameof(Models.Period.Name);
@@ -45,7 +51,6 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             gridLines.AllowUserToDeleteRows = true;
             gridLines.AutoGenerateColumns = false;
             gridLines.MultiSelect = false;
-            gridLines.SelectionMode = DataGridViewSelectionMode.CellSelect;
             gridLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             gridLines.ReadOnly = false;
             
@@ -84,7 +89,27 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
                 Name = nameof(SparePartPriceListLineEditViewModel.UomConversionRate),
                 ReadOnly = false
             });
-
+            gridLines.EditingControlShowing += (o, e) =>
+            {
+                ComboBox editControl = e.Control as ComboBox;
+                if(editControl != null)
+                {
+                    editControl.DropDownStyle = ComboBoxStyle.DropDownList;
+                    editControl.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    editControl.AutoCompleteSource = AutoCompleteSource.ListItems;
+                }
+            };
+            gridLines.SelectionChanged += (o, e) =>
+            {
+                if(gridLines.SelectedCells.Count > 0)
+                {
+                    _editModel.SelectedIndex = gridLines.SelectedCells[0].RowIndex;
+                }
+                else
+                {
+                    _editModel.SelectedIndex = -1;
+                }
+            };
             gridLines.DataSource = _editModel.Lines;
             // ...
             btnSave.DataBindings.Clear();

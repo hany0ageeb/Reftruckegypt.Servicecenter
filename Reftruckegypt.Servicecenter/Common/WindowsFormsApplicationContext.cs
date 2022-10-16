@@ -112,6 +112,7 @@ namespace Reftruckegypt.Servicecenter.Common
                  {
                      billsView.ExportToFile();
                  });
+                _mdiParent.AddExportAction(_exportActions[billsView]);
             }
             billsView.Show();
         }
@@ -133,6 +134,7 @@ namespace Reftruckegypt.Servicecenter.Common
                 {
                     priceListsView.ExportToFile();
                 });
+                _mdiParent.AddExportAction(_exportActions[priceListsView]);
             }
             priceListsView.Show();
         }

@@ -117,7 +117,16 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
         };
         public ModelState Validate(bool notify = false)
         {
-            return Validator.Validate(SparePartsBillLine);
+            ModelState modelState = new ModelState();
+            if (Validator != null)
+            {
+                modelState.AddErrors(Validator.Validate(SparePartsBillLine));
+                if (notify)
+                {
+                    OnPropertyChanged(this, nameof(SparePart));
+                }
+            }
+            return modelState;
         }
         
         #region IDataErrorInfo

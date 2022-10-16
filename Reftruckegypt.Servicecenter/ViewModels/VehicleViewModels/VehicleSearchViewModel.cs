@@ -278,13 +278,17 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                     _unitOfWork.FuelConsumptionRepository.Exists(x => x.VehicleId == id) ||
                     _unitOfWork.VehicleViolationRepository.Exists(x => x.VehicleId == id) ||
                     _unitOfWork.ExternalRepairBillRepository.Exists(x => x.VehicleId == id) ||
-                    _unitOfWork.FuelCardRepository.Exists(x => x.Vehicle.Id == id) ||
+                    
                     _unitOfWork.SparePartsBillRepository.Exists(x => x.VehicleId == id) ||
                     _unitOfWork.VehicleKilometerReadingRepository.Exists(x => x.VehicleId == id) ||
                     _unitOfWork.VehicleStateChangeRepository.Exists(x => x.VehicleId == id)
                     )
                 {
                     return false;
+                }
+                else
+                {
+                    return true;
                 }
             }
             return false;
@@ -334,12 +338,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
         {
             VehicleEditViewModel editViewModel = new VehicleEditViewModel(_unitOfWork, _applicationContext,_vehicleValidator, _vehicleLicenseValidator);
             _applicationContext.DisplayVehicleEditView(editViewModel);
+            Search();
         }
         public void Edit()
         {
             if(_isEditEnabled && _selectedIndex >= 0 && _selectedIndex < SearchResult.Count)
             {
-                Vehicle oldVehicle = _unitOfWork.VehicleRepository.Find(key: SearchResult[_selectedIndex].Id);
+                Vehicle oldVehicle = _unitOfWork.VehicleRepository.FindVehicleWithFuelCard(key: SearchResult[_selectedIndex].Id);
                 if (oldVehicle != null)
                 {
                     VehicleEditViewModel vehicleEditViewModel =
@@ -374,6 +379,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                     if (vehicle != null)
                     {
                         _unitOfWork.VehicleRepository.Remove(vehicle);
+                        _unitOfWork.Complete();
                         Search();
                     }
                     else

@@ -37,7 +37,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             {
                 if (pickfromDate.Checked)
                 {
-                    _searchModel.FromDate = pickfromDate.Value;
+                    _searchModel.FromDate = new DateTime(pickfromDate.Value.Year, pickfromDate.Value.Month, pickfromDate.Value.Day, 0,0,0);
                 }
                 else
                 {
@@ -49,7 +49,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             {
                 if (picktoDate.Checked)
                 {
-                    _searchModel.ToDate = picktoDate.Value;
+                    _searchModel.ToDate = new DateTime(picktoDate.Value.Year, picktoDate.Value.Month, picktoDate.Value.Day, 23,59,59);
                 }
                 else
                 {

@@ -108,7 +108,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                     case nameof(SparePartsBill):
                         command.Execute = () =>
                         {
-                            _applicationContext.DisplaySparePartsBillsView(true, "Export");
+                            _applicationContext.DisplaySparePartsBillsView(true, "Export Internal Invoices");
                         };
                         break;
                     case nameof(FuelCard):

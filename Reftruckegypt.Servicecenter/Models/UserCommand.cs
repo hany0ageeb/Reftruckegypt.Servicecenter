@@ -11,4 +11,5 @@ namespace Reftruckegypt.Servicecenter.Models
         public Action Execute { get; set; }
         public UserCommand Self => this;
     }
+   
 }

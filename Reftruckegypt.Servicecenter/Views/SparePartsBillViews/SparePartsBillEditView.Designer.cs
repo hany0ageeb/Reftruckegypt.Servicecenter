@@ -44,6 +44,8 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtItemName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridLines)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -56,7 +58,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.09241F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.90759F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 380F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 381F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtNumber, 1, 0);
@@ -91,7 +93,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // 
             // txtNumber
             // 
-            this.txtNumber.Location = new System.Drawing.Point(97, 3);
+            this.txtNumber.Location = new System.Drawing.Point(96, 3);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.ReadOnly = true;
             this.txtNumber.Size = new System.Drawing.Size(275, 23);
@@ -100,7 +102,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(393, 0);
+            this.label2.Location = new System.Drawing.Point(392, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 15);
             this.label2.TabIndex = 2;
@@ -108,7 +110,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // 
             // pickbillDate
             // 
-            this.pickbillDate.Location = new System.Drawing.Point(460, 3);
+            this.pickbillDate.Location = new System.Drawing.Point(459, 3);
             this.pickbillDate.Name = "pickbillDate";
             this.pickbillDate.Size = new System.Drawing.Size(244, 23);
             this.pickbillDate.TabIndex = 3;
@@ -116,7 +118,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // cbovehicles
             // 
             this.cbovehicles.FormattingEnabled = true;
-            this.cbovehicles.Location = new System.Drawing.Point(97, 32);
+            this.cbovehicles.Location = new System.Drawing.Point(96, 32);
             this.cbovehicles.Name = "cbovehicles";
             this.cbovehicles.Size = new System.Drawing.Size(275, 23);
             this.cbovehicles.TabIndex = 5;
@@ -134,19 +136,22 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.46953F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 88.53046F));
-            this.tableLayoutPanel2.Controls.Add(this.label4, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.txtRepairs, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtRepairs, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtItemName, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label4, 0, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(13, 429);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(837, 108);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(837, 133);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Location = new System.Drawing.Point(3, 30);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 15);
             this.label4.TabIndex = 1;
@@ -154,7 +159,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // 
             // txtRepairs
             // 
-            this.txtRepairs.Location = new System.Drawing.Point(98, 3);
+            this.txtRepairs.Location = new System.Drawing.Point(98, 33);
             this.txtRepairs.Multiline = true;
             this.txtRepairs.Name = "txtRepairs";
             this.txtRepairs.Size = new System.Drawing.Size(736, 93);
@@ -163,7 +168,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(766, 560);
+            this.btnClose.Location = new System.Drawing.Point(766, 574);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(84, 28);
             this.btnClose.TabIndex = 11;
@@ -173,7 +178,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // btnSave
             // 
             this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(668, 560);
+            this.btnSave.Location = new System.Drawing.Point(668, 574);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 28);
             this.btnSave.TabIndex = 10;
@@ -184,13 +189,30 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // txtItemName
+            // 
+            this.txtItemName.Location = new System.Drawing.Point(98, 3);
+            this.txtItemName.Name = "txtItemName";
+            this.txtItemName.ReadOnly = true;
+            this.txtItemName.Size = new System.Drawing.Size(641, 23);
+            this.txtItemName.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 15);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Spare Part";
+            // 
             // SparePartsBillEditView
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(862, 600);
+            this.ClientSize = new System.Drawing.Size(862, 614);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -228,5 +250,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox txtItemName;
+        private System.Windows.Forms.Label label5;
     }
 }

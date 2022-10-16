@@ -14,6 +14,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
     public partial class SparePartsBillEditView : Form
     {
         private SparePartsBillEditViewModel _editModel;
+        private bool _hasChanged = true;
         public SparePartsBillEditView(SparePartsBillEditViewModel editViewModel)
         {
             _editModel = editViewModel;
@@ -163,6 +164,29 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
                     gridLines.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "";
                 }
             };
+            gridLines.SelectionChanged += (o, e) =>
+            {
+                if(gridLines.SelectedCells.Count > 0)
+                {
+                    int rowIndex = gridLines.SelectedCells[0].RowIndex;
+                    if (rowIndex >=0 && rowIndex < gridLines.Rows.Count)
+                    {
+                        var sparePart = gridLines.Rows[rowIndex].Cells[nameof(SparePartsBillLineEditViewModel.SparePart)].Value as Models.SparePart;
+                        if (sparePart != null)
+                        {
+                            txtItemName.Text = sparePart.Name;
+                        }
+                        else
+                        {
+                            txtItemName.Text = "";
+                        }
+                    }
+                }
+                else
+                {
+                    txtItemName.Text = "";
+                }
+            };
             gridLines.DataSource = _editModel.Lines;
             // ...
             btnSave.DataBindings.Clear();
@@ -182,10 +206,12 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
                         btnSave.Enabled = false;
                         gridLines.ReadOnly = true;
                         System.Media.SystemSounds.Beep.Play();
+                        _hasChanged = false;
                     }
                     else
                     {
                         System.Media.SystemSounds.Hand.Play();
+                        
                     }
                 }
                 catch(Exception ex)
@@ -198,8 +224,9 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             {
                 try
                 {
-                    if (_editModel.Close())
+                    if (_hasChanged && _editModel.Close())
                     {
+                        _hasChanged = false;
                         Close();
                     }
                     else
@@ -217,7 +244,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             {
                 try
                 {
-                    if (_editModel.HasChanged)
+                    if (_editModel.HasChanged || _hasChanged)
                     {
                         e.Cancel = !_editModel.Close();
                         if (e.Cancel)

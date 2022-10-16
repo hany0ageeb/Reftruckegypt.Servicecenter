@@ -15,6 +15,20 @@ namespace Reftruckegypt.Servicecenter.Data.EF
 
         }
         public ReftruckDbContext ReftruckDbContext => _context as ReftruckDbContext;
+        public Vehicle FindVehicleWithFuelCard(Guid key)
+        {
+            IQueryable<Vehicle> query =
+                _context
+                .Set<Vehicle>()
+                .Where(x => x.Id == key)
+                .Include(e => e.FuelCard)
+                .Include(e => e.Driver)
+                .Include(e => e.FuelType)
+                .Include(e => e.VehicelLicenses)
+                .Include(e => e.VehicleModel)
+                .Include(e => e.VehicleCategory);
+            return query.AsEnumerable().FirstOrDefault();
+        }
         public IEnumerable<Vehicle> Find(
             string internalCode = "",
             string plateNumber = "",

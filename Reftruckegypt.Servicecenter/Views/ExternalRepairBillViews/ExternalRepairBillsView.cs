@@ -127,7 +127,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             {
                 if (pickbillDateFrom.Checked)
                 {
-                    _searchModel.FromDate = pickbillDateFrom.Value;
+                    _searchModel.FromDate = new DateTime(pickbillDateFrom.Value.Year, pickbillDateFrom.Value.Month, pickbillDateFrom.Value.Day, 0,0,0);
                 }
                 else
                 {
@@ -139,7 +139,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             {
                 if (pickbillDateTo.Checked)
                 {
-                    _searchModel.ToDate = pickbillDateTo.Value;
+                    _searchModel.ToDate = new DateTime(pickbillDateTo.Value.Year, pickbillDateTo.Value.Month, pickbillDateTo.Value.Day, 23, 59, 59);
                 }
                 else
                 {

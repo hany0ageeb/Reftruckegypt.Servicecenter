@@ -43,8 +43,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
             VehicleModels.AddRange(_unitOfWork.VehicleModelRepository.Find(orderBy: q => q.OrderBy(x => x.Name)));
             Drivers.AddRange(_unitOfWork.DriverRepository.Find(x => x.IsEnabled, q => q.OrderBy(x => x.Name)));
             Drivers.Insert(0, Driver.Empty);
-            FuelCards.AddRange(_unitOfWork.FuelCardRepository.Find(orderBy: q => q.OrderBy(x => x.Name)));
-            FuelCards.Insert(0, FuelCard.Empty);
+            FuelCards.AddRange(_unitOfWork.FuelCardRepository.Find(predicate: v=>v.Vehicle == null,orderBy: q => q.OrderBy(x => x.Name)));
+            
             FuelTypes.AddRange(_unitOfWork.FuelTypeRepository.Find(orderBy: q => q.OrderBy(x => x.Name)));
             OverAllStates.AddRange(_unitOfWork.VehicleOverAllStateRepository.Find(orderBy: q => q.OrderBy(x => x.Name)));
             OverAllStates.Insert(0, VehicleOverAllState.Empty);
@@ -77,9 +77,21 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                     _vehicle.WorkLocation = Locations[0];
                 }
                 WorkingStates.AddRange( new []{ VehicleStates.Working, VehicleStates.Broken });
+                FuelCards.Insert(0, FuelCard.Empty);
             }
             else
             {
+                if (vehicle.FuelCard != null)
+                {
+                    if (!FuelCards.Contains(vehicle.FuelCard))
+                    {
+                        FuelCards.Add(vehicle.FuelCard);
+                    }
+                    if(!_unitOfWork.FuelConsumptionRepository.Exists(x=>x.FuelCardId == vehicle.FuelCard.Id))
+                    {
+                        FuelCards.Insert(0, FuelCard.Empty);
+                    }
+                }
                 WorkingStates.Add(vehicle.WorkingState);
                 _vehicle = new Vehicle()
                 {

@@ -41,6 +41,8 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gridLines = new System.Windows.Forms.DataGridView();
+            this.txtsparePartName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLines)).BeginInit();
@@ -52,7 +54,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.09632F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.90369F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 365F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 366F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtNumber, 1, 0);
@@ -70,7 +72,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(385, 0);
+            this.label3.Location = new System.Drawing.Point(384, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 15);
             this.label3.TabIndex = 4;
@@ -112,7 +114,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(461, 3);
+            this.txtName.Location = new System.Drawing.Point(460, 3);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(337, 23);
             this.txtName.TabIndex = 5;
@@ -149,6 +151,23 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             this.gridLines.Size = new System.Drawing.Size(823, 421);
             this.gridLines.TabIndex = 12;
             // 
+            // txtsparePartName
+            // 
+            this.txtsparePartName.Location = new System.Drawing.Point(99, 505);
+            this.txtsparePartName.Name = "txtsparePartName";
+            this.txtsparePartName.ReadOnly = true;
+            this.txtsparePartName.Size = new System.Drawing.Size(479, 23);
+            this.txtsparePartName.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 513);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 15);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Spare Part";
+            // 
             // SparePartsPriceListEditView
             // 
             this.AcceptButton = this.btnSave;
@@ -156,6 +175,8 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(848, 563);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtsparePartName);
             this.Controls.Add(this.gridLines);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
@@ -171,6 +192,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLines)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -187,5 +209,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.DataGridView gridLines;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtsparePartName;
     }
 }

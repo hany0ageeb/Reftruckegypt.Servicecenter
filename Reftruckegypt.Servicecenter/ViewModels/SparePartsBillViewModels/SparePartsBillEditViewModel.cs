@@ -107,6 +107,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                         deletedLines.Add(Lines[e.NewIndex]);
                     }
                 }
+                if(e.ListChangedType == ListChangedType.ItemChanged && e.NewIndex >= 0 && e.OldIndex < Lines.Count)
+                {
+                    if(e.PropertyDescriptor?.Name == nameof(SparePartsBillLineEditViewModel.SparePart))
+                    {
+                        Lines[e.NewIndex].UnitPrice = FindSparePartUnitPrice(Lines[e.NewIndex]);
+                    }
+                }
             };
         }
         public bool HasChanged
