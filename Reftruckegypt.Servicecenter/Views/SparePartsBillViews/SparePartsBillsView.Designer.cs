@@ -60,7 +60,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.52161F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 292F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
             this.tableLayoutPanel1.Controls.Add(this.cboParts, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -81,7 +81,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // cboParts
             // 
             this.cboParts.FormattingEnabled = true;
-            this.cboParts.Location = new System.Drawing.Point(439, 3);
+            this.cboParts.Location = new System.Drawing.Point(437, 3);
             this.cboParts.Name = "cboParts";
             this.cboParts.Size = new System.Drawing.Size(267, 23);
             this.cboParts.TabIndex = 3;
@@ -89,7 +89,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(358, 0);
+            this.label2.Location = new System.Drawing.Point(356, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 15);
             this.label2.TabIndex = 2;
@@ -107,14 +107,14 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // cboVehicles
             // 
             this.cboVehicles.FormattingEnabled = true;
-            this.cboVehicles.Location = new System.Drawing.Point(83, 3);
+            this.cboVehicles.Location = new System.Drawing.Point(82, 3);
             this.cboVehicles.Name = "cboVehicles";
             this.cboVehicles.Size = new System.Drawing.Size(266, 23);
             this.cboVehicles.TabIndex = 1;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(731, 31);
+            this.btnSearch.Location = new System.Drawing.Point(729, 31);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(82, 22);
             this.btnSearch.TabIndex = 4;
@@ -133,7 +133,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // pickfromDate
             // 
             this.pickfromDate.Checked = false;
-            this.pickfromDate.Location = new System.Drawing.Point(83, 31);
+            this.pickfromDate.Location = new System.Drawing.Point(82, 31);
             this.pickfromDate.Name = "pickfromDate";
             this.pickfromDate.ShowCheckBox = true;
             this.pickfromDate.Size = new System.Drawing.Size(266, 23);
@@ -142,7 +142,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // picktoDate
             // 
             this.picktoDate.Checked = false;
-            this.picktoDate.Location = new System.Drawing.Point(439, 31);
+            this.picktoDate.Location = new System.Drawing.Point(437, 31);
             this.picktoDate.Name = "picktoDate";
             this.picktoDate.ShowCheckBox = true;
             this.picktoDate.Size = new System.Drawing.Size(266, 23);
@@ -151,7 +151,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(358, 28);
+            this.label4.Location = new System.Drawing.Point(356, 28);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 15);
             this.label4.TabIndex = 8;

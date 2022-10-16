@@ -26,7 +26,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                 .UserReportRepository
                 .Find(
                 predicate: rpt => rpt.IsEnabled,
-                orderBy: q => q.OrderBy(e=>e.Sequence));
+                orderBy: q => q.OrderBy(e=>e.Sequence)).ToList();
             // ... set each report action accoring to its name
             foreach(var report in reports)
             {
@@ -34,7 +34,6 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                 {
                     _applicationContext.DisplayView(Type.GetType(report.ParameterViewTypeName));
                 };
-                break;
             }
             _applicationContext.InitializeReportsMenu(reports);
             UserCommands.Clear();

@@ -362,6 +362,12 @@
     <Compile Include="Reports\ReportsParameterViews\FuelConsumptionReportParametersView.Designer.cs">
       <DependentUpon>FuelConsumptionReportParametersView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\ReportsParameterViews\InternalRepairInvoicesParametersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsParameterViews\InternalRepairInvoicesParametersView.Designer.cs">
+      <DependentUpon>InternalRepairInvoicesParametersView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ReportsViews\ExternalRepairInvoicesReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -373,6 +379,12 @@
     </Compile>
     <Compile Include="Reports\ReportsViews\FuelConsumptionReportView.Designer.cs">
       <DependentUpon>FuelConsumptionReportView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportsViews\ReportView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsViews\ReportView.Designer.cs">
+      <DependentUpon>ReportView.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="ValidationErrors.Designer.cs">
@@ -710,6 +722,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Reports\FuelConsumptionReport.rdlc" />
+    <EmbeddedResource Include="Reports\InternalRepairInvoiceLinesReport.rdlc" />
+    <EmbeddedResource Include="Reports\InternalRepairInvoicesSummaryReport.rdlc" />
     <EmbeddedResource Include="Reports\ReportsParameterViews\ExternalRepairInvoicesReportParametersView.resx">
       <DependentUpon>ExternalRepairInvoicesReportParametersView.cs</DependentUpon>
     </EmbeddedResource>
@@ -717,11 +731,17 @@
       <DependentUpon>FuelConsumptionReportParametersView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ExternalRepairInvoicesReport.rdlc" />
+    <EmbeddedResource Include="Reports\ReportsParameterViews\InternalRepairInvoicesParametersView.resx">
+      <DependentUpon>InternalRepairInvoicesParametersView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportsViews\ExternalRepairInvoicesReport.resx">
       <DependentUpon>ExternalRepairInvoicesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportsViews\FuelConsumptionReportView.resx">
       <DependentUpon>FuelConsumptionReportView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportsViews\ReportView.resx">
+      <DependentUpon>ReportView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ValidationErrors.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -862,6 +882,8 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels.ExternalRepairBillViewModel.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.datasource" />
+    <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels.SparePartsBillHeaderViewModel.datasource" />
+    <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels.SparePartsBillLineViewModel1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

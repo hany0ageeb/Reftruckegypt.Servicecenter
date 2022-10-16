@@ -742,7 +742,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 },
                 new UserReport()
                 {
-                    Sequence = 10,
+                    Sequence = 20,
                     Name = nameof(ExternalRepairBill),
                     DisplayName = "External Repairs Invoices Report",
                     IsEnabled = true,
@@ -750,10 +750,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 },
                 new UserReport()
                 {
-                    Sequence = 10,
+                    Sequence = 30,
                     Name = nameof(SparePartsBill),
                     DisplayName = "Internal Repairs Invoices Report",
-                    IsEnabled = true
+                    IsEnabled = true,
+                    ParameterViewTypeName = typeof(Reports.ReportsParameterViews.InternalRepairInvoicesParametersView).FullName
                 }
             };
             // ...
