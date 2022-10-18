@@ -21,25 +21,28 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
             TotalAmount = externalRepairBill.TotalAmountInEGP;
             State = externalRepairBill.Period.State;
             PeriodId = externalRepairBill.PeriodId;
+            ImageFilePath = externalRepairBill.BillImageFilePath;
         }
         [Ignore]
-        public Guid Id { get;  set; }
+        public Guid Id { get; set; }
         [Column("Number")]
-        public long Number { get;  set; }
+        public long Number { get; set; }
         [Column("Bill Date")]
-        public DateTime BillDate { get;  set; }
+        public DateTime BillDate { get; set; }
         [Column("Supplier Bill Number")]
-        public string SupplierBillNumber { get;  set; }
+        public string SupplierBillNumber { get; set; }
         [Column("External Auto Repair Shop Name")]
-        public string ExternalAutoRepairShopName { get;  set; }
+        public string ExternalAutoRepairShopName { get; set; }
         [Column("Vehicle Internal Code")]
-        public string VehicleInternalCode { get;  set; }
+        public string VehicleInternalCode { get; set; }
         [Column("Repairs")]
         public string Repairs { get; set; }
         [Column("Total Amount")]
-        public decimal TotalAmount { get;  set; }
+        public decimal TotalAmount { get; set; }
         [Column("State")]
-        public string State { get;  set; }
+        public string State { get; set; }
+        [Column("Invoice Image File Path")]
+        public string ImageFilePath { get; set; }
         [Ignore]
         public Guid PeriodId { get; private set; }
 

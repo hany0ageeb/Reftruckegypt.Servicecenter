@@ -226,6 +226,13 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                 },
                 new DataGridViewTextBoxColumn()
                 {
+                    Name = nameof(ExternalRepairBillViewModel.ImageFilePath),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.ImageFilePath),
+                    HeaderText = "Image File",
+                    ReadOnly = true
+                },
+                new DataGridViewTextBoxColumn()
+                {
                     Name = nameof(ExternalRepairBillViewModel.State),
                     DataPropertyName = nameof(ExternalRepairBillViewModel.State),
                     HeaderText = "State",

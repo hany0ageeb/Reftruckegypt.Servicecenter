@@ -90,7 +90,19 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
                 {
                     Name = nameof(VehicleViolationViewModel.VehicleInternalCode),
                     DataPropertyName = nameof(VehicleViolationViewModel.VehicleInternalCode),
-                    HeaderText = "Vehicle"
+                    HeaderText = "Vehicle Internal Code"
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = nameof(VehicleViolationViewModel.VehicleCode),
+                    DataPropertyName = nameof(VehicleViolationViewModel.VehicleCode),
+                    HeaderText = "Vehicle Code"
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                     Name = nameof(VehicleViolationViewModel.VehiclePlateNumber),
+                     DataPropertyName = nameof(VehicleViolationViewModel.VehiclePlateNumber),
+                     HeaderText = "Plate Number"
                 },
                 new DataGridViewTextBoxColumn()
                 {

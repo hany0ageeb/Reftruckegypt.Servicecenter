@@ -30,16 +30,12 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cboViolationTypes = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cboViolationDate = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cboInternalCodes = new System.Windows.Forms.ComboBox();
             this.cboCount = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cboNotes = new System.Windows.Forms.ComboBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
@@ -50,43 +46,20 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.61863F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.38137F));
-            this.tableLayoutPanel1.Controls.Add(this.cboViolationTypes, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.cboViolationDate, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.cboInternalCodes, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.cboCount, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.cboNotes, 1, 4);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(687, 164);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(687, 99);
             this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 128);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 15);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Notes";
-            // 
-            // cboViolationTypes
-            // 
-            this.cboViolationTypes.FormattingEnabled = true;
-            this.cboViolationTypes.Location = new System.Drawing.Point(178, 99);
-            this.cboViolationTypes.Name = "cboViolationTypes";
-            this.cboViolationTypes.Size = new System.Drawing.Size(441, 23);
-            this.cboViolationTypes.TabIndex = 7;
             // 
             // label3
             // 
@@ -139,27 +112,10 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             this.cboCount.Size = new System.Drawing.Size(441, 23);
             this.cboCount.TabIndex = 5;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 96);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 15);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Violation Type";
-            // 
-            // cboNotes
-            // 
-            this.cboNotes.FormattingEnabled = true;
-            this.cboNotes.Location = new System.Drawing.Point(178, 131);
-            this.cboNotes.Name = "cboNotes";
-            this.cboNotes.Size = new System.Drawing.Size(441, 23);
-            this.cboNotes.TabIndex = 13;
-            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(620, 194);
+            this.btnCancel.Location = new System.Drawing.Point(620, 137);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(79, 27);
             this.btnCancel.TabIndex = 4;
@@ -169,7 +125,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(535, 194);
+            this.btnOk.Location = new System.Drawing.Point(535, 137);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(79, 27);
             this.btnOk.TabIndex = 3;
@@ -183,7 +139,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(718, 244);
+            this.ClientSize = new System.Drawing.Size(718, 188);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -202,16 +158,12 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cboViolationTypes;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboViolationDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboInternalCodes;
         private System.Windows.Forms.ComboBox cboCount;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cboNotes;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
     }

@@ -755,6 +755,14 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     DisplayName = "Internal Repairs Invoices Report",
                     IsEnabled = true,
                     ParameterViewTypeName = typeof(Reports.ReportsParameterViews.InternalRepairInvoicesParametersView).FullName
+                },
+                new UserReport()
+                {
+                    Sequence = 50,
+                    Name = nameof(VehicleViolation),
+                    DisplayName = "Speed Violation Report",
+                    IsEnabled = true,
+                    ParameterViewTypeName = typeof(Reports.ReportsParameterViews.VehicleViolationsReportParametersView).FullName
                 }
             };
             // ...

@@ -38,5 +38,13 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsViews
 
             this.reportViewer1.RefreshReport();
         }
+
+        private void ExternalRepairInvoicesReport_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Control && e.KeyCode == Keys.P)
+            {
+                reportViewer1.PrintDialog();
+            }
+        }
     }
 }

@@ -52,7 +52,9 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsViews
             this.Name = "ExternalRepairInvoicesReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "External Repair Invoices Report";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ExternalRepairInvoicesReport_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ExternalRepairInvoicesReport_KeyDown);
             this.ResumeLayout(false);
 
         }

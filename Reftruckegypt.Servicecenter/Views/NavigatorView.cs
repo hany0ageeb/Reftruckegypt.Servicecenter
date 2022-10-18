@@ -45,5 +45,13 @@ namespace Reftruckegypt.Servicecenter.Views
             _navigatorViewModel.Dispose();
             Application.Exit();
         }
+
+        private void lstUserCommands_DoubleClick(object sender, EventArgs e)
+        {
+            if(lstUserCommands.SelectedIndex >= 0 && lstUserCommands.SelectedIndex < _navigatorViewModel.UserCommands.Count)
+            {
+                _navigatorViewModel.UserCommands[lstUserCommands.SelectedIndex].Execute();
+            }
+        }
     }
 }

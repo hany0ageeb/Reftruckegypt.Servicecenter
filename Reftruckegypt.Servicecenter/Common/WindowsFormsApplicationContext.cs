@@ -536,6 +536,9 @@ namespace Reftruckegypt.Servicecenter.Common
                         case MessageBoxIcon.Question:
                             result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
                             break;
+                        case MessageBoxIcon.Error:
+                            result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Error);
+                            break;
                         default:
                             result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information);
                             break;
@@ -549,6 +552,9 @@ namespace Reftruckegypt.Servicecenter.Common
                             break;
                         case MessageBoxIcon.Information:
                             result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.YesNoCancel, System.Windows.Forms.MessageBoxIcon.Information);
+                            break;
+                        case MessageBoxIcon.Error:
+                            result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.YesNoCancel, System.Windows.Forms.MessageBoxIcon.Error);
                             break;
                         default:
                             result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.YesNoCancel, System.Windows.Forms.MessageBoxIcon.Information);
@@ -564,6 +570,9 @@ namespace Reftruckegypt.Servicecenter.Common
                             break;
                         case MessageBoxIcon.Information:
                             result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                            break;
+                        case MessageBoxIcon.Error:
+                            result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                             break;
                         default:
                             result = MessageBox.Show(message, title, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);

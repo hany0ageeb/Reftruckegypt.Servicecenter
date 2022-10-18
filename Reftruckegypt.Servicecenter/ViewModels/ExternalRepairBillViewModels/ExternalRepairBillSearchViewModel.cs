@@ -69,7 +69,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         public bool CanEditOrDeleteBill
         {
             get => _canEditOrDeleteBill;
-            set
+            private set
             {
                 if(_canEditOrDeleteBill != value)
                 {
@@ -80,9 +80,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         }
         private bool IsBillPeriodOpened(int index)
         {
-            if(index >=0 && index < ExternalRepairBillVieModels.Count)
+            if(index >= 0 && index < ExternalRepairBillVieModels.Count)
             {
-                return _unitOfWork.PeriodRepository.Find(key: ExternalRepairBillVieModels[index].PeriodId)?.State == PeriodStates.OpenState;
+                return ExternalRepairBillVieModels[index].State == PeriodStates.OpenState;
             }
             return false;
         }

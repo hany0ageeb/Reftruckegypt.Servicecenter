@@ -213,7 +213,7 @@ namespace Reftruckegypt.Servicecenter.Views
                 Cursor = Cursors.WaitCursor;
                 if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
                 {
-                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName);
+                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName, 6);
                     using(ImportMappingViews.VehicleViolationMappingView violationMappingView = new ImportMappingViews.VehicleViolationMappingView(headers, openFileDialog1.FileName))
                     {
                         if(violationMappingView.ShowDialog(this) == DialogResult.OK && violationMappingView.Mapper != null)
@@ -249,6 +249,7 @@ namespace Reftruckegypt.Servicecenter.Views
                 Cursor = Cursors.Default;
             }
         }
+       
         private async void fuelConsumptionsToolStripMenuItem_ClickAsync(object sender, EventArgs e)
         {
             try
@@ -304,7 +305,7 @@ namespace Reftruckegypt.Servicecenter.Views
             }
         }
 
-        private List<string> ReadFileColumnHeaders(string fileName)
+        private List<string> ReadFileColumnHeaders(string fileName, int startRowIndex = 1)
         {
             List<string> columnsHeaders = new List<string>();
             XSSFWorkbook book = null;
@@ -314,7 +315,7 @@ namespace Reftruckegypt.Servicecenter.Views
                 ISheet sheet = book.GetSheetAt(0);
                 if (sheet != null)
                 {
-                    IRow row = sheet.GetRow(0);
+                    IRow row = sheet.GetRow(startRowIndex - 1);
                     if (row != null)
                     {
                         for (int index = 0; index < row.LastCellNum; index++)
@@ -348,5 +349,7 @@ namespace Reftruckegypt.Servicecenter.Views
                 aboutView.ShowDialog(this);
             }
         }
+
+       
     }
 }

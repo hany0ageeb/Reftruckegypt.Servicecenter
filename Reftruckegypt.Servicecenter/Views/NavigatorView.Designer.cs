@@ -39,12 +39,13 @@ namespace Reftruckegypt.Servicecenter.Views
             this.lstUserCommands.ItemHeight = 15;
             this.lstUserCommands.Location = new System.Drawing.Point(13, 13);
             this.lstUserCommands.Name = "lstUserCommands";
-            this.lstUserCommands.Size = new System.Drawing.Size(444, 559);
+            this.lstUserCommands.Size = new System.Drawing.Size(444, 514);
             this.lstUserCommands.TabIndex = 0;
+            this.lstUserCommands.DoubleClick += new System.EventHandler(this.lstUserCommands_DoubleClick);
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(368, 578);
+            this.btnOpen.Location = new System.Drawing.Point(369, 545);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(88, 34);
             this.btnOpen.TabIndex = 1;
@@ -57,7 +58,7 @@ namespace Reftruckegypt.Servicecenter.Views
             this.AcceptButton = this.btnOpen;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 624);
+            this.ClientSize = new System.Drawing.Size(469, 589);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.lstUserCommands);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

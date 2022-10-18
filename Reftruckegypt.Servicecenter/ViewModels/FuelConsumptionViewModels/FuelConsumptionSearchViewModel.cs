@@ -87,125 +87,56 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
             return Task.Run<string>(() =>
             {
                 StringBuilder stringBuilder = new StringBuilder();
-                IList<FuelConsumptionViewModel> consumptions = mapper.Take<FuelConsumptionViewModel>().Select(r => r.Value).ToList();
+                IList<FuelConsumptionDTO> consumptions = mapper.Take<FuelConsumptionDTO>().Select(r => r.Value).ToList();
                 List<FuelConsumption> data = new List<FuelConsumption>();
                 for(int index = 0; index < consumptions.Count(); index++)
                 {
-                    FuelConsumptionViewModel consumption = consumptions[index];
+                    FuelConsumptionDTO consumption = consumptions[index];
                     FuelConsumption fuelConsumption = new FuelConsumption();
-                    fuelConsumption.ConsumptionDate = consumption.ConsumptionDate;
-                    fuelConsumption.Notes = consumption.Notes;
-                    fuelConsumption.TotalAmountInEGP = consumption.AmountInEGP;
-                    fuelConsumption.TotalConsumedQuanityInLiteres = consumption.QuantityInLiters;
-                    Vehicle vehicle = 
-                        _unitOfWork
-                        .VehicleRepository
-                        .Find(x => x.InternalCode.Equals(consumption.VehicleInternalCode))
-                        .FirstOrDefault();
-                    if (vehicle != null)
+                    fuelConsumption.ConsumptionDate = consumption.FuelConsumptionDate;
+                    fuelConsumption.Notes = "";
+                    string strAmount = new string(consumption.AmountConsumed.Where(x=> char.IsDigit(x)).ToArray());
+                    string strQuantity = new string(consumption.QuantityConsumed.Where(x => char.IsDigit(x)).ToArray());
+                    if (!string.IsNullOrEmpty(strAmount))
                     {
-                        fuelConsumption.Vehicle = vehicle;
-                        if (string.IsNullOrEmpty(consumption.FuelCardNumber))
+                        fuelConsumption.TotalAmountInEGP = decimal.Parse(strAmount);
+                        if (!string.IsNullOrEmpty(strQuantity))
                         {
-                            if(vehicle.FuelCard != null)
+                            fuelConsumption.TotalConsumedQuanityInLiteres = decimal.Parse(strQuantity);
+                            FuelCard fuelCard =
+                                _unitOfWork
+                            .FuelCardRepository
+                            .Find(x => x.Number.Equals(consumption.FuelCardNumber))
+                            .FirstOrDefault();
+                            if (fuelCard != null)
                             {
-                                fuelConsumption.FuelCard = vehicle.FuelCard;
-                                if (string.IsNullOrEmpty(consumption.FuelTypeName))
+                                fuelConsumption.FuelCard = fuelCard;
+                                fuelConsumption.Vehicle = fuelCard.Vehicle;
+                                fuelConsumption.FuelType = fuelCard.Vehicle.FuelType;
+                                fuelConsumption.Period = _unitOfWork.PeriodRepository.FindOpenPeriod(fuelConsumption.ConsumptionDate);
+                                ModelState modelState = _validator.Validate(fuelConsumption);
+                                if (modelState.HasErrors)
                                 {
-                                    fuelConsumption.FuelType = vehicle.FuelType;
-                                    ModelState modelState = Validate(fuelConsumption);
-                                    if (!modelState.HasErrors)
-                                    {
-                                        data.Add(fuelConsumption);
-                                    }
-                                    else
-                                    {
-                                        stringBuilder.AppendLine($"Errors At Row {index + 1}: {modelState.Error}");
-                                    }
+                                    _ = stringBuilder.Append(modelState.Error);
                                 }
                                 else
                                 {
-                                    fuelConsumption.FuelType = 
-                                        _unitOfWork
-                                        .FuelTypeRepository
-                                        .Find(x => x.Equals(consumption.FuelTypeName))
-                                        .FirstOrDefault();
-                                    if(fuelConsumption.FuelType is null)
-                                    {
-                                        _ = stringBuilder.AppendLine($"Invalid Fuel Type Name {consumption.FuelTypeName} At Row {index + 1}");
-                                    }
-                                    else
-                                    {
-                                        ModelState modelState = Validate(fuelConsumption);
-                                        if (!modelState.HasErrors)
-                                        {
-                                            data.Add(fuelConsumption);
-                                        }
-                                        else
-                                        {
-                                            stringBuilder.AppendLine($"Errors At Row {index + 1}: {modelState.Error}");
-                                        }
-                                    }
+                                    data.Add(fuelConsumption);
                                 }
                             }
                             else
                             {
-                                _ = stringBuilder.AppendLine($"Invalid Fuel card Number At Row {index+1}");
+                                _ = stringBuilder.AppendLine($"Invalid Fuel Card Number: {consumption.FuelCardNumber} At Row # {index + 2}");
                             }
                         }
                         else
                         {
-                            fuelConsumption.FuelCard = _unitOfWork.FuelCardRepository.Find(x => x.Number == consumption.FuelCardNumber).FirstOrDefault();
-                            if (fuelConsumption.FuelCard != null)
-                            {
-                                fuelConsumption.FuelCard = vehicle.FuelCard;
-                                if (string.IsNullOrEmpty(consumption.FuelTypeName))
-                                {
-                                    fuelConsumption.FuelType = vehicle.FuelType;
-                                    ModelState modelState = Validate(fuelConsumption);
-                                    if (!modelState.HasErrors)
-                                    {
-                                        data.Add(fuelConsumption);
-                                    }
-                                    else
-                                    {
-                                        stringBuilder.AppendLine($"Errors At Row {index + 1}: {modelState.Error}");
-                                    }
-                                }
-                                else
-                                {
-                                    fuelConsumption.FuelType =
-                                        _unitOfWork
-                                        .FuelTypeRepository
-                                        .Find(x => x.Equals(consumption.FuelTypeName))
-                                        .FirstOrDefault();
-                                    if (fuelConsumption.FuelType is null)
-                                    {
-                                        _ = stringBuilder.AppendLine($"Invalid Fuel Type Name {consumption.FuelTypeName} At Row {index + 1}");
-                                    }
-                                    else
-                                    {
-                                        ModelState modelState = Validate(fuelConsumption);
-                                        if (!modelState.HasErrors)
-                                        {
-                                            data.Add(fuelConsumption);
-                                        }
-                                        else
-                                        {
-                                            stringBuilder.AppendLine($"Errors At Row {index + 1}: {modelState.Error}");
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                _ = stringBuilder.AppendLine($"Invalid Fuel Card Number {consumption.FuelCardNumber} At Row {index + 1}");
-                            }
+                            _ = stringBuilder.AppendLine($"Invalid Quantity At Row # {index + 2}");
                         }
                     }
                     else
                     {
-                        _ = stringBuilder.AppendLine($"Invalid Vehicle Internal code: {consumption.VehicleInternalCode} At Row # {index + 1}");
+                        _ = stringBuilder.AppendLine($"Invalid Amount At Row # {index+2}");
                     }
                     progress.Report((int)(index / consumptions.Count * 100.0));
                 }

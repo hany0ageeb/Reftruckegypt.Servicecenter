@@ -31,36 +31,21 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
         public Mapper Mapper { get; private set; }
         private void Initialize()
         {
+            cboFuelCard.DataSource = new List<string>(_headers);
+            if(_headers.Count > 0)
+                cboFuelCard.SelectedIndex = 0;
+            // ...
             cboAmount.DataSource = new List<string>(_headers);
-            if(_headers.Count > 3)
-                cboAmount.SelectedIndex = 3;
+            if(_headers.Count >= 5)
+                cboAmount.SelectedIndex = 5;
             // ...
             cboConsumptionDate.DataSource = new List<string>(_headers);
-            if(_headers.Count >= 2)
-                cboConsumptionDate.SelectedIndex = 1;
-            // ...
-            cboInternalCodes.DataSource = new List<string>(_headers);
-            if (_headers.Count >= 1)
-                cboInternalCodes.DataSource = new List<string>(_headers);
+            if(_headers.Count >= 8)
+                cboConsumptionDate.SelectedIndex = 8;
             // ...
             cboQuantity.DataSource = new List<string>(_headers);
             if (_headers.Count >= 3)
-                cboQuantity.SelectedIndex = 2;
-            // ...
-            List<string> temp = new List<string>(_headers);
-            temp.Insert(0, "");
-            cboFuelCard.DataSource = new List<string>(temp);
-            cboFuelCard.SelectedIndex = 0;
-            // ...
-            temp = new List<string>(_headers);
-            temp.Insert(0, "");
-            cboFuelType.DataSource = temp;
-            cboFuelType.SelectedIndex = 0;
-            // ...
-            temp = new List<string>();
-            temp.Insert(0, "");
-            cboNotes.DataSource = temp;
-            cboNotes.SelectedIndex = 0;
+                cboQuantity.SelectedIndex = 4;
             // ...
             DialogResult = DialogResult.Cancel;
         }
@@ -78,16 +63,10 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             Mapper.HasHeader = true;
             Mapper.SkipBlankRows = true;
             Mapper
-                .Map<ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel>(cboAmount.SelectedItem.ToString(), nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.AmountInEGP))
-                .Map<ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel>(cboConsumptionDate.SelectedItem.ToString(), nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.ConsumptionDate))
-                .Map<ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel>(cboInternalCodes.SelectedItem.ToString(), nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.VehicleInternalCode))
-                .Map<ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel>(cboQuantity.SelectedItem.ToString(), nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.QuantityInLiters));
-            if(cboNotes.SelectedIndex > 0)
-                Mapper.Map<ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel>(cboNotes.SelectedItem.ToString(), nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.Notes));
-            if(cboFuelCard.SelectedIndex > 0)
-                Mapper.Map<ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel>(cboFuelCard.SelectedItem.ToString(), nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.FuelCardNumber));
-            if (cboFuelType.SelectedIndex > 0)
-                Mapper.Map<ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel>(cboFuelType.SelectedItem.ToString(),nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.FuelTypeName));
+                .Map<ViewModels.FuelConsumptionViewModels.FuelConsumptionDTO>(cboAmount.SelectedItem.ToString(), nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionDTO.AmountConsumed))
+                .Map<ViewModels.FuelConsumptionViewModels.FuelConsumptionDTO>(cboConsumptionDate.SelectedItem.ToString(), nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionDTO.FuelConsumptionDate))
+                .Map<ViewModels.FuelConsumptionViewModels.FuelConsumptionDTO>(cboQuantity.SelectedItem.ToString(), nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionDTO.QuantityConsumed))
+                .Map<ViewModels.FuelConsumptionViewModels.FuelConsumptionDTO>(cboFuelCard.SelectedItem.ToString(), nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionDTO.FuelCardNumber));
             DialogResult = DialogResult.OK;
             Close();
         }

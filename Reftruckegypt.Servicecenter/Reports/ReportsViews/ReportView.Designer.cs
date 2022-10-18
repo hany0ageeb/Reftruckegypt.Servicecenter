@@ -38,17 +38,22 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsViews
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(802, 580);
+            this.reportViewer1.Size = new System.Drawing.Size(936, 669);
             this.reportViewer1.TabIndex = 0;
             // 
             // ReportView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 580);
+            this.ClientSize = new System.Drawing.Size(936, 669);
             this.Controls.Add(this.reportViewer1);
+            this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeyPreview = true;
             this.Name = "ReportView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ReportView_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReportView_KeyDown);
             this.ResumeLayout(false);
 
         }
