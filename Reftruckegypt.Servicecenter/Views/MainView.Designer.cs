@@ -46,6 +46,7 @@ namespace Reftruckegypt.Servicecenter.Views
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.priceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -96,7 +97,8 @@ namespace Reftruckegypt.Servicecenter.Views
             this.vehiclesViolationsToolStripMenuItem,
             this.vehicleKilmeterReadingsToolStripMenuItem,
             this.externalRepairInvoicesToolStripMenuItem,
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.priceListToolStripMenuItem});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importToolStripMenuItem.Text = "Import";
@@ -180,6 +182,13 @@ namespace Reftruckegypt.Servicecenter.Views
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // priceListToolStripMenuItem
+            // 
+            this.priceListToolStripMenuItem.Name = "priceListToolStripMenuItem";
+            this.priceListToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.priceListToolStripMenuItem.Text = "Price List";
+            this.priceListToolStripMenuItem.Click += new System.EventHandler(this.priceListToolStripMenuItem_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,5 +229,6 @@ namespace Reftruckegypt.Servicecenter.Views
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem priceListToolStripMenuItem;
     }
 }

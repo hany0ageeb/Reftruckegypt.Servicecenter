@@ -16,5 +16,7 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
             DateTime? fromDate = null,
             DateTime? toDate = null,
             Func<IQueryable<FuelConsumption>, IOrderedQueryable<FuelConsumption>> orderBy = null);
+
+        IEnumerable<IGrouping<FuelCard, FuelConsumption>> FindFuelConsumptionsGroupedByFuelcard(DateTime fromDate, DateTime toDate);
     }
 }

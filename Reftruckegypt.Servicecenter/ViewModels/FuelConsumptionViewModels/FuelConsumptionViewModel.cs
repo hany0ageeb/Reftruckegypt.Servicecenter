@@ -4,13 +4,6 @@ using System;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
 {
-    public class FuelConsumptionDTO
-    {
-        public string FuelCardNumber { get; set; }
-        public string QuantityConsumed { get; set; }
-        public string AmountConsumed { get; set; }
-        public DateTime FuelConsumptionDate { get; set; }
-    }
     public class FuelConsumptionViewModel
     {
         public FuelConsumptionViewModel(FuelConsumption fuelConsumption)
@@ -27,6 +20,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
             AmountInEGP = fuelConsumption.TotalAmountInEGP;
             VehicleCategoryName = fuelConsumption.Vehicle.VehicleCategory?.Name;
             VehicleModelName = fuelConsumption.Vehicle.VehicleModel?.Name;
+            Registration = fuelConsumption?.FuelCard?.Registration;
         }
         public FuelConsumptionViewModel()
         {
@@ -47,7 +41,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
         [Column("Fuel Card Name")]
         public string FuelCardName { get; private set; }
         [Column("Consumption Date")]
-        public DateTime ConsumptionDate { get; private set; }
+        public DateTime ConsumptionDate { get; set; }
         [Column("Quantity In Liters")]
         public decimal QuantityInLiters { get; private set; }
         [Column("Fuel Type")]
@@ -56,6 +50,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
         public decimal AmountInEGP { get; private set; }
         [Column("Notes")]
         public string Notes { get; private set; }
+        public string Registration { get; set; }
 
     }
 }

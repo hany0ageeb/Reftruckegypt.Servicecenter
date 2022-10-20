@@ -365,6 +365,105 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
 
         public BindingList<SparePartsPriceListHeaderViewModel> Headers { get; private set; } = new BindingList<SparePartsPriceListHeaderViewModel>();
         public BindingList<SparePartsPriceListLineViewModel> Lines { get; private set; } = new BindingList<SparePartsPriceListLineViewModel>();
+
+        public Task<string> ImportFromExcelFileAsync(Mapper mapper, IProgress<int> progress)
+        {
+            return Task.Run<string>(() =>
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                List<SparePartsPriceListLineViewModel> linesViewModel =
+                    mapper.Take<SparePartsPriceListLineViewModel>().Select(r => r.Value).ToList();
+                List<SparePartsPriceList> priceLists = new List<SparePartsPriceList>();
+                IEnumerable<IGrouping<(string ListName, string PeriodName), SparePartsPriceListLineViewModel>> groups = 
+                    linesViewModel.GroupBy(x => (ListName: x.Name, x.PeriodName));
+                foreach(IGrouping<(string ListName, string PeriodName), SparePartsPriceListLineViewModel> group in groups)
+                {
+                    progress.Report(0);
+                    SparePartsPriceList priceList = new SparePartsPriceList()
+                    {
+                        Name = group.Key.ListName,
+                        Period = 
+                            _unitOfWork.PeriodRepository.Find(x => x.Name.Equals(group.Key.PeriodName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault()
+                    };
+                    if(priceList.Period == null || priceList.Period.State != PeriodStates.OpenState || priceList.Period.SparePartsPriceList != null || priceLists.Any(p=>p.Period.Id == priceList.Period.Id))
+                    {
+                        stringBuilder.AppendLine($"Invalid Period Name: {group.Key.PeriodName} Or The Period has an associated price list.");
+                        continue;
+                    }
+                    if (_unitOfWork.SparePartsPriceListRepository.Exists(x=>x.Name.Equals(group.Key.ListName, StringComparison.InvariantCultureIgnoreCase)))
+                    {
+                        stringBuilder.AppendLine($"Invalid Price List Name: Price List Name {group.Key.PeriodName} already exist");
+                        continue;
+                    }
+                    foreach(SparePartsPriceListLineViewModel line in group)
+                    {
+                        SparePartPriceListLine priceListLine = new SparePartPriceListLine()
+                        {
+                            SparePart = 
+                                _unitOfWork.SparePartRepository.Find(x=>x.Code.Equals(line.SparePartCode)).FirstOrDefault(),
+                            UnitPrice = line.UnitPrice
+                        };
+                        if(priceListLine.SparePart == null)
+                        {
+                            stringBuilder.AppendLine($"Invalid Part Code: {line.SparePartCode} .");
+                            continue;
+                        }
+                        if (string.IsNullOrEmpty(line.UomCode))
+                        {
+                            priceListLine.Uom = priceListLine.SparePart?.PrimaryUom;
+                        }
+                        else
+                        {
+                            priceListLine.Uom = _unitOfWork.UomRepository.Find(x => x.Code.Equals(line.UomCode, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                        }
+                        if(priceListLine.Uom == null)
+                        {
+                            stringBuilder.AppendLine($"Invalid Uom Code: {line.UomCode} .");
+                            continue;
+                        }
+                        if(priceListLine.Uom.Id != priceListLine.SparePart.PrimaryUom.Id)
+                        {
+                            if (line.ConversionRate.HasValue)
+                            {
+                                priceListLine.UomConversionRate = line.ConversionRate;
+                                if(priceListLine.UomConversionRate <= 0)
+                                {
+                                    _ = stringBuilder.AppendLine($"Invalid Uom Conversion Rate: {line.ConversionRate} .");
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                priceListLine.UomConversionRate = _unitOfWork.UomConversionRepository.FindUomConversionRate(priceListLine.Uom.Id, priceListLine.SparePart.PrimaryUom.Id, priceListLine.SparePart.Id);
+                                if (!priceListLine.UomConversionRate.HasValue)
+                                {
+                                    _ = stringBuilder.AppendLine($"Invalid Uom Conversion Rate: No Conversion Exist Between {priceListLine.Uom.Code} and {priceListLine.SparePart.PrimaryUom.Code} .");
+                                    continue;
+                                }
+                            }
+                        }
+                        if (priceList.Lines.Any(x => x.SparePart.Id == priceListLine.SparePart.Id))
+                        {
+                            _ = stringBuilder.AppendLine($"Duplicate Spare Part Code {priceListLine.SparePart.Code} in the same Price List {priceList.Name}");
+                            continue;
+                        }
+                        else
+                        {
+                            priceList.Lines.Add(priceListLine);
+                        }
+                    }
+                    progress.Report(100);
+                    priceLists.Add(priceList);
+                }
+                progress.Report(0);
+                _unitOfWork.SparePartsPriceListRepository.Add(priceLists);
+                _unitOfWork.Complete();
+                progress.Report(100);
+                return stringBuilder.ToString();
+            });
+            
+        }
+
         public List<SparePart> SpareParts { get; private set; } = new List<SparePart>();
         private bool _isDisposed = false;
         public void Dispose()

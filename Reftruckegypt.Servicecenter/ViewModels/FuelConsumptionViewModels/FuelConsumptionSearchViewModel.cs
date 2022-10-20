@@ -203,6 +203,26 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                 FuelConsumptions.Add(new FuelConsumptionViewModel(consumption));
             }
         }
+        public IList<FuelConsumptionSummaryDTO> GenerateFuelConsumptionReportData(DateTime fromDate, DateTime toDate)
+        {
+            var result = _unitOfWork.FuelConsumptionRepository.FindFuelConsumptionsGroupedByFuelcard(fromDate, toDate);
+            return 
+                result.Select(g => 
+                new FuelConsumptionSummaryDTO()
+                {
+                    AmountConsumed = g.Sum(x=>x.TotalAmountInEGP),
+                    QuantityConsumed = g.Sum(x=>x.TotalConsumedQuanityInLiteres),
+                    CardNumber = g.Key.Number,
+                    CardName = g.Key.Name,
+                    Registration = g.Key.Registration,
+                    VehicleInternalCode = g.Key.Vehicle.InternalCode,
+                    VehicleCategory = g.Key.Vehicle.VehicleCategory.Name,
+                    FuelTypeName = g.Key.Vehicle.FuelType.Name,
+                    StartKilometerReading = _unitOfWork.VehicleKilometerReadingRepository.Find(x=>x.VehicleId == g.Key.Vehicle.Id && x.ReadingDate <= fromDate, q=>q.OrderByDescending(x=>x.ReadingDate)).FirstOrDefault()?.Reading ?? 0,
+                    EndKilometerReading = _unitOfWork.VehicleKilometerReadingRepository.Find(x=>x.VehicleId == g.Key.Vehicle.Id && x.ReadingDate <= toDate, q=>q.OrderByDescending(x=>x.ReadingDate)).FirstOrDefault()?.Reading ?? 0
+                })
+                .ToList();
+        }
         public VehicleCategory VehicleCategory
         {
             get => _vehicleCategory;

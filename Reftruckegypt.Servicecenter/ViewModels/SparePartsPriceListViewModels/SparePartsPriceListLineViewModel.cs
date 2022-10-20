@@ -21,21 +21,28 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
             State = priceListLine.SparePartsPriceList.Period.State;
             ConversionRate = priceListLine.UomConversionRate;
         }
+        public SparePartsPriceListLineViewModel()
+        {
+
+        }
+       [Ignore]
+        public Guid Id { get;  set; }
         [Ignore]
-        public Guid Id { get; private set; }
-        [Ignore]
-        public Guid ListId { get; private set; }
-        public long Number { get; private set; }
-        public string Name { get; private set; }
+        public Guid ListId { get;  set; }
+        public long Number { get;  set; }
+        [Column("Price List Name")]
+        public string Name { get;  set; }
         [Column("From Date")]
-        public DateTime FromDate { get; private set; }
+        public DateTime FromDate { get;  set; }
         [Column("To Date")]
-        public DateTime ToDate { get; private set; }
-        public string State { get; private set; }
+        public DateTime ToDate { get;  set; }
+        public string State { get;  set; }
+        [Column("Period Name")]
+        public string PeriodName { get; set; }
         [Column("Spare Part Code")]
-        public string SparePartCode { get; private set; }
+        public string SparePartCode { get;  set; }
         [Column("Spare Part Name")]
-        public string SparePartName { get; private set; }
+        public string SparePartName { get;  set; }
         [Column("Uom Code")]
         public string UomCode { get; private set; }
         [Column("Unit Price")]

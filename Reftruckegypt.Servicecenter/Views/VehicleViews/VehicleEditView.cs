@@ -42,6 +42,40 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
 
             });
             // ...
+            txtmodelYear.DataBindings.Clear();
+            txtmodelYear.DataBindings.Add(new Binding(nameof(txtmodelYear.Text), _editModel, nameof(_editModel.ModelYear))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnValidation
+            });
+            txtmodelYear.Validating += (o, e) =>
+            {
+                if (!string.IsNullOrEmpty(txtmodelYear.Text))
+                {
+                    if(!int.TryParse(txtmodelYear.Text, out int year))
+                    {
+                        e.Cancel = true;
+                        errorProvider1.SetError(txtmodelYear, "Invalid Model Year.");
+                    }
+                    else
+                    {
+                        if(year <= 0)
+                        {
+                            e.Cancel = true;
+                            errorProvider1.SetError(txtmodelYear, "Invalid Model Year.");
+                        }
+                    }
+                }
+                else
+                {
+                    e.Cancel = true;
+                    errorProvider1.SetError(txtmodelYear, "Invalid Model Year.");
+                }
+            };
+            txtmodelYear.Validated += (o, e) =>
+            {
+                errorProvider1.SetError(txtmodelYear, "");
+            };
+            // ...
             cboCategories.DataBindings.Clear();
             cboCategories.DataSource = _editModel.VehicleCategorys;
             cboCategories.DisplayMember = nameof(Models.VehicleCategory.Name);

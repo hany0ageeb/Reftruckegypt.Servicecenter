@@ -25,6 +25,11 @@ namespace Reftruckegypt.Servicecenter.Models
         public Guid? MaintenanceLocationId { get; set; }
         public virtual ICollection<VehicleLicense> VehicelLicenses { get; set; } = new HashSet<VehicleLicense>();
         public virtual ICollection<VehicleStateChange> VehicleStateChanges { get; set; } = new HashSet<VehicleStateChange>();
+        public virtual ICollection<ExternalRepairBill> ExternalRepairBills { get; set; } = new HashSet<ExternalRepairBill>();
+        public virtual ICollection<SparePartsBill> SparePartsBills { get; set; } = new HashSet<SparePartsBill>();
+        public virtual ICollection<VehicleKilometerReading> VehicleKilometerReadings { get; set; } = new HashSet<VehicleKilometerReading>();
+        public virtual ICollection<VehicleViolation> VehicleViolations { get; set; } = new HashSet<VehicleViolation>();
+        public virtual ICollection<FuelConsumption> FuelConsumptions { get; set; } = new HashSet<FuelConsumption>();
         public virtual Driver Driver { get; set; }
         public Guid? DriverId { get; set; }
         public int ModelYear { get; set; } = DateTime.Now.Year;

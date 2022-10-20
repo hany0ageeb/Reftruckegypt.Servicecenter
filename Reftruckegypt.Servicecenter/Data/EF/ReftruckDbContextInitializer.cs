@@ -763,6 +763,22 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     DisplayName = "Speed Violation Report",
                     IsEnabled = true,
                     ParameterViewTypeName = typeof(Reports.ReportsParameterViews.VehicleViolationsReportParametersView).FullName
+                },
+                new UserReport()
+                {
+                    Sequence = 60,
+                    Name = nameof(ViewModels.FuelConsumptionViewModels.FuelConsumptionSummaryDTO),
+                    DisplayName = "Fuel Consumption Report (From Date - To Date)",
+                    IsEnabled = true,
+                    ParameterViewTypeName = typeof(Reports.ReportsParameterViews.FuelConsumptionByFuelCardReportParametersView).FullName
+                },
+                new UserReport()
+                {
+                    Sequence = 70,
+                    Name = nameof(ViewModels.VehicleViewModels.VehicleViewModel),
+                    DisplayName = "Vehicle Report (From Date - To Date)",
+                    IsEnabled = true,
+                    ParameterViewTypeName = typeof(Reports.ReportsParameterViews.VehicleReportParametersView).FullName
                 }
             };
             // ...

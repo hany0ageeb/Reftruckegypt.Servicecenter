@@ -12,6 +12,7 @@ using Reftruckegypt.Servicecenter.Models.Validation;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
 {
+   
     public class VehicleSearchViewModel : ViewModelBase, IDisposable
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -333,6 +334,60 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
             {
                 SearchResult.Add(new VehicleViewModel(vehicle));
             }
+        }
+        public IList<Vehicle> FindAll()
+        {
+            return _unitOfWork.VehicleRepository.Find(q=>q.OrderBy(x=>x.InternalCode)).ToList();
+        }
+        public IList<VehicleViewModel> FindVehiclesWithRelatedTransactions(
+            Guid? vehicleId = null,
+            DateTime? fromDate = null,
+            DateTime? toDate = null)
+        {
+            List<Vehicle> vehicles = new List<Vehicle>();
+            List<VehicleViewModel> result = new List<VehicleViewModel>();
+            if(vehicleId!=null && vehicleId != Guid.Empty)
+            {
+                vehicles.Add(_unitOfWork.VehicleRepository.Find(key: vehicleId.Value));
+            }
+            else
+            {
+                vehicles.AddRange(_unitOfWork.VehicleRepository.Find().ToList());
+            }
+            foreach(var vehicle in vehicles)
+            {
+                var consumptions = _unitOfWork.FuelConsumptionRepository.Find(
+                    vehicleId: vehicle.Id,
+                    fromDate: fromDate,
+                    toDate: toDate,orderBy: q=>q.OrderByDescending(x=>x.ConsumptionDate));
+                
+                var externalInvoices = _unitOfWork.ExternalRepairBillRepository.Find<ExternalRepairBillViewModels.ExternalRepairBillViewModel>(
+                    vehicleId: vehicle.Id,
+                    fromDate: fromDate,
+                    toDate: toDate,
+                    selector: x=>new ExternalRepairBillViewModels.ExternalRepairBillViewModel()
+                    {
+                        BillDate = x.BillDate,
+                        ExternalAutoRepairShopName = x.ExternalAutoRepairShop.Name,
+                        Repairs = x.Repairs,
+                        TotalAmount = x.TotalAmountInEGP
+                    },
+                    orderBy: q => q.OrderByDescending(x => x.BillDate));
+                var internalRepairInvoicesLines =
+                    _unitOfWork.SparePartsBillLineRepository.Find(
+                        vehicleId: vehicle.Id,
+                        fromDate: fromDate,
+                        toDate: toDate,
+                        orderBy: q=>q.OrderByDescending(x=>x.SparePartsBill.BillDate));
+                var vehicleViewModel = new VehicleViewModel(vehicle);
+                vehicleViewModel.FuelConsumptions.AddRange(consumptions.Select(x => new FuelConsumptionViewModels.FuelConsumptionViewModel(x)));
+                vehicleViewModel.FuelConsumptions.ForEach(x => x.ConsumptionDate = new DateTime(x.ConsumptionDate.Year, x.ConsumptionDate.Month,x.ConsumptionDate.Day));
+                vehicleViewModel.ExternalRepairBills.AddRange(externalInvoices);
+                vehicleViewModel.ExternalRepairBills.ForEach(x => x.BillDate = new DateTime(x.BillDate.Year, x.BillDate.Month, x.BillDate.Day));
+                vehicleViewModel.SparePartsBills.AddRange(internalRepairInvoicesLines.Select(x => new SparePartsBillViewModels.SparePartsBillLineEditViewModel(x)));
+                result.Add(vehicleViewModel);
+            }
+            return result;
         }
         public void Create()
         {

@@ -304,15 +304,15 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                 }
             }
         }
-        public string ModelYear
+        public int ModelYear
         {
-            get => _vehicle.ModelYear.ToString();
+            get => _vehicle.ModelYear;
             set
             {
-                if(_vehicle.ModelYear.ToString() != value)
+                if(_vehicle.ModelYear != value)
                 {
 
-                    _vehicle.ModelYear = int.Parse(value);
+                    _vehicle.ModelYear = value;
                     OnPropertyChanged(this, nameof(ModelYear));
                     HasChanged = true;
                 }

@@ -29,6 +29,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Include(e => e.VehicleCategory);
             return query.AsEnumerable().FirstOrDefault();
         }
+        
         public IEnumerable<Vehicle> Find(
             string internalCode = "",
             string plateNumber = "",

@@ -249,7 +249,49 @@ namespace Reftruckegypt.Servicecenter.Views
                 Cursor = Cursors.Default;
             }
         }
-       
+        private async void priceListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName);
+                    using(ImportMappingViews.PriceListMappingView priceListMappingView = new ImportMappingViews.PriceListMappingView(headers, openFileDialog1.FileName))
+                    {
+                        if(priceListMappingView.ShowDialog(this) == DialogResult.OK && priceListMappingView.Mapper != null)
+                        {
+                            using (var scope = Program.ServiceProvider.CreateScope())
+                            {
+                                ViewModels.SparePartsPriceListViewModels.SparePartsPriceListSearchViewModel priceListSearchModel= scope.ServiceProvider.GetRequiredService<ViewModels.SparePartsPriceListViewModels.SparePartsPriceListSearchViewModel>();
+                                Progress<int> progress = new Progress<int>();
+                                toolStripProgressBar1.Visible = true;
+                                toolStripProgressBar1.Value = 0;
+                                progress.ProgressChanged += Progress_ProgressChanged;
+                                string errorMessage = await priceListSearchModel.ImportFromExcelFileAsync(priceListMappingView.Mapper, progress);
+                                if (!string.IsNullOrEmpty(errorMessage))
+                                {
+                                    using (ImportErrorsView errorsView = new ImportErrorsView(errorMessage))
+                                    {
+                                        errorsView.ShowDialog(this);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                toolStripProgressBar1.Visible = false;
+                toolStripProgressBar1.Value = 0;
+                Cursor = Cursors.Default;
+            }
+        }
         private async void fuelConsumptionsToolStripMenuItem_ClickAsync(object sender, EventArgs e)
         {
             try
@@ -349,7 +391,6 @@ namespace Reftruckegypt.Servicecenter.Views
                 aboutView.ShowDialog(this);
             }
         }
-
-       
+        
     }
 }

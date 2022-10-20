@@ -7,69 +7,61 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>64d6708e-9fa7-4fed-86dc-7d785b6b7fcd</rd:DataSourceID>
+      <rd:DataSourceID>544ab076-87a0-4a64-9552-abf233e0be57</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="FuelConsumptionDataSet">
+    <DataSet Name="FuelConsumptionSummaryDataSet">
       <Query>
         <DataSourceName>ReftruckegyptServicecenterViewModelsFuelConsumptionViewModels</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="AmountInEGP">
-          <DataField>AmountInEGP</DataField>
+        <Field Name="AmountConsumed">
+          <DataField>AmountConsumed</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="ConsumptionDate">
-          <DataField>ConsumptionDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="FuelCardName">
-          <DataField>FuelCardName</DataField>
+        <Field Name="CardName">
+          <DataField>CardName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="FuelCardNumber">
-          <DataField>FuelCardNumber</DataField>
+        <Field Name="CardNumber">
+          <DataField>CardNumber</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EndKilometerReading">
+          <DataField>EndKilometerReading</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="FuelTypeName">
           <DataField>FuelTypeName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Id">
-          <DataField>Id</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="Notes">
-          <DataField>Notes</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="QuantityInLiters">
-          <DataField>QuantityInLiters</DataField>
+        <Field Name="QuantityConsumed">
+          <DataField>QuantityConsumed</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="State">
-          <DataField>State</DataField>
+        <Field Name="Registration">
+          <DataField>Registration</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="VehicleCategoryName">
-          <DataField>VehicleCategoryName</DataField>
+        <Field Name="StartKilometerReading">
+          <DataField>StartKilometerReading</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="VehicleCategory">
+          <DataField>VehicleCategory</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="VehicleInternalCode">
           <DataField>VehicleInternalCode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="VehicleModelName">
-          <DataField>VehicleModelName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels</rd:DataSetName>
-        <rd:TableName>FuelConsumptionViewModel</rd:TableName>
-        <rd:ObjectDataSourceType>Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel, Reftruckegypt.Servicecenter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>FuelConsumptionSummaryDTO</rd:TableName>
+        <rd:ObjectDataSourceType>Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels.FuelConsumptionSummaryDTO, Reftruckegypt.Servicecenter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -77,42 +69,152 @@
     <ReportSection>
       <Body>
         <ReportItems>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Fuel Consumption Report</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.49953cm</Top>
+            <Left>5.28849cm</Left>
+            <Height>0.6cm</Height>
+            <Width>11.52229cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!FromDateParameter.Value</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>1.27592cm</Top>
+            <Left>6.99412cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.84938cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!ToDateParameter.Value</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>1.27592cm</Top>
+            <Left>12.27349cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.84938cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
           <Tablix Name="Tablix1">
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.47354cm</Width>
+                  <Width>2.5cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.97083cm</Width>
+                  <Width>2.5cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.03729cm</Width>
+                  <Width>2.5cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.93417cm</Width>
+                  <Width>2.1825cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.28833cm</Width>
+                  <Width>2.36771cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.28833cm</Width>
+                  <Width>2.15604cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.20896cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.05021cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.46813cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.865cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>1.07625cm</Height>
+                  <Height>1.15562cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox1">
+                        <Textbox Name="Textbox13">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Vehicle</Value>
+                                  <Value>Internal Code</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -123,13 +225,12 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>Silver</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -140,14 +241,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox3">
+                        <Textbox Name="Textbox4">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Fuel Card</Value>
+                                  <Value>Card Number</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -158,13 +259,12 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>Silver</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -175,14 +275,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox5">
+                        <Textbox Name="Textbox6">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Fuel Card Name</Value>
+                                  <Value>Card Name</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -193,13 +293,12 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <rd:DefaultName>Textbox6</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>Silver</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -210,14 +309,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox7">
+                        <Textbox Name="Textbox8">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Consumption Date</Value>
+                                  <Value>Registration</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -228,13 +327,12 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <rd:DefaultName>Textbox8</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>Silver</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -245,14 +343,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox9">
+                        <Textbox Name="Textbox21">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Quantity In Liters</Value>
+                                  <Value>Quantity Consumed</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -263,13 +361,12 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <rd:DefaultName>Textbox21</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>Silver</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -280,14 +377,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox11">
+                        <Textbox Name="Textbox15">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Amount In EGP</Value>
+                                  <Value>Amount Consumed</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -298,13 +395,161 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>Silver</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox27">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Start Kilometer </Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox27</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox29">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>End Kilometer </Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox29</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox44">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Diff</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox44</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox47">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Cons.</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Rate</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox47</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -354,14 +599,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="FuelCardNumber">
+                        <Textbox Name="CardNumber">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!FuelCardNumber.Value</Value>
+                                  <Value>=Fields!CardNumber.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -372,7 +617,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>FuelCardNumber</rd:DefaultName>
+                          <rd:DefaultName>CardNumber</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -388,14 +633,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="FuelCardName">
+                        <Textbox Name="CardName">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!FuelCardName.Value</Value>
+                                  <Value>=Fields!CardName.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -406,7 +651,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>FuelCardName</rd:DefaultName>
+                          <rd:DefaultName>CardName</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -422,14 +667,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="ConsumptionDate">
+                        <Textbox Name="Registration">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ConsumptionDate.Value</Value>
+                                  <Value>=Fields!Registration.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -440,7 +685,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>ConsumptionDate</rd:DefaultName>
+                          <rd:DefaultName>Registration</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -456,17 +701,16 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="QuantityInLiters">
+                        <Textbox Name="QuantityConsumed">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!QuantityInLiters.Value</Value>
+                                  <Value>=Fields!QuantityConsumed.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
-                                    <Format>#,0.00;(#,0.00)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -475,7 +719,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>QuantityInLiters</rd:DefaultName>
+                          <rd:DefaultName>QuantityConsumed</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -491,17 +735,16 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="AmountInEGP">
+                        <Textbox Name="AmountConsumed">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!AmountInEGP.Value</Value>
+                                  <Value>=Fields!AmountConsumed.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
-                                    <Format>#,0.00;(#,0.00)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -510,7 +753,143 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>AmountInEGP</rd:DefaultName>
+                          <rd:DefaultName>AmountConsumed</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="StartKilometerReading">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!StartKilometerReading.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>StartKilometerReading</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="EndKilometerReading">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!EndKilometerReading.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>EndKilometerReading</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox45">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!EndKilometerReading.Value - Fields!StartKilometerReading.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox45</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox48">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>= ROUND((Fields!EndKilometerReading.Value - Fields!StartKilometerReading.Value) / Fields!QuantityConsumed.Value,2)</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox48</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -529,108 +908,6 @@
                 <TablixRow>
                   <Height>0.6cm</Height>
                   <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox31">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox31</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox32">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox32</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox33">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox33</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox34">
@@ -674,10 +951,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!QuantityInLiters.Value)</Value>
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
-                                    <Format>#,0.00;(#,0.00)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -709,10 +985,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!AmountInEGP.Value)</Value>
+                                  <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
-                                    <Format>#,0.00;(#,0.00)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -735,11 +1010,6 @@
                         </Textbox>
                       </CellContents>
                     </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox37">
@@ -783,7 +1053,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(Fields!QuantityConsumed.Value)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -817,7 +1087,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(Fields!AmountConsumed.Value)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -844,7 +1114,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox40">
+                        <Textbox Name="Textbox42">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -854,76 +1124,6 @@
                                   <Value />
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox40</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox41">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!QuantityInLiters.Value)</Value>
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Format>#,0.00;(#,0.00)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox41</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox42">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!AmountInEGP.Value)</Value>
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Format>#,0.00;(#,0.00)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -946,14 +1146,9 @@
                         </Textbox>
                       </CellContents>
                     </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox23">
+                        <Textbox Name="Textbox43">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -971,7 +1166,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <rd:DefaultName>Textbox43</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -987,7 +1182,41 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox24">
+                        <Textbox Name="Textbox46">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!EndKilometerReading.Value - Fields!StartKilometerReading.Value)</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox46</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox49">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1005,145 +1234,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox24</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox25">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox25</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox26">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox26</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox27">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!QuantityInLiters.Value)</Value>
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Format>#,0.00;(#,0.00)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox27</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox28">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!AmountInEGP.Value)</Value>
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Format>#,0.00;(#,0.00)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox28</rd:DefaultName>
+                          <rd:DefaultName>Textbox49</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1169,22 +1260,26 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>2.12958cm</Size>
+                    <Size>2.5cm</Size>
                     <CellContents>
-                      <Textbox Name="Textbox12">
+                      <Textbox Name="Textbox31">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Fuel Type</Value>
+                                <Value>Vehicle Category</Value>
                                 <Style>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
@@ -1195,13 +1290,12 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>Textbox12</rd:DefaultName>
+                        <rd:DefaultName>Textbox31</rd:DefaultName>
                         <Style>
                           <Border>
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
-                          <BackgroundColor>Silver</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -1211,111 +1305,32 @@
                     </CellContents>
                   </TablixHeader>
                   <TablixMembers>
-                    <TablixMember>
-                      <TablixHeader>
-                        <Size>2.32771cm</Size>
-                        <CellContents>
-                          <Textbox Name="Textbox16">
-                            <CanGrow>true</CanGrow>
-                            <KeepTogether>true</KeepTogether>
-                            <Paragraphs>
-                              <Paragraph>
-                                <TextRuns>
-                                  <TextRun>
-                                    <Value>Category Name</Value>
-                                    <Style>
-                                      <FontWeight>Bold</FontWeight>
-                                    </Style>
-                                  </TextRun>
-                                </TextRuns>
-                                <Style>
-                                  <TextAlign>Center</TextAlign>
-                                </Style>
-                              </Paragraph>
-                            </Paragraphs>
-                            <rd:DefaultName>Textbox16</rd:DefaultName>
-                            <Style>
-                              <Border>
-                                <Color>LightGrey</Color>
-                                <Style>Solid</Style>
-                              </Border>
-                              <BackgroundColor>Silver</BackgroundColor>
-                              <PaddingLeft>2pt</PaddingLeft>
-                              <PaddingRight>2pt</PaddingRight>
-                              <PaddingTop>2pt</PaddingTop>
-                              <PaddingBottom>2pt</PaddingBottom>
-                            </Style>
-                          </Textbox>
-                        </CellContents>
-                      </TablixHeader>
-                      <TablixMembers>
-                        <TablixMember>
-                          <TablixHeader>
-                            <Size>2.8175cm</Size>
-                            <CellContents>
-                              <Textbox Name="Textbox18">
-                                <CanGrow>true</CanGrow>
-                                <KeepTogether>true</KeepTogether>
-                                <Paragraphs>
-                                  <Paragraph>
-                                    <TextRuns>
-                                      <TextRun>
-                                        <Value>Vehicle Model Name</Value>
-                                        <Style>
-                                          <FontWeight>Bold</FontWeight>
-                                        </Style>
-                                      </TextRun>
-                                    </TextRuns>
-                                    <Style>
-                                      <TextAlign>Center</TextAlign>
-                                    </Style>
-                                  </Paragraph>
-                                </Paragraphs>
-                                <rd:DefaultName>Textbox18</rd:DefaultName>
-                                <Style>
-                                  <Border>
-                                    <Color>LightGrey</Color>
-                                    <Style>Solid</Style>
-                                  </Border>
-                                  <BackgroundColor>Silver</BackgroundColor>
-                                  <PaddingLeft>2pt</PaddingLeft>
-                                  <PaddingRight>2pt</PaddingRight>
-                                  <PaddingTop>2pt</PaddingTop>
-                                  <PaddingBottom>2pt</PaddingBottom>
-                                </Style>
-                              </Textbox>
-                            </CellContents>
-                          </TablixHeader>
-                          <TablixMembers>
-                            <TablixMember />
-                          </TablixMembers>
-                        </TablixMember>
-                      </TablixMembers>
-                    </TablixMember>
+                    <TablixMember />
                   </TablixMembers>
+                  <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
-                  <Group Name="FuelTypeName">
+                  <Group Name="VehicleCategory">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!FuelTypeName.Value</GroupExpression>
+                      <GroupExpression>=Fields!VehicleCategory.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!FuelTypeName.Value</Value>
+                      <Value>=Fields!VehicleCategory.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>2.12958cm</Size>
+                    <Size>2.5cm</Size>
                     <CellContents>
-                      <Textbox Name="FuelTypeName1">
+                      <Textbox Name="VehicleCategory1">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!FuelTypeName.Value</Value>
+                                <Value>=Fields!VehicleCategory.Value</Value>
                                 <Style>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
@@ -1326,7 +1341,7 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>FuelTypeName1</rd:DefaultName>
+                        <rd:DefaultName>VehicleCategory1</rd:DefaultName>
                         <Style>
                           <Border>
                             <Color>LightGrey</Color>
@@ -1342,508 +1357,71 @@
                   </TablixHeader>
                   <TablixMembers>
                     <TablixMember>
-                      <Group Name="VehicleCategoryName">
-                        <GroupExpressions>
-                          <GroupExpression>=Fields!VehicleCategoryName.Value</GroupExpression>
-                        </GroupExpressions>
-                      </Group>
-                      <SortExpressions>
-                        <SortExpression>
-                          <Value>=Fields!VehicleCategoryName.Value</Value>
-                        </SortExpression>
-                      </SortExpressions>
-                      <TablixHeader>
-                        <Size>2.32771cm</Size>
-                        <CellContents>
-                          <Textbox Name="VehicleCategoryName1">
-                            <CanGrow>true</CanGrow>
-                            <KeepTogether>true</KeepTogether>
-                            <Paragraphs>
-                              <Paragraph>
-                                <TextRuns>
-                                  <TextRun>
-                                    <Value>=Fields!VehicleCategoryName.Value</Value>
-                                    <Style>
-                                      <FontWeight>Bold</FontWeight>
-                                    </Style>
-                                  </TextRun>
-                                </TextRuns>
-                                <Style>
-                                  <TextAlign>Center</TextAlign>
-                                </Style>
-                              </Paragraph>
-                            </Paragraphs>
-                            <rd:DefaultName>VehicleCategoryName1</rd:DefaultName>
-                            <Style>
-                              <Border>
-                                <Color>LightGrey</Color>
-                                <Style>Solid</Style>
-                              </Border>
-                              <PaddingLeft>2pt</PaddingLeft>
-                              <PaddingRight>2pt</PaddingRight>
-                              <PaddingTop>2pt</PaddingTop>
-                              <PaddingBottom>2pt</PaddingBottom>
-                            </Style>
-                          </Textbox>
-                        </CellContents>
-                      </TablixHeader>
-                      <TablixMembers>
-                        <TablixMember>
-                          <Group Name="VehicleModelName">
-                            <GroupExpressions>
-                              <GroupExpression>=Fields!VehicleModelName.Value</GroupExpression>
-                            </GroupExpressions>
-                          </Group>
-                          <SortExpressions>
-                            <SortExpression>
-                              <Value>=Fields!VehicleModelName.Value</Value>
-                            </SortExpression>
-                          </SortExpressions>
-                          <TablixHeader>
-                            <Size>2.8175cm</Size>
-                            <CellContents>
-                              <Textbox Name="VehicleModelName1">
-                                <CanGrow>true</CanGrow>
-                                <KeepTogether>true</KeepTogether>
-                                <Paragraphs>
-                                  <Paragraph>
-                                    <TextRuns>
-                                      <TextRun>
-                                        <Value>=Fields!VehicleModelName.Value</Value>
-                                        <Style>
-                                          <FontWeight>Bold</FontWeight>
-                                        </Style>
-                                      </TextRun>
-                                    </TextRuns>
-                                    <Style>
-                                      <TextAlign>Center</TextAlign>
-                                    </Style>
-                                  </Paragraph>
-                                </Paragraphs>
-                                <rd:DefaultName>VehicleModelName1</rd:DefaultName>
-                                <Style>
-                                  <Border>
-                                    <Color>LightGrey</Color>
-                                    <Style>Solid</Style>
-                                  </Border>
-                                  <PaddingLeft>2pt</PaddingLeft>
-                                  <PaddingRight>2pt</PaddingRight>
-                                  <PaddingTop>2pt</PaddingTop>
-                                  <PaddingBottom>2pt</PaddingBottom>
-                                </Style>
-                              </Textbox>
-                            </CellContents>
-                          </TablixHeader>
-                          <TablixMembers>
-                            <TablixMember>
-                              <Group Name="Details" />
-                            </TablixMember>
-                          </TablixMembers>
-                        </TablixMember>
-                        <TablixMember>
-                          <TablixHeader>
-                            <Size>2.8175cm</Size>
-                            <CellContents>
-                              <Textbox Name="Textbox30">
-                                <CanGrow>true</CanGrow>
-                                <KeepTogether>true</KeepTogether>
-                                <Paragraphs>
-                                  <Paragraph>
-                                    <TextRuns>
-                                      <TextRun>
-                                        <Value>Total</Value>
-                                        <Style>
-                                          <FontWeight>Bold</FontWeight>
-                                        </Style>
-                                      </TextRun>
-                                    </TextRuns>
-                                    <Style>
-                                      <TextAlign>Center</TextAlign>
-                                    </Style>
-                                  </Paragraph>
-                                </Paragraphs>
-                                <rd:DefaultName>Textbox30</rd:DefaultName>
-                                <Style>
-                                  <Border>
-                                    <Color>LightGrey</Color>
-                                    <Style>Solid</Style>
-                                  </Border>
-                                  <PaddingLeft>2pt</PaddingLeft>
-                                  <PaddingRight>2pt</PaddingRight>
-                                  <PaddingTop>2pt</PaddingTop>
-                                  <PaddingBottom>2pt</PaddingBottom>
-                                </Style>
-                              </Textbox>
-                            </CellContents>
-                          </TablixHeader>
-                          <KeepWithGroup>Before</KeepWithGroup>
-                        </TablixMember>
-                      </TablixMembers>
+                      <Group Name="Details" />
                     </TablixMember>
-                  </TablixMembers>
-                </TablixMember>
-                <TablixMember>
-                  <TablixHeader>
-                    <Size>2.12958cm</Size>
-                    <CellContents>
-                      <Textbox Name="Textbox19">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value>Total</Value>
-                                <Style>
-                                  <FontWeight>Bold</FontWeight>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style>
-                              <TextAlign>Center</TextAlign>
-                            </Style>
-                          </Paragraph>
-                        </Paragraphs>
-                        <rd:DefaultName>Textbox19</rd:DefaultName>
-                        <Style>
-                          <Border>
-                            <Color>LightGrey</Color>
-                            <Style>Solid</Style>
-                          </Border>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
-                  <TablixMembers>
                     <TablixMember>
-                      <TablixHeader>
-                        <Size>2.32771cm</Size>
-                        <CellContents>
-                          <Textbox Name="Textbox20">
-                            <CanGrow>true</CanGrow>
-                            <KeepTogether>true</KeepTogether>
-                            <Paragraphs>
-                              <Paragraph>
-                                <TextRuns>
-                                  <TextRun>
-                                    <Value />
-                                    <Style>
-                                      <FontWeight>Bold</FontWeight>
-                                    </Style>
-                                  </TextRun>
-                                </TextRuns>
-                                <Style>
-                                  <TextAlign>Center</TextAlign>
-                                </Style>
-                              </Paragraph>
-                            </Paragraphs>
-                            <rd:DefaultName>Textbox20</rd:DefaultName>
-                            <Style>
-                              <Border>
-                                <Color>LightGrey</Color>
-                                <Style>Solid</Style>
-                              </Border>
-                              <PaddingLeft>2pt</PaddingLeft>
-                              <PaddingRight>2pt</PaddingRight>
-                              <PaddingTop>2pt</PaddingTop>
-                              <PaddingBottom>2pt</PaddingBottom>
-                            </Style>
-                          </Textbox>
-                        </CellContents>
-                      </TablixHeader>
-                      <TablixMembers>
-                        <TablixMember>
-                          <TablixHeader>
-                            <Size>2.8175cm</Size>
-                            <CellContents>
-                              <Textbox Name="Textbox29">
-                                <CanGrow>true</CanGrow>
-                                <KeepTogether>true</KeepTogether>
-                                <Paragraphs>
-                                  <Paragraph>
-                                    <TextRuns>
-                                      <TextRun>
-                                        <Value />
-                                        <Style>
-                                          <FontWeight>Bold</FontWeight>
-                                        </Style>
-                                      </TextRun>
-                                    </TextRuns>
-                                    <Style>
-                                      <TextAlign>Center</TextAlign>
-                                    </Style>
-                                  </Paragraph>
-                                </Paragraphs>
-                                <rd:DefaultName>Textbox29</rd:DefaultName>
-                                <Style>
-                                  <Border>
-                                    <Color>LightGrey</Color>
-                                    <Style>Solid</Style>
-                                  </Border>
-                                  <PaddingLeft>2pt</PaddingLeft>
-                                  <PaddingRight>2pt</PaddingRight>
-                                  <PaddingTop>2pt</PaddingTop>
-                                  <PaddingBottom>2pt</PaddingBottom>
-                                </Style>
-                              </Textbox>
-                            </CellContents>
-                          </TablixHeader>
-                        </TablixMember>
-                      </TablixMembers>
-                    </TablixMember>
-                  </TablixMembers>
-                  <KeepWithGroup>Before</KeepWithGroup>
-                </TablixMember>
-                <TablixMember>
-                  <TablixHeader>
-                    <Size>2.12958cm</Size>
-                    <CellContents>
-                      <Textbox Name="Textbox15">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value />
-                                <Style>
-                                  <FontWeight>Bold</FontWeight>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style>
-                              <TextAlign>Center</TextAlign>
-                            </Style>
-                          </Paragraph>
-                        </Paragraphs>
-                        <rd:DefaultName>Textbox15</rd:DefaultName>
-                        <Style>
-                          <Border>
-                            <Color>LightGrey</Color>
-                            <Style>Solid</Style>
-                          </Border>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
-                  <TablixMembers>
-                    <TablixMember>
-                      <TablixHeader>
-                        <Size>2.32771cm</Size>
-                        <CellContents>
-                          <Textbox Name="Textbox21">
-                            <CanGrow>true</CanGrow>
-                            <KeepTogether>true</KeepTogether>
-                            <Paragraphs>
-                              <Paragraph>
-                                <TextRuns>
-                                  <TextRun>
-                                    <Value>Total</Value>
-                                    <Style>
-                                      <FontWeight>Bold</FontWeight>
-                                    </Style>
-                                  </TextRun>
-                                </TextRuns>
-                                <Style>
-                                  <TextAlign>Center</TextAlign>
-                                </Style>
-                              </Paragraph>
-                            </Paragraphs>
-                            <rd:DefaultName>Textbox21</rd:DefaultName>
-                            <Style>
-                              <Border>
-                                <Color>LightGrey</Color>
-                                <Style>Solid</Style>
-                              </Border>
-                              <PaddingLeft>2pt</PaddingLeft>
-                              <PaddingRight>2pt</PaddingRight>
-                              <PaddingTop>2pt</PaddingTop>
-                              <PaddingBottom>2pt</PaddingBottom>
-                            </Style>
-                          </Textbox>
-                        </CellContents>
-                      </TablixHeader>
-                      <TablixMembers>
-                        <TablixMember>
-                          <TablixHeader>
-                            <Size>2.8175cm</Size>
-                            <CellContents>
-                              <Textbox Name="Textbox22">
-                                <CanGrow>true</CanGrow>
-                                <KeepTogether>true</KeepTogether>
-                                <Paragraphs>
-                                  <Paragraph>
-                                    <TextRuns>
-                                      <TextRun>
-                                        <Value />
-                                        <Style>
-                                          <FontWeight>Bold</FontWeight>
-                                        </Style>
-                                      </TextRun>
-                                    </TextRuns>
-                                    <Style>
-                                      <TextAlign>Center</TextAlign>
-                                    </Style>
-                                  </Paragraph>
-                                </Paragraphs>
-                                <rd:DefaultName>Textbox22</rd:DefaultName>
-                                <Style>
-                                  <Border>
-                                    <Color>LightGrey</Color>
-                                    <Style>Solid</Style>
-                                  </Border>
-                                  <PaddingLeft>2pt</PaddingLeft>
-                                  <PaddingRight>2pt</PaddingRight>
-                                  <PaddingTop>2pt</PaddingTop>
-                                  <PaddingBottom>2pt</PaddingBottom>
-                                </Style>
-                              </Textbox>
-                            </CellContents>
-                          </TablixHeader>
-                        </TablixMember>
-                      </TablixMembers>
+                      <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>FuelConsumptionDataSet</DataSetName>
-            <Top>2.11349cm</Top>
-            <Left>0.55245cm</Left>
-            <Height>3.47625cm</Height>
-            <Width>23.26729cm</Width>
+            <DataSetName>FuelConsumptionSummaryDataSet</DataSetName>
+            <Top>3.22474cm</Top>
+            <Left>0.84349cm</Left>
+            <Height>2.35562cm</Height>
+            <Width>24.29855cm</Width>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Tablix>
-          <Textbox Name="Textbox10">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Fuel Consumption</Value>
-                    <Style>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox10</rd:DefaultName>
-            <Top>0.65828cm</Top>
-            <Left>5.55245cm</Left>
-            <Height>0.6cm</Height>
-            <Width>10.26458cm</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Chart Name="Chart2">
+          <Chart Name="Chart1">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Group Name="Chart2_CategoryGroup">
+                  <Group Name="Chart1_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!ConsumptionDate.Value</GroupExpression>
+                      <GroupExpression>=Fields!VehicleInternalCode.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!ConsumptionDate.Value</Value>
+                      <Value>=Fields!VehicleInternalCode.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!ConsumptionDate.Value</Label>
+                  <Label>=Fields!VehicleInternalCode.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>Amount In EGP</Label>
-                </ChartMember>
-                <ChartMember>
-                  <Label>Quantity In Liters</Label>
+                  <Label>Quantity Consumed</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
             <ChartData>
               <ChartSeriesCollection>
-                <ChartSeries Name="AmountInEGP">
+                <ChartSeries Name="QuantityConsumed">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!AmountInEGP.Value)</Y>
+                        <Y>=Sum(Fields!QuantityConsumed.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
                       </ChartDataLabel>
                       <Style />
                       <ChartMarker>
-                        <Type>Auto</Type>
                         <Style />
                       </ChartMarker>
                       <DataElementOutput>Output</DataElementOutput>
                     </ChartDataPoint>
                   </ChartDataPoints>
-                  <Type>Line</Type>
-                  <Style />
-                  <ChartEmptyPoints>
-                    <Style />
-                    <ChartMarker>
-                      <Style />
-                    </ChartMarker>
-                    <ChartDataLabel>
-                      <Style />
-                    </ChartDataLabel>
-                  </ChartEmptyPoints>
-                  <ValueAxisName>Primary</ValueAxisName>
-                  <CategoryAxisName>Primary</CategoryAxisName>
-                  <ChartSmartLabel>
-                    <CalloutLineColor>Black</CalloutLineColor>
-                    <MinMovingDistance>0pt</MinMovingDistance>
-                  </ChartSmartLabel>
-                </ChartSeries>
-                <ChartSeries Name="QuantityInLiters">
-                  <ChartDataPoints>
-                    <ChartDataPoint>
-                      <ChartDataPointValues>
-                        <Y>=Sum(Fields!QuantityInLiters.Value)</Y>
-                      </ChartDataPointValues>
-                      <ChartDataLabel>
-                        <Style />
-                      </ChartDataLabel>
-                      <Style />
-                      <ChartMarker>
-                        <Type>Auto</Type>
-                        <Style />
-                      </ChartMarker>
-                      <DataElementOutput>Output</DataElementOutput>
-                    </ChartDataPoint>
-                  </ChartDataPoints>
-                  <Type>Line</Type>
+                  <Type>Shape</Type>
                   <Style />
                   <ChartEmptyPoints>
                     <Style />
@@ -2101,7 +1679,6 @@
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>8pt</FontSize>
                 </Style>
-                <Position>TopLeft</Position>
                 <ChartLegendTitle>
                   <Caption />
                   <Style>
@@ -2116,7 +1693,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Fuel Consumption Amount and Quantity</Caption>
+                <Caption>Vehicle Consumed Quantities</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -2145,15 +1722,740 @@
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>FuelConsumptionDataSet</DataSetName>
+            <DataSetName>FuelConsumptionSummaryDataSet</DataSetName>
             <PageBreak>
               <BreakLocation>Start</BreakLocation>
             </PageBreak>
-            <Top>5.89703cm</Top>
-            <Left>0.55245cm</Left>
-            <Height>7.11667cm</Height>
-            <Width>23.26729cm</Width>
-            <ZIndex>2</ZIndex>
+            <Top>6.32037cm</Top>
+            <Left>0.84349cm</Left>
+            <Height>6.48167cm</Height>
+            <Width>12.1825cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </Chart>
+          <Chart Name="Chart2">
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="Chart2_CategoryGroup">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!VehicleInternalCode.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!VehicleInternalCode.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <Label>=Fields!VehicleInternalCode.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>Amount Consumed</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="AmountConsumed">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!AmountConsumed.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartValueAxes>
+                <Style>
+                  <BackgroundColor>#00ffffff</BackgroundColor>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                </Style>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="Default">
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <Layout>WideTable</Layout>
+                <ChartLegendTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </ChartLegendTitle>
+                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+              </ChartLegend>
+            </ChartLegends>
+            <ChartTitles>
+              <ChartTitle Name="Default">
+                <Caption>Vehicle Consumed Amount In EGP</Caption>
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextAlign>Left</TextAlign>
+                  <VerticalAlign>Top</VerticalAlign>
+                  <Color>#a6a6a6</Color>
+                </Style>
+                <Position>TopLeft</Position>
+              </ChartTitle>
+            </ChartTitles>
+            <Palette>BrightPastel</Palette>
+            <ChartBorderSkin>
+              <Style>
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <Color>White</Color>
+              </Style>
+            </ChartBorderSkin>
+            <ChartNoDataMessage Name="NoDataMessage">
+              <Caption>No Data Available</Caption>
+              <Style>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <FontWeight>Bold</FontWeight>
+                <TextAlign>General</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </ChartNoDataMessage>
+            <DataSetName>FuelConsumptionSummaryDataSet</DataSetName>
+            <PageBreak>
+              <BreakLocation>Start</BreakLocation>
+            </PageBreak>
+            <Top>6.58495cm</Top>
+            <Left>14.30891cm</Left>
+            <Height>6.21708cm</Height>
+            <Width>10.83313cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </Chart>
+          <Chart Name="Chart3">
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="Chart3_CategoryGroup">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!FuelTypeName.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!FuelTypeName.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <Label>=Fields!FuelTypeName.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>Amount Consumed</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="AmountConsumed">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!AmountConsumed.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartValueAxes>
+                <Style>
+                  <BackgroundColor>#00ffffff</BackgroundColor>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                </Style>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="Default">
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartLegendTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </ChartLegendTitle>
+                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+              </ChartLegend>
+            </ChartLegends>
+            <ChartTitles>
+              <ChartTitle Name="Default">
+                <Caption>Fuel Consumed Amount</Caption>
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextAlign>Left</TextAlign>
+                  <VerticalAlign>Top</VerticalAlign>
+                  <Color>#a6a6a6</Color>
+                </Style>
+                <Position>TopLeft</Position>
+              </ChartTitle>
+            </ChartTitles>
+            <Palette>Pacific</Palette>
+            <ChartBorderSkin>
+              <Style>
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <Color>White</Color>
+              </Style>
+            </ChartBorderSkin>
+            <ChartNoDataMessage Name="NoDataMessage">
+              <Caption>No Data Available</Caption>
+              <Style>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <FontWeight>Bold</FontWeight>
+                <TextAlign>General</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </ChartNoDataMessage>
+            <DataSetName>FuelConsumptionSummaryDataSet</DataSetName>
+            <PageBreak>
+              <BreakLocation>Start</BreakLocation>
+            </PageBreak>
+            <Top>13.49058cm</Top>
+            <Left>7.94662cm</Left>
+            <Height>6.13771cm</Height>
+            <Width>12.68521cm</Width>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
@@ -2164,13 +2466,13 @@
             </Style>
           </Chart>
         </ReportItems>
-        <Height>5.436in</Height>
+        <Height>7.98959in</Height>
         <Style />
       </Body>
-      <Width>9.66927in</Width>
+      <Width>10.26302in</Width>
       <Page>
         <PageFooter>
-          <Height>1.33767cm</Height>
+          <Height>1.50812cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2182,15 +2484,17 @@
                   <TextRuns>
                     <TextRun>
                       <Value>=Globals!PageNumber</Value>
-                      <Style />
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0.47308cm</Top>
-              <Left>21.69016cm</Left>
+              <Top>0.39369cm</Top>
+              <Left>21.0312cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
               <Style>
@@ -2221,12 +2525,36 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="FromDateParameter">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ToDateParameter">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>FromDateParameter</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>ToDateParameter</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>d9696cf2-2464-4d68-bc37-3a36a9710e67</rd:ReportID>
+  <rd:ReportID>bda0f116-54e8-4734-8e58-8c8664ee661a</rd:ReportID>
 </Report>

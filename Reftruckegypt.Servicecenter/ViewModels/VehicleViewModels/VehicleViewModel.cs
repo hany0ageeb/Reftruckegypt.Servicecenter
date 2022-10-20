@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Npoi.Mapper.Attributes;
 using Reftruckegypt.Servicecenter.Models;
 
 namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
 {
+    
     public class VehicleViewModel
     {
         public VehicleViewModel(Vehicle vehicle)
@@ -30,6 +32,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
             {
                 PlateNumber = "";
             }
+            
         }
         [Ignore]
         public Guid Id { get; private set; }
@@ -57,5 +60,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
         public string WorkingState { get; private set; }
         [Column("Plate Number")]
         public string PlateNumber { get; private set; }
+        public List<ExternalRepairBillViewModels.ExternalRepairBillViewModel> ExternalRepairBills { get; private set; } = new List<ExternalRepairBillViewModels.ExternalRepairBillViewModel>();
+        public List<FuelConsumptionViewModels.FuelConsumptionViewModel> FuelConsumptions { get; private set; } = new List<FuelConsumptionViewModels.FuelConsumptionViewModel>();
+        public List<VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel> KilometerReadings { get; private set; } = new List<VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel>();
+        public List<SparePartsBillViewModels.SparePartsBillLineEditViewModel> SparePartsBills { get; private set; } = new List<SparePartsBillViewModels.SparePartsBillLineEditViewModel>();
     }
 }

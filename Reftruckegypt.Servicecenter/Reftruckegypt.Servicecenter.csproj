@@ -356,6 +356,12 @@
     <Compile Include="Reports\ReportsParameterViews\ExternalRepairInvoicesReportParametersView.Designer.cs">
       <DependentUpon>ExternalRepairInvoicesReportParametersView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\ReportsParameterViews\FuelConsumptionByFuelCardReportParametersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsParameterViews\FuelConsumptionByFuelCardReportParametersView.Designer.cs">
+      <DependentUpon>FuelConsumptionByFuelCardReportParametersView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ReportsParameterViews\FuelConsumptionReportParametersView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -367,6 +373,12 @@
     </Compile>
     <Compile Include="Reports\ReportsParameterViews\InternalRepairInvoicesParametersView.Designer.cs">
       <DependentUpon>InternalRepairInvoicesParametersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportsParameterViews\VehicleReportParametersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsParameterViews\VehicleReportParametersView.Designer.cs">
+      <DependentUpon>VehicleReportParametersView.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\ReportsParameterViews\VehicleViolationsReportParametersView.cs">
       <SubType>Form</SubType>
@@ -380,6 +392,12 @@
     <Compile Include="Reports\ReportsViews\ExternalRepairInvoicesReport.Designer.cs">
       <DependentUpon>ExternalRepairInvoicesReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\ReportsViews\FuelConsumptionByFuelCardReportView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsViews\FuelConsumptionByFuelCardReportView.Designer.cs">
+      <DependentUpon>FuelConsumptionByFuelCardReportView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ReportsViews\FuelConsumptionReportView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -391,6 +409,12 @@
     </Compile>
     <Compile Include="Reports\ReportsViews\ReportView.Designer.cs">
       <DependentUpon>ReportView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportsViews\VehicleReportView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsViews\VehicleReportView.Designer.cs">
+      <DependentUpon>VehicleReportView.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\ReportsViews\VehicleViolationsReportView.cs">
       <SubType>Form</SubType>
@@ -417,9 +441,11 @@
     <Compile Include="ViewModels\FuelCardViewModels\FuelCardEditViewModel.cs" />
     <Compile Include="ViewModels\FuelCardViewModels\FuelCardSearchViewModel.cs" />
     <Compile Include="ViewModels\FuelCardViewModels\FuelCardViewModel.cs" />
+    <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionDTO.cs" />
     <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionEditViewModel.cs" />
     <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionLineEditViewModel.cs" />
     <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionSearchViewModel.cs" />
+    <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionSummaryDTO.cs" />
     <Compile Include="ViewModels\FuelConsumptionViewModels\FuelConsumptionViewModel.cs" />
     <Compile Include="ViewModels\NavigatorViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodEditViewModel.cs" />
@@ -555,6 +581,12 @@
     </Compile>
     <Compile Include="Views\ImportMappingViews\FuelConsumptionMappingView.Designer.cs">
       <DependentUpon>FuelConsumptionMappingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImportMappingViews\PriceListMappingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ImportMappingViews\PriceListMappingView.Designer.cs">
+      <DependentUpon>PriceListMappingView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ImportMappingViews\VehicleKilometerReadingMappingView.cs">
       <SubType>Form</SubType>
@@ -733,11 +765,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reports\FuelConsumptionByFuelCardReport.rdlc" />
     <EmbeddedResource Include="Reports\FuelConsumptionReport.rdlc" />
     <EmbeddedResource Include="Reports\InternalRepairInvoiceLinesReport.rdlc" />
     <EmbeddedResource Include="Reports\InternalRepairInvoicesSummaryReport.rdlc" />
     <EmbeddedResource Include="Reports\ReportsParameterViews\ExternalRepairInvoicesReportParametersView.resx">
       <DependentUpon>ExternalRepairInvoicesReportParametersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportsParameterViews\FuelConsumptionByFuelCardReportParametersView.resx">
+      <DependentUpon>FuelConsumptionByFuelCardReportParametersView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportsParameterViews\FuelConsumptionReportParametersView.resx">
       <DependentUpon>FuelConsumptionReportParametersView.cs</DependentUpon>
@@ -746,11 +782,17 @@
     <EmbeddedResource Include="Reports\ReportsParameterViews\InternalRepairInvoicesParametersView.resx">
       <DependentUpon>InternalRepairInvoicesParametersView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportsParameterViews\VehicleReportParametersView.resx">
+      <DependentUpon>VehicleReportParametersView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportsParameterViews\VehicleViolationsReportParametersView.resx">
       <DependentUpon>VehicleViolationsReportParametersView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportsViews\ExternalRepairInvoicesReport.resx">
       <DependentUpon>ExternalRepairInvoicesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportsViews\FuelConsumptionByFuelCardReportView.resx">
+      <DependentUpon>FuelConsumptionByFuelCardReportView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportsViews\FuelConsumptionReportView.resx">
       <DependentUpon>FuelConsumptionReportView.cs</DependentUpon>
@@ -758,10 +800,14 @@
     <EmbeddedResource Include="Reports\ReportsViews\ReportView.resx">
       <DependentUpon>ReportView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportsViews\VehicleReportView.resx">
+      <DependentUpon>VehicleReportView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportsViews\VehicleViolationsReportView.resx">
       <DependentUpon>VehicleViolationsReportView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\SpeedViolationReport.rdlc" />
+    <EmbeddedResource Include="Reports\VehicleReport.rdlc" />
     <EmbeddedResource Include="ValidationErrors.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidationErrors.Designer.cs</LastGenOutput>
@@ -810,6 +856,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ImportMappingViews\FuelConsumptionMappingView.resx">
       <DependentUpon>FuelConsumptionMappingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ImportMappingViews\PriceListMappingView.resx">
+      <DependentUpon>PriceListMappingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ImportMappingViews\VehicleKilometerReadingMappingView.resx">
       <DependentUpon>VehicleKilometerReadingMappingView.cs</DependentUpon>
@@ -900,9 +949,11 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels.ExternalRepairBillViewModel.datasource" />
+    <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels.FuelConsumptionSummaryDTO.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels.SparePartsBillHeaderViewModel.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels.SparePartsBillLineViewModel1.datasource" />
+    <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels.VehicleViewModel.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels.VehicleViolationViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

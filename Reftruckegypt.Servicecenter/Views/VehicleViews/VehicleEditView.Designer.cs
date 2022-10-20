@@ -53,15 +53,17 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.label10 = new System.Windows.Forms.Label();
             this.cboDrivers = new System.Windows.Forms.ComboBox();
             this.cboWorkingStates = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cboOverAllStates = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gridLicenses = new System.Windows.Forms.DataGridView();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cboOverAllStates = new System.Windows.Forms.ComboBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtmodelYear = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -77,6 +79,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.7317F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 304F));
+            this.tableLayoutPanel1.Controls.Add(this.txtmodelYear, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.cboFuelTypes, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.label6, 2, 2);
@@ -101,22 +104,24 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.tableLayoutPanel1.Controls.Add(this.cboWorkingStates, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label12, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.cboOverAllStates, 3, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 6);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 22);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.66667F));
+            this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(891, 192);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(891, 218);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 158);
+            this.label11.Location = new System.Drawing.Point(3, 152);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(79, 15);
             this.label11.TabIndex = 20;
@@ -175,7 +180,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 31);
+            this.label2.Location = new System.Drawing.Point(3, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 15);
             this.label2.TabIndex = 1;
@@ -193,7 +198,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(454, 31);
+            this.label4.Location = new System.Drawing.Point(454, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 15);
             this.label4.TabIndex = 3;
@@ -208,7 +213,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // 
             // txtChassis
             // 
-            this.txtChassis.Location = new System.Drawing.Point(135, 34);
+            this.txtChassis.Location = new System.Drawing.Point(135, 32);
             this.txtChassis.Name = "txtChassis";
             this.txtChassis.Size = new System.Drawing.Size(286, 23);
             this.txtChassis.TabIndex = 5;
@@ -216,7 +221,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // cboCategories
             // 
             this.cboCategories.FormattingEnabled = true;
-            this.cboCategories.Location = new System.Drawing.Point(590, 34);
+            this.cboCategories.Location = new System.Drawing.Point(590, 32);
             this.cboCategories.Name = "cboCategories";
             this.cboCategories.Size = new System.Drawing.Size(286, 23);
             this.cboCategories.TabIndex = 7;
@@ -224,7 +229,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 94);
+            this.label7.Location = new System.Drawing.Point(3, 88);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 15);
             this.label7.TabIndex = 12;
@@ -233,7 +238,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // cboFuelCards
             // 
             this.cboFuelCards.FormattingEnabled = true;
-            this.cboFuelCards.Location = new System.Drawing.Point(135, 97);
+            this.cboFuelCards.Location = new System.Drawing.Point(135, 91);
             this.cboFuelCards.Name = "cboFuelCards";
             this.cboFuelCards.Size = new System.Drawing.Size(286, 23);
             this.cboFuelCards.TabIndex = 13;
@@ -241,7 +246,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(454, 94);
+            this.label8.Location = new System.Drawing.Point(454, 88);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(81, 15);
             this.label8.TabIndex = 14;
@@ -250,7 +255,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // cboWorkingLocations
             // 
             this.cboWorkingLocations.FormattingEnabled = true;
-            this.cboWorkingLocations.Location = new System.Drawing.Point(590, 97);
+            this.cboWorkingLocations.Location = new System.Drawing.Point(590, 91);
             this.cboWorkingLocations.Name = "cboWorkingLocations";
             this.cboWorkingLocations.Size = new System.Drawing.Size(286, 23);
             this.cboWorkingLocations.TabIndex = 15;
@@ -258,7 +263,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 126);
+            this.label9.Location = new System.Drawing.Point(3, 120);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(125, 15);
             this.label9.TabIndex = 16;
@@ -267,7 +272,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // cboMaintenanceLocations
             // 
             this.cboMaintenanceLocations.FormattingEnabled = true;
-            this.cboMaintenanceLocations.Location = new System.Drawing.Point(135, 129);
+            this.cboMaintenanceLocations.Location = new System.Drawing.Point(135, 123);
             this.cboMaintenanceLocations.Name = "cboMaintenanceLocations";
             this.cboMaintenanceLocations.Size = new System.Drawing.Size(286, 23);
             this.cboMaintenanceLocations.TabIndex = 17;
@@ -275,7 +280,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(454, 126);
+            this.label10.Location = new System.Drawing.Point(454, 120);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(39, 15);
             this.label10.TabIndex = 18;
@@ -284,7 +289,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // cboDrivers
             // 
             this.cboDrivers.FormattingEnabled = true;
-            this.cboDrivers.Location = new System.Drawing.Point(590, 129);
+            this.cboDrivers.Location = new System.Drawing.Point(590, 123);
             this.cboDrivers.Name = "cboDrivers";
             this.cboDrivers.Size = new System.Drawing.Size(286, 23);
             this.cboDrivers.TabIndex = 19;
@@ -292,17 +297,34 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // cboWorkingStates
             // 
             this.cboWorkingStates.FormattingEnabled = true;
-            this.cboWorkingStates.Location = new System.Drawing.Point(135, 161);
+            this.cboWorkingStates.Location = new System.Drawing.Point(135, 155);
             this.cboWorkingStates.Name = "cboWorkingStates";
             this.cboWorkingStates.Size = new System.Drawing.Size(286, 23);
             this.cboWorkingStates.TabIndex = 21;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(454, 152);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(79, 15);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "Over All State";
+            // 
+            // cboOverAllStates
+            // 
+            this.cboOverAllStates.FormattingEnabled = true;
+            this.cboOverAllStates.Location = new System.Drawing.Point(590, 155);
+            this.cboOverAllStates.Name = "cboOverAllStates";
+            this.cboOverAllStates.Size = new System.Drawing.Size(286, 23);
+            this.cboOverAllStates.TabIndex = 23;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(909, 234);
+            this.groupBox1.Size = new System.Drawing.Size(909, 256);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vehicle Information";
@@ -310,9 +332,9 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.gridLicenses);
-            this.groupBox2.Location = new System.Drawing.Point(13, 252);
+            this.groupBox2.Location = new System.Drawing.Point(13, 274);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(908, 318);
+            this.groupBox2.Size = new System.Drawing.Size(908, 296);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Vehicle Licenses";
@@ -322,25 +344,8 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.gridLicenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridLicenses.Location = new System.Drawing.Point(11, 22);
             this.gridLicenses.Name = "gridLicenses";
-            this.gridLicenses.Size = new System.Drawing.Size(885, 286);
+            this.gridLicenses.Size = new System.Drawing.Size(885, 246);
             this.gridLicenses.TabIndex = 3;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(454, 158);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(79, 15);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "Over All State";
-            // 
-            // cboOverAllStates
-            // 
-            this.cboOverAllStates.FormattingEnabled = true;
-            this.cboOverAllStates.Location = new System.Drawing.Point(590, 161);
-            this.cboOverAllStates.Name = "cboOverAllStates";
-            this.cboOverAllStates.Size = new System.Drawing.Size(286, 23);
-            this.cboOverAllStates.TabIndex = 23;
             // 
             // btnClose
             // 
@@ -369,6 +374,22 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // errorProvider2
             // 
             this.errorProvider2.ContainerControl = this;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(3, 181);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(67, 15);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "Model Year";
+            // 
+            // txtmodelYear
+            // 
+            this.txtmodelYear.Location = new System.Drawing.Point(135, 184);
+            this.txtmodelYear.Name = "txtmodelYear";
+            this.txtmodelYear.Size = new System.Drawing.Size(286, 23);
+            this.txtmodelYear.TabIndex = 25;
             // 
             // VehicleEditView
             // 
@@ -432,5 +453,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtmodelYear;
     }
 }

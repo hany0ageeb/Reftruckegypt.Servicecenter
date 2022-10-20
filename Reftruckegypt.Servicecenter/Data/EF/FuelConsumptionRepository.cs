@@ -3,6 +3,7 @@ using Reftruckegypt.Servicecenter.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Reftruckegypt.Servicecenter.Data.EF
 {
@@ -14,7 +15,15 @@ namespace Reftruckegypt.Servicecenter.Data.EF
 
         }
         public ReftruckDbContext ReftruckDbContext => _context as ReftruckDbContext;
-
+        public IEnumerable<IGrouping<FuelCard, FuelConsumption>> FindFuelConsumptionsGroupedByFuelcard(DateTime from, DateTime to)
+        {
+            return
+                _context
+                .Set<FuelConsumption>()
+                .Where(x => x.ConsumptionDate >= from && x.ConsumptionDate <= to)
+                .GroupBy(x => x.FuelCard);
+        }
+        
         public IEnumerable<FuelConsumption> Find(
             Guid? categoryId = null,
             Guid? modelId = null,
