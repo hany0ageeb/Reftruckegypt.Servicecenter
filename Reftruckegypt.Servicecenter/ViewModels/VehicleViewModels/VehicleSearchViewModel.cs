@@ -19,6 +19,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
         private readonly IApplicationContext _applicationContext;
         private readonly IValidator<Vehicle> _vehicleValidator;
         private readonly IValidator<VehicleLicense> _vehicleLicenseValidator;
+        private readonly IValidator<FuelCard> _fuelCardValidator;
 
         private bool _isDisposed = false;
 
@@ -43,12 +44,14 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
             IUnitOfWork unitOfWork,
             IApplicationContext applicationContext,
             IValidator<Vehicle> vehicleValidator,
-            IValidator<VehicleLicense> vehicleLicenseValidator)
+            IValidator<VehicleLicense> vehicleLicenseValidator,
+            IValidator<FuelCard> fuelCardValidator)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
             _vehicleValidator = vehicleValidator ?? throw new ArgumentNullException(nameof(vehicleValidator));
             _vehicleLicenseValidator = vehicleLicenseValidator ?? throw new ArgumentNullException(nameof(vehicleLicenseValidator));
+            _fuelCardValidator = fuelCardValidator ?? throw new ArgumentNullException(nameof(fuelCardValidator));
 
             VehicleCategories.AddRange(_unitOfWork.VehicleCategoryRepository.Find(orderBy: q=>q.OrderBy(x=>x.Name)));
             VehicleCategories.Insert(0, new VehicleCategory() { Id = Guid.Empty, Name = "--ALL--" });
@@ -246,6 +249,91 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                 }
             }
         }
+
+        public  Task<string> ImportFromExcelFileAsync(Mapper mapper, IProgress<int> progress)
+        {
+            return Task.Run<string>(() =>
+            {
+                StringBuilder sb = new StringBuilder();
+                progress.Report(0);
+                List<VehicleViewModel> models = mapper.Take<VehicleViewModel>().Select(r => r.Value).ToList();
+                List<Vehicle> vehicles = new List<Vehicle>();
+                for(int index = 0; index < models.Count; index++)
+                {
+                    VehicleViewModel model = models[index];
+                    Vehicle vehicle = new Vehicle()
+                    {
+                        InternalCode = model.InternalCode,
+                        ChassisNumber = model.ChassisNumber,
+                        VehicleCategory = _unitOfWork.VehicleCategoryRepository.Find(x=>x.Name.Equals(model.VehicleCategoryName)).FirstOrDefault(),
+                        Driver = _unitOfWork.DriverRepository.Find(x => x.Name.Equals(model.DriverName)).FirstOrDefault(),
+                        FuelType = _unitOfWork.FuelTypeRepository.Find(x=>x.Name.Equals(model.FuelTypeName)).FirstOrDefault(),
+                        ModelYear = model.ModelYear,
+                        VehicleModel = _unitOfWork.VehicleModelRepository.Find(x => x.Name.Equals(model.ModelName)).FirstOrDefault(),
+                        VehicleCode = model.VehicleCode
+                    };
+                    ModelState modelState = _vehicleValidator.Validate(vehicle);
+                    if (modelState.HasErrors)
+                    {
+                        sb.AppendLine(modelState.Error);
+                        continue;
+                    }
+                    if(!string.IsNullOrEmpty(model.FuelCardNumber) && !string.IsNullOrEmpty(model.FuelCardName) && !string.IsNullOrEmpty(model.Registration))
+                    {
+                        vehicle.FuelCard = new FuelCard()
+                        {
+                            Name = model.FuelCardName,
+                            Number = model.FuelCardNumber,
+                            Registration = model.Registration,
+                            Vehicle = vehicle
+                        };
+                        modelState.AddErrors(_fuelCardValidator.Validate(vehicle.FuelCard));
+                        if (modelState.HasErrors)
+                        {
+                            sb.AppendLine(modelState.Error);
+                            continue;
+                        }
+                    }
+                    if(!string.IsNullOrEmpty(model.PlateNumber) && !string.IsNullOrEmpty(model.MotorNumber) && model.StartDate.HasValue && model.EndDate.HasValue)
+                    {
+                        vehicle.VehicelLicenses.Add(new VehicleLicense()
+                        {
+                            PlateNumber = model.PlateNumber,
+                            MotorNumber = model.MotorNumber,
+                            StartDate = model.StartDate.Value,
+                            EndDate = model.EndDate.Value
+                        });
+                        modelState.AddErrors(_vehicleLicenseValidator.Validate(vehicle.VehicelLicenses.First()));
+                        if (modelState.HasErrors)
+                        {
+                            sb.AppendLine(modelState.Error);
+                            continue;
+                        }
+                    }
+                    if (!modelState.HasErrors)
+                    {
+                        if (_unitOfWork.VehicleRepository.Exists(x => x.InternalCode.Equals(vehicle.InternalCode)))
+                        {
+                            sb.AppendLine($"Duplicate Vehicle Internal Code: {vehicle.InternalCode}");
+                            continue;
+                        }
+                        if (vehicles.Any(x => x.InternalCode.Equals(vehicle.InternalCode)))
+                        {
+                            sb.AppendLine($"Duplicate Vehicle Internal Code: {vehicle.InternalCode}");
+                            continue;
+                        }
+                        vehicles.Add(vehicle);
+                    }
+                    progress.Report((int)((double)index / (double)models.Count * 100.0));
+                }
+                progress.Report(50);
+                _unitOfWork.VehicleRepository.Add(vehicles);
+                _unitOfWork.Complete();
+                progress.Report(100);
+                return sb.ToString();
+            });
+        }
+
         public bool IsEditEnabled
         {
             get => _isEditEnabled;

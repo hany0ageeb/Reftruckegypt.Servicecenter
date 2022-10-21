@@ -17,6 +17,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
             DriverName = vehicle.Driver?.Name ?? "";
             FuelCardNumber = vehicle.FuelCard?.Number ?? "";
             FuelCardName = vehicle.FuelCard?.Name ?? "";
+            Registration = vehicle.FuelCard?.Registration ?? "";
             FuelTypeName = vehicle.FuelType?.Name;
             MaintenanceLocationName = vehicle.MaintenanceLocation?.Name ?? "";
             WorkingLocationName = vehicle.WorkLocation?.Name ?? "";
@@ -60,6 +61,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
         public string FuelCardName { get; set; }
         [Column("Fuel Type Name")]
         public string FuelTypeName { get;  set; }
+        [Column("Registration")]
+        public string Registration { get; set; }
         [Column("Maintenance Location")]
         public string MaintenanceLocationName { get;  set; }
         [Column("Working Location")]

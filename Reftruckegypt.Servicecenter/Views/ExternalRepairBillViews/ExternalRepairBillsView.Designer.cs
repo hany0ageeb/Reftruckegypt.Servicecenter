@@ -67,7 +67,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.53089F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 307F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
@@ -110,7 +110,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(464, 34);
+            this.label4.Location = new System.Drawing.Point(463, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 34);
             this.label4.TabIndex = 7;
@@ -128,7 +128,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // txtbillNumberTo
             // 
-            this.txtbillNumberTo.Location = new System.Drawing.Point(549, 3);
+            this.txtbillNumberTo.Location = new System.Drawing.Point(548, 3);
             this.txtbillNumberTo.Name = "txtbillNumberTo";
             this.txtbillNumberTo.Size = new System.Drawing.Size(301, 23);
             this.txtbillNumberTo.TabIndex = 2;
@@ -161,7 +161,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // pickbillDateTo
             // 
             this.pickbillDateTo.Checked = false;
-            this.pickbillDateTo.Location = new System.Drawing.Point(549, 37);
+            this.pickbillDateTo.Location = new System.Drawing.Point(548, 37);
             this.pickbillDateTo.Name = "pickbillDateTo";
             this.pickbillDateTo.ShowCheckBox = true;
             this.pickbillDateTo.Size = new System.Drawing.Size(301, 23);
@@ -173,7 +173,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(464, 0);
+            this.label2.Location = new System.Drawing.Point(463, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 34);
             this.label2.TabIndex = 2;
@@ -182,7 +182,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // txtbillAmountTo
             // 
-            this.txtbillAmountTo.Location = new System.Drawing.Point(549, 71);
+            this.txtbillAmountTo.Location = new System.Drawing.Point(548, 71);
             this.txtbillAmountTo.Name = "txtbillAmountTo";
             this.txtbillAmountTo.Size = new System.Drawing.Size(301, 23);
             this.txtbillAmountTo.TabIndex = 6;
@@ -200,7 +200,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(464, 68);
+            this.label6.Location = new System.Drawing.Point(463, 68);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 34);
             this.label6.TabIndex = 11;
@@ -227,7 +227,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(464, 102);
+            this.label8.Location = new System.Drawing.Point(463, 102);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(71, 15);
             this.label8.TabIndex = 14;
@@ -236,14 +236,14 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // cboshops
             // 
             this.cboshops.FormattingEnabled = true;
-            this.cboshops.Location = new System.Drawing.Point(549, 105);
+            this.cboshops.Location = new System.Drawing.Point(548, 105);
             this.cboshops.Name = "cboshops";
             this.cboshops.Size = new System.Drawing.Size(301, 23);
             this.cboshops.TabIndex = 8;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(856, 105);
+            this.btnSearch.Location = new System.Drawing.Point(855, 105);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 9;
@@ -258,7 +258,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             this.gridbills.Location = new System.Drawing.Point(12, 156);
             this.gridbills.Name = "gridbills";
             this.gridbills.ReadOnly = true;
-            this.gridbills.Size = new System.Drawing.Size(941, 431);
+            this.gridbills.Size = new System.Drawing.Size(941, 383);
             this.gridbills.TabIndex = 10;
             // 
             // errorProvider1
@@ -267,7 +267,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(857, 609);
+            this.btnClose.Location = new System.Drawing.Point(857, 555);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(96, 30);
             this.btnClose.TabIndex = 15;
@@ -278,7 +278,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // btnDelete
             // 
             this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(233, 609);
+            this.btnDelete.Location = new System.Drawing.Point(233, 555);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(96, 30);
             this.btnDelete.TabIndex = 14;
@@ -288,7 +288,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // btnEdit
             // 
             this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(122, 609);
+            this.btnEdit.Location = new System.Drawing.Point(122, 555);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(96, 30);
             this.btnEdit.TabIndex = 13;
@@ -297,7 +297,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(13, 609);
+            this.btnCreate.Location = new System.Drawing.Point(13, 555);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(96, 30);
             this.btnCreate.TabIndex = 12;
@@ -309,7 +309,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 651);
+            this.ClientSize = new System.Drawing.Size(965, 595);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);

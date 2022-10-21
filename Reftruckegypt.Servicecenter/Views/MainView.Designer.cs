@@ -39,6 +39,7 @@ namespace Reftruckegypt.Servicecenter.Views
             this.vehicleKilmeterReadingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.externalRepairInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.priceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,7 @@ namespace Reftruckegypt.Servicecenter.Views
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.priceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -98,7 +99,8 @@ namespace Reftruckegypt.Servicecenter.Views
             this.vehicleKilmeterReadingsToolStripMenuItem,
             this.externalRepairInvoicesToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.priceListToolStripMenuItem});
+            this.priceListToolStripMenuItem,
+            this.vehicleToolStripMenuItem});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importToolStripMenuItem.Text = "Import";
@@ -137,6 +139,13 @@ namespace Reftruckegypt.Servicecenter.Views
             this.toolStripMenuItem1.Size = new System.Drawing.Size(217, 22);
             this.toolStripMenuItem1.Text = "Drivers";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // priceListToolStripMenuItem
+            // 
+            this.priceListToolStripMenuItem.Name = "priceListToolStripMenuItem";
+            this.priceListToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.priceListToolStripMenuItem.Text = "Price List";
+            this.priceListToolStripMenuItem.Click += new System.EventHandler(this.priceListToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 
@@ -182,12 +191,12 @@ namespace Reftruckegypt.Servicecenter.Views
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // priceListToolStripMenuItem
+            // vehicleToolStripMenuItem
             // 
-            this.priceListToolStripMenuItem.Name = "priceListToolStripMenuItem";
-            this.priceListToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.priceListToolStripMenuItem.Text = "Price List";
-            this.priceListToolStripMenuItem.Click += new System.EventHandler(this.priceListToolStripMenuItem_Click);
+            this.vehicleToolStripMenuItem.Name = "vehicleToolStripMenuItem";
+            this.vehicleToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.vehicleToolStripMenuItem.Text = "Vehicle";
+            this.vehicleToolStripMenuItem.Click += new System.EventHandler(this.vehicleToolStripMenuItem_Click);
             // 
             // MainView
             // 
@@ -230,5 +239,6 @@ namespace Reftruckegypt.Servicecenter.Views
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem priceListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vehicleToolStripMenuItem;
     }
 }

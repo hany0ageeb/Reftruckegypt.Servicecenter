@@ -35,6 +35,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             VehicleOverAllStateRepository = new VehicleOverAllStateRepository(context);
             VehicleLicenseRepository = new VehicleLicenseRepository(context);
             UserReportRepository = new UserReportRepository(context);
+            InternalMemoRepository = new InternalMemoRepository(context);
         }
 
         public IDriverRepository DriverRepository { get; private set; }
@@ -82,7 +83,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
 
         public IUomConversionRepository UomConversionRepository { get; private set; }
         public IVehicleOverAllStateRepository VehicleOverAllStateRepository { get; private set; }
-
+        public IInternalMemoRepository InternalMemoRepository { get; private set; }
         public IVehicleLicenseRepository VehicleLicenseRepository { get;private set; }
         public IUserReportRepository UserReportRepository { get; private set;  }
 

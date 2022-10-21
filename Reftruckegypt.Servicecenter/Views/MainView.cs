@@ -5,6 +5,7 @@ using Reftruckegypt.Servicecenter.ViewModels.DriverViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
 using System;
 using System.Collections.Generic;
@@ -161,6 +162,47 @@ namespace Reftruckegypt.Servicecenter.Views
                 toolStripProgressBar1.Visible = false;
                 toolStripProgressBar1.Value = 0;
                 Cursor = Cursors.Default;
+            }
+        }
+        private async void vehicleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName);
+                    using(ImportMappingViews.VehicleMappingView vehicleMappingView = new ImportMappingViews.VehicleMappingView(headers, openFileDialog1.FileName))
+                    {
+                        if(vehicleMappingView.ShowDialog(this) == DialogResult.OK && vehicleMappingView.Mapper != null)
+                        {
+                            using (var scope = Program.ServiceProvider.CreateScope())
+                            {
+                                VehicleSearchViewModel vehicleSearchViewModel = scope.ServiceProvider.GetRequiredService<VehicleSearchViewModel>();
+                                Progress<int> progress = new Progress<int>();
+                                toolStripProgressBar1.Visible = true;
+                                toolStripProgressBar1.Value = 0;
+                                progress.ProgressChanged += Progress_ProgressChanged;
+                                string errorMessage = await vehicleSearchViewModel.ImportFromExcelFileAsync(vehicleMappingView.Mapper, progress);
+                                if (!string.IsNullOrEmpty(errorMessage))
+                                {
+                                    using (ImportErrorsView errorsView = new ImportErrorsView(errorMessage))
+                                    {
+                                        errorsView.ShowDialog(this);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+
             }
         }
         private async void vehicleKilmeterReadingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -391,6 +433,7 @@ namespace Reftruckegypt.Servicecenter.Views
                 aboutView.ShowDialog(this);
             }
         }
+
         
     }
 }
