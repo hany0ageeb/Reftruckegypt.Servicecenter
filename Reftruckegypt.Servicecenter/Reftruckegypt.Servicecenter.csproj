@@ -303,8 +303,12 @@
     <Compile Include="Models\FuelCard.cs" />
     <Compile Include="Models\FuelConsumption.cs" />
     <Compile Include="Models\FuelType.cs" />
+    <Compile Include="Models\InternalMemo.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Period.cs" />
+    <Compile Include="Models\PurchaseRequest.cs" />
+    <Compile Include="Models\PurchaseRequestLine.cs" />
+    <Compile Include="Models\ReceiptLine.cs" />
     <Compile Include="Models\SparePart.cs" />
     <Compile Include="Models\SparePartPriceListLine.cs" />
     <Compile Include="Models\SparePartsBill.cs" />
@@ -594,6 +598,12 @@
     <Compile Include="Views\ImportMappingViews\VehicleKilometerReadingMappingView.Designer.cs">
       <DependentUpon>VehicleKilometerReadingMappingView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ImportMappingViews\VehicleMappingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ImportMappingViews\VehicleMappingView.Designer.cs">
+      <DependentUpon>VehicleMappingView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ImportMappingViews\VehicleViolationMappingView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -862,6 +872,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ImportMappingViews\VehicleKilometerReadingMappingView.resx">
       <DependentUpon>VehicleKilometerReadingMappingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ImportMappingViews\VehicleMappingView.resx">
+      <DependentUpon>VehicleMappingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ImportMappingViews\VehicleViolationMappingView.resx">
       <DependentUpon>VehicleViolationMappingView.cs</DependentUpon>
