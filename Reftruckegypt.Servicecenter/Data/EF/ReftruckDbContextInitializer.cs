@@ -727,6 +727,12 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Sequence = 170,
                     Name = nameof(VehicleStateChange),
                     DisplayName = "Fleet Down Time"
+                },
+                new UserCommand()
+                {
+                    Sequence = 180,
+                    Name = nameof(InternalMemo),
+                    DisplayName = "Internal Memo"
                 }
             };
             // ...

@@ -826,6 +826,48 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             modelBuilder
                 .Entity<UserReport>()
                 .Ignore(e => e.Execute);
+            // ... InternalMemo
+            modelBuilder
+                .Entity<InternalMemo>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("InternalMemos");
+                });
+            modelBuilder
+                .Entity<InternalMemo>()
+                .HasIndex(e => e.MemoDate)
+                .IsUnique(false)
+                .HasName("IDX_MEMO_DATE");
+            modelBuilder
+                .Entity<InternalMemo>()
+                .HasIndex(e => e.Header)
+                .IsUnique(false)
+                .HasName("IDX_MEMO_HEADER");
+            modelBuilder
+                .Entity<InternalMemo>()
+                .HasRequired(e => e.Vehicle)
+                .WithMany()
+                .HasForeignKey(e => e.VehicleId);
+            modelBuilder
+                .Entity<InternalMemo>()
+                .HasRequired(e => e.Period)
+                .WithMany()
+                .HasForeignKey(x => x.PeriodId);
+            modelBuilder
+                .Entity<InternalMemo>()
+                .Property(e => e.Header)
+                .IsRequired()
+                .HasMaxLength(InternalMemo.MaxHeaderLength);
+            modelBuilder
+                .Entity<InternalMemo>()
+                .Property(e => e.Content)
+                .IsRequired()
+                .HasMaxLength(InternalMemo.MaxContentLength);
+            modelBuilder
+                .Entity<InternalMemo>()
+                .Property(e => e.Number)
+                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
         }
         public DbSet<Location> Locations { get; set; }
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
@@ -851,6 +893,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         public DbSet<SparePartPriceListLine> SparePartPriceListLines { get; set; }
         public DbSet<VehicleKilometerReading> VehicleKilometerReadings { get; set; }
         public DbSet<VehicleStateChange> VehicleStateChanges { get; set; }
+        public DbSet<InternalMemo> InternalMemos { get; set; }
         public DbSet<UserCommand> UserCommands { get; set; }
         public DbSet<UserReport> UserReports { get; set; }
         

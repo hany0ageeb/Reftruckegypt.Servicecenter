@@ -1,6 +1,8 @@
-﻿using Reftruckegypt.Servicecenter.Common;
+﻿using Npoi.Mapper;
+using Reftruckegypt.Servicecenter.Common;
 using Reftruckegypt.Servicecenter.Data.Abstractions;
 using Reftruckegypt.Servicecenter.Models;
+using Reftruckegypt.Servicecenter.Models.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +18,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IApplicationContext _applicationContext;
+        private readonly IValidator<InternalMemo> _validator;
 
         private Vehicle _vehicle;
         private DateTime? _fromDate;
@@ -28,10 +31,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels
 
         public InternalMemoSearchViewModel(
             IUnitOfWork unitOfWork,
-            IApplicationContext applicationContext)
+            IApplicationContext applicationContext,
+            IValidator<InternalMemo> validator)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+            _validator = validator ?? throw new ArgumentNullException(nameof(validator));
 
             Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q => q.OrderBy(x => x.InternalCode)));
             Vehicles.Insert(0, Vehicle.Empty);
@@ -170,7 +175,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels
         }
         public void Create()
         {
-
+            InternalMemoEditViewModel editModel = new InternalMemoEditViewModel( _unitOfWork, _applicationContext, _validator);
+            _applicationContext.DisplayInternalMemoEditView(editModel);
+            Search();
         }
         public void Edit()
         {
@@ -179,6 +186,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels
                 InternalMemo internalMemo = _unitOfWork.InternalMemoRepository.Find(key: InternalMemos[_selectedindex].Id);
                 if (internalMemo != null)
                 {
+                    InternalMemoEditViewModel editModel = new InternalMemoEditViewModel(internalMemo, _unitOfWork, _applicationContext, _validator);
+                    _applicationContext.DisplayInternalMemoEditView(editModel);
                     Search();
                 }
                 else
@@ -219,6 +228,18 @@ namespace Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels
                 _unitOfWork.Dispose();
                 _isDisposed = true;
             }
+        }
+
+        public Task ExportToExcelFileAsync(string fileName)
+        {
+            return Task.Run(() =>
+            {
+                if(InternalMemos.Count > 0)
+                {
+                    Mapper mapper = new Mapper(fileName);
+                    mapper.Save<InternalMemoDTO>(fileName);
+                }
+            });
         }
     }
 }

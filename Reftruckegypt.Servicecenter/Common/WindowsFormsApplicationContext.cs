@@ -39,6 +39,8 @@ using Reftruckegypt.Servicecenter.Views.VehicleStateChangeViews;
 
 using Reftruckegypt.Servicecenter.Models;
 using System;
+using Reftruckegypt.Servicecenter.Views.InternalMemoViews;
+using Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -94,6 +96,33 @@ namespace Reftruckegypt.Servicecenter.Common
             sparePartsBillEditView.ShowDialog(_mdiParent);
         }
 
+        public void DisplayInternalMemoEditView(InternalMemoEditViewModel editModel)
+        {
+            InternalMemoEditView internalMemoEditView = new InternalMemoEditView(editModel);
+            internalMemoEditView.ShowInTaskbar = false;
+            internalMemoEditView.ShowDialog(_mdiParent);
+        }
+        public void DisplayInternalMemosView(bool enableExport = false, string exportDisplayName= "Export")
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            InternalMemosView internalMemosView = scope.ServiceProvider.GetRequiredService<InternalMemosView>();
+            internalMemosView.MdiParent = _mdiParent;
+            internalMemosView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            if (enableExport)
+            {
+                _mdiParent.IsExportEnabled = true;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(internalMemosView, async (o, e) =>
+                {
+                    await internalMemosView.ExportToFileAsync();
+                });
+                _mdiParent.AddExportAction(_exportActions[internalMemosView]);
+            }
+            internalMemosView.Show();
+        }
         public void DisplaySparePartsBillsView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();

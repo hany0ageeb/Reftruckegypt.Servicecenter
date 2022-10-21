@@ -143,6 +143,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                             _applicationContext.DisplayVehicleSatetChangesView(true, "Export");
                         };
                         break;
+                    case nameof(InternalMemo):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayInternalMemosView(enableExport: true, exportDisplayName: "Export Internal Memos ...");
+                        };
+                        break;
                 }
                 UserCommands.Add(command);
             }

@@ -4,6 +4,7 @@ using Reftruckegypt.Servicecenter.ViewModels.ExternalAutoRepairShopViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels;
@@ -64,6 +65,8 @@ namespace Reftruckegypt.Servicecenter.Common
 
         void InitializeReportsMenu(IEnumerable<UserReport> reports);
         void DisplayView(Type type);
+        void DisplayInternalMemosView(bool enableExport, string exportDisplayName);
+        void DisplayInternalMemoEditView(InternalMemoEditViewModel editModel);
     }
    
 }

@@ -84,7 +84,8 @@ namespace Reftruckegypt.Servicecenter
                 .AddSingleton<IValidator<SparePart>, SparePartValidator>()
                 .AddSingleton<IValidator<UomConversion>, UomConversionValidator>()
                 .AddSingleton<IValidator<SparePartsBill>, SparePartsBillValidator>()
-                .AddSingleton<IValidator<SparePartsBillLine>, SparePartsBillLineValidator>();
+                .AddSingleton<IValidator<SparePartsBillLine>, SparePartsBillLineValidator>()
+                .AddSingleton<IValidator<InternalMemo>, InternalMemoValidator>();
             // ....
             services.AddSingleton<Common.IApplicationContext, Common.WindowsFormsApplicationContext>();
             // ....
@@ -105,7 +106,8 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(ViewModels.SparePartsBillViewModels.SparePartsBillSearchViewModel));
             services.AddTransient(typeof(ViewModels.FuelCardViewModels.FuelCardSearchViewModel));
             services.AddTransient(typeof(ViewModels.VehicleViewModels.VehicleSearchViewModel))
-                .AddTransient(typeof(ViewModels.VehicleStateChangeViewModels.VehicleStateChangeSearchViewModel));
+                .AddTransient(typeof(ViewModels.VehicleStateChangeViewModels.VehicleStateChangeSearchViewModel))
+                .AddTransient(typeof(ViewModels.InternalMemoViewModels.InternalMemoSearchViewModel));
             // ....
             services.AddSingleton<MainView, MainView>();
             services.AddSingleton(typeof(NavigatorView));
@@ -125,7 +127,8 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(Views.SparePartsBillViews.SparePartsBillsView));
             services.AddTransient(typeof(Views.FuelCardViews.FuelCardsView));
             services.AddTransient(typeof(VehiclesView))
-                .AddTransient(typeof(VehicleStateChangesView));
+                .AddTransient(typeof(VehicleStateChangesView))
+                .AddTransient(typeof(Views.InternalMemoViews.InternalMemosView));
 
             // ....
             services.AddScoped(typeof(Reports.ReportsParameterViews.FuelConsumptionReportParametersView));

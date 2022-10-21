@@ -116,6 +116,7 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
                     _searchModel.SelectedIndex = -1;
                 }
             };
+            gridMemos.DataSource = _searchModel.InternalMemos;
             // ...
             btnSearch.Click += (o, e) =>
             {
@@ -181,6 +182,36 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
                 }
             };
             // ...
+            saveFileDialog1.Filter = "Excel Files (*.xlsx) | *.xlsx";
+            saveFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveFileDialog1.OverwritePrompt = true;
+            saveFileDialog1.CheckPathExists = true;
+            saveFileDialog1.RestoreDirectory = true;
+        }
+
+        public async Task ExportToFileAsync()
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    await _searchModel.ExportToExcelFileAsync(fileName: saveFileDialog1.FileName);
+                }
+            }
+            catch(Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -900,6 +900,9 @@
     <EmbeddedResource Include="Views\ImportMappingViews\VehicleViolationMappingView.resx">
       <DependentUpon>VehicleViolationMappingView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\InternalMemoViews\InternalMemoEditView.resx">
+      <DependentUpon>InternalMemoEditView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\InternalMemoViews\InternalMemosView.resx">
       <DependentUpon>InternalMemosView.cs</DependentUpon>
     </EmbeddedResource>

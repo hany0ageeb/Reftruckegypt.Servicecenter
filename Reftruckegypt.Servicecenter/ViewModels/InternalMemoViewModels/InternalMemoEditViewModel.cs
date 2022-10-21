@@ -57,7 +57,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels
                     MemoDate = internalMemo.MemoDate,
                     Vehicle = internalMemo.Vehicle,
                     Header = internalMemo.Header,
-                    Content = internalMemo.Content
+                    Content = internalMemo.Content,
+                    Number = internalMemo.Number
                 };
                 if (!Vehicles.Contains(internalMemo.Vehicle))
                 {
@@ -143,15 +144,18 @@ namespace Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels
                 {
                     if(_internalMemeo.Id == Guid.Empty)
                     {
-                        _unitOfWork.InternalMemoRepository.Add(new InternalMemo()
+                        InternalMemo memo = new InternalMemo()
                         {
                             Header = _internalMemeo.Header,
                             Content = _internalMemeo.Content,
                             MemoDate = _internalMemeo.MemoDate,
                             Period = _internalMemeo.Period,
                             Vehicle = _internalMemeo.Vehicle
-                        });
+                        };
+                        _unitOfWork.InternalMemoRepository.Add(memo);
                         _unitOfWork.Complete();
+                        _internalMemeo.Number = memo.Number;
+                        _internalMemeo.Id = memo.Id;
                         OnPropertyChanged(this, nameof(Number));
                         HasChanged = false;
                         return true;
