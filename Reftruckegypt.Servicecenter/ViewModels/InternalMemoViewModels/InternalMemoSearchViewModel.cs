@@ -230,16 +230,15 @@ namespace Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels
             }
         }
 
-        public Task ExportToExcelFileAsync(string fileName)
+        public void ExportToExcelFile(string fileName)
         {
-            return Task.Run(() =>
-            {
+           
                 if(InternalMemos.Count > 0)
                 {
                     Mapper mapper = new Mapper(fileName);
-                    mapper.Save<InternalMemoDTO>(fileName);
+                    mapper.Save<InternalMemoDTO>(fileName, InternalMemos.ToList());
                 }
-            });
+            
         }
     }
 }

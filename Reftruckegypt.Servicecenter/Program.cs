@@ -64,7 +64,7 @@ namespace Reftruckegypt.Servicecenter
             services
                 .AddSingleton<IValidator<SparePartsPriceList>, SparePartsPriceListValidator>()
                 .AddSingleton<IValidator<SparePartPriceListLine>, SparePartPriceListLineValidator>()
-                .AddSingleton<IValidator<Driver>,DriverValidator>()
+                .AddSingleton<IValidator<Driver>, DriverValidator>()
                 .AddSingleton<IValidator<ExternalAutoRepairShop>, ExternalAutoRepairShopValidator>()
                 .AddSingleton<IValidator<ExternalRepairBill>, ExternalRepairBillValidator>()
                 .AddSingleton<IValidator<Vehicle>, VehicleValidator>()
@@ -85,7 +85,10 @@ namespace Reftruckegypt.Servicecenter
                 .AddSingleton<IValidator<UomConversion>, UomConversionValidator>()
                 .AddSingleton<IValidator<SparePartsBill>, SparePartsBillValidator>()
                 .AddSingleton<IValidator<SparePartsBillLine>, SparePartsBillLineValidator>()
-                .AddSingleton<IValidator<InternalMemo>, InternalMemoValidator>();
+                .AddSingleton<IValidator<InternalMemo>, InternalMemoValidator>()
+                .AddSingleton<IValidator<PurchaseRequest>, PurchaseRequestValidator>()
+                .AddSingleton<IValidator<PurchaseRequestLine>, PurchaseRequestLineValidator>()
+                .AddSingleton<IValidator<ReceiptLine>, ReceiptLineValidator>();
             // ....
             services.AddSingleton<Common.IApplicationContext, Common.WindowsFormsApplicationContext>();
             // ....
@@ -107,7 +110,9 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(ViewModels.FuelCardViewModels.FuelCardSearchViewModel));
             services.AddTransient(typeof(ViewModels.VehicleViewModels.VehicleSearchViewModel))
                 .AddTransient(typeof(ViewModels.VehicleStateChangeViewModels.VehicleStateChangeSearchViewModel))
-                .AddTransient(typeof(ViewModels.InternalMemoViewModels.InternalMemoSearchViewModel));
+                .AddTransient(typeof(ViewModels.InternalMemoViewModels.InternalMemoSearchViewModel))
+                .AddTransient(typeof(ViewModels.PurchaseRequestViewModels.PurchaseRequestSearchViewModel))
+                .AddTransient(typeof(ViewModels.ReceiptLineViewModels.ReceiptLineSearchViewModel));
             // ....
             services.AddSingleton<MainView, MainView>();
             services.AddSingleton(typeof(NavigatorView));
@@ -128,7 +133,9 @@ namespace Reftruckegypt.Servicecenter
             services.AddTransient(typeof(Views.FuelCardViews.FuelCardsView));
             services.AddTransient(typeof(VehiclesView))
                 .AddTransient(typeof(VehicleStateChangesView))
-                .AddTransient(typeof(Views.InternalMemoViews.InternalMemosView));
+                .AddTransient(typeof(Views.InternalMemoViews.InternalMemosView))
+                .AddTransient(typeof(Views.PurchaseRequestViews.PurchasRequestsView))
+                .AddTransient(typeof(Views.ReceiptLineViews.ReceiptLinesView));
 
             // ....
             services.AddScoped(typeof(Reports.ReportsParameterViews.FuelConsumptionReportParametersView));

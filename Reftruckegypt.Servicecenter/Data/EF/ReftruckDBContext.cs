@@ -16,6 +16,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             : base(nameOrConnectionString)
         {
             Database.SetInitializer(new ReftruckDbContextInitializer());
+            
             Database.Log = (s) =>
             {
                 System.IO.File.AppendAllText(@"d:\sql.txt", s);
@@ -868,6 +869,106 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<InternalMemo>()
                 .Property(e => e.Number)
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            // ...
+            modelBuilder
+                .Entity<PurchaseRequest>()
+                .Map(m =>
+                {
+                    m.MapInheritedProperties();
+                    m.ToTable("PurchaseRequests");
+                });
+            modelBuilder
+                .Entity<PurchaseRequest>()
+                .HasRequired(e => e.Vehicle)
+                .WithMany()
+                .HasForeignKey(e => e.VehicleId);
+            modelBuilder
+                .Entity<PurchaseRequest>()
+                .HasRequired(e => e.Period)
+                .WithMany()
+                .HasForeignKey(e => e.PeriodId);
+            modelBuilder
+                .Entity<PurchaseRequest>()
+                .Property(e => e.Description)
+                .HasMaxLength(PurchaseRequest.MaxDescriptionLength);
+            modelBuilder
+                .Entity<PurchaseRequest>()
+                .Property(e => e.Number)
+                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            modelBuilder
+                .Entity<PurchaseRequest>()
+                .Property(e => e.State)
+                .IsRequired()
+                .HasMaxLength(PurchaseRequest.MaxStateLength);
+            modelBuilder
+                .Entity<PurchaseRequest>()
+                .HasIndex(e => e.RequestDate)
+                .IsUnique(false)
+                .HasName("IDX_PR_DATE");
+            modelBuilder
+                .Entity<PurchaseRequest>()
+                .HasIndex(e => e.State)
+                .IsUnique(false)
+                .HasName("IDX_PR_STATE");
+            modelBuilder
+                .Entity<PurchaseRequest>()
+                .HasMany(e => e.Lines)
+                .WithRequired(e => e.PurchaseRequest)
+                .HasForeignKey(e => e.PurchaseRequestId)
+                .WillCascadeOnDelete(true);
+            modelBuilder
+                .Entity<PurchaseRequest>()
+                .Ignore(e=>e.Self);
+            // ...
+            modelBuilder
+                .Entity<PurchaseRequestLine>()
+                .HasRequired(e => e.SparePart)
+                .WithMany()
+                .HasForeignKey(e => e.SparePartId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<PurchaseRequestLine>()
+                .HasRequired(e => e.Uom)
+                .WithMany()
+                .HasForeignKey(e => e.UomId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<PurchaseRequestLine>()
+                .Property(e => e.Notes)
+                .HasMaxLength(PurchaseRequestLine.MaxNotesLength);
+            modelBuilder
+                .Entity<PurchaseRequestLine>()
+                .Property(e => e.RequestedQuantity)
+                .HasPrecision(18, 4);
+            // ...
+            modelBuilder
+                .Entity<ReceiptLine>()
+                .HasRequired(e => e.PurchaseRequestLine)
+                .WithMany(e=>e.ReceiptLines)
+                .HasForeignKey(e => e.PurchaseRequestLineId)
+                .WillCascadeOnDelete(true);
+            modelBuilder
+                .Entity<ReceiptLine>()
+                .HasRequired(e => e.SparePart)
+                .WithMany()
+                .HasForeignKey(e => e.SparePartId)
+                .WillCascadeOnDelete(false); 
+            modelBuilder
+                .Entity<ReceiptLine>()
+                .HasRequired(e => e.Uom)
+                .WithMany()
+                .HasForeignKey(e => e.UomId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<ReceiptLine>()
+                .HasRequired(e => e.Period)
+                .WithMany()
+                .HasForeignKey(e => e.PeriodId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<ReceiptLine>()
+                .Property(e => e.ReceivedQuantity)
+                .HasPrecision(18, 4);
         }
         public DbSet<Location> Locations { get; set; }
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
@@ -894,6 +995,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         public DbSet<VehicleKilometerReading> VehicleKilometerReadings { get; set; }
         public DbSet<VehicleStateChange> VehicleStateChanges { get; set; }
         public DbSet<InternalMemo> InternalMemos { get; set; }
+        public DbSet<PurchaseRequest> PurchaseRequests { get; set; }
+        public DbSet<PurchaseRequestLine> PurchaseRequestLines { get; set; }
+        public DbSet<ReceiptLine> ReceiptLines { get; set; }
         public DbSet<UserCommand> UserCommands { get; set; }
         public DbSet<UserReport> UserReports { get; set; }
         

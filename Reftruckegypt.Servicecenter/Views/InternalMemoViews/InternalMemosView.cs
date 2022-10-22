@@ -189,14 +189,14 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             saveFileDialog1.RestoreDirectory = true;
         }
 
-        public async Task ExportToFileAsync()
+        public void ExportToFile()
         {
             try
             {
                 Cursor = Cursors.WaitCursor;
                 if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
                 {
-                    await _searchModel.ExportToExcelFileAsync(fileName: saveFileDialog1.FileName);
+                     _searchModel.ExportToExcelFile(fileName: saveFileDialog1.FileName);
                 }
             }
             catch(Exception ex)

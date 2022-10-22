@@ -41,6 +41,10 @@ using Reftruckegypt.Servicecenter.Models;
 using System;
 using Reftruckegypt.Servicecenter.Views.InternalMemoViews;
 using Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.PurchaseRequestViewModels;
+using Reftruckegypt.Servicecenter.Views.PurchaseRequestViews;
+using Reftruckegypt.Servicecenter.ViewModels.ReceiptLineViewModels;
+using Reftruckegypt.Servicecenter.Views.ReceiptLineViews;
 
 namespace Reftruckegypt.Servicecenter.Common
 {
@@ -55,6 +59,21 @@ namespace Reftruckegypt.Servicecenter.Common
             _mdiParent = mdiParent;
         }
 
+        public IList<Guid> DisplayPurchaseRequestsSelectionView(IEnumerable<PurchaseRequestSelectorViewModel> purchases)
+        {
+            using (Views.ReceiptLineViews.PurchaseRequestSelectionView requestSelectionView = new Views.ReceiptLineViews.PurchaseRequestSelectionView(purchases))
+            {
+                if(requestSelectionView.ShowDialog(_mdiParent) == System.Windows.Forms.DialogResult.OK)
+                {
+                    return requestSelectionView.SelectedRequests;
+                }
+                else
+                {
+                    return new List<Guid>();
+                }
+            }
+
+        }
         public void DisplayFuelCardsView(bool isExportEnabled = false, string displayName = "Export")
         {
             var scope = Program.ServiceProvider.CreateScope();
@@ -77,6 +96,28 @@ namespace Reftruckegypt.Servicecenter.Common
             };
             fuelCardsView.Show();
         }
+        public void DisplayPurchaseRequestsView(bool enableExport, string exportDisplayName)
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            PurchasRequestsView purchasRequestsView = scope.ServiceProvider.GetRequiredService<PurchasRequestsView>();
+            _scopes[purchasRequestsView] = scope;
+            purchasRequestsView.MdiParent = _mdiParent;
+            _mdiParent.IsExportEnabled = enableExport;
+            _mdiParent.SetExportDisplayName(exportDisplayName);
+            if (enableExport)
+            {
+                _exportActions.Add(purchasRequestsView, (o, e) =>
+                {
+                    purchasRequestsView.ExportToFile();
+                });
+                _mdiParent.AddExportAction(_exportActions[purchasRequestsView]);
+            }
+            purchasRequestsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            purchasRequestsView.Show();
+        }
         public void DisplayVehicleEditView(VehicleEditViewModel editModel)
         {
             VehicleEditView vehicleEditView = new VehicleEditView(editModel);
@@ -88,6 +129,13 @@ namespace Reftruckegypt.Servicecenter.Common
             FuelCardEditView fuelCardEditView = new FuelCardEditView(editModel);
             fuelCardEditView.ShowInTaskbar = false;
             fuelCardEditView.ShowDialog(_mdiParent);
+        }
+
+        public void DisplayReceiptEditView(ReceiptEditViewModel editModel)
+        {
+            Views.ReceiptLineViews.ReceiptLinesEditView editView = new Views.ReceiptLineViews.ReceiptLinesEditView(editModel);
+            editView.ShowInTaskbar = false;
+            editView.ShowDialog(_mdiParent);
         }
         public void DisplaySparePartsBillEditView(SparePartsBillEditViewModel sparePartsBillEditViewModel)
         {
@@ -106,6 +154,7 @@ namespace Reftruckegypt.Servicecenter.Common
         {
             var scope = Program.ServiceProvider.CreateScope();
             InternalMemosView internalMemosView = scope.ServiceProvider.GetRequiredService<InternalMemosView>();
+            _scopes.Add(internalMemosView, scope);
             internalMemosView.MdiParent = _mdiParent;
             internalMemosView.FormClosed += (o, e) =>
             {
@@ -115,13 +164,36 @@ namespace Reftruckegypt.Servicecenter.Common
             {
                 _mdiParent.IsExportEnabled = true;
                 _mdiParent.SetExportDisplayName(exportDisplayName);
-                _exportActions.Add(internalMemosView, async (o, e) =>
+                _exportActions.Add(internalMemosView,  (o, e) =>
                 {
-                    await internalMemosView.ExportToFileAsync();
+                     internalMemosView.ExportToFile();
                 });
                 _mdiParent.AddExportAction(_exportActions[internalMemosView]);
             }
             internalMemosView.Show();
+        }
+
+        public void DisplayReceiptLinesView(bool enableExport, string exportDisplayName)
+        {
+            var scope = Program.ServiceProvider.CreateScope();
+            ReceiptLinesView receiptsView = scope.ServiceProvider.GetRequiredService<ReceiptLinesView>();
+            _scopes.Add(receiptsView, scope);
+            receiptsView.MdiParent = _mdiParent;
+            receiptsView.FormClosed += (o, e) =>
+            {
+                FormClosed(o as Form);
+            };
+            if (enableExport)
+            {
+                _mdiParent.IsExportEnabled = true;
+                _mdiParent.SetExportDisplayName(exportDisplayName);
+                _exportActions.Add(receiptsView, (o, e) =>
+                {
+                     receiptsView.ExportToFile();
+                });
+                _mdiParent.AddExportAction(_exportActions[receiptsView]);
+            }
+            receiptsView.Show();
         }
         public void DisplaySparePartsBillsView(bool isExportEnabled = false, string exportDisplayName = "Export")
         {
@@ -506,11 +578,18 @@ namespace Reftruckegypt.Servicecenter.Common
             };
             vehicleCategoryEditView.ShowDialog(_mdiParent);
         }
+
+        public void DisplayPurchaseRequestEditView(PurchaseRequestEditViewModel editModel)
+        {
+            PurchaseRequestEditView purchaseRequestEditView = new PurchaseRequestEditView(editModel);
+            purchaseRequestEditView.ShowInTaskbar = false;
+            purchaseRequestEditView.ShowDialog(_mdiParent);
+        }
         public void DisplayVehicleViolationEditView(VehicleViolationEditViewModel vehicleVilationEditViewModel)
         {
             VehicleViolationEditView vehicleViolationEditView = new VehicleViolationEditView(vehicleVilationEditViewModel);
             vehicleViolationEditView.ShowInTaskbar = false;
-            vehicleViolationEditView.Show(_mdiParent);
+            vehicleViolationEditView.ShowDialog(_mdiParent);
         }
         public void DisplayVehicleModelEditView(VehicleModelEditViewModel editModel)
         {

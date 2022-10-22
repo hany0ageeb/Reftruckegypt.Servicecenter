@@ -17,9 +17,18 @@
             {
                 modelState.AddError(nameof(entity.Period), string.Format(ValidationErrors.RequiredField, nameof(entity.Period)));
             }
-            if(entity.PurchaseRequest is null)
+            if(entity.PurchaseRequestLine is null)
             {
-                modelState.AddError(nameof(entity.PurchaseRequest), string.Format(ValidationErrors.RequiredField, nameof(entity.PurchaseRequest)));
+                modelState.AddError(nameof(entity.PurchaseRequestLine), string.Format(ValidationErrors.RequiredField, nameof(entity.PurchaseRequestLine)));
+            }
+            else
+            {
+                if(entity.ReceivedQuantity > entity.PurchaseRequestLine.RequestedQuantity)
+                {
+                    modelState.AddError(
+                        propertyName: nameof(entity.ReceivedQuantity), 
+                        errorMessage: $"Received Quantity {entity.ReceivedQuantity} Exceeds Requested Quantity {entity.PurchaseRequestLine.RequestedQuantity}.");
+                }
             }
             if(entity.ReceivedQuantity <= 0)
             {

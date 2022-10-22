@@ -31,6 +31,12 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
         IVehicleLicenseRepository VehicleLicenseRepository { get; }
         IInternalMemoRepository InternalMemoRepository { get; }
         IUserReportRepository UserReportRepository { get;}
+        IPurchaseRequestRepository PurchaseRequestRepository { get; }
+        IPurchaseRequestLineRepository PurchaseRequestLineRepository { get; }
+        IReceiptLineRepository ReceiptLineRepository
+        {
+            get;
+        }
         int Complete();
     }
 }

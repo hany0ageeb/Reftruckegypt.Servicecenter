@@ -36,6 +36,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             VehicleLicenseRepository = new VehicleLicenseRepository(context);
             UserReportRepository = new UserReportRepository(context);
             InternalMemoRepository = new InternalMemoRepository(context);
+            PurchaseRequestRepository = new PurchaseRequestRepository(context);
+            PurchaseRequestLineRepository = new PurchaseRequestLineRepository(context);
+            ReceiptLineRepository = new ReceiptLineRepository(context);
         }
 
         public IDriverRepository DriverRepository { get; private set; }
@@ -86,7 +89,9 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         public IInternalMemoRepository InternalMemoRepository { get; private set; }
         public IVehicleLicenseRepository VehicleLicenseRepository { get;private set; }
         public IUserReportRepository UserReportRepository { get; private set;  }
-
+        public IPurchaseRequestRepository PurchaseRequestRepository { get; private set; }
+        public IPurchaseRequestLineRepository PurchaseRequestLineRepository { get; private set; }
+        public IReceiptLineRepository ReceiptLineRepository { get; private set; }
         public int Complete()
         {
             return _context.SaveChanges();

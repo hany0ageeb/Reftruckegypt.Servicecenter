@@ -733,6 +733,18 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Sequence = 180,
                     Name = nameof(InternalMemo),
                     DisplayName = "Internal Memo"
+                },
+                new UserCommand()
+                {
+                    Sequence = 190,
+                    Name = nameof(PurchaseRequest),
+                    DisplayName = "Purchase Requests"
+                },
+                new UserCommand()
+                {
+                    Sequence = 200,
+                    Name = nameof(ReceiptLine),
+                    DisplayName = "Purchase Requests Receipts"
                 }
             };
             // ...

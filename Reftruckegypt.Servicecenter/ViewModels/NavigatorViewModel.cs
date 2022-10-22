@@ -149,6 +149,18 @@ namespace Reftruckegypt.Servicecenter.ViewModels
                             _applicationContext.DisplayInternalMemosView(enableExport: true, exportDisplayName: "Export Internal Memos ...");
                         };
                         break;
+                    case nameof(PurchaseRequest):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayPurchaseRequestsView(enableExport: true, exportDisplayName: "Export Purchase Requests ...");
+                        };
+                        break;
+                    case nameof(ReceiptLine):
+                        command.Execute = () =>
+                        {
+                            _applicationContext.DisplayReceiptLinesView(enableExport: true, exportDisplayName: "Export Receipts");
+                        };
+                        break;
                 }
                 UserCommands.Add(command);
             }

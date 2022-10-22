@@ -247,6 +247,9 @@
     <Compile Include="Data\Abstractions\IInternalMemoRepository.cs" />
     <Compile Include="Data\Abstractions\ILocationRepository.cs" />
     <Compile Include="Data\Abstractions\IPeriodReposiory.cs" />
+    <Compile Include="Data\Abstractions\IPurchaseRequestLineRepository.cs" />
+    <Compile Include="Data\Abstractions\IPurchaseRequestRepository.cs" />
+    <Compile Include="Data\Abstractions\IReceiptLineRepository.cs" />
     <Compile Include="Data\Abstractions\IRepository.cs" />
     <Compile Include="Data\Abstractions\ISparePartPriceListLineRepository.cs" />
     <Compile Include="Data\Abstractions\ISparePartRepository.cs" />
@@ -276,6 +279,9 @@
     <Compile Include="Data\EF\InternalMemoRepository.cs" />
     <Compile Include="Data\EF\LocationRepository.cs" />
     <Compile Include="Data\EF\PeriodRepository.cs" />
+    <Compile Include="Data\EF\PurchaseRequestLineRepository.cs" />
+    <Compile Include="Data\EF\PurchaseRequestRepository.cs" />
+    <Compile Include="Data\EF\ReceiptLineRepository.cs" />
     <Compile Include="Data\EF\ReftruckDBContext.cs" />
     <Compile Include="Data\EF\ReftruckDbContextInitializer.cs" />
     <Compile Include="Data\EF\Repository.cs" />
@@ -463,6 +469,16 @@
     <Compile Include="ViewModels\NavigatorViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodEditViewModel.cs" />
     <Compile Include="ViewModels\PeriodViewModels\PeriodSearchViewModel.cs" />
+    <Compile Include="ViewModels\PurchaseRequestViewModels\PurchaseRequestDTO.cs" />
+    <Compile Include="ViewModels\PurchaseRequestViewModels\PurchaseRequestEditViewModel.cs" />
+    <Compile Include="ViewModels\PurchaseRequestViewModels\PurchaseRequestLineEditViewModel.cs" />
+    <Compile Include="ViewModels\PurchaseRequestViewModels\PurchaseRequestSearchViewModel.cs" />
+    <Compile Include="ViewModels\PurchaseRequestViewModels\PurchaseRequestLineDTO.cs" />
+    <Compile Include="ViewModels\ReceiptLineViewModels\PurchaseRequestSelectorViewModel.cs" />
+    <Compile Include="ViewModels\ReceiptLineViewModels\ReceiptEditViewModel.cs" />
+    <Compile Include="ViewModels\ReceiptLineViewModels\ReceiptLineDTO.cs" />
+    <Compile Include="ViewModels\ReceiptLineViewModels\ReceiptLineEditViewModel.cs" />
+    <Compile Include="ViewModels\ReceiptLineViewModels\ReceiptLineSearchViewModel.cs" />
     <Compile Include="ViewModels\SparePartsBillViewModels\SparePartsBillEditViewModel.cs" />
     <Compile Include="ViewModels\SparePartsBillViewModels\SparePartsBillHeaderViewModel.cs" />
     <Compile Include="ViewModels\SparePartsBillViewModels\SparePartsBillLineEditViewModel.cs" />
@@ -654,6 +670,36 @@
     </Compile>
     <Compile Include="Views\PeriodViews\PeriodsView.Designer.cs">
       <DependentUpon>PeriodsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PurchaseRequestViews\PurchaseRequestEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PurchaseRequestViews\PurchaseRequestEditView.Designer.cs">
+      <DependentUpon>PurchaseRequestEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PurchaseRequestViews\PurchasRequestsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PurchaseRequestViews\PurchasRequestsView.Designer.cs">
+      <DependentUpon>PurchasRequestsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReceiptLineViews\PurchaseRequestSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReceiptLineViews\PurchaseRequestSelectionView.Designer.cs">
+      <DependentUpon>PurchaseRequestSelectionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReceiptLineViews\ReceiptLinesEditView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReceiptLineViews\ReceiptLinesEditView.Designer.cs">
+      <DependentUpon>ReceiptLinesEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReceiptLineViews\ReceiptLinesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReceiptLineViews\ReceiptLinesView.Designer.cs">
+      <DependentUpon>ReceiptLinesView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SparePartsBillViews\SparePartsBillEditView.cs">
       <SubType>Form</SubType>
@@ -917,6 +963,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PeriodViews\PeriodsView.resx">
       <DependentUpon>PeriodsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PurchaseRequestViews\PurchaseRequestEditView.resx">
+      <DependentUpon>PurchaseRequestEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PurchaseRequestViews\PurchasRequestsView.resx">
+      <DependentUpon>PurchasRequestsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReceiptLineViews\PurchaseRequestSelectionView.resx">
+      <DependentUpon>PurchaseRequestSelectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReceiptLineViews\ReceiptLinesEditView.resx">
+      <DependentUpon>ReceiptLinesEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReceiptLineViews\ReceiptLinesView.resx">
+      <DependentUpon>ReceiptLinesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SparePartsBillViews\SparePartsBillEditView.resx">
       <DependentUpon>SparePartsBillEditView.cs</DependentUpon>

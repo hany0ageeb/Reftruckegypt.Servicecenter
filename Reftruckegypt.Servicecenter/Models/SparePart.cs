@@ -10,7 +10,7 @@ namespace Reftruckegypt.Servicecenter.Models
         public Guid PrimaryUomId { get; set; }
         public bool IsEnabled { get; set; } = true;
         public SparePart Self => this;
-
+        public static readonly SparePart empty = new SparePart() { Id = Guid.Empty, Code = "" , Name = ""};
         public const int MaxSparePartCodeLength = 100;
         public const int MaxSparePartNameLength = 500;
     }

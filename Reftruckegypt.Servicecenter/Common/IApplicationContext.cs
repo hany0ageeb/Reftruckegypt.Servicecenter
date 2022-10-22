@@ -6,6 +6,8 @@ using Reftruckegypt.Servicecenter.ViewModels.FuelCardViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.PeriodViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.PurchaseRequestViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.ReceiptLineViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels;
@@ -67,6 +69,11 @@ namespace Reftruckegypt.Servicecenter.Common
         void DisplayView(Type type);
         void DisplayInternalMemosView(bool enableExport, string exportDisplayName);
         void DisplayInternalMemoEditView(InternalMemoEditViewModel editModel);
+        void DisplayPurchaseRequestEditView(PurchaseRequestEditViewModel editModel);
+        void DisplayPurchaseRequestsView(bool enableExport, string exportDisplayName);
+        IList<Guid> DisplayPurchaseRequestsSelectionView(IEnumerable<PurchaseRequestSelectorViewModel> purchases);
+        void DisplayReceiptEditView(ReceiptEditViewModel editModel);
+        void DisplayReceiptLinesView(bool enableExport, string exportDisplayName);
     }
    
 }

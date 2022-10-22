@@ -125,7 +125,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 235);
+            this.label9.Location = new System.Drawing.Point(3, 237);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(91, 15);
             this.label9.TabIndex = 17;
@@ -134,7 +134,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 143);
+            this.label6.Location = new System.Drawing.Point(3, 145);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 15);
             this.label6.TabIndex = 11;
@@ -143,7 +143,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboInternalCode
             // 
             this.cboInternalCode.FormattingEnabled = true;
-            this.cboInternalCode.Location = new System.Drawing.Point(136, 88);
+            this.cboInternalCode.Location = new System.Drawing.Point(136, 90);
             this.cboInternalCode.Name = "cboInternalCode";
             this.cboInternalCode.Size = new System.Drawing.Size(589, 23);
             this.cboInternalCode.TabIndex = 8;
@@ -185,7 +185,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 85);
+            this.label1.Location = new System.Drawing.Point(3, 87);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 15);
             this.label1.TabIndex = 0;
@@ -211,7 +211,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboChasiss
             // 
             this.cboChasiss.FormattingEnabled = true;
-            this.cboChasiss.Location = new System.Drawing.Point(136, 117);
+            this.cboChasiss.Location = new System.Drawing.Point(136, 119);
             this.cboChasiss.Name = "cboChasiss";
             this.cboChasiss.Size = new System.Drawing.Size(589, 23);
             this.cboChasiss.TabIndex = 9;
@@ -219,7 +219,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboVehicleCode
             // 
             this.cboVehicleCode.FormattingEnabled = true;
-            this.cboVehicleCode.Location = new System.Drawing.Point(136, 146);
+            this.cboVehicleCode.Location = new System.Drawing.Point(136, 148);
             this.cboVehicleCode.Name = "cboVehicleCode";
             this.cboVehicleCode.Size = new System.Drawing.Size(589, 23);
             this.cboVehicleCode.TabIndex = 10;
@@ -227,7 +227,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 114);
+            this.label5.Location = new System.Drawing.Point(3, 116);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 15);
             this.label5.TabIndex = 4;
@@ -236,7 +236,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 172);
+            this.label7.Location = new System.Drawing.Point(3, 174);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 15);
             this.label7.TabIndex = 12;
@@ -245,7 +245,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboDriver
             // 
             this.cboDriver.FormattingEnabled = true;
-            this.cboDriver.Location = new System.Drawing.Point(136, 175);
+            this.cboDriver.Location = new System.Drawing.Point(136, 177);
             this.cboDriver.Name = "cboDriver";
             this.cboDriver.Size = new System.Drawing.Size(589, 23);
             this.cboDriver.TabIndex = 13;
@@ -253,7 +253,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboCardNumber
             // 
             this.cboCardNumber.FormattingEnabled = true;
-            this.cboCardNumber.Location = new System.Drawing.Point(136, 207);
+            this.cboCardNumber.Location = new System.Drawing.Point(136, 209);
             this.cboCardNumber.Name = "cboCardNumber";
             this.cboCardNumber.Size = new System.Drawing.Size(589, 23);
             this.cboCardNumber.TabIndex = 15;
@@ -261,7 +261,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 204);
+            this.label8.Location = new System.Drawing.Point(3, 206);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(103, 15);
             this.label8.TabIndex = 16;
@@ -270,7 +270,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboCardName
             // 
             this.cboCardName.FormattingEnabled = true;
-            this.cboCardName.Location = new System.Drawing.Point(136, 238);
+            this.cboCardName.Location = new System.Drawing.Point(136, 240);
             this.cboCardName.Name = "cboCardName";
             this.cboCardName.Size = new System.Drawing.Size(589, 23);
             this.cboCardName.TabIndex = 18;
@@ -278,7 +278,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboRegistration
             // 
             this.cboRegistration.FormattingEnabled = true;
-            this.cboRegistration.Location = new System.Drawing.Point(136, 272);
+            this.cboRegistration.Location = new System.Drawing.Point(136, 274);
             this.cboRegistration.Name = "cboRegistration";
             this.cboRegistration.Size = new System.Drawing.Size(589, 23);
             this.cboRegistration.TabIndex = 20;
@@ -286,7 +286,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 269);
+            this.label11.Location = new System.Drawing.Point(3, 271);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(70, 15);
             this.label11.TabIndex = 21;
@@ -295,7 +295,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboFuelType
             // 
             this.cboFuelType.FormattingEnabled = true;
-            this.cboFuelType.Location = new System.Drawing.Point(136, 304);
+            this.cboFuelType.Location = new System.Drawing.Point(136, 306);
             this.cboFuelType.Name = "cboFuelType";
             this.cboFuelType.Size = new System.Drawing.Size(589, 23);
             this.cboFuelType.TabIndex = 22;
@@ -303,7 +303,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 301);
+            this.label10.Location = new System.Drawing.Point(3, 303);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(58, 15);
             this.label10.TabIndex = 19;
@@ -312,7 +312,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboPlateNumber
             // 
             this.cboPlateNumber.FormattingEnabled = true;
-            this.cboPlateNumber.Location = new System.Drawing.Point(136, 339);
+            this.cboPlateNumber.Location = new System.Drawing.Point(136, 341);
             this.cboPlateNumber.Name = "cboPlateNumber";
             this.cboPlateNumber.Size = new System.Drawing.Size(589, 23);
             this.cboPlateNumber.TabIndex = 24;
@@ -320,7 +320,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 336);
+            this.label13.Location = new System.Drawing.Point(3, 338);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(80, 15);
             this.label13.TabIndex = 25;
@@ -329,7 +329,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboMotorNumber
             // 
             this.cboMotorNumber.FormattingEnabled = true;
-            this.cboMotorNumber.Location = new System.Drawing.Point(136, 374);
+            this.cboMotorNumber.Location = new System.Drawing.Point(136, 376);
             this.cboMotorNumber.Name = "cboMotorNumber";
             this.cboMotorNumber.Size = new System.Drawing.Size(589, 23);
             this.cboMotorNumber.TabIndex = 26;
@@ -337,7 +337,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 371);
+            this.label14.Location = new System.Drawing.Point(3, 373);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(87, 15);
             this.label14.TabIndex = 27;
@@ -346,7 +346,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 404);
+            this.label12.Location = new System.Drawing.Point(3, 406);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(102, 15);
             this.label12.TabIndex = 23;
@@ -355,7 +355,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(3, 434);
+            this.label15.Location = new System.Drawing.Point(3, 436);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(97, 15);
             this.label15.TabIndex = 29;
@@ -364,7 +364,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboStartDate
             // 
             this.cboStartDate.FormattingEnabled = true;
-            this.cboStartDate.Location = new System.Drawing.Point(136, 407);
+            this.cboStartDate.Location = new System.Drawing.Point(136, 409);
             this.cboStartDate.Name = "cboStartDate";
             this.cboStartDate.Size = new System.Drawing.Size(589, 23);
             this.cboStartDate.TabIndex = 28;
@@ -372,7 +372,7 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             // cboEndDate
             // 
             this.cboEndDate.FormattingEnabled = true;
-            this.cboEndDate.Location = new System.Drawing.Point(136, 437);
+            this.cboEndDate.Location = new System.Drawing.Point(136, 439);
             this.cboEndDate.Name = "cboEndDate";
             this.cboEndDate.Size = new System.Drawing.Size(589, 23);
             this.cboEndDate.TabIndex = 30;

@@ -20,7 +20,5 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
         void Add(IEnumerable<TEntity> entities);
         void Remove(TEntity entity);
         void Remove(IEnumerable<TEntity> entities);
-
-        
     }
 }
