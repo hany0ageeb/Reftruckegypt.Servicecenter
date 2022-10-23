@@ -92,5 +92,6 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
         public List<FuelConsumptionViewModels.FuelConsumptionViewModel> FuelConsumptions { get; private set; } = new List<FuelConsumptionViewModels.FuelConsumptionViewModel>();
         public List<VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel> KilometerReadings { get; private set; } = new List<VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel>();
         public List<SparePartsBillViewModels.SparePartsBillLineViewModel> SparePartsBills { get; private set; } = new List<SparePartsBillViewModels.SparePartsBillLineViewModel>();
+        public List<VehicleViolationViewModels.VehicleViolationViewModel> VehicleViolations { get; private set; } = new List<VehicleViolationViewModels.VehicleViolationViewModel>();
     }
 }

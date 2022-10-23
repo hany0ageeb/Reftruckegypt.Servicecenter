@@ -472,6 +472,11 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                     fromDate: fromDate, 
                     toDate: toDate, 
                     orderBy: q=>q.OrderByDescending(x=>x.ReadingDate));
+                var violations = _unitOfWork.VehicleViolationRepository.Find(
+                    vehicleId: vehicle?.Id, 
+                    fromDate: fromDate, 
+                    toDate: toDate, 
+                    orderBy: q => q.OrderByDescending(x => x.ViolationDate));
                 decimal startKilometer = fromDate.HasValue ? _unitOfWork.VehicleKilometerReadingRepository.FindVehicleKilometerReadingAtDate(vehicleId: vehicle.Id, fromDate.Value) : 0;
                 decimal endKilometer = toDate.HasValue ? _unitOfWork.VehicleKilometerReadingRepository.FindVehicleKilometerReadingAtDate(vehicle.Id, toDate.Value) : kilometerReadings.FirstOrDefault()?.Reading ?? 0;
                 var vehicleViewModel = new VehicleViewModel(vehicle);
@@ -482,6 +487,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                 vehicleViewModel.ExternalRepairBills.ForEach(x => x.BillDate = new DateTime(x.BillDate.Year, x.BillDate.Month, x.BillDate.Day));
                 vehicleViewModel.SparePartsBills.AddRange(internalRepairInvoicesLines.Select(x => new SparePartsBillViewModels.SparePartsBillLineViewModel(x)));
                 vehicleViewModel.KilometerReadings.AddRange(kilometerReadings.Select(x=>new VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel(x)));
+                vehicleViewModel.VehicleViolations.AddRange(violations.Select(x => new VehicleViolationViewModels.VehicleViolationViewModel(x)));
                 result.Add(vehicleViewModel);
             }
             return result;

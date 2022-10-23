@@ -53,6 +53,11 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsViews
                     Name = "KilometerReadingViewModelDataSet",
                     Value = _data[0].KilometerReadings
                 });
+                reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource()
+                {
+                    Name = "VehicleViolationViewModelDataSet",
+                    Value = _data[0].VehicleViolations
+                });
             }
             else
             {
@@ -76,6 +81,11 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsViews
                 reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource()
                 {
                     Name = "KilometerReadingViewModelDataSet",
+                    Value = new List<ViewModels.VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel>()
+                });
+                reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource()
+                {
+                    Name = "VehicleViolationViewModelDataSet",
                     Value = new List<ViewModels.VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel>()
                 });
             }
