@@ -17,10 +17,6 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         {
             Database.SetInitializer(new ReftruckDbContextInitializer());
             
-            Database.Log = (s) =>
-            {
-                System.IO.File.AppendAllText(@"d:\sql.txt", s);
-            };
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

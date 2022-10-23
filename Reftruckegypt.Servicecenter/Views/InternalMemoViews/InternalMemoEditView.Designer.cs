@@ -35,16 +35,16 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtSubject = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtContents = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.txtNumber = new System.Windows.Forms.TextBox();
             this.cboVehicles = new System.Windows.Forms.ComboBox();
             this.pickMemoDate = new System.Windows.Forms.DateTimePicker();
+            this.txtSubject = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtContents = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -60,7 +60,7 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.23077F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.76923F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 388F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 389F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
@@ -102,6 +102,31 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             this.label3.TabIndex = 2;
             this.label3.Text = "Vehicle";
             // 
+            // txtNumber
+            // 
+            this.txtNumber.Location = new System.Drawing.Point(73, 3);
+            this.txtNumber.Name = "txtNumber";
+            this.txtNumber.ReadOnly = true;
+            this.txtNumber.Size = new System.Drawing.Size(227, 23);
+            this.txtNumber.TabIndex = 3;
+            // 
+            // cboVehicles
+            // 
+            this.cboVehicles.FormattingEnabled = true;
+            this.cboVehicles.Location = new System.Drawing.Point(73, 34);
+            this.cboVehicles.Name = "cboVehicles";
+            this.cboVehicles.Size = new System.Drawing.Size(227, 23);
+            this.cboVehicles.TabIndex = 4;
+            // 
+            // pickMemoDate
+            // 
+            this.pickMemoDate.CustomFormat = "ss:mm:HH yyyy/MM/dd";
+            this.pickMemoDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.pickMemoDate.Location = new System.Drawing.Point(448, 3);
+            this.pickMemoDate.Name = "pickMemoDate";
+            this.pickMemoDate.Size = new System.Drawing.Size(298, 23);
+            this.pickMemoDate.TabIndex = 5;
+            // 
             // txtSubject
             // 
             this.txtSubject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -127,15 +152,6 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             this.tableLayoutPanel2.Size = new System.Drawing.Size(834, 440);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 15);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Memo Subject";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -144,6 +160,15 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             this.label5.Size = new System.Drawing.Size(92, 15);
             this.label5.TabIndex = 4;
             this.label5.Text = "Memo Contents";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 15);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Memo Subject";
             // 
             // txtContents
             // 
@@ -171,29 +196,6 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Close";
             this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // txtNumber
-            // 
-            this.txtNumber.Location = new System.Drawing.Point(73, 3);
-            this.txtNumber.Name = "txtNumber";
-            this.txtNumber.ReadOnly = true;
-            this.txtNumber.Size = new System.Drawing.Size(227, 23);
-            this.txtNumber.TabIndex = 3;
-            // 
-            // cboVehicles
-            // 
-            this.cboVehicles.FormattingEnabled = true;
-            this.cboVehicles.Location = new System.Drawing.Point(73, 34);
-            this.cboVehicles.Name = "cboVehicles";
-            this.cboVehicles.Size = new System.Drawing.Size(227, 23);
-            this.cboVehicles.TabIndex = 4;
-            // 
-            // pickMemoDate
-            // 
-            this.pickMemoDate.Location = new System.Drawing.Point(448, 3);
-            this.pickMemoDate.Name = "pickMemoDate";
-            this.pickMemoDate.Size = new System.Drawing.Size(298, 23);
-            this.pickMemoDate.TabIndex = 5;
             // 
             // InternalMemoEditView
             // 

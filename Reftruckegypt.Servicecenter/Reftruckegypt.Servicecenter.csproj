@@ -1054,6 +1054,7 @@
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels.SparePartsBillHeaderViewModel.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels.SparePartsBillLineViewModel1.datasource" />
+    <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels.VehicleViewModel.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels.VehicleViolationViewModel.datasource" />
     <None Include="Properties\Settings.settings">

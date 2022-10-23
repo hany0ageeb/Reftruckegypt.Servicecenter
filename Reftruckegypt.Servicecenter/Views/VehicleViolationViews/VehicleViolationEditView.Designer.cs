@@ -51,6 +51,8 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViolationViews
             // 
             // pickViolationDate
             // 
+            this.pickViolationDate.CustomFormat = "ss:mm:HH yyyy/MM/dd";
+            this.pickViolationDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.pickViolationDate.Location = new System.Drawing.Point(289, 23);
             this.pickViolationDate.Name = "pickViolationDate";
             this.pickViolationDate.Size = new System.Drawing.Size(369, 23);

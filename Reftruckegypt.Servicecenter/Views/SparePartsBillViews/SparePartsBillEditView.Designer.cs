@@ -39,13 +39,13 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.cbovehicles = new System.Windows.Forms.ComboBox();
             this.gridLines = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtRepairs = new System.Windows.Forms.TextBox();
+            this.txtItemName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtItemName = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridLines)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -58,7 +58,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.09241F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.90759F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 381F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 382F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtNumber, 1, 0);
@@ -102,7 +102,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(392, 0);
+            this.label2.Location = new System.Drawing.Point(391, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 15);
             this.label2.TabIndex = 2;
@@ -110,9 +110,11 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // 
             // pickbillDate
             // 
-            this.pickbillDate.Location = new System.Drawing.Point(459, 3);
+            this.pickbillDate.CustomFormat = "ss:mm:HH yyyy/MM/dd";
+            this.pickbillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.pickbillDate.Location = new System.Drawing.Point(458, 3);
             this.pickbillDate.Name = "pickbillDate";
-            this.pickbillDate.Size = new System.Drawing.Size(244, 23);
+            this.pickbillDate.Size = new System.Drawing.Size(266, 23);
             this.pickbillDate.TabIndex = 3;
             // 
             // cbovehicles
@@ -148,14 +150,14 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.tableLayoutPanel2.Size = new System.Drawing.Size(837, 133);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
-            // label4
+            // label5
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 30);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 15);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Repairs";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 15);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Spare Part";
             // 
             // txtRepairs
             // 
@@ -164,6 +166,23 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.txtRepairs.Name = "txtRepairs";
             this.txtRepairs.Size = new System.Drawing.Size(736, 93);
             this.txtRepairs.TabIndex = 2;
+            // 
+            // txtItemName
+            // 
+            this.txtItemName.Location = new System.Drawing.Point(98, 3);
+            this.txtItemName.Name = "txtItemName";
+            this.txtItemName.ReadOnly = true;
+            this.txtItemName.Size = new System.Drawing.Size(641, 23);
+            this.txtItemName.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 30);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 15);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Repairs";
             // 
             // btnClose
             // 
@@ -188,23 +207,6 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // txtItemName
-            // 
-            this.txtItemName.Location = new System.Drawing.Point(98, 3);
-            this.txtItemName.Name = "txtItemName";
-            this.txtItemName.ReadOnly = true;
-            this.txtItemName.Size = new System.Drawing.Size(641, 23);
-            this.txtItemName.TabIndex = 12;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 15);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Spare Part";
             // 
             // SparePartsBillEditView
             // 

@@ -42,8 +42,11 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleKilometerReadingViews
             // 
             // pickReadingDate
             // 
+            this.pickReadingDate.CustomFormat = "ss:mm:HH yyyy/MM/dd";
+            this.pickReadingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.pickReadingDate.Location = new System.Drawing.Point(302, 24);
             this.pickReadingDate.Name = "pickReadingDate";
+            this.pickReadingDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.pickReadingDate.Size = new System.Drawing.Size(333, 23);
             this.pickReadingDate.TabIndex = 0;
             // 

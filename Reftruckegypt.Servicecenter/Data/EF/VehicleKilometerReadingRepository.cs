@@ -37,5 +37,13 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 return orderBy(query).AsEnumerable();
             return query.AsEnumerable();
         }
+
+        public decimal FindVehicleKilometerReadingAtDate(Guid vehicleId, DateTime readingDate)
+        {
+            return _context
+                .Set<VehicleKilometerReading>()
+                .Where(x => x.VehicleId == vehicleId && x.ReadingDate <= readingDate)
+                .OrderByDescending(x => x.ReadingDate).FirstOrDefault()?.Reading ?? 0;
+        }
     }
 }

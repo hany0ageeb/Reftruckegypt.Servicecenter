@@ -42,6 +42,8 @@ namespace Reftruckegypt.Servicecenter.Views.FuelConsumptionViews
             // 
             // pickconsumptionDate
             // 
+            this.pickconsumptionDate.CustomFormat = "ss:mm:HH yyyy/MM/dd";
+            this.pickconsumptionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.pickconsumptionDate.Location = new System.Drawing.Point(254, 13);
             this.pickconsumptionDate.Name = "pickconsumptionDate";
             this.pickconsumptionDate.Size = new System.Drawing.Size(412, 23);

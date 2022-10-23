@@ -48,6 +48,11 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsViews
                     Name = "SparePartInvoiceLineViewModelDataSet",
                     Value = _data[0].SparePartsBills
                 });
+                reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource()
+                {
+                    Name = "KilometerReadingViewModelDataSet",
+                    Value = _data[0].KilometerReadings
+                });
             }
             else
             {
@@ -67,6 +72,11 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsViews
                 {
                     Name = "SparePartInvoiceLineViewModelDataSet",
                     Value = new List<ViewModels.SparePartsBillViewModels.SparePartsBillLineViewModel>()
+                });
+                reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource()
+                {
+                    Name = "KilometerReadingViewModelDataSet",
+                    Value = new List<ViewModels.VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel>()
                 });
             }
             reportViewer1.LocalReport.SetParameters(new Microsoft.Reporting.WinForms.ReportParameter("FromDateParameter", _fromDate?.ToString("yyyy/MM/dd HH:mm:ss")??""));

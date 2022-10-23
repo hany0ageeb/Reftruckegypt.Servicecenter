@@ -32,8 +32,8 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             {
                 new Period()
                 {
-                    FromDate = new System.DateTime(2022, 8, 1),
-                    ToDate = new System.DateTime(2022, 8, 31),
+                    FromDate = new System.DateTime(2022, 8, 1,0,0,0),
+                    ToDate = new System.DateTime(2022, 8, 31,23,59,59),
                     Name = "Aug-2022",
                     State = PeriodStates.OpenState
                 }
@@ -710,12 +710,14 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Name = nameof(SparePartsBill),
                     DisplayName = "Internal Repair Invoices"
                 },
+                /*
                 new UserCommand()
                 {
                     Sequence = 150,
                     Name = nameof(FuelCard),
                     DisplayName = "Vehicle Fuel Cards"
                 },
+                */
                 new UserCommand()
                 {
                     Sequence = 160,

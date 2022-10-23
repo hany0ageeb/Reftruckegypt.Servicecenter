@@ -12,5 +12,6 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
             DateTime? fromDate = null, 
             DateTime? toDate = null,
             Func<IQueryable<VehicleKilometerReading>,IOrderedQueryable<VehicleKilometerReading>> orderBy = null);
+        decimal FindVehicleKilometerReadingAtDate(Guid vehicleId, DateTime readingDate);
     }
 }

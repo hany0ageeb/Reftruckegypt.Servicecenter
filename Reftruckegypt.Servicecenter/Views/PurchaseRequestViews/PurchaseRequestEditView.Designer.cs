@@ -35,11 +35,11 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.gridLines = new System.Windows.Forms.DataGridView();
             this.txtNumber = new System.Windows.Forms.TextBox();
             this.pickrequestDate = new System.Windows.Forms.DateTimePicker();
             this.cboVehicles = new System.Windows.Forms.ComboBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
+            this.gridLines = new System.Windows.Forms.DataGridView();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.txtpartName = new System.Windows.Forms.TextBox();
@@ -56,7 +56,7 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.00893F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.99107F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 372F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
@@ -85,7 +85,7 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(385, 0);
+            this.label2.Location = new System.Drawing.Point(384, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 15);
             this.label2.TabIndex = 1;
@@ -103,19 +103,11 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(385, 32);
+            this.label4.Location = new System.Drawing.Point(384, 32);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 15);
             this.label4.TabIndex = 3;
             this.label4.Text = "Description";
-            // 
-            // gridLines
-            // 
-            this.gridLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridLines.Location = new System.Drawing.Point(13, 85);
-            this.gridLines.Name = "gridLines";
-            this.gridLines.Size = new System.Drawing.Size(847, 311);
-            this.gridLines.TabIndex = 4;
             // 
             // txtNumber
             // 
@@ -126,7 +118,9 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
             // 
             // pickrequestDate
             // 
-            this.pickrequestDate.Location = new System.Drawing.Point(479, 3);
+            this.pickrequestDate.CustomFormat = "ss:mm:HH yyyy/MM/dd";
+            this.pickrequestDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.pickrequestDate.Location = new System.Drawing.Point(478, 3);
             this.pickrequestDate.Name = "pickrequestDate";
             this.pickrequestDate.Size = new System.Drawing.Size(344, 23);
             this.pickrequestDate.TabIndex = 1;
@@ -141,10 +135,18 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(479, 35);
+            this.txtDescription.Location = new System.Drawing.Point(478, 35);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(344, 23);
             this.txtDescription.TabIndex = 3;
+            // 
+            // gridLines
+            // 
+            this.gridLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridLines.Location = new System.Drawing.Point(13, 85);
+            this.gridLines.Name = "gridLines";
+            this.gridLines.Size = new System.Drawing.Size(847, 311);
+            this.gridLines.TabIndex = 4;
             // 
             // btnSave
             // 

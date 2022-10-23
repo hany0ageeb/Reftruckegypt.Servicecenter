@@ -18,6 +18,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
         public SparePartsBillEditView(SparePartsBillEditViewModel editViewModel)
         {
             _editModel = editViewModel;
+            _hasChanged = editViewModel.HasChanged;
             InitializeComponent();
             Initialize();
         }
@@ -244,7 +245,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             {
                 try
                 {
-                    if (_editModel.HasChanged || _hasChanged)
+                    if ( _hasChanged && e.CloseReason == CloseReason.UserClosing)
                     {
                         e.Cancel = !_editModel.Close();
                         if (e.Cancel)

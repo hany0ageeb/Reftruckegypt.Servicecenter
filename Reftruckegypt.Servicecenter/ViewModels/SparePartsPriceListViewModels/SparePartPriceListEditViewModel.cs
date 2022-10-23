@@ -141,7 +141,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsPriceListViewModels
             {
                 if(_selectedIndex>=0 && _selectedIndex < Lines.Count)
                 {
-                    return Lines[_selectedIndex].SparePart.Name;
+                    return Lines[_selectedIndex]?.SparePart?.Name;
                 }
                 else
                 {

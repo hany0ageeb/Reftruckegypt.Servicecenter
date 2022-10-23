@@ -24,6 +24,82 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
         private void Initialize()
         {
             // ...
+            chkHasFuelCard.DataBindings.Clear();
+            chkHasFuelCard.DataBindings.Add(new Binding(nameof(chkHasFuelCard.Checked), _editModel, nameof(_editModel.HasFuelCard))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            /*
+            chkHasFuelCard.CheckedChanged += (o, e) =>
+            {
+                if (chkHasFuelCard.Checked)
+                {
+                    txtNumber.Enabled = true;
+                    txtName.Enabled = true;
+                    txtRegistration.Enabled = true;
+                }
+                else
+                {
+                    txtNumber.Enabled = false;
+                    txtName.Enabled = false;
+                    txtRegistration.Enabled = false;
+                }
+            };
+            */
+            txtNumber.Enabled = _editModel.HasFuelCard;
+            txtName.Enabled = _editModel.HasFuelCard;
+            txtRegistration.Enabled = _editModel.HasFuelCard;
+            // ...
+            /*
+            lblnumber.DataBindings.Add(new Binding(nameof(lblnumber.Visible), _editModel, nameof(_editModel.HasFuelCard))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            lblname.DataBindings.Add(new Binding(nameof(lblname.Visible), _editModel, nameof(_editModel.HasFuelCard))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            lblregistration.DataBindings.Add(new Binding(nameof(lblregistration.Visible), _editModel, nameof(_editModel.HasFuelCard))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            // ...
+            */
+            txtNumber.DataBindings.Clear();
+            txtNumber.DataBindings.Add(new Binding(nameof(txtNumber.Text), _editModel, nameof(_editModel.FuelCardNumber))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            txtNumber.DataBindings.Add(new Binding(nameof(txtNumber.Enabled), _editModel, nameof(_editModel.HasFuelCard))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            
+            // ...
+            txtName.DataBindings.Clear();
+            txtName.DataBindings.Add(new Binding(nameof(txtName.Text), _editModel, nameof(_editModel.FuelCardName))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            
+            txtName.DataBindings.Add(new Binding(nameof(txtName.Enabled), _editModel, nameof(_editModel.HasFuelCard))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            
+            // ...
+            txtRegistration.DataBindings.Clear();
+            txtRegistration.DataBindings.Add(new Binding(nameof(txtRegistration.Text), _editModel, nameof(_editModel.Registration))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            
+            txtRegistration.DataBindings.Add(new Binding(nameof(txtRegistration.Enabled), _editModel, nameof(_editModel.HasFuelCard))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            
+            // ...
             txtInternalCode.DataBindings.Clear();
             txtInternalCode.DataBindings.Add(new Binding(nameof(txtInternalCode.Text), _editModel, nameof(_editModel.InternalCode))
             {
@@ -103,14 +179,14 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
 
             });
             // ...
-            cboFuelCards.DataBindings.Clear();
-            cboFuelCards.DataSource = _editModel.FuelCards;
-            cboFuelCards.DisplayMember = nameof(Models.FuelCard.Number);
-            cboFuelCards.ValueMember = nameof(Models.FuelCard.Self);
-            cboFuelCards.DataBindings.Add(new Binding(nameof(cboFuelCards.SelectedItem), _editModel, nameof(_editModel.FuelCard))
-            {
+            //cboFuelCards.DataBindings.Clear();
+            //cboFuelCards.DataSource = _editModel.FuelCards;
+            //cboFuelCards.DisplayMember = nameof(Models.FuelCard.Number);
+            //cboFuelCards.ValueMember = nameof(Models.FuelCard.Self);
+            //cboFuelCards.DataBindings.Add(new Binding(nameof(cboFuelCards.SelectedItem), _editModel, nameof(_editModel.FuelCard))
+            //{
 
-            });
+            //});
             // ...
             cboFuelTypes.DataBindings.Clear();
             cboFuelTypes.DataSource = _editModel.FuelTypes;

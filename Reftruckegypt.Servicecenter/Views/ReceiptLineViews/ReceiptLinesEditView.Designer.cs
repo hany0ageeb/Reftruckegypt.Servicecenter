@@ -51,6 +51,8 @@ namespace Reftruckegypt.Servicecenter.Views.ReceiptLineViews
             // 
             // pickReceiptDate
             // 
+            this.pickReceiptDate.CustomFormat = "ss:mm:HH yyyy/MM/dd";
+            this.pickReceiptDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.pickReceiptDate.Location = new System.Drawing.Point(300, 13);
             this.pickReceiptDate.Name = "pickReceiptDate";
             this.pickReceiptDate.Size = new System.Drawing.Size(272, 23);

@@ -55,7 +55,7 @@ namespace Reftruckegypt.Servicecenter
             // DbContext ...
             services.AddTransient(typeof(Data.EF.ReftruckDbContext), (serviceProvider) =>
             {
-                return new Data.EF.ReftruckDbContext(Configuration.GetConnectionString("ReftruckDBDevConnection"));
+                return new Data.EF.ReftruckDbContext(Configuration.GetConnectionString("ReftruckLocalDBConnection"));
             });
             // Data ....
             services.AddTransient<Data.Abstractions.IUnitOfWork, Data.EF.UnitOfWork>();

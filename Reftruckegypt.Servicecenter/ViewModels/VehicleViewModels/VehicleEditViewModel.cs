@@ -15,6 +15,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
         private readonly IApplicationContext _applicationContext;
         private readonly IValidator<Vehicle> _vehicleValidator;
         private readonly IValidator<VehicleLicense> _vehicleLicenseValidator;
+        private readonly IValidator<FuelCard> _fuelCardValidator;
         private readonly Vehicle _vehicle;
         private bool _hasChanged = false;
         private List<VehicleLicense> originalLicenses = new List<VehicleLicense>();
@@ -23,8 +24,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
             IUnitOfWork unitOfWork, 
             IApplicationContext applicationContext,
             IValidator<Vehicle> vehicleValidator,
-            IValidator<VehicleLicense> vehicleLicenseValidator)
-            : this(null, unitOfWork, applicationContext, vehicleValidator, vehicleLicenseValidator)
+            IValidator<VehicleLicense> vehicleLicenseValidator,
+            IValidator<FuelCard> fuelCardValidator)
+            : this(null, unitOfWork, applicationContext, vehicleValidator, vehicleLicenseValidator,fuelCardValidator)
         {
         }
         public VehicleEditViewModel(
@@ -32,12 +34,14 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
             IUnitOfWork unitOfWork,
             IApplicationContext applicationContext,
             IValidator<Vehicle> vehicleValidator,
-            IValidator<VehicleLicense> vehicleLicenseValidator)
+            IValidator<VehicleLicense> vehicleLicenseValidator,
+            IValidator<FuelCard> fuelCardValidator)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
             _vehicleValidator = vehicleValidator ?? throw new ArgumentNullException(nameof(vehicleValidator));
             _vehicleLicenseValidator = vehicleLicenseValidator ?? throw new ArgumentNullException(nameof(vehicleLicenseValidator));
+            _fuelCardValidator = fuelCardValidator ?? throw new ArgumentNullException(nameof(fuelCardValidator));
 
             VehicleCategorys.AddRange(_unitOfWork.VehicleCategoryRepository.Find(orderBy: q => q.OrderBy(x => x.Name)));
             VehicleModels.AddRange(_unitOfWork.VehicleModelRepository.Find(orderBy: q => q.OrderBy(x => x.Name)));
@@ -60,6 +64,11 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                     ModelYear = DateTime.Now.Year,
                     VehicleCode = "",
                     WorkingState = VehicleStates.Working
+                };
+                _hasFuelCard = false;
+                _fuelCard = new FuelCard()
+                {
+                    Id = Guid.Empty
                 };
                 if (Drivers.Count > 0)
                     _vehicle.Driver = Drivers[0];
@@ -120,6 +129,25 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                 {
                     Licenses.Add(new VehicleLicenseEditViewmodel(vehicleLicense));
                 }
+                if (vehicle.FuelCard != null)
+                {
+                    _fuelCard = new FuelCard()
+                    {
+                        Id = vehicle.FuelCard.Id,
+                        Number = vehicle.FuelCard.Number,
+                        Name = vehicle.FuelCard.Name,
+                        Registration = vehicle.FuelCard.Registration
+                    };
+                    _hasFuelCard = true;
+                }
+                else
+                {
+                    _fuelCard = new FuelCard()
+                    {
+                        Id = Guid.Empty
+                    };
+                    _hasFuelCard = false;
+                }
                 originalLicenses.AddRange(vehicle.VehicelLicenses);
             }
             Licenses.ListChanged += (o, e) =>
@@ -132,6 +160,75 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                 }
             };
             HasChanged = false;
+        }
+        private FuelCard _fuelCard;
+        private bool _hasFuelCard = false;
+        public bool HasFuelCard
+        {
+            get => _hasFuelCard;
+            set
+            {
+                if (_hasFuelCard != value)
+                {
+                    _hasFuelCard = value;
+                    if (_hasFuelCard)
+                    {
+                        
+                        if (_vehicle.FuelCard != null)
+                        {
+                            _fuelCard.Id = _vehicle.FuelCard.Id;
+                            _fuelCard.Number = _vehicle.FuelCard.Number;
+                            _fuelCard.Name = _vehicle.FuelCard.Name;
+                            _fuelCard.Registration = _vehicle.FuelCard.Registration;
+                        }
+                    }
+                    else
+                    {
+                        _fuelCard.Id = Guid.Empty;
+                        _fuelCard.Name = "";
+                        _fuelCard.Number = "";
+                        _fuelCard.Registration = "";
+                    }
+                    OnPropertyChanged(this, nameof(HasFuelCard));
+                }
+            }
+        }
+        public string FuelCardNumber
+        {
+            get => _fuelCard?.Number;
+            set
+            {
+                if (_fuelCard?.Number != value)
+                {
+                    _fuelCard.Number = value;
+                    OnPropertyChanged(this, nameof(FuelCardNumber));
+                }
+            }
+        }
+        public string FuelCardName
+        {
+            get => _fuelCard?.Name;
+            set
+            {
+                if(_fuelCard != null && _fuelCard.Name != value)
+                {
+                    _fuelCard.Name = value;
+                    OnPropertyChanged(this, nameof(FuelCardName));
+                }
+                
+            }
+        }
+        public string Registration
+        {
+            get => _fuelCard?.Registration;
+            set
+            {
+                if(_fuelCard != null && _fuelCard.Registration != value)
+                {
+                    _fuelCard.Registration = value;
+                    OnPropertyChanged(this, nameof(Registration));
+                }
+            }
         }
         public bool HasChanged
         {
@@ -213,19 +310,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                 }
             }
         }
-        public FuelCard FuelCard
-        {
-            get => _vehicle.FuelCard;
-            set
-            {
-                if(_vehicle.FuelCard != value)
-                {
-                    _vehicle.FuelCard = value;
-                    OnPropertyChanged(this, nameof(FuelCard));
-                    HasChanged = true;
-                }
-            }
-        }
+        
         public VehicleOverAllState OverAllState
         {
             get => _vehicle.OverAllState;
@@ -324,6 +409,29 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
             ModelState modelState = _vehicleValidator.Validate(Vehicle);
             if (!modelState.HasErrors)
             {
+                if (_vehicle.FuelCard != null) 
+                {
+                    ModelState ms = _fuelCardValidator.Validate(_vehicle.FuelCard);
+                    if (ms.HasErrors)
+                    {
+                        string num = ms.GetError(nameof(Models.FuelCard.Number));
+                        if (!string.IsNullOrEmpty(num))
+                        {
+                            modelState.AddError(nameof(FuelCardNumber), num);
+                        }
+                        string name = ms.GetError(nameof(Models.FuelCard.Name));
+                        if (!string.IsNullOrEmpty(name))
+                        {
+                            modelState.AddError(nameof(FuelCardName), name);
+                        }
+                        string reg = ms.GetError(nameof(Models.FuelCard.Registration));
+                        if (!string.IsNullOrEmpty(reg))
+                        {
+                            modelState.AddError(nameof(Registration), reg);
+                        }
+                        return modelState;
+                    }
+                }
                 if(_vehicle.Id == Guid.Empty)
                 {
                     string internalcode = _vehicle.InternalCode;
@@ -384,6 +492,15 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                             Notes = "Initial State On Creating Vehicle"
                         });
                     }
+                    if (_hasFuelCard)
+                    {
+                        vehicle.FuelCard = new FuelCard()
+                        {
+                            Name = _fuelCard.Name,
+                            Number = _fuelCard.Number,
+                            Registration = _fuelCard.Registration
+                        };
+                    }
                     _unitOfWork.VehicleRepository.Add(vehicle);
                     _unitOfWork.Complete();
                     HasChanged = false;
@@ -395,13 +512,23 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                     var oldVehicle = _unitOfWork.VehicleRepository.Find(key: _vehicle.Id);
                     if (oldVehicle != null)
                     {
+                        if (vehicle.FuelCard == null)
+                            oldVehicle.FuelCard = null;
+                        else
+                        {
+                            if (oldVehicle.FuelCard == null)
+                                oldVehicle.FuelCard = new FuelCard();
+                            oldVehicle.FuelCard.Name = vehicle.FuelCard.Name;
+                            oldVehicle.FuelCard.Number = vehicle.FuelCard.Number;
+                            oldVehicle.FuelCard.Registration = vehicle.FuelCard.Registration;
+                        }
                         oldVehicle.InternalCode = _vehicle.InternalCode;
                         oldVehicle.MaintenanceLocation = vehicle.MaintenanceLocation;
-                        //oldVehicle.WorkingState = _vehicle.WorkingState;
+                        
                         oldVehicle.WorkLocation = vehicle.WorkLocation;
                         oldVehicle.ChassisNumber = _vehicle.ChassisNumber;
                         oldVehicle.Driver = vehicle.Driver;
-                        oldVehicle.FuelCard = vehicle.FuelCard;
+                        
                         oldVehicle.FuelType = _vehicle.FuelType;
                         oldVehicle.ModelYear = _vehicle.ModelYear;
                         oldVehicle.VehicleCategory = _vehicle.VehicleCategory;
@@ -469,25 +596,38 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
         }
         public Vehicle Vehicle
         {
-            get => new Vehicle()
+            get
             {
-                Id = _vehicle.Id,
-                ChassisNumber = _vehicle.ChassisNumber,
-                Driver = _vehicle.Driver?.Id == Guid.Empty ? null : _vehicle.Driver,
-                FuelCard = _vehicle.FuelCard?.Id == Guid.Empty ? null : _vehicle.FuelCard,
-                FuelType = _vehicle.FuelType,
-                InternalCode = _vehicle.InternalCode,
-                MaintenanceLocation = _vehicle.MaintenanceLocation?.Id == Guid.Empty ? null : _vehicle.MaintenanceLocation,
-                WorkLocation = _vehicle.WorkLocation?.Id == Guid.Empty ? null : _vehicle.WorkLocation,
-                ModelYear = _vehicle.ModelYear,
-                OverAllState = _vehicle.OverAllState?.Id == Guid.Empty ? null : _vehicle.OverAllState,
-                RowVersion = _vehicle.RowVersion,
-                VehicleCategory = _vehicle.VehicleCategory,
-                VehicleCode = _vehicle.VehicleCode,
-                VehicleModel = _vehicle.VehicleModel,
-                WorkingState = _vehicle.WorkingState,
-                VehicelLicenses = Licenses.Select(x => x.VehicleLicense).ToList()
-            };
+                var v = new Vehicle()
+                {
+                    Id = _vehicle.Id,
+                    ChassisNumber = _vehicle.ChassisNumber,
+                    Driver = _vehicle.Driver?.Id == Guid.Empty ? null : _vehicle.Driver,
+                    FuelType = _vehicle.FuelType,
+                    InternalCode = _vehicle.InternalCode,
+                    MaintenanceLocation = _vehicle.MaintenanceLocation?.Id == Guid.Empty ? null : _vehicle.MaintenanceLocation,
+                    WorkLocation = _vehicle.WorkLocation?.Id == Guid.Empty ? null : _vehicle.WorkLocation,
+                    ModelYear = _vehicle.ModelYear,
+                    OverAllState = _vehicle.OverAllState?.Id == Guid.Empty ? null : _vehicle.OverAllState,
+                    RowVersion = _vehicle.RowVersion,
+                    VehicleCategory = _vehicle.VehicleCategory,
+                    VehicleCode = _vehicle.VehicleCode,
+                    VehicleModel = _vehicle.VehicleModel,
+                    WorkingState = _vehicle.WorkingState,
+                    VehicelLicenses = Licenses.Select(x => x.VehicleLicense).ToList()
+                };
+                if (_hasFuelCard)
+                {
+                    v.FuelCard = _fuelCard;
+                }
+                else
+                {
+                    v.FuelCard = null;
+                }
+                
+                return v;
+            }
+
         }
         public string this[string columnName] => Validate()[columnName];
         public string Error => Validate().Error;

@@ -87,9 +87,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
         public string VehicleCode { get; set; }
         [Column("Category Name")]
         public string VehicleCategoryName { get; set; }
+        public decimal TotalKilometers { get; set; } = 0;
         public List<ExternalRepairBillViewModels.ExternalRepairBillViewModel> ExternalRepairBills { get; private set; } = new List<ExternalRepairBillViewModels.ExternalRepairBillViewModel>();
         public List<FuelConsumptionViewModels.FuelConsumptionViewModel> FuelConsumptions { get; private set; } = new List<FuelConsumptionViewModels.FuelConsumptionViewModel>();
         public List<VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel> KilometerReadings { get; private set; } = new List<VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel>();
-        public List<SparePartsBillViewModels.SparePartsBillLineEditViewModel> SparePartsBills { get; private set; } = new List<SparePartsBillViewModels.SparePartsBillLineEditViewModel>();
+        public List<SparePartsBillViewModels.SparePartsBillLineViewModel> SparePartsBills { get; private set; } = new List<SparePartsBillViewModels.SparePartsBillLineViewModel>();
     }
 }

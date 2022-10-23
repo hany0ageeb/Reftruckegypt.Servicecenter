@@ -25,7 +25,7 @@ namespace Reftruckegypt.Servicecenter.Views.ReceiptLineViews
             pickReceiptDate.DataBindings.Clear();
             pickReceiptDate.DataBindings.Add(new Binding(nameof(pickReceiptDate.Value), _editModel, nameof(_editModel.ReceiptDate))
             {
-
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
             gridLines.AllowUserToAddRows = false;

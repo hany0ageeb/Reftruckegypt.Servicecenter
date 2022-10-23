@@ -52,7 +52,6 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         {
             return orderBy(_context.Set<TEntity>().Where(predicate)).AsEnumerable();
         }
-
         public void Remove(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);

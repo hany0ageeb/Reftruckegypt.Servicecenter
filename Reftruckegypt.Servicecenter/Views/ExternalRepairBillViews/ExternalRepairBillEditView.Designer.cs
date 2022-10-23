@@ -186,6 +186,8 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // pickBillDate
             // 
+            this.pickBillDate.CustomFormat = "ss:mm:HH yyyy/MM/dd";
+            this.pickBillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.pickBillDate.Location = new System.Drawing.Point(99, 101);
             this.pickBillDate.Name = "pickBillDate";
             this.pickBillDate.Size = new System.Drawing.Size(440, 23);

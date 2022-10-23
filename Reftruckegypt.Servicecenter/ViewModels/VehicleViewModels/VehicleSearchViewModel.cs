@@ -467,19 +467,33 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                         fromDate: fromDate,
                         toDate: toDate,
                         orderBy: q=>q.OrderByDescending(x=>x.SparePartsBill.BillDate));
+                var kilometerReadings = _unitOfWork.VehicleKilometerReadingRepository.Find(
+                    vehicleId: vehicle?.Id, 
+                    fromDate: fromDate, 
+                    toDate: toDate, 
+                    orderBy: q=>q.OrderByDescending(x=>x.ReadingDate));
+                decimal startKilometer = fromDate.HasValue ? _unitOfWork.VehicleKilometerReadingRepository.FindVehicleKilometerReadingAtDate(vehicleId: vehicle.Id, fromDate.Value) : 0;
+                decimal endKilometer = toDate.HasValue ? _unitOfWork.VehicleKilometerReadingRepository.FindVehicleKilometerReadingAtDate(vehicle.Id, toDate.Value) : kilometerReadings.FirstOrDefault()?.Reading ?? 0;
                 var vehicleViewModel = new VehicleViewModel(vehicle);
+                vehicleViewModel.TotalKilometers = endKilometer - startKilometer;
                 vehicleViewModel.FuelConsumptions.AddRange(consumptions.Select(x => new FuelConsumptionViewModels.FuelConsumptionViewModel(x)));
                 vehicleViewModel.FuelConsumptions.ForEach(x => x.ConsumptionDate = new DateTime(x.ConsumptionDate.Year, x.ConsumptionDate.Month,x.ConsumptionDate.Day));
                 vehicleViewModel.ExternalRepairBills.AddRange(externalInvoices);
                 vehicleViewModel.ExternalRepairBills.ForEach(x => x.BillDate = new DateTime(x.BillDate.Year, x.BillDate.Month, x.BillDate.Day));
-                vehicleViewModel.SparePartsBills.AddRange(internalRepairInvoicesLines.Select(x => new SparePartsBillViewModels.SparePartsBillLineEditViewModel(x)));
+                vehicleViewModel.SparePartsBills.AddRange(internalRepairInvoicesLines.Select(x => new SparePartsBillViewModels.SparePartsBillLineViewModel(x)));
+                vehicleViewModel.KilometerReadings.AddRange(kilometerReadings.Select(x=>new VehicleKilometerReadingViewModels.VehicleKilometerReadingViewModel(x)));
                 result.Add(vehicleViewModel);
             }
             return result;
         }
         public void Create()
         {
-            VehicleEditViewModel editViewModel = new VehicleEditViewModel(_unitOfWork, _applicationContext,_vehicleValidator, _vehicleLicenseValidator);
+            VehicleEditViewModel editViewModel = new VehicleEditViewModel(
+                _unitOfWork, 
+                _applicationContext,
+                _vehicleValidator, 
+                _vehicleLicenseValidator, 
+                _fuelCardValidator);
             _applicationContext.DisplayVehicleEditView(editViewModel);
             Search();
         }
@@ -496,7 +510,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                             _unitOfWork, 
                             _applicationContext, 
                             _vehicleValidator, 
-                            _vehicleLicenseValidator);
+                            _vehicleLicenseValidator,
+                            _fuelCardValidator);
                     _applicationContext.DisplayVehicleEditView(vehicleEditViewModel);
                     Search();
                 }
