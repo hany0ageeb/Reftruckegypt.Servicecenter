@@ -799,6 +799,14 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     DisplayName = "Vehicle Report (From Date - To Date)",
                     IsEnabled = true,
                     ParameterViewTypeName = typeof(Reports.ReportsParameterViews.VehicleReportParametersView).FullName
+                },
+                new UserReport()
+                {
+                    Sequence = 80,
+                    Name = nameof(ViewModels.PurchaseRequestViewModels.PurchaseRequestLineDTO),
+                    DisplayName = "Purchase Requests Report",
+                    IsEnabled = true,
+                    ParameterViewTypeName = typeof(Reports.ReportsParameterViews.PurchaseRequestsReportParametersView).FullName
                 }
             };
             // ...
@@ -810,11 +818,11 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             context.ExternalAutoRepairShops.AddRange(externalAutoRepairShops);
             context.Uoms.AddRange(uoms);
             context.ViolationTypes.AddRange(violationTypes);
-            context.Vehicels.AddRange(vehicles);
+            //context.Vehicels.AddRange(vehicles);
             context.UserCommands.AddRange(userCommands);
             context.UserReports.AddRange(userReports);
-            context.Periods.AddRange(periods);
-            context.ExternalRepairBills.AddRange(externalRepairBills);
+            //context.Periods.AddRange(periods);
+            //context.ExternalRepairBills.AddRange(externalRepairBills);
             // ........
             context.SaveChanges();
         }

@@ -19,11 +19,16 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ReceiptLineViewModels
         }
         [Ignore]
         public Guid Id { get; private set; }
+        [Column("Code")]
         public string SparePartCode { get; set; }
+        [Column("Name")]
         public string SparePartName { get; set; }
+        [Column("Uom")]
         public string UomCode { get; set; }
+        [Column("Received Quantity")]
         public decimal ReceivedQuantity { get; set; }
         public string PeriodState { get; set; }
+        [Column("Receipt Date")]
         public DateTime ReceiptDate { get; set; }
     }
 }
