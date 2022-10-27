@@ -409,12 +409,12 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
             ModelState modelState = _vehicleValidator.Validate(Vehicle);
             if (!modelState.HasErrors)
             {
-                if (_vehicle.FuelCard != null) 
+                if (_fuelCard != null && _hasFuelCard) 
                 {
-                    ModelState ms = _fuelCardValidator.Validate(_vehicle.FuelCard);
+                    ModelState ms = _fuelCardValidator.Validate(_fuelCard);
                     if (ms.HasErrors)
                     {
-                        string num = ms.GetError(nameof(Models.FuelCard.Number));
+                        string num = ms.GetError(nameof(FuelCard.Number));
                         if (!string.IsNullOrEmpty(num))
                         {
                             modelState.AddError(nameof(FuelCardNumber), num);
@@ -471,7 +471,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                 ModelState modelState = Validate();
                 if (modelState.HasErrors)
                 {
-                    OnPropertyChanged(this, nameof(InternalCode));
+                    _ = _applicationContext.DisplayMessage("Error", modelState.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 if(_vehicle.Id == Guid.Empty)

@@ -52,8 +52,6 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.txtInternalCode = new System.Windows.Forms.TextBox();
             this.txtChassis = new System.Windows.Forms.TextBox();
             this.cboCategories = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cboFuelCards = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cboWorkingLocations = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -153,7 +151,6 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.7317F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 304F));
-            this.tableLayoutPanel1.Controls.Add(this.txtmodelYear, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.cboFuelTypes, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.label6, 2, 2);
@@ -167,8 +164,6 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.tableLayoutPanel1.Controls.Add(this.txtInternalCode, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtChassis, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.cboCategories, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.cboFuelCards, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label8, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.cboWorkingLocations, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 4);
@@ -178,7 +173,8 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.tableLayoutPanel1.Controls.Add(this.cboWorkingStates, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label12, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.cboOverAllStates, 3, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.txtmodelYear, 1, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 15);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
@@ -194,7 +190,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // 
             // txtmodelYear
             // 
-            this.txtmodelYear.Location = new System.Drawing.Point(135, 184);
+            this.txtmodelYear.Location = new System.Drawing.Point(135, 91);
             this.txtmodelYear.Name = "txtmodelYear";
             this.txtmodelYear.Size = new System.Drawing.Size(286, 23);
             this.txtmodelYear.TabIndex = 25;
@@ -210,6 +206,8 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // 
             // cboFuelTypes
             // 
+            this.cboFuelTypes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboFuelTypes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboFuelTypes.FormattingEnabled = true;
             this.cboFuelTypes.Location = new System.Drawing.Point(590, 63);
             this.cboFuelTypes.Name = "cboFuelTypes";
@@ -227,6 +225,8 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // 
             // cboModels
             // 
+            this.cboModels.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboModels.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboModels.FormattingEnabled = true;
             this.cboModels.Location = new System.Drawing.Point(135, 63);
             this.cboModels.Name = "cboModels";
@@ -301,28 +301,13 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // 
             // cboCategories
             // 
+            this.cboCategories.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCategories.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCategories.FormattingEnabled = true;
             this.cboCategories.Location = new System.Drawing.Point(590, 32);
             this.cboCategories.Name = "cboCategories";
             this.cboCategories.Size = new System.Drawing.Size(286, 23);
             this.cboCategories.TabIndex = 7;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 88);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 15);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Fuel Card";
-            // 
-            // cboFuelCards
-            // 
-            this.cboFuelCards.FormattingEnabled = true;
-            this.cboFuelCards.Location = new System.Drawing.Point(135, 91);
-            this.cboFuelCards.Name = "cboFuelCards";
-            this.cboFuelCards.Size = new System.Drawing.Size(286, 23);
-            this.cboFuelCards.TabIndex = 13;
             // 
             // label8
             // 
@@ -335,6 +320,8 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // 
             // cboWorkingLocations
             // 
+            this.cboWorkingLocations.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboWorkingLocations.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboWorkingLocations.FormattingEnabled = true;
             this.cboWorkingLocations.Location = new System.Drawing.Point(590, 91);
             this.cboWorkingLocations.Name = "cboWorkingLocations";
@@ -352,6 +339,8 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // 
             // cboMaintenanceLocations
             // 
+            this.cboMaintenanceLocations.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboMaintenanceLocations.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMaintenanceLocations.FormattingEnabled = true;
             this.cboMaintenanceLocations.Location = new System.Drawing.Point(135, 123);
             this.cboMaintenanceLocations.Name = "cboMaintenanceLocations";
@@ -369,6 +358,8 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // 
             // cboDrivers
             // 
+            this.cboDrivers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDrivers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDrivers.FormattingEnabled = true;
             this.cboDrivers.Location = new System.Drawing.Point(590, 123);
             this.cboDrivers.Name = "cboDrivers";
@@ -377,6 +368,8 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // 
             // cboWorkingStates
             // 
+            this.cboWorkingStates.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboWorkingStates.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboWorkingStates.FormattingEnabled = true;
             this.cboWorkingStates.Location = new System.Drawing.Point(135, 155);
             this.cboWorkingStates.Name = "cboWorkingStates";
@@ -394,6 +387,8 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // 
             // cboOverAllStates
             // 
+            this.cboOverAllStates.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboOverAllStates.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboOverAllStates.FormattingEnabled = true;
             this.cboOverAllStates.Location = new System.Drawing.Point(590, 155);
             this.cboOverAllStates.Name = "cboOverAllStates";
@@ -403,7 +398,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 181);
+            this.label13.Location = new System.Drawing.Point(3, 88);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(67, 15);
             this.label13.TabIndex = 24;
@@ -470,6 +465,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             // 
             // txtName
             // 
+            this.txtName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtName.Location = new System.Drawing.Point(110, 46);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(512, 23);
@@ -480,9 +476,9 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.lblname.AutoSize = true;
             this.lblname.Location = new System.Drawing.Point(3, 43);
             this.lblname.Name = "lblname";
-            this.lblname.Size = new System.Drawing.Size(39, 15);
+            this.lblname.Size = new System.Drawing.Size(44, 15);
             this.lblname.TabIndex = 2;
-            this.lblname.Text = "Name";
+            this.lblname.Text = "Name*";
             // 
             // txtNumber
             // 
@@ -497,9 +493,9 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.lblnumber.AutoSize = true;
             this.lblnumber.Location = new System.Drawing.Point(3, 0);
             this.lblnumber.Name = "lblnumber";
-            this.lblnumber.Size = new System.Drawing.Size(51, 15);
+            this.lblnumber.Size = new System.Drawing.Size(56, 15);
             this.lblnumber.TabIndex = 0;
-            this.lblnumber.Text = "Number";
+            this.lblnumber.Text = "Number*";
             // 
             // VehicleEditView
             // 
@@ -556,8 +552,6 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
         private System.Windows.Forms.TextBox txtInternalCode;
         private System.Windows.Forms.TextBox txtChassis;
         private System.Windows.Forms.ComboBox cboCategories;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cboFuelCards;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cboWorkingLocations;
         private System.Windows.Forms.Label label9;

@@ -277,27 +277,48 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             });
             btnSave.Click += (o, e) =>
             {
-                if (_editModel.SaveOrUpdate())
+                try
                 {
-                    _hasChanged = false;
-                    Close();
-                    
+                    if (_editModel.SaveOrUpdate())
+                    {
+                        _hasChanged = false;
+                        Close();
+
+                    }
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             };
             // ....
             btnClose.Click += (o, e) =>
             {
-                if (_editModel.Close())
+                try
                 {
-                    _hasChanged = false;
-                    Close();
+                    if (_editModel.Close())
+                    {
+                        _hasChanged = false;
+                        Close();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             };
             // ....
             FormClosing += (o, e) =>
             {
-                if(_hasChanged && _editModel.HasChanged && e.CloseReason == CloseReason.UserClosing)
-                    e.Cancel = !_editModel.Close();
+                try
+                {
+                    if (_hasChanged && _editModel.HasChanged && e.CloseReason == CloseReason.UserClosing)
+                        e.Cancel = !_editModel.Close();
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             };
             //....
             errorProvider1.DataSource = _editModel;
