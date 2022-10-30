@@ -58,7 +58,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.09241F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.90759F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 382F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 383F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtNumber, 1, 0);
@@ -102,7 +102,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(391, 0);
+            this.label2.Location = new System.Drawing.Point(390, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 15);
             this.label2.TabIndex = 2;
@@ -112,13 +112,15 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // 
             this.pickbillDate.CustomFormat = "ss:mm:HH yyyy/MM/dd";
             this.pickbillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.pickbillDate.Location = new System.Drawing.Point(458, 3);
+            this.pickbillDate.Location = new System.Drawing.Point(457, 3);
             this.pickbillDate.Name = "pickbillDate";
             this.pickbillDate.Size = new System.Drawing.Size(266, 23);
             this.pickbillDate.TabIndex = 3;
             // 
             // cbovehicles
             // 
+            this.cbovehicles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbovehicles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbovehicles.FormattingEnabled = true;
             this.cbovehicles.Location = new System.Drawing.Point(96, 32);
             this.cbovehicles.Name = "cbovehicles";

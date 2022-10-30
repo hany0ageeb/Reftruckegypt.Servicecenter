@@ -60,7 +60,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.7448F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 302F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 123F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.pickfromdate, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
@@ -87,13 +87,13 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             this.pickfromdate.Location = new System.Drawing.Point(84, 3);
             this.pickfromdate.Name = "pickfromdate";
             this.pickfromdate.ShowCheckBox = true;
-            this.pickfromdate.Size = new System.Drawing.Size(279, 23);
+            this.pickfromdate.Size = new System.Drawing.Size(278, 23);
             this.pickfromdate.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(369, 0);
+            this.label2.Location = new System.Drawing.Point(368, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(21, 15);
             this.label2.TabIndex = 2;
@@ -102,7 +102,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             // picktodate
             // 
             this.picktodate.Checked = false;
-            this.picktodate.Location = new System.Drawing.Point(414, 3);
+            this.picktodate.Location = new System.Drawing.Point(413, 3);
             this.picktodate.Name = "picktodate";
             this.picktodate.ShowCheckBox = true;
             this.picktodate.Size = new System.Drawing.Size(278, 23);
@@ -188,6 +188,8 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsPriceListViews
             // 
             // cboParts
             // 
+            this.cboParts.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboParts.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboParts.FormattingEnabled = true;
             this.cboParts.Location = new System.Drawing.Point(423, 3);
             this.cboParts.Name = "cboParts";

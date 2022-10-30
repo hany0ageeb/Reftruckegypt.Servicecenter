@@ -60,7 +60,7 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.27778F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 343F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
@@ -81,7 +81,7 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(402, 0);
+            this.label3.Location = new System.Drawing.Point(401, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 15);
             this.label3.TabIndex = 4;
@@ -107,6 +107,8 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             // 
             // cboVehicles
             // 
+            this.cboVehicles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboVehicles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVehicles.FormattingEnabled = true;
             this.cboVehicles.Location = new System.Drawing.Point(101, 3);
             this.cboVehicles.Name = "cboVehicles";
@@ -124,7 +126,7 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             // 
             // txtSubject
             // 
-            this.txtSubject.Location = new System.Drawing.Point(513, 3);
+            this.txtSubject.Location = new System.Drawing.Point(512, 3);
             this.txtSubject.Name = "txtSubject";
             this.txtSubject.Size = new System.Drawing.Size(337, 23);
             this.txtSubject.TabIndex = 5;
@@ -132,7 +134,7 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(402, 35);
+            this.label4.Location = new System.Drawing.Point(401, 35);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 15);
             this.label4.TabIndex = 6;
@@ -141,7 +143,7 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             // pickToDate
             // 
             this.pickToDate.Checked = false;
-            this.pickToDate.Location = new System.Drawing.Point(513, 38);
+            this.pickToDate.Location = new System.Drawing.Point(512, 38);
             this.pickToDate.Name = "pickToDate";
             this.pickToDate.ShowCheckBox = true;
             this.pickToDate.Size = new System.Drawing.Size(337, 23);
@@ -149,7 +151,7 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(856, 38);
+            this.btnSearch.Location = new System.Drawing.Point(855, 38);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(82, 28);
             this.btnSearch.TabIndex = 8;

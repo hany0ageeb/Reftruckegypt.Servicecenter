@@ -29,6 +29,7 @@ namespace Reftruckegypt.Servicecenter.Views
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NavigatorView));
             this.lstUserCommands = new System.Windows.Forms.ListBox();
             this.btnOpen = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -62,6 +63,7 @@ namespace Reftruckegypt.Servicecenter.Views
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.lstUserCommands);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "NavigatorView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

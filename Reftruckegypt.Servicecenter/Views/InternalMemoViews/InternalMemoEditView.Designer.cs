@@ -107,15 +107,17 @@ namespace Reftruckegypt.Servicecenter.Views.InternalMemoViews
             this.txtNumber.Location = new System.Drawing.Point(73, 3);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.ReadOnly = true;
-            this.txtNumber.Size = new System.Drawing.Size(227, 23);
+            this.txtNumber.Size = new System.Drawing.Size(273, 23);
             this.txtNumber.TabIndex = 3;
             // 
             // cboVehicles
             // 
+            this.cboVehicles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboVehicles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVehicles.FormattingEnabled = true;
             this.cboVehicles.Location = new System.Drawing.Point(73, 34);
             this.cboVehicles.Name = "cboVehicles";
-            this.cboVehicles.Size = new System.Drawing.Size(227, 23);
+            this.cboVehicles.Size = new System.Drawing.Size(273, 23);
             this.cboVehicles.TabIndex = 4;
             // 
             // pickMemoDate

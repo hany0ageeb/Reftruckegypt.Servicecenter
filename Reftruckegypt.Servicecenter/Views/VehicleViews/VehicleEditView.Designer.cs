@@ -38,7 +38,6 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtmodelYear = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.cboFuelTypes = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -62,6 +61,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.label12 = new System.Windows.Forms.Label();
             this.cboOverAllStates = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.txtmodelYear = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.chkHasFuelCard = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -187,13 +187,6 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(891, 218);
             this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // txtmodelYear
-            // 
-            this.txtmodelYear.Location = new System.Drawing.Point(135, 91);
-            this.txtmodelYear.Name = "txtmodelYear";
-            this.txtmodelYear.Size = new System.Drawing.Size(286, 23);
-            this.txtmodelYear.TabIndex = 25;
             // 
             // label11
             // 
@@ -403,6 +396,13 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleViews
             this.label13.Size = new System.Drawing.Size(67, 15);
             this.label13.TabIndex = 24;
             this.label13.Text = "Model Year";
+            // 
+            // txtmodelYear
+            // 
+            this.txtmodelYear.Location = new System.Drawing.Point(135, 91);
+            this.txtmodelYear.Name = "txtmodelYear";
+            this.txtmodelYear.Size = new System.Drawing.Size(286, 23);
+            this.txtmodelYear.TabIndex = 25;
             // 
             // tabPage2
             // 

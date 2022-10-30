@@ -56,7 +56,7 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.00893F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.99107F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 372F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 373F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
@@ -85,7 +85,7 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(384, 0);
+            this.label2.Location = new System.Drawing.Point(383, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 15);
             this.label2.TabIndex = 1;
@@ -103,7 +103,7 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(384, 32);
+            this.label4.Location = new System.Drawing.Point(383, 32);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 15);
             this.label4.TabIndex = 3;
@@ -111,7 +111,7 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
             // 
             // txtNumber
             // 
-            this.txtNumber.Location = new System.Drawing.Point(106, 3);
+            this.txtNumber.Location = new System.Drawing.Point(105, 3);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(272, 23);
             this.txtNumber.TabIndex = 0;
@@ -120,22 +120,24 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
             // 
             this.pickrequestDate.CustomFormat = "ss:mm:HH yyyy/MM/dd";
             this.pickrequestDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.pickrequestDate.Location = new System.Drawing.Point(478, 3);
+            this.pickrequestDate.Location = new System.Drawing.Point(477, 3);
             this.pickrequestDate.Name = "pickrequestDate";
             this.pickrequestDate.Size = new System.Drawing.Size(344, 23);
             this.pickrequestDate.TabIndex = 1;
             // 
             // cboVehicles
             // 
+            this.cboVehicles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboVehicles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVehicles.FormattingEnabled = true;
-            this.cboVehicles.Location = new System.Drawing.Point(106, 35);
+            this.cboVehicles.Location = new System.Drawing.Point(105, 35);
             this.cboVehicles.Name = "cboVehicles";
             this.cboVehicles.Size = new System.Drawing.Size(272, 23);
             this.cboVehicles.TabIndex = 2;
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(478, 35);
+            this.txtDescription.Location = new System.Drawing.Point(477, 35);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(344, 23);
             this.txtDescription.TabIndex = 3;

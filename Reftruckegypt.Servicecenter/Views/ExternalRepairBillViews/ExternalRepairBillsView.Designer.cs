@@ -67,7 +67,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.53089F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 307F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
@@ -110,7 +110,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(463, 34);
+            this.label4.Location = new System.Drawing.Point(462, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 34);
             this.label4.TabIndex = 7;
@@ -128,7 +128,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // txtbillNumberTo
             // 
-            this.txtbillNumberTo.Location = new System.Drawing.Point(548, 3);
+            this.txtbillNumberTo.Location = new System.Drawing.Point(547, 3);
             this.txtbillNumberTo.Name = "txtbillNumberTo";
             this.txtbillNumberTo.Size = new System.Drawing.Size(301, 23);
             this.txtbillNumberTo.TabIndex = 2;
@@ -161,7 +161,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // pickbillDateTo
             // 
             this.pickbillDateTo.Checked = false;
-            this.pickbillDateTo.Location = new System.Drawing.Point(548, 37);
+            this.pickbillDateTo.Location = new System.Drawing.Point(547, 37);
             this.pickbillDateTo.Name = "pickbillDateTo";
             this.pickbillDateTo.ShowCheckBox = true;
             this.pickbillDateTo.Size = new System.Drawing.Size(301, 23);
@@ -173,7 +173,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(463, 0);
+            this.label2.Location = new System.Drawing.Point(462, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 34);
             this.label2.TabIndex = 2;
@@ -182,7 +182,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // txtbillAmountTo
             // 
-            this.txtbillAmountTo.Location = new System.Drawing.Point(548, 71);
+            this.txtbillAmountTo.Location = new System.Drawing.Point(547, 71);
             this.txtbillAmountTo.Name = "txtbillAmountTo";
             this.txtbillAmountTo.Size = new System.Drawing.Size(301, 23);
             this.txtbillAmountTo.TabIndex = 6;
@@ -200,7 +200,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(463, 68);
+            this.label6.Location = new System.Drawing.Point(462, 68);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 34);
             this.label6.TabIndex = 11;
@@ -218,6 +218,8 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // cbovehicles
             // 
+            this.cbovehicles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbovehicles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbovehicles.FormattingEnabled = true;
             this.cbovehicles.Location = new System.Drawing.Point(166, 105);
             this.cbovehicles.Name = "cbovehicles";
@@ -227,7 +229,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(463, 102);
+            this.label8.Location = new System.Drawing.Point(462, 102);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(71, 15);
             this.label8.TabIndex = 14;
@@ -235,15 +237,17 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // 
             // cboshops
             // 
+            this.cboshops.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboshops.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboshops.FormattingEnabled = true;
-            this.cboshops.Location = new System.Drawing.Point(548, 105);
+            this.cboshops.Location = new System.Drawing.Point(547, 105);
             this.cboshops.Name = "cboshops";
             this.cboshops.Size = new System.Drawing.Size(301, 23);
             this.cboshops.TabIndex = 8;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(855, 105);
+            this.btnSearch.Location = new System.Drawing.Point(854, 105);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 9;

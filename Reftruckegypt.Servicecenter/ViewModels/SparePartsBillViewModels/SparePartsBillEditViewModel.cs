@@ -111,6 +111,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                 {
                     if(e.PropertyDescriptor?.Name == nameof(SparePartsBillLineEditViewModel.SparePart))
                     {
+                        Lines[e.NewIndex].Uom = Lines[e.NewIndex].SparePart?.PrimaryUom;
                         Lines[e.NewIndex].UnitPrice = FindSparePartUnitPrice(Lines[e.NewIndex]);
                     }
                 }
@@ -189,7 +190,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
             Repairs = _repairs,
             Lines = Lines.Select(l => l.SparePartsBillLine).ToList()
         };
-        private decimal FindSparePartUnitPrice(SparePartsBillLineEditViewModel line)
+        public decimal FindSparePartUnitPrice(SparePartsBillLineEditViewModel line)
         {
             SparePartsPriceList priceList = _untiOfWork
                 .SparePartsPriceListRepository
