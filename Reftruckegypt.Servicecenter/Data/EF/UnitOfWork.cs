@@ -39,6 +39,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             PurchaseRequestRepository = new PurchaseRequestRepository(context);
             PurchaseRequestLineRepository = new PurchaseRequestLineRepository(context);
             ReceiptLineRepository = new ReceiptLineRepository(context);
+            MalfunctionReasonRepository = new MalfunctionReasonRepository(context);
         }
 
         public IDriverRepository DriverRepository { get; private set; }
@@ -92,6 +93,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         public IPurchaseRequestRepository PurchaseRequestRepository { get; private set; }
         public IPurchaseRequestLineRepository PurchaseRequestLineRepository { get; private set; }
         public IReceiptLineRepository ReceiptLineRepository { get; private set; }
+        public IMalfunctionReasonRepository MalfunctionReasonRepository { get; private set; }
         public int Complete()
         {
             return _context.SaveChanges();

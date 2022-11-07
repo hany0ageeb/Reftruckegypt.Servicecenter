@@ -9,6 +9,7 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
     {
         IEnumerable<SparePartsBill> Find(
             Guid? vehicleId = null,
+            Guid? vehicleCategoryId = null,
             DateTime? fromDate = null,
             DateTime? toDate = null,
             Func<IQueryable<SparePartsBill>, IQueryable<SparePartsBill>> orderBy = null);

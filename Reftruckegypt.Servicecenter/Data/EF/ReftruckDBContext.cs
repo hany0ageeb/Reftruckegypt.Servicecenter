@@ -506,6 +506,43 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<ExternalRepairBill>()
                 .Property(e => e.BillImageFilePath)
                 .HasMaxLength(ExternalRepairBill.MaxBillImageFilePathLength);
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .HasOptional(e => e.VehicleDriver)
+                .WithMany()
+                .HasForeignKey(e => e.VehicleDriverId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<ExternalRepairBill>()
+                .HasOptional(e => e.VehicleMalfunctionReason)
+                .WithMany()
+                .HasForeignKey(e => e.VehicleMalfunctionReasonId)
+                .WillCascadeOnDelete(false);
+            // MalfunctionReason
+            modelBuilder
+                .Entity<MalfunctionReason>()
+                .Map(m =>
+                {
+                    m.ToTable("MalfunctionReasons");
+                    m.MapInheritedProperties();
+                });
+            modelBuilder
+                .Entity<MalfunctionReason>()
+                .Ignore(e => e.Self);
+            modelBuilder
+                .Entity<MalfunctionReason>()
+                .Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(MalfunctionReason.MaxNameLength);
+            modelBuilder
+                .Entity<MalfunctionReason>()
+                .Property(e => e.Description)
+                .HasMaxLength(MalfunctionReason.MaxDescriptionLength);
+            modelBuilder
+                .Entity<MalfunctionReason>()
+                .HasIndex(e => e.Name)
+                .IsUnique(true)
+                .HasName("IDX_UNQ_REASON_NAME");
             // Uom ...
             modelBuilder
                 .Entity<Uom>()
@@ -692,6 +729,18 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Entity<SparePartsBill>()
                 .Property(e => e.Repairs)
                 .HasMaxLength(SparePartsBill.MaxRepairsLength);
+            modelBuilder
+                .Entity<SparePartsBill>()
+                .HasOptional(e => e.VehicleDriver)
+                .WithMany()
+                .HasForeignKey(e => e.VehicleDriverId)
+                .WillCascadeOnDelete(false);
+            modelBuilder
+                .Entity<SparePartsBill>()
+                .HasOptional(e => e.MalfunctionReason)
+                .WithMany()
+                .HasForeignKey(e => e.MalfunctionReasonId)
+                .WillCascadeOnDelete(false);
             // SparePartsBillLine
             modelBuilder
                 .Entity<SparePartsBillLine>()
@@ -996,6 +1045,7 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         public DbSet<ReceiptLine> ReceiptLines { get; set; }
         public DbSet<UserCommand> UserCommands { get; set; }
         public DbSet<UserReport> UserReports { get; set; }
+        public DbSet<MalfunctionReason> MalfunctionReasons { get; set; }
         
     }
 }

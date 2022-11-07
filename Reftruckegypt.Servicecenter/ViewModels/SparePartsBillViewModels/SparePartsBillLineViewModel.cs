@@ -21,6 +21,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
             Repairs = line.SparePartsBill.Repairs;
             SparePartCode = line.SparePart.Code;
             SparePartName = line.SparePart.Name;
+            DriverName = line.SparePartsBill.VehicleDriver?.Name ?? "";
+            KilometerReading = line.SparePartsBill.KilometerReading;
         }
         [Ignore]
         public Guid Id { get; private set; }
@@ -34,6 +36,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
         public decimal TotalAmount { get; private set; }
         [Column("Vehicle Internal Code")]
         public string VehicleInternalCode { get; private set; }
+        [Column("Kilometer Reading")]
+        public decimal? KilometerReading { get; set; }
+        [Column("Driver")]
+        public string DriverName { get; set; }
         [Column("State")]
         public string State { get; private set; }
         [Column("Spare Part Code")]

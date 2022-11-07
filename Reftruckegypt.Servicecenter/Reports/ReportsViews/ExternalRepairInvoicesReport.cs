@@ -30,7 +30,14 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsViews
             reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
             reportViewer1.SetPageSettings(new System.Drawing.Printing.PageSettings()
             {
-                Landscape = true
+                Landscape = true,
+                Margins = new System.Drawing.Printing.Margins()
+                {
+                    Left = 10,
+                    Top = 15,
+                    Right = 10,
+                    Bottom = 15
+                }
             });
         }
         private void ExternalRepairInvoicesReport_Load(object sender, EventArgs e)

@@ -249,6 +249,7 @@
     <Compile Include="Data\Abstractions\IFuelTypeRepository.cs" />
     <Compile Include="Data\Abstractions\IInternalMemoRepository.cs" />
     <Compile Include="Data\Abstractions\ILocationRepository.cs" />
+    <Compile Include="Data\Abstractions\IMalfunctionReasonRepository.cs" />
     <Compile Include="Data\Abstractions\IPeriodReposiory.cs" />
     <Compile Include="Data\Abstractions\IPurchaseRequestLineRepository.cs" />
     <Compile Include="Data\Abstractions\IPurchaseRequestRepository.cs" />
@@ -281,6 +282,7 @@
     <Compile Include="Data\EF\FuelTypeRepository.cs" />
     <Compile Include="Data\EF\InternalMemoRepository.cs" />
     <Compile Include="Data\EF\LocationRepository.cs" />
+    <Compile Include="Data\EF\MalfunctionReasonRepository.cs" />
     <Compile Include="Data\EF\PeriodRepository.cs" />
     <Compile Include="Data\EF\PurchaseRequestLineRepository.cs" />
     <Compile Include="Data\EF\PurchaseRequestRepository.cs" />
@@ -387,6 +389,12 @@
     <Compile Include="Reports\ReportsParameterViews\FuelConsumptionReportParametersView.Designer.cs">
       <DependentUpon>FuelConsumptionReportParametersView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\ReportsParameterViews\InternalMemoReportParametersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsParameterViews\InternalMemoReportParametersView.Designer.cs">
+      <DependentUpon>InternalMemoReportParametersView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ReportsParameterViews\InternalRepairInvoicesParametersView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -428,6 +436,12 @@
     </Compile>
     <Compile Include="Reports\ReportsViews\FuelConsumptionReportView.Designer.cs">
       <DependentUpon>FuelConsumptionReportView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportsViews\InternalMemoReportView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsViews\InternalMemoReportView.Designer.cs">
+      <DependentUpon>InternalMemoReportView.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\ReportsViews\PurchaseRequestsReportView.cs">
       <SubType>Form</SubType>
@@ -859,6 +873,7 @@
     </Compile>
     <EmbeddedResource Include="Reports\FuelConsumptionByFuelCardReport.rdlc" />
     <EmbeddedResource Include="Reports\FuelConsumptionReport.rdlc" />
+    <EmbeddedResource Include="Reports\InternalMemoReport.rdlc" />
     <EmbeddedResource Include="Reports\InternalRepairInvoiceLinesReport.rdlc" />
     <EmbeddedResource Include="Reports\InternalRepairInvoicesSummaryReport.rdlc" />
     <EmbeddedResource Include="Reports\PurchaseRequestLinesReport.rdlc" />
@@ -872,6 +887,9 @@
       <DependentUpon>FuelConsumptionReportParametersView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ExternalRepairInvoicesReport.rdlc" />
+    <EmbeddedResource Include="Reports\ReportsParameterViews\InternalMemoReportParametersView.resx">
+      <DependentUpon>InternalMemoReportParametersView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportsParameterViews\InternalRepairInvoicesParametersView.resx">
       <DependentUpon>InternalRepairInvoicesParametersView.cs</DependentUpon>
     </EmbeddedResource>
@@ -892,6 +910,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportsViews\FuelConsumptionReportView.resx">
       <DependentUpon>FuelConsumptionReportView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportsViews\InternalMemoReportView.resx">
+      <DependentUpon>InternalMemoReportView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportsViews\PurchaseRequestsReportView.resx">
       <DependentUpon>PurchaseRequestsReportView.cs</DependentUpon>
@@ -1074,6 +1095,7 @@
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels.ExternalRepairBillViewModel.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels.FuelConsumptionSummaryDTO.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels.FuelConsumptionViewModel.datasource" />
+    <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels.InternalMemoDTO.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.PurchaseRequestViewModels.PurchaseRequestLineDTO.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels.SparePartsBillHeaderViewModel.datasource" />
     <None Include="Properties\DataSources\Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels.SparePartsBillLineViewModel1.datasource" />

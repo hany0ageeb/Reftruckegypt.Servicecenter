@@ -24,6 +24,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
         private DateTime? _toDate;
         private Vehicle _vehicle;
         private SparePart _sparePart;
+        private VehicleCategory _vehicleCategory;
         private bool _displayResultByHeader = true;
         private bool _displayResultByLine = false;
         private int _selectedIndex = -1;
@@ -47,6 +48,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
             Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q=>q.OrderBy(x => x.InternalCode)));
             Vehicles.Insert(0, new Vehicle() { Id = Guid.Empty, InternalCode = "--ALL--" });
             _vehicle = Vehicles[0];
+            VehicleCategories.AddRange(_unitOfWork.VehicleCategoryRepository.Find(orderBy: q => q.OrderBy(x => x.Name)));
+            VehicleCategories.Insert(0, VehicleCategory.empty);
+            _vehicleCategory = VehicleCategories[0];
+
         }
         public bool DisplayResultByHeader
         {
@@ -127,6 +132,18 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                 {
                     _vehicle = value;
                     OnPropertyChanged(this, nameof(Vehicle));
+                }
+            }
+        }
+        public VehicleCategory VehicleCategory
+        {
+            get => _vehicleCategory;
+            set
+            {
+                if (_vehicleCategory != value)
+                {
+                    _vehicleCategory = value;
+                    OnPropertyChanged(this, nameof(VehicleCategory));
                 }
             }
         }
@@ -222,7 +239,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                     _unitOfWork
                     .SparePartsBillRepository
                     .Find(
-                        vehicleId: _vehicle.Id,
+                        vehicleId: _vehicle?.Id,
+                        vehicleCategoryId: _vehicleCategory?.Id,
                         fromDate: _fromDate,
                         toDate: _toDate,
                         orderBy: q => q.OrderByDescending(x => x.BillDate).ThenBy(x => x.Vehicle.InternalCode));
@@ -235,7 +253,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                     _unitOfWork
                     .SparePartsBillLineRepository
                     .Find(
-                        vehicleId: _vehicle.Id,
+                        vehicleId: _vehicle?.Id,
+                        vehicleCategoryId: _vehicleCategory?.Id,
                         fromDate: _fromDate,
                         toDate: _toDate,
                         sparePartId: _sparePart.Id,
@@ -383,6 +402,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
         public BindingList<SparePartsBillLineViewModel> Lines { get; private set; } = new BindingList<SparePartsBillLineViewModel>();
         public List<SparePart> SpareParts { get; private set; } = new List<SparePart>();
         public List<Vehicle> Vehicles { get; private set; } = new List<Vehicle>();
+        public List<VehicleCategory> VehicleCategories { get; private set; } = new List<VehicleCategory>();
         public void Dispose()
         {
             if (!_isDisposed)

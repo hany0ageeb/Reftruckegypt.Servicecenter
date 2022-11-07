@@ -36,6 +36,39 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
                 DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ....
+            txtKilometer.Text = _editModel.KilometerReading.HasValue ? _editModel.KilometerReading.ToString() : "";
+            txtKilometer.Validating += (o, e) =>
+            {
+                if (!string.IsNullOrEmpty(txtKilometer.Text))
+                {
+                    if(decimal.TryParse(txtKilometer.Text, out decimal reading))
+                    {
+                        if(reading < 0)
+                        {
+                            errorProvider1.SetError(txtKilometer, "Negative Kilometer Reading Value!");
+                            e.Cancel = true;
+                        }
+                        else
+                        {
+                            _editModel.KilometerReading = reading;
+                        }
+                    }
+                    else
+                    {
+                        errorProvider1.SetError(txtKilometer, $"{txtKilometer.Text} is not a valid Kilometer Reading.");
+                        e.Cancel = true;
+                    }
+                }
+                else
+                {
+                    _editModel.KilometerReading = null;
+                }
+            };
+            txtKilometer.Validated += (o, e) =>
+            {
+                errorProvider1.SetError(txtKilometer, "");
+            };
+            // ....
             pickbillDate.DataBindings.Clear();
             pickbillDate.DataBindings.Add(new Binding(nameof(pickbillDate.Value), _editModel, nameof(_editModel.BillDate))
             {
@@ -51,11 +84,20 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
                 DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
+            cboReasons.DataBindings.Clear();
+            cboReasons.DataSource = _editModel.MalfunctionReasons;
+            cboReasons.DisplayMember = nameof(Models.MalfunctionReason.Name);
+            cboReasons.ValueMember = nameof(Models.MalfunctionReason.Self);
+            cboReasons.DataBindings.Add(new Binding(nameof(cboReasons.SelectedItem), _editModel, nameof(_editModel.MalfunctionReason))
+            { 
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            // ...
             gridLines.AllowUserToAddRows = true;
             gridLines.AllowUserToDeleteRows = true;
             gridLines.MultiSelect = false;
             gridLines.ReadOnly = false;
-            gridLines.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            
             gridLines.AutoGenerateColumns = false;
             
             gridLines.Columns.Clear();

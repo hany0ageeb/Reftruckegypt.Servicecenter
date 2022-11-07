@@ -18,11 +18,14 @@ namespace Reftruckegypt.Servicecenter.ViewModels.PurchaseRequestViewModels
             Description = purchaseRequest.Description;
             RequestState = purchaseRequest.State;
             PeriodState = purchaseRequest.Period.State;
+            VehicleInternalCode = purchaseRequest.Vehicle?.InternalCode ?? "";
         }
         [Ignore]
         public Guid PurchaseRequestId { get; set; }
         [Column("Number")]
         public long Number { get; set; }
+        [Column("Vehicle")]
+        public string VehicleInternalCode { get; set; }
         [Column("Description")]
         public string Description { get; set; }
         [Column("Request Date")]

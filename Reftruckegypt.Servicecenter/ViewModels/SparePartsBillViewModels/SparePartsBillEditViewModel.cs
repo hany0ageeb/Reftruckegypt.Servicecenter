@@ -15,6 +15,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
         private DateTime _date;
         private Vehicle _vehicle;
         private Period _period;
+        private MalfunctionReason _malfunctionReason;
+        private decimal? _kilometerReading;
         private string _repairs;
         private bool _hasChanged = false;
         private IValidator<SparePartsBillLine> _lineValidator;
@@ -54,6 +56,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
             Vehicles.AddRange(_untiOfWork.VehicleRepository.Find(q => q.OrderBy(x => x.InternalCode)));
             SpareParts.AddRange(_untiOfWork.SparePartRepository.Find(predicate: x => x.IsEnabled, orderBy: q => q.OrderBy(x => x.Code)));
             Uoms.AddRange(_untiOfWork.UomRepository.Find(x => x.IsEnabled, q => q.OrderBy(x => x.Code)));
+            MalfunctionReasons.AddRange(_untiOfWork.MalfunctionReasonRepository.Find(x => x.IsEnabled, q => q.OrderBy(x => x.Name)));
+            MalfunctionReasons.Insert(0, MalfunctionReason.empty);
             if (bill != null)
             {
                 Id = bill.Id;
@@ -61,6 +65,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                 Number = bill.Number.ToString();
                 Repairs = bill.Repairs;
                 _period = bill.Period;
+                _kilometerReading = bill.KilometerReading;
+                _malfunctionReason = bill.MalfunctionReason == null ? MalfunctionReasons[0] : bill.MalfunctionReason;
                 foreach (var line in bill.Lines)
                 {
                     Lines.Add(new SparePartsBillLineEditViewModel(line));
@@ -73,6 +79,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                         Uoms.Add(line.Uom);
                     }
                 }
+                if (_malfunctionReason != null && !MalfunctionReasons.Contains(_malfunctionReason))
+                {
+                    MalfunctionReasons.Add(_malfunctionReason);
+                }
                 Vehicle = bill.Vehicle;
             }
             else
@@ -81,6 +91,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                 BillDate = DateTime.Now;
                 if (Vehicles.Count > 0)
                     Vehicle = Vehicles[0];
+                _malfunctionReason = MalfunctionReasons[0];
             }
             Lines.ListChanged += (o, e) =>
             {
@@ -168,6 +179,32 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                 }
             }
         }
+        public decimal? KilometerReading
+        {
+            get => _kilometerReading;
+            set
+            {
+                if (_kilometerReading != value)
+                {
+                    _kilometerReading = value;
+                    OnPropertyChanged(this, nameof(KilometerReading));
+                    HasChanged = true;
+                }
+            }
+        }
+        public MalfunctionReason MalfunctionReason
+        {
+            get => _malfunctionReason;
+            set
+            {
+                if (_malfunctionReason != value)
+                {
+                    _malfunctionReason = value;
+                    OnPropertyChanged(this, nameof(MalfunctionReason));
+                    HasChanged = true;
+                }
+            }
+        }
         public string Repairs
         {
             get => _repairs;
@@ -188,6 +225,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
             Vehicle = _vehicle,
             Period = _period,
             Repairs = _repairs,
+            MalfunctionReason = _malfunctionReason?.Id != Guid.Empty ? _malfunctionReason : null,
+            KilometerReading = _kilometerReading,
             Lines = Lines.Select(l => l.SparePartsBillLine).ToList()
         };
         public decimal FindSparePartUnitPrice(SparePartsBillLineEditViewModel line)
@@ -255,6 +294,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                 {
                     SparePartsBill sparePartsBill = SparePartsBill;
                     sparePartsBill.Id = Guid.NewGuid();
+                    sparePartsBill.VehicleDriver = sparePartsBill.Vehicle?.DriverId != null ? _untiOfWork.DriverRepository.Find(key: sparePartsBill.Vehicle.DriverId.Value) : null;
                     foreach (var line in sparePartsBill.Lines)
                         line.Id = Guid.NewGuid();
                     _untiOfWork.SparePartsBillRepository.Add(sparePartsBill);
@@ -270,6 +310,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                         oldBill.Period = _period;
                         oldBill.Repairs = _repairs;
                         oldBill.Vehicle = _vehicle;
+                        oldBill.KilometerReading = _kilometerReading;
+                        oldBill.MalfunctionReason = _malfunctionReason?.Id == Guid.Empty ? null : _malfunctionReason;
                         foreach(var line in deletedLines)
                         {
                             oldBill.Lines.Remove(oldBill.Lines.Where(l => l.Id == line.Id).FirstOrDefault());
@@ -340,6 +382,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
         public List<Vehicle> Vehicles { get; private set; } = new List<Vehicle>();
         public List<Uom> Uoms { get; private set; } = new List<Uom>();
         public List<SparePart> SpareParts { get; private set; } = new List<SparePart>();
+        public List<MalfunctionReason> MalfunctionReasons { get; private set; } = new List<MalfunctionReason>();
         #region IDataErrorInfo
         public string this[string columnName] => Validate()[columnName];
         public string Error => Validate().Error;

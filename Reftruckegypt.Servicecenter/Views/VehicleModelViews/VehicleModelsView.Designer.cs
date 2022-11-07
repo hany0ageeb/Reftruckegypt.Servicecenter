@@ -83,6 +83,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleModelViews
             this.btnCreate.TabIndex = 8;
             this.btnCreate.Text = "Create ..";
             this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // vehicleModelsGrid
             // 
@@ -100,7 +101,7 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleModelViews
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.26667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.73333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtName, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 2, 0);
@@ -124,12 +125,12 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleModelViews
             // 
             this.txtName.Location = new System.Drawing.Point(220, 3);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(545, 23);
+            this.txtName.Size = new System.Drawing.Size(544, 23);
             this.txtName.TabIndex = 1;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(771, 3);
+            this.btnSearch.Location = new System.Drawing.Point(770, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(93, 23);
             this.btnSearch.TabIndex = 2;

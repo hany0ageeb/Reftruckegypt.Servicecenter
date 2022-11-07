@@ -157,6 +157,26 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
                 },
                 new DataGridViewTextBoxColumn()
                 {
+                    Name = nameof(SparePartsBillHeaderViewModel.MalfunctionReason),
+                    DataPropertyName = nameof(SparePartsBillHeaderViewModel.MalfunctionReason),
+                    HeaderText = "Malfunc Reason"
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = nameof(SparePartsBillHeaderViewModel.KilometerReading),
+                    DataPropertyName = nameof(SparePartsBillHeaderViewModel.KilometerReading),
+                    HeaderText = "Kilometer",
+                    ReadOnly = true
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = nameof(SparePartsBillHeaderViewModel.DriverName),
+                    DataPropertyName = nameof(SparePartsBillHeaderViewModel.DriverName),
+                    HeaderText = "Driver",
+                    ReadOnly = true
+                },
+                new DataGridViewTextBoxColumn()
+                {
                     Name = nameof(SparePartsBillHeaderViewModel.Repairs),
                     DataPropertyName = nameof(SparePartsBillHeaderViewModel.Repairs),
                     HeaderText = "Repairs"
@@ -194,6 +214,20 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
                     Name = nameof(SparePartsBillLineViewModel.VehicleInternalCode),
                     DataPropertyName = nameof(SparePartsBillLineViewModel.VehicleInternalCode),
                     HeaderText = "Vehicle"
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = nameof(SparePartsBillHeaderViewModel.KilometerReading),
+                    DataPropertyName = nameof(SparePartsBillHeaderViewModel.KilometerReading),
+                    HeaderText = "Kilometer",
+                    ReadOnly = true
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = nameof(SparePartsBillHeaderViewModel.DriverName),
+                    DataPropertyName = nameof(SparePartsBillHeaderViewModel.DriverName),
+                    HeaderText = "Driver",
+                    ReadOnly = true
                 },
                 new DataGridViewTextBoxColumn()
                 {

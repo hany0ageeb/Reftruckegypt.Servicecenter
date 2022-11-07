@@ -18,8 +18,22 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
             decimal? fromAmount = null,
             decimal? toAmount = null,
             Guid? externalShopId = null,
+            Guid? vehicleCategoryId = null,
             Guid? vehicleId = null,
             Func<IQueryable<ExternalRepairBill>, IOrderedQueryable<ExternalRepairBill>> orderBy = null)
             where TResult : new();
+        IEnumerable<ExternalRepairBill> Find(
+            long? fromNumber = null,
+            long? toNumber = null,
+            string supplierBillNumber = "",
+            DateTime? fromDate = null,
+            DateTime? toDate = null,
+            decimal? fromAmount = null,
+            decimal? toAmount = null,
+            Guid? externalShopId = null,
+            Guid? vehicleCategoryId = null,
+            Guid? vehicleId = null,
+            Func<IQueryable<ExternalRepairBill>, IOrderedQueryable<ExternalRepairBill>> orderBy = null);
     }
+
 }

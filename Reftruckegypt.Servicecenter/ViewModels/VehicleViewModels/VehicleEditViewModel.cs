@@ -528,7 +528,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels
                         oldVehicle.WorkLocation = vehicle.WorkLocation;
                         oldVehicle.ChassisNumber = _vehicle.ChassisNumber;
                         oldVehicle.Driver = vehicle.Driver;
-                        
+                        oldVehicle.VehicleModel = _vehicle.VehicleModel;
                         oldVehicle.FuelType = _vehicle.FuelType;
                         oldVehicle.ModelYear = _vehicle.ModelYear;
                         oldVehicle.VehicleCategory = _vehicle.VehicleCategory;

@@ -83,6 +83,25 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 }
             };
             // ...
+            MalfunctionReason[] malfunctionReasons =
+            {
+                new MalfunctionReason()
+                {
+                    Name = "سوء استخدام",
+                    Description = ""
+                },
+                new MalfunctionReason()
+                {
+                    Name = "عمر افتراضى",
+                    Description = ""
+                },
+                new MalfunctionReason()
+                {
+                    Name = "طبيعى",
+                    Description = ""
+                }
+            };
+            // ...
             ExternalAutoRepairShop[] externalAutoRepairShops = new ExternalAutoRepairShop[]
             {
                 new ExternalAutoRepairShop()
@@ -807,6 +826,14 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     DisplayName = "Purchase Requests Report",
                     IsEnabled = true,
                     ParameterViewTypeName = typeof(Reports.ReportsParameterViews.PurchaseRequestsReportParametersView).FullName
+                },
+                new UserReport()
+                {
+                    Sequence = 90,
+                    Name = nameof(Models.InternalMemo),
+                    DisplayName = "Internal Memo Report",
+                    IsEnabled = true,
+                    ParameterViewTypeName = typeof(Reports.ReportsParameterViews.InternalMemoReportParametersView).FullName
                 }
             };
             // ...
@@ -818,12 +845,13 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             context.ExternalAutoRepairShops.AddRange(externalAutoRepairShops);
             context.Uoms.AddRange(uoms);
             context.ViolationTypes.AddRange(violationTypes);
-            //context.Vehicels.AddRange(vehicles);
+            context.Vehicels.AddRange(vehicles);
             context.UserCommands.AddRange(userCommands);
             context.UserReports.AddRange(userReports);
             //context.Periods.AddRange(periods);
             //context.ExternalRepairBills.AddRange(externalRepairBills);
             // ........
+            context.MalfunctionReasons.AddRange(malfunctionReasons);
             context.SaveChanges();
         }
     }

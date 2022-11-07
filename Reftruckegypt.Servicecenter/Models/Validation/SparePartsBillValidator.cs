@@ -17,6 +17,10 @@
             {
                 modelState.AddError(nameof(entity.Repairs), string.Format(ValidationErrors.TooLongFieldValue, nameof(entity.Repairs), SparePartsBill.MaxRepairsLength));
             }
+            if(entity.KilometerReading.HasValue && entity.KilometerReading < 0)
+            {
+                modelState.AddError(nameof(entity.KilometerReading), "Negative Kilometer Reading!!!");
+            }
             return modelState;
         }
     }

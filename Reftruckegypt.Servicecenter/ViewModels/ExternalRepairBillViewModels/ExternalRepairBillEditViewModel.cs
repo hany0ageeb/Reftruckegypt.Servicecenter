@@ -26,6 +26,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         private Vehicle _vehicle;
         private Period _period = null;
         private string _billImageFilePath = "";
+        private MalfunctionReason _malfunctionReason;
+        private decimal? _kilometerReading = null;
 
         private bool _hasChanged = false;
         public ExternalRepairBillEditViewModel(
@@ -48,7 +50,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
 
             ExternalAutoRepairShops.AddRange(_unitOfWork.ExternalAutoRepairShopRepository.Find(e => e.IsEnabled, q => q.OrderBy(e => e.Name)));
             Vehicles.AddRange(_unitOfWork.VehicleRepository.Find(q => q.OrderBy(e => e.InternalCode)));
-
+            MalfunctionReasons.AddRange(_unitOfWork.MalfunctionReasonRepository.Find(predicate: x=>x.IsEnabled, orderBy: q=>q.OrderBy(x=>x.Name)));
+            MalfunctionReasons.Insert(0, MalfunctionReason.empty);
             if (externalRepairBill != null)
             {
                 Id = externalRepairBill.Id;
@@ -59,6 +62,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                 _repairs = externalRepairBill.Repairs;
                 _totalAmountEgp = externalRepairBill.TotalAmountInEGP;
                 _supplierBillNumber = externalRepairBill.SupplierBillNumber;
+                _kilometerReading = externalRepairBill.KilometerReading;
                 if (!Vehicles.Contains(externalRepairBill.Vehicle))
                 {
                     Vehicles.Add(externalRepairBill.Vehicle);
@@ -66,6 +70,18 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                 if (!ExternalAutoRepairShops.Contains(externalRepairBill.ExternalAutoRepairShop))
                 {
                     ExternalAutoRepairShops.Add(externalRepairBill.ExternalAutoRepairShop);
+                }
+                if (externalRepairBill.VehicleMalfunctionReason != null)
+                {
+                    if (!MalfunctionReasons.Contains(externalRepairBill.VehicleMalfunctionReason))
+                    {
+                        MalfunctionReasons.Add(externalRepairBill.VehicleMalfunctionReason);
+                    }
+                    _malfunctionReason = externalRepairBill.VehicleMalfunctionReason;
+                }
+                else
+                {
+                    _malfunctionReason = MalfunctionReasons[0];
                 }
                 _vehicle = externalRepairBill.Vehicle;
                 _externalAutoRepairShop = externalRepairBill.ExternalAutoRepairShop;
@@ -83,6 +99,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                     _vehicle = Vehicles[0];
                 }
                 _period = _unitOfWork.PeriodRepository.FindOpenPeriod(_billDate);
+                _malfunctionReason = MalfunctionReasons[0];
             }
             
         }
@@ -97,7 +114,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
             Period = _period,
             Repairs = _repairs,
             TotalAmountInEGP = _totalAmountEgp,
-            BillImageFilePath = _billImageFilePath
+            BillImageFilePath = _billImageFilePath,
+            VehicleMalfunctionReason = _malfunctionReason?.Id == Guid.Empty ? null : _malfunctionReason,
+            KilometerReading = _kilometerReading
         };
         
         public ModelState Validate()
@@ -218,6 +237,18 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                 }
             }
         }
+        public decimal? KilometerReading
+        {
+            get => _kilometerReading;
+            set
+            {
+                if (_kilometerReading != value)
+                {
+                    _kilometerReading = value;
+                    OnPropertyChanged(this, nameof(KilometerReading));
+                }
+            }
+        } 
         public ExternalAutoRepairShop ExternalAutoRepairShop
         {
             get => _externalAutoRepairShop;
@@ -241,6 +272,18 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                     _vehicle = value;
                     OnPropertyChanged(this, nameof(Vehicle));
                     HasChanged = true;
+                }
+            }
+        }
+        public MalfunctionReason MalfunctionReason
+        {
+            get => _malfunctionReason;
+            set
+            {
+                if (_malfunctionReason != value)
+                {
+                    _malfunctionReason = value;
+                    OnPropertyChanged(this, nameof(MalfunctionReason));
                 }
             }
         }
@@ -274,7 +317,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                             BillImageFilePath = _billImageFilePath,
                             TotalAmountInEGP = _totalAmountEgp,
                             Vehicle = _vehicle,
-                            SupplierBillNumber = _supplierBillNumber
+                            SupplierBillNumber = _supplierBillNumber,
+                            VehicleMalfunctionReason = _malfunctionReason?.Id == Guid.Empty ? null : _malfunctionReason,
+                            VehicleDriver = _vehicle.DriverId.HasValue ? _unitOfWork.DriverRepository.Find(key: _vehicle.DriverId.Value) : null,
+                            KilometerReading = _kilometerReading
                         };
                         _unitOfWork.ExternalRepairBillRepository.Add(newBill);
                         _unitOfWork.Complete();
@@ -292,6 +338,9 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
                         old.Period = _period;
                         old.SupplierBillNumber = _supplierBillNumber;
                         old.BillImageFilePath = _billImageFilePath;
+                        old.TotalAmountInEGP = _totalAmountEgp;
+                        old.KilometerReading = _kilometerReading;
+                        old.VehicleMalfunctionReason = _malfunctionReason?.Id == Guid.Empty ? null : _malfunctionReason;
                         _unitOfWork.Complete();
                         HasChanged = false;
                         return true;
@@ -329,6 +378,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.ExternalRepairBillViewModels
         }
         public List<Vehicle> Vehicles { get; private set; } = new List<Vehicle>();
         public List<ExternalAutoRepairShop> ExternalAutoRepairShops { get; private set; } = new List<ExternalAutoRepairShop>();
+        public List<MalfunctionReason> MalfunctionReasons { get; private set; } = new List<MalfunctionReason>();
 
         #region IDataErrorInfo
         public string Error => Validate().Error;

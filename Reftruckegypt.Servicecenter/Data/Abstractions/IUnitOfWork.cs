@@ -33,6 +33,7 @@ namespace Reftruckegypt.Servicecenter.Data.Abstractions
         IUserReportRepository UserReportRepository { get;}
         IPurchaseRequestRepository PurchaseRequestRepository { get; }
         IPurchaseRequestLineRepository PurchaseRequestLineRepository { get; }
+        IMalfunctionReasonRepository MalfunctionReasonRepository { get; }
         IReceiptLineRepository ReceiptLineRepository
         {
             get;

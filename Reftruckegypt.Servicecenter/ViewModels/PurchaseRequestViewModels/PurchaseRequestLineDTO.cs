@@ -24,6 +24,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.PurchaseRequestViewModels
             ReceivedQuantity = line.ReceiptLines.Sum(x => x.ReceivedQuantity);
             PeriodState = line.PurchaseRequest.Period.State;
             RequestState = line.PurchaseRequest.State;
+            VehicleInternalCode = line.PurchaseRequest?.Vehicle?.InternalCode ?? "";
         }
         [Ignore]
         public Guid PurchaseRequestLineId { get; set; }
@@ -31,6 +32,8 @@ namespace Reftruckegypt.Servicecenter.ViewModels.PurchaseRequestViewModels
         public Guid PucrhaseRequestId { get; set; }
         [Column("Number")]
         public long Number { get; set; }
+        [Column("Vehicle")]
+        public string VehicleInternalCode { get; set; }
         [Column("Request Date")]
         public DateTime RequestDate { get; set; }
         [Column("Part Code")]

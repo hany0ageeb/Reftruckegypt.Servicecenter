@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Textbox Name="Textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Internal Memo</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>0.79057cm</Top>
+        <Left>4.97099cm</Left>
+        <Height>0.6cm</Height>
+        <Width>7.87105cm</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Image Name="Image2">
+        <Source>Embedded</Source>
+        <Value>reftruck_logo</Value>
+        <Sizing>FitProportional</Sizing>
+        <Top>0.79057cm</Top>
+        <Left>0.49953cm</Left>
+        <Height>0.6cm</Height>
+        <Width>2.72521cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+      <Textbox Name="Textbox2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!Number.Value, "InternalMemoDTODataSet")</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>2.12231cm</Top>
+        <Left>0.49953cm</Left>
+        <Height>0.6cm</Height>
+        <Width>7.26251cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!MemoDate.Value, "InternalMemoDTODataSet")</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <Format>d</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>2.79287cm</Top>
+        <Left>0.49953cm</Left>
+        <Height>0.6cm</Height>
+        <Width>7.26251cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox4">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!VehicleInternalCode.Value, "InternalMemoDTODataSet")</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>2.08703cm</Top>
+        <Left>9.29364cm</Left>
+        <Height>0.6cm</Height>
+        <Width>7.51714cm</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox5">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!Header.Value, "InternalMemoDTODataSet")</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>4.29052cm</Top>
+        <Left>0.49953cm</Left>
+        <Height>0.6cm</Height>
+        <Width>16.31124cm</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox6">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!Content.Value, "InternalMemoDTODataSet")</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>5.42823cm</Top>
+        <Left>0.49954cm</Left>
+        <Height>4.43646cm</Height>
+        <Width>16.31124cm</Width>
+        <ZIndex>6</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>4.61702in</Height>
+    <Style />
+  </Body>
+  <Width>6.91667in</Width>
+  <Page>
+    <PageFooter>
+      <Height>1.48167cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox8">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>مدير صيانة السيارات</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox8</rd:DefaultName>
+          <Top>0.14464cm</Top>
+          <Left>12.74973cm</Left>
+          <Height>0.6cm</Height>
+          <Width>4.06104cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox9">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>مستخدم السيارة</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox8</rd:DefaultName>
+          <Top>0.10583cm</Top>
+          <Left>0.49954cm</Left>
+          <Height>0.6cm</Height>
+          <Width>4.06104cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
+    <PageHeight>29.7cm</PageHeight>
+    <PageWidth>21cm</PageWidth>
+    <LeftMargin>2cm</LeftMargin>
+    <RightMargin>2cm</RightMargin>
+    <TopMargin>2cm</TopMargin>
+    <BottomMargin>2cm</BottomMargin>
+    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="ReftruckegyptServicecenterViewModelsInternalMemoViewModels">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>deb836f3-1538-4569-bd79-db2ab97df4f9</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="ReftruckegyptServicecenterViewModelsInternalMemoViewModels1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>34b81ba3-2de6-4712-88af-4ec3eb1f916e</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="InternalMemoDTODataSet">
+      <Query>
+        <DataSourceName>ReftruckegyptServicecenterViewModelsInternalMemoViewModels1</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Content">
+          <DataField>Content</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Header">
+          <DataField>Header</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="MemoDate">
+          <DataField>MemoDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Number">
+          <DataField>Number</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="State">
+          <DataField>State</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="VehicleInternalCode">
+          <DataField>VehicleInternalCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels</rd:DataSetName>
+        <rd:TableName>InternalMemoDTO</rd:TableName>
+        <rd:ObjectDataSourceType>Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels.InternalMemoDTO, Reftruckegypt.Servicecenter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <EmbeddedImages>
+    <EmbeddedImage Name="reftruck_logo">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>0a97df7b-e615-434b-8068-c909840e11ee</rd:ReportID>
+</Report>

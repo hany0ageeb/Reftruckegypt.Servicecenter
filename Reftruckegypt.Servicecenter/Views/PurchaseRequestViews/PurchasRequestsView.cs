@@ -212,6 +212,13 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
                 },
                 new DataGridViewTextBoxColumn()
                 {
+                    Name = nameof(PurchaseRequestDTO.VehicleInternalCode),
+                    DataPropertyName = nameof(PurchaseRequestDTO.VehicleInternalCode),
+                    HeaderText = "Vehicle",
+                    ReadOnly = true
+                },
+                new DataGridViewTextBoxColumn()
+                {
                     Name = nameof(PurchaseRequestDTO.RequestDate),
                     DataPropertyName = nameof(PurchaseRequestDTO.RequestDate),
                     HeaderText = "Date",
@@ -236,6 +243,13 @@ namespace Reftruckegypt.Servicecenter.Views.PurchaseRequestViews
                     HeaderText = "Number",
                     ReadOnly = true
                 },
+                    new DataGridViewTextBoxColumn()
+                    {
+                        Name = nameof(PurchaseRequestLineDTO.VehicleInternalCode),
+                        DataPropertyName = nameof(PurchaseRequestLineDTO.VehicleInternalCode),
+                        HeaderText = "Vehicle",
+                        ReadOnly = true
+                    },
                 new DataGridViewTextBoxColumn()
                 {
                     Name = nameof(PurchaseRequestLineDTO.RequestDate),

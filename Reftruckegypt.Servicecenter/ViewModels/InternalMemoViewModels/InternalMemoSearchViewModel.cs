@@ -219,6 +219,17 @@ namespace Reftruckegypt.Servicecenter.ViewModels.InternalMemoViewModels
                 }
             }
         }
+        public IList<InternalMemoDTO> Find(string internalMemoNumber)
+        {
+            if(long.TryParse(internalMemoNumber, out long memoNumber))
+            {
+                return 
+                    _unitOfWork.InternalMemoRepository
+                    .Find(x => x.Number == memoNumber)
+                    .Select(x=>new InternalMemoDTO(x)).ToList();
+            }
+            return new List<InternalMemoDTO>();
+        }
         public BindingList<InternalMemoDTO> InternalMemos { get; private set; } = new BindingList<InternalMemoDTO>();
         public List<Vehicle> Vehicles { get; private set; } = new List<Vehicle>();
         public void Dispose()

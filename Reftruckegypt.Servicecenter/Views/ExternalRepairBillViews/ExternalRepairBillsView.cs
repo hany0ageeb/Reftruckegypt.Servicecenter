@@ -165,6 +165,8 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                 DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
+            
+            // ...
             gridbills.AutoGenerateColumns = false;
             gridbills.AllowUserToAddRows = false;
             gridbills.AllowUserToDeleteRows = false;
@@ -205,10 +207,45 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                 },
                 new DataGridViewTextBoxColumn()
                 {
+                    Name = nameof(ExternalRepairBillViewModel.VehicleCategoryName),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.VehicleCategoryName),
+                    ReadOnly = true,
+                    HeaderText = "Vehicle Category"
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = nameof(ExternalRepairBillViewModel.VehicleModelName),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.VehicleModelName),
+                    ReadOnly = true,
+                    HeaderText = "Vehicle Model"
+                },
+                new DataGridViewTextBoxColumn()
+                {
                     Name = nameof(ExternalRepairBillViewModel.VehicleInternalCode),
                     DataPropertyName = nameof(ExternalRepairBillViewModel.VehicleInternalCode),
                     HeaderText = "Vehicle",
                     ReadOnly = true
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = nameof(ExternalRepairBillViewModel.KilometerReading),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.KilometerReading),
+                    HeaderText = "Kilometer",
+                    ReadOnly = true
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = nameof(ExternalRepairBillViewModel.DriverName),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.DriverName),
+                    HeaderText = "Driver",
+                    ReadOnly = true
+                },
+                new DataGridViewTextBoxColumn()
+                {
+                    Name = nameof(ExternalRepairBillViewModel.MalfunctionReason),
+                    DataPropertyName = nameof(ExternalRepairBillViewModel.MalfunctionReason),
+                    ReadOnly = true,
+                    HeaderText = "Malf Reason"
                 },
                 new DataGridViewTextBoxColumn()
                 {
@@ -253,7 +290,19 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             // ...
             btnSearch.Click += (o, e) =>
             {
-                _searchModel.Search();
+                try
+                {
+                    Cursor = Cursors.WaitCursor;
+                    _searchModel.Search();
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    Cursor = Cursors.Default;
+                }
             };
             // ...
             btnCreate.Click += (o, e) =>
@@ -268,7 +317,19 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             });
             btnDelete.Click += (o, e) =>
             {
-                _searchModel.Delete();
+                try
+                {
+                    Cursor = Cursors.WaitCursor;
+                    _searchModel.Delete();
+                }
+                catch(Exception ex)
+                {
+                    _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    Cursor = Cursors.Default;
+                }
             };
             // ...
             btnEdit.DataBindings.Clear();

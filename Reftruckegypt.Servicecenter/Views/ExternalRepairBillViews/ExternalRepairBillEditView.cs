@@ -27,31 +27,31 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             txtAmounts.DataBindings.Clear();
             txtAmounts.DataBindings.Add(new Binding(nameof(txtAmounts.Text), _editModel, nameof(_editModel.TotalAmountInEGP))
             {
-                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+                DataSourceUpdateMode = DataSourceUpdateMode.OnValidation
             });
             // ...
             txtNumber.DataBindings.Clear();
             txtNumber.DataBindings.Add(new Binding(nameof(txtNumber.Text), _editModel, nameof(_editModel.Number))
             {
-                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+                //DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
             txtRepairs.DataBindings.Clear();
             txtRepairs.DataBindings.Add(new Binding(nameof(txtRepairs.Text),_editModel,nameof(_editModel.Repairs))
             {
-                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+                //DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
             txtSupplierBillNumber.DataBindings.Clear();
             txtSupplierBillNumber.DataBindings.Add(new Binding(nameof(txtSupplierBillNumber.Text),_editModel,nameof(_editModel.SupplierBillNumber))
             {
-                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+                //DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
             pickBillDate.DataBindings.Clear();
             pickBillDate.DataBindings.Add(new Binding(nameof(pickBillDate.Value), _editModel, nameof(_editModel.BillDate))
             {
-                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+                //DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
             txtFilePath.DataBindings.Clear();
@@ -59,7 +59,39 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
             {
                 DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
-            
+            // ...
+            txtKilometer.Text = _editModel.KilometerReading.HasValue ? _editModel.KilometerReading.ToString() : "";
+            txtKilometer.Validating += (o, e) =>
+            {
+                if (!string.IsNullOrEmpty(txtKilometer.Text))
+                {
+                    if(decimal.TryParse(txtKilometer.Text, out decimal reading))
+                    {
+                        if (reading >= 0)
+                        {
+                            _editModel.KilometerReading = reading;
+                        }
+                        else
+                        {
+                            errorProvider1.SetError(txtKilometer, $"Negative Kilometer Reading!");
+                            e.Cancel = true;
+                        }
+                    }
+                    else
+                    {
+                        errorProvider1.SetError(txtKilometer, $"{txtKilometer.Text} is invalid kilometer reading.");
+                        e.Cancel = true;
+                    }
+                }
+                else
+                {
+                    _editModel.KilometerReading = null;
+                }
+            };
+            txtKilometer.Validated += (o, e) =>
+            {
+                errorProvider1.SetError(txtKilometer, "");
+            };
             // ...
             cboShops.DataBindings.Clear();
             cboShops.DataSource = _editModel.ExternalAutoRepairShops;
@@ -79,6 +111,15 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
 
             });
             // ....
+            cboReasons.DataBindings.Clear();
+            cboReasons.DataSource = _editModel.MalfunctionReasons;
+            cboReasons.DisplayMember = nameof(MalfunctionReason.Name);
+            cboReasons.ValueMember = nameof(MalfunctionReason.Self);
+            cboReasons.DataBindings.Add(new Binding(nameof(cboReasons.SelectedItem), _editModel, nameof(_editModel.MalfunctionReason))
+            {
+
+            });
+            // ...
             errorProvider1.DataSource = _editModel;
             // ...
             btnSave.DataBindings.Clear();
@@ -99,7 +140,8 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                         cboShops.Enabled = false;
                         cboVehicles.Enabled = false;
                         txtRepairs.ReadOnly = true;
-                        txtSupplierBillNumber.Enabled = true;
+                        txtSupplierBillNumber.ReadOnly = true;
+                        txtKilometer.ReadOnly = true;
                         btnBrowse.Enabled = false;
                     }
                     else
@@ -124,6 +166,7 @@ namespace Reftruckegypt.Servicecenter.Views.ExternalRepairBillViews
                         cboShops.Enabled = false;
                         cboVehicles.Enabled = false;
                         txtRepairs.ReadOnly = true;
+                        txtKilometer.ReadOnly = true;
                         txtSupplierBillNumber.Enabled = true;
                         btnBrowse.Enabled = false;
                     }

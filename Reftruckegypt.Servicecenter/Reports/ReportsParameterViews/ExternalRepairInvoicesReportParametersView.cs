@@ -132,6 +132,15 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
                 DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
             });
             // ...
+            cboCategories.DataBindings.Clear();
+            cboCategories.DataSource = _searchModel.VehicleCategories;
+            cboCategories.DisplayMember = nameof(Models.VehicleCategory.Name);
+            cboCategories.ValueMember = nameof(Models.VehicleCategory.Self);
+            cboCategories.DataBindings.Add(new Binding(nameof(cboCategories.SelectedItem), _searchModel, nameof(_searchModel.VehicleCategory))
+            {
+                DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged
+            });
+            // ...
             cbovehicles.DataBindings.Clear();
             cbovehicles.DataSource = _searchModel.Vehicles;
             cbovehicles.DisplayMember = nameof(Models.Vehicle.InternalCode);

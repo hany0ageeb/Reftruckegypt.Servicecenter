@@ -97,8 +97,13 @@ namespace Reftruckegypt.Servicecenter.ViewModels.PurchaseRequestViewModels
                             Lines[e.NewIndex].SparePart = SpareParts[0];
                             Lines[e.NewIndex].Uom = SpareParts[0].PrimaryUom;
                         }
-                        
+                        Lines[e.NewIndex].RequestedQuantity = 1;
                     }
+                }
+                if (e.ListChangedType == ListChangedType.ItemChanged && e.NewIndex >= 0 && e.NewIndex < Lines.Count)
+                {
+                    if(Lines[e.NewIndex].SparePart != null)
+                        Lines[e.NewIndex].Uom = Lines[e.NewIndex].SparePart?.PrimaryUom;
                 }
             };
             HasChanged = false;

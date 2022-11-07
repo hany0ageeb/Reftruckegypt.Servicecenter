@@ -15,7 +15,8 @@ namespace Reftruckegypt.Servicecenter.Data.EF
         }
         public ReftruckDbContext ReftruckDbContext => _context as ReftruckDbContext;
         public IEnumerable<SparePartsBillLine> Find(
-            Guid? vehicleId = null, 
+            Guid? vehicleId = null,
+            Guid? vehicleCategoryId = null,
             DateTime? fromDate = null, 
             DateTime? toDate = null, 
             Guid? sparePartId = null, 
@@ -27,10 +28,16 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 .Include(x => x.SparePart)
                 .Include(x => x.SparePartsBill)
                 .Include(x => x.SparePartsBill.Vehicle)
+                .Include(x => x.SparePartsBill.MalfunctionReason)
+                .Include(x=>x.SparePartsBill.VehicleDriver)
                 .AsQueryable();
             if(vehicleId != null && vehicleId != Guid.Empty)
             {
                 query = query.Where(x => x.SparePartsBill.VehicleId == vehicleId);
+            }
+            if(vehicleCategoryId != null && vehicleCategoryId != Guid.Empty)
+            {
+                query = query.Where(x => x.SparePartsBill.Vehicle.VehicleCategoryId == vehicleCategoryId);
             }
             if(fromDate != null)
             {

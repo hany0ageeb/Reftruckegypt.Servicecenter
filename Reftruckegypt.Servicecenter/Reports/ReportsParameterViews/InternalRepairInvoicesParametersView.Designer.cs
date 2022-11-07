@@ -43,6 +43,8 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             this.label4 = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cboCategories = new System.Windows.Forms.ComboBox();
             this.Result.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +53,7 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             // 
             this.Result.Controls.Add(this.rdblines);
             this.Result.Controls.Add(this.rdbheaders);
-            this.Result.Location = new System.Drawing.Point(14, 75);
+            this.Result.Location = new System.Drawing.Point(14, 116);
             this.Result.Name = "Result";
             this.Result.Size = new System.Drawing.Size(841, 42);
             this.Result.TabIndex = 29;
@@ -84,10 +86,11 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.47839F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.52161F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 295F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.24942F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.75058F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 326F));
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.cboParts, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -96,18 +99,20 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             this.tableLayoutPanel1.Controls.Add(this.pickfromDate, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.picktoDate, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cboCategories, 1, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(843, 56);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(843, 98);
             this.tableLayoutPanel1.TabIndex = 28;
             // 
             // cboParts
             // 
             this.cboParts.FormattingEnabled = true;
-            this.cboParts.Location = new System.Drawing.Point(550, 3);
+            this.cboParts.Location = new System.Drawing.Point(519, 3);
             this.cboParts.Name = "cboParts";
             this.cboParts.Size = new System.Drawing.Size(267, 23);
             this.cboParts.TabIndex = 3;
@@ -115,7 +120,7 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(469, 0);
+            this.label2.Location = new System.Drawing.Point(436, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 15);
             this.label2.TabIndex = 2;
@@ -133,7 +138,7 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             // cboVehicles
             // 
             this.cboVehicles.FormattingEnabled = true;
-            this.cboVehicles.Location = new System.Drawing.Point(107, 3);
+            this.cboVehicles.Location = new System.Drawing.Point(108, 3);
             this.cboVehicles.Name = "cboVehicles";
             this.cboVehicles.Size = new System.Drawing.Size(266, 23);
             this.cboVehicles.TabIndex = 1;
@@ -141,7 +146,7 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 28);
+            this.label3.Location = new System.Drawing.Point(3, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 15);
             this.label3.TabIndex = 5;
@@ -150,7 +155,7 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             // pickfromDate
             // 
             this.pickfromDate.Checked = false;
-            this.pickfromDate.Location = new System.Drawing.Point(107, 31);
+            this.pickfromDate.Location = new System.Drawing.Point(108, 34);
             this.pickfromDate.Name = "pickfromDate";
             this.pickfromDate.ShowCheckBox = true;
             this.pickfromDate.Size = new System.Drawing.Size(266, 23);
@@ -159,7 +164,7 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             // picktoDate
             // 
             this.picktoDate.Checked = false;
-            this.picktoDate.Location = new System.Drawing.Point(550, 31);
+            this.picktoDate.Location = new System.Drawing.Point(519, 34);
             this.picktoDate.Name = "picktoDate";
             this.picktoDate.ShowCheckBox = true;
             this.picktoDate.Size = new System.Drawing.Size(266, 23);
@@ -168,7 +173,7 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(469, 28);
+            this.label4.Location = new System.Drawing.Point(436, 31);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 15);
             this.label4.TabIndex = 8;
@@ -176,7 +181,7 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(683, 150);
+            this.btnOk.Location = new System.Drawing.Point(681, 176);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(83, 28);
             this.btnOk.TabIndex = 30;
@@ -187,12 +192,29 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(772, 150);
+            this.btnCancel.Location = new System.Drawing.Point(770, 176);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(83, 28);
             this.btnCancel.TabIndex = 31;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 62);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 15);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Vehicle Category";
+            // 
+            // cboCategories
+            // 
+            this.cboCategories.FormattingEnabled = true;
+            this.cboCategories.Location = new System.Drawing.Point(108, 65);
+            this.cboCategories.Name = "cboCategories";
+            this.cboCategories.Size = new System.Drawing.Size(266, 23);
+            this.cboCategories.TabIndex = 10;
             // 
             // InternalRepairInvoicesParametersView
             // 
@@ -200,7 +222,7 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(875, 190);
+            this.ClientSize = new System.Drawing.Size(875, 216);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.Result);
@@ -235,5 +257,7 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cboCategories;
     }
 }

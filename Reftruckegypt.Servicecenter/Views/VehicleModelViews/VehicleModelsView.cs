@@ -150,5 +150,18 @@ namespace Reftruckegypt.Servicecenter.Views.VehicleModelViews
                 Cursor = Cursors.Default;
             }
         }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _searchModel.Create();
+
+            }
+            catch(Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

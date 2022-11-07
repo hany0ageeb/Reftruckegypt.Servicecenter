@@ -145,7 +145,7 @@ namespace Reftruckegypt.Servicecenter
             services.AddScoped(typeof(Reports.ReportsParameterViews.FuelConsumptionByFuelCardReportParametersView));
             services.AddScoped(typeof(Reports.ReportsParameterViews.VehicleReportParametersView));
             services.AddScoped(typeof(Reports.ReportsParameterViews.PurchaseRequestsReportParametersView));
-
+            services.AddScoped(typeof(Reports.ReportsParameterViews.InternalMemoReportParametersView));
         }
         public static IServiceProvider ServiceProvider { get; private set; }
         public static IConfiguration Configuration { get; private set; }
