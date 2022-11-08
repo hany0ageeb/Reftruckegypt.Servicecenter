@@ -830,22 +830,22 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 new UserReport()
                 {
                     Sequence = 90,
-                    Name = nameof(Models.InternalMemo),
+                    Name = nameof(InternalMemo),
                     DisplayName = "Internal Memo Report",
                     IsEnabled = true,
                     ParameterViewTypeName = typeof(Reports.ReportsParameterViews.InternalMemoReportParametersView).FullName
                 }
             };
             // ...
-            context.Locations.AddRange(locations);
-            context.VehicleCategories.AddRange(vehicleCategories);
-            context.FuelTypes.AddRange(fuelTypes);
-            context.VehicleModels.AddRange(vehicleModels);
-            context.VehicelOvallStates.AddRange(overallStates);
-            context.ExternalAutoRepairShops.AddRange(externalAutoRepairShops);
-            context.Uoms.AddRange(uoms);
-            context.ViolationTypes.AddRange(violationTypes);
-            context.Vehicels.AddRange(vehicles);
+            //context.Locations.AddRange(locations);
+            //context.VehicleCategories.AddRange(vehicleCategories);
+            //context.FuelTypes.AddRange(fuelTypes);
+            //context.VehicleModels.AddRange(vehicleModels);
+            //context.VehicelOvallStates.AddRange(overallStates);
+            //context.ExternalAutoRepairShops.AddRange(externalAutoRepairShops);
+            //context.Uoms.AddRange(uoms);
+            //context.ViolationTypes.AddRange(violationTypes);
+            //context.Vehicels.AddRange(vehicles);
             context.UserCommands.AddRange(userCommands);
             context.UserReports.AddRange(userReports);
             //context.Periods.AddRange(periods);

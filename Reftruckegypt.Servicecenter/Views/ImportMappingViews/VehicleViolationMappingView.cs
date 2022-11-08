@@ -51,7 +51,6 @@ namespace Reftruckegypt.Servicecenter.Views.ImportMappingViews
             DialogResult = DialogResult.OK;
             Mapper = new Mapper(_fileName);
             Mapper.SkipBlankRows = true;
-            Mapper.FirstRowIndex = 5;
             Mapper.HasHeader = true;
             Mapper
                 .Map<VehicleViolationViewModel>(cboInternalCodes.SelectedItem.ToString(), nameof(VehicleViolationViewModel.VehicleInternalCode))

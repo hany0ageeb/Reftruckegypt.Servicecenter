@@ -81,7 +81,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.47354cm</Width>
+                  <Width>2.55291cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.97083cm</Width>
@@ -90,7 +90,7 @@
                   <Width>2.03729cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.93417cm</Width>
+                  <Width>4.00813cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.28833cm</Width>
@@ -1213,7 +1213,7 @@
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>2.32771cm</Size>
+                        <Size>2.67167cm</Size>
                         <CellContents>
                           <Textbox Name="Textbox16">
                             <CanGrow>true</CanGrow>
@@ -1222,7 +1222,7 @@
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>Category Name</Value>
+                                    <Value>Category</Value>
                                     <Style>
                                       <FontWeight>Bold</FontWeight>
                                     </Style>
@@ -1251,7 +1251,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>2.8175cm</Size>
+                            <Size>3.95521cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox18">
                                 <CanGrow>true</CanGrow>
@@ -1260,7 +1260,7 @@
                                   <Paragraph>
                                     <TextRuns>
                                       <TextRun>
-                                        <Value>Vehicle Model Name</Value>
+                                        <Value>Vehicle Model</Value>
                                         <Style>
                                           <FontWeight>Bold</FontWeight>
                                         </Style>
@@ -1353,7 +1353,7 @@
                         </SortExpression>
                       </SortExpressions>
                       <TablixHeader>
-                        <Size>2.32771cm</Size>
+                        <Size>2.67167cm</Size>
                         <CellContents>
                           <Textbox Name="VehicleCategoryName1">
                             <CanGrow>true</CanGrow>
@@ -1400,7 +1400,7 @@
                             </SortExpression>
                           </SortExpressions>
                           <TablixHeader>
-                            <Size>2.8175cm</Size>
+                            <Size>3.95521cm</Size>
                             <CellContents>
                               <Textbox Name="VehicleModelName1">
                                 <CanGrow>true</CanGrow>
@@ -1442,7 +1442,7 @@
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>2.8175cm</Size>
+                            <Size>3.95521cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox30">
                                 <CanGrow>true</CanGrow>
@@ -1521,7 +1521,7 @@
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>2.32771cm</Size>
+                        <Size>2.67167cm</Size>
                         <CellContents>
                           <Textbox Name="Textbox20">
                             <CanGrow>true</CanGrow>
@@ -1558,7 +1558,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>2.8175cm</Size>
+                            <Size>3.95521cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox29">
                                 <CanGrow>true</CanGrow>
@@ -1637,7 +1637,7 @@
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>2.32771cm</Size>
+                        <Size>2.67167cm</Size>
                         <CellContents>
                           <Textbox Name="Textbox21">
                             <CanGrow>true</CanGrow>
@@ -1674,7 +1674,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>2.8175cm</Size>
+                            <Size>3.95521cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox22">
                                 <CanGrow>true</CanGrow>
@@ -1715,11 +1715,12 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <RepeatColumnHeaders>true</RepeatColumnHeaders>
             <DataSetName>FuelConsumptionDataSet</DataSetName>
             <Top>2.11349cm</Top>
             <Left>0.55245cm</Left>
             <Height>3.47625cm</Height>
-            <Width>23.26728cm</Width>
+            <Width>23.90228cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1737,6 +1738,7 @@
                     <Style>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <TextDecoration>Underline</TextDecoration>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1747,7 +1749,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox10</rd:DefaultName>
             <Top>0.65828cm</Top>
-            <Left>5.55245cm</Left>
+            <Left>6.84891cm</Left>
             <Height>0.6cm</Height>
             <Width>10.26458cm</Width>
             <ZIndex>1</ZIndex>
@@ -2152,7 +2154,7 @@
             <Top>5.89703cm</Top>
             <Left>0.55245cm</Left>
             <Height>7.11667cm</Height>
-            <Width>23.26729cm</Width>
+            <Width>23.90228cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -2170,7 +2172,7 @@
             <Top>0.65828cm</Top>
             <Left>0.55245cm</Left>
             <Height>0.23622in</Height>
-            <Width>0.98425in</Width>
+            <Width>1.56633in</Width>
             <ZIndex>3</ZIndex>
             <ToolTip>Logo</ToolTip>
             <Style>
@@ -2183,7 +2185,7 @@
         <Height>5.436in</Height>
         <Style />
       </Body>
-      <Width>9.5651in</Width>
+      <Width>9.85702in</Width>
       <Page>
         <PageFooter>
           <Height>1.33767cm</Height>
@@ -2208,8 +2210,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0.47308cm</Top>
-              <Left>22.40453cm</Left>
+              <Top>0.34943cm</Top>
+              <Left>22.21931cm</Left>
               <Height>0.6cm</Height>
               <Width>1.41521cm</Width>
               <Style>
@@ -2276,7 +2278,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox8</rd:DefaultName>
               <Top>0.34943cm</Top>
-              <Left>15.41886cm</Left>
+              <Left>17.74719cm</Left>
               <Height>0.6cm</Height>
               <Width>4.06104cm</Width>
               <ZIndex>2</ZIndex>

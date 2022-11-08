@@ -255,7 +255,7 @@ namespace Reftruckegypt.Servicecenter.Views
                 Cursor = Cursors.WaitCursor;
                 if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
                 {
-                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName, 6);
+                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName);
                     using(ImportMappingViews.VehicleViolationMappingView violationMappingView = new ImportMappingViews.VehicleViolationMappingView(headers, openFileDialog1.FileName))
                     {
                         if(violationMappingView.ShowDialog(this) == DialogResult.OK && violationMappingView.Mapper != null)

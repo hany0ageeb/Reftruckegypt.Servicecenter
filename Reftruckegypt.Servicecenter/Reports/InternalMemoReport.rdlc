@@ -70,9 +70,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>2.12231cm</Top>
-        <Left>0.49953cm</Left>
+        <Left>2.77495cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.26251cm</Width>
+        <Width>4.11397cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -103,9 +103,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>2.79287cm</Top>
-        <Left>0.49953cm</Left>
+        <Left>2.77495cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.26251cm</Width>
+        <Width>6.09834cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -134,10 +134,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>2.08703cm</Top>
-        <Left>9.29364cm</Left>
+        <Top>2.15053cm</Top>
+        <Left>11.73839cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.51714cm</Width>
+        <Width>4.97714cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -200,9 +200,108 @@
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>5.42823cm</Top>
         <Left>0.49954cm</Left>
-        <Height>4.43646cm</Height>
+        <Height>5.54771cm</Height>
         <Width>16.31124cm</Width>
         <ZIndex>6</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox7">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Number:</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>2.12231cm</Top>
+        <Left>0.49954cm</Left>
+        <Height>0.6cm</Height>
+        <Width>1.70625cm</Width>
+        <ZIndex>7</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox10">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Date:</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>2.8352cm</Top>
+        <Left>0.49954cm</Left>
+        <Height>0.6cm</Height>
+        <Width>1.70626cm</Width>
+        <ZIndex>8</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox11">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Vehicle:</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>2.12231cm</Top>
+        <Left>9.61586cm</Left>
+        <Height>0.6cm</Height>
+        <Width>1.65333cm</Width>
+        <ZIndex>9</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>

@@ -95,8 +95,10 @@ namespace Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels
                     FuelConsumption fuelConsumption = new FuelConsumption();
                     fuelConsumption.ConsumptionDate = consumption.FuelConsumptionDate;
                     fuelConsumption.Notes = "";
-                    string strAmount = new string(consumption.AmountConsumed.Where(x=> char.IsDigit(x)).ToArray());
-                    string strQuantity = new string(consumption.QuantityConsumed.Where(x => char.IsDigit(x)).ToArray());
+                    consumption.AmountConsumed = consumption.AmountConsumed.Replace(',', '.');
+                    consumption.QuantityConsumed = consumption.QuantityConsumed.Replace(',', '.');
+                    string strAmount = new string(consumption.AmountConsumed.Where(x=> char.IsDigit(x) || x == '.').ToArray());
+                    string strQuantity = new string(consumption.QuantityConsumed.Where(x => char.IsDigit(x) || x == '.').ToArray());
                     if (!string.IsNullOrEmpty(strAmount))
                     {
                         fuelConsumption.TotalAmountInEGP = decimal.Parse(strAmount);

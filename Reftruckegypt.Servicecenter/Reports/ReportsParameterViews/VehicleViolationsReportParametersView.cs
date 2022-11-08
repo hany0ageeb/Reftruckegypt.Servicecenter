@@ -68,9 +68,20 @@ namespace Reftruckegypt.Servicecenter.Reports.ReportsParameterViews
         {
             _searchModel.Search();
             var data = _searchModel.VehicleViolationViewModels.ToList();
-            var result = data.GroupBy(x => new { VehicleCode = x.VehicleCode, VehiclePlateNumber = x.VehiclePlateNumber }).Select(g => new VehicleViolationViewModel() { Count = g.Sum(x => x.Count) , VehicleCode = g.Key.VehicleCode, VehiclePlateNumber = g.Key.VehiclePlateNumber});
+            var result = data.GroupBy(x => new { VehicleCode = x.VehicleCode, VehiclePlateNumber = x.VehiclePlateNumber, VehicleInternalCode = x.VehicleInternalCode });
+            var groupdData = new List<VehicleViolationViewModel>();
+            foreach(var g in result)
+            {
+                groupdData.Add(new VehicleViolationViewModel()
+                {
+                    VehicleInternalCode = g.Key.VehicleInternalCode,
+                    VehiclePlateNumber = g.Key.VehiclePlateNumber,
+                    VehicleCode = g.Key.VehicleCode,
+                    Count = g.Sum(x => x.Count)
+                });
+            }
             ReportsViews.VehicleViolationsReportView vehicleViolationsReportView = 
-                new ReportsViews.VehicleViolationsReportView(result.ToList(), _searchModel.FromDate?.ToString("yyyy/MM/dd HH:mm:ss")??"", _searchModel.ToDate?.ToString("yyyy/MM/dd HH:mm:ss") ??"");
+                new ReportsViews.VehicleViolationsReportView(groupdData, _searchModel.FromDate?.ToString("yyyy/MM/dd HH:mm:ss")??"", _searchModel.ToDate?.ToString("yyyy/MM/dd HH:mm:ss") ??"");
             vehicleViolationsReportView.MdiParent = this.MdiParent;
             vehicleViolationsReportView.Show();
             Close();
