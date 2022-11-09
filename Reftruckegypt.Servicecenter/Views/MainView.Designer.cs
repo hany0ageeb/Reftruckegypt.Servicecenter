@@ -42,6 +42,8 @@ namespace Reftruckegypt.Servicecenter.Views
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.priceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.internalRepairInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemImportSpareParts = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,9 +103,11 @@ namespace Reftruckegypt.Servicecenter.Views
             this.externalRepairInvoicesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.priceListToolStripMenuItem,
-            this.vehicleToolStripMenuItem});
+            this.vehicleToolStripMenuItem,
+            this.internalRepairInvoicesToolStripMenuItem,
+            this.toolStripMenuItemImportSpareParts});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importToolStripMenuItem.Text = "Import";
             // 
             // fuelConsumptionsToolStripMenuItem
@@ -155,22 +159,36 @@ namespace Reftruckegypt.Servicecenter.Views
             this.vehicleToolStripMenuItem.Text = "Vehicle";
             this.vehicleToolStripMenuItem.Click += new System.EventHandler(this.vehicleToolStripMenuItem_Click);
             // 
+            // internalRepairInvoicesToolStripMenuItem
+            // 
+            this.internalRepairInvoicesToolStripMenuItem.Name = "internalRepairInvoicesToolStripMenuItem";
+            this.internalRepairInvoicesToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.internalRepairInvoicesToolStripMenuItem.Text = "Internal Repair Invoices";
+            this.internalRepairInvoicesToolStripMenuItem.Click += new System.EventHandler(this.internalRepairInvoicesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItemImportSpareParts
+            // 
+            this.toolStripMenuItemImportSpareParts.Name = "toolStripMenuItemImportSpareParts";
+            this.toolStripMenuItemImportSpareParts.Size = new System.Drawing.Size(217, 22);
+            this.toolStripMenuItemImportSpareParts.Text = "Spare Parts";
+            this.toolStripMenuItemImportSpareParts.Click += new System.EventHandler(this.toolStripMenuItemImportSpareParts_Click);
+            // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(131, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -242,5 +260,7 @@ namespace Reftruckegypt.Servicecenter.Views
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem priceListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vehicleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem internalRepairInvoicesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemImportSpareParts;
     }
 }

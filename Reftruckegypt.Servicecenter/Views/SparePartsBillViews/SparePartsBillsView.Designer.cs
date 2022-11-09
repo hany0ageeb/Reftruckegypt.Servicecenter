@@ -60,7 +60,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.52161F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 292F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.tableLayoutPanel1.Controls.Add(this.cboParts, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -75,7 +75,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(843, 56);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(902, 56);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // cboParts
@@ -83,7 +83,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.cboParts.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboParts.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboParts.FormattingEnabled = true;
-            this.cboParts.Location = new System.Drawing.Point(429, 3);
+            this.cboParts.Location = new System.Drawing.Point(486, 3);
             this.cboParts.Name = "cboParts";
             this.cboParts.Size = new System.Drawing.Size(267, 23);
             this.cboParts.TabIndex = 3;
@@ -91,7 +91,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(348, 0);
+            this.label2.Location = new System.Drawing.Point(405, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 15);
             this.label2.TabIndex = 2;
@@ -111,14 +111,14 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.cboVehicles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboVehicles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVehicles.FormattingEnabled = true;
-            this.cboVehicles.Location = new System.Drawing.Point(80, 3);
+            this.cboVehicles.Location = new System.Drawing.Point(93, 3);
             this.cboVehicles.Name = "cboVehicles";
-            this.cboVehicles.Size = new System.Drawing.Size(262, 23);
+            this.cboVehicles.Size = new System.Drawing.Size(261, 23);
             this.cboVehicles.TabIndex = 1;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(721, 31);
+            this.btnSearch.Location = new System.Drawing.Point(778, 31);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(82, 22);
             this.btnSearch.TabIndex = 4;
@@ -137,16 +137,16 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // pickfromDate
             // 
             this.pickfromDate.Checked = false;
-            this.pickfromDate.Location = new System.Drawing.Point(80, 31);
+            this.pickfromDate.Location = new System.Drawing.Point(93, 31);
             this.pickfromDate.Name = "pickfromDate";
             this.pickfromDate.ShowCheckBox = true;
-            this.pickfromDate.Size = new System.Drawing.Size(262, 23);
+            this.pickfromDate.Size = new System.Drawing.Size(261, 23);
             this.pickfromDate.TabIndex = 6;
             // 
             // picktoDate
             // 
             this.picktoDate.Checked = false;
-            this.picktoDate.Location = new System.Drawing.Point(429, 31);
+            this.picktoDate.Location = new System.Drawing.Point(486, 31);
             this.picktoDate.Name = "picktoDate";
             this.picktoDate.ShowCheckBox = true;
             this.picktoDate.Size = new System.Drawing.Size(266, 23);
@@ -155,7 +155,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(348, 28);
+            this.label4.Location = new System.Drawing.Point(405, 28);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 15);
             this.label4.TabIndex = 8;
@@ -166,7 +166,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.gridResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridResults.Location = new System.Drawing.Point(13, 124);
             this.gridResults.Name = "gridResults";
-            this.gridResults.Size = new System.Drawing.Size(843, 400);
+            this.gridResults.Size = new System.Drawing.Size(902, 400);
             this.gridResults.TabIndex = 1;
             // 
             // btnDelete
@@ -201,7 +201,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(760, 542);
+            this.btnClose.Location = new System.Drawing.Point(819, 542);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(96, 30);
             this.btnClose.TabIndex = 26;
@@ -215,7 +215,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.Result.Controls.Add(this.rdbheaders);
             this.Result.Location = new System.Drawing.Point(15, 76);
             this.Result.Name = "Result";
-            this.Result.Size = new System.Drawing.Size(841, 42);
+            this.Result.Size = new System.Drawing.Size(900, 42);
             this.Result.TabIndex = 27;
             this.Result.TabStop = false;
             this.Result.Text = "Result";
@@ -248,7 +248,7 @@ namespace Reftruckegypt.Servicecenter.Views.SparePartsBillViews
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(868, 580);
+            this.ClientSize = new System.Drawing.Size(927, 580);
             this.Controls.Add(this.Result);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDelete);

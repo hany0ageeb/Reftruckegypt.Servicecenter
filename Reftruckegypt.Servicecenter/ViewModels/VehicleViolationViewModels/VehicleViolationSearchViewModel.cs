@@ -119,7 +119,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
             }
         }
 
-        public Task<string> ImportFromExcelFile(Mapper mapper, IProgress<int> progress)
+        public Task<string> ImportFromExcelFileAsync(Mapper mapper, IProgress<int> progress)
         {
             return Task<string>.Run(() =>
             {
@@ -136,8 +136,14 @@ namespace Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels
                     violation.ViolationDate = vehicleViolation.ViolationDate;
                     if (!string.IsNullOrEmpty(vehicleViolation.VehicleInternalCode))
                     {
+                        Vehicle vehicle =
+                        _unitOfWork
+                        .VehicleRepository
+                        .Find(x => x.InternalCode.Equals(vehicleViolation.VehicleInternalCode) || x.VehicelLicenses.Where(l => l.PlateNumber.Contains(vehicleViolation.VehicleInternalCode)).Count() > 0)
+                        .FirstOrDefault();
+                        if(vehicle==null)
                         vehicleViolation.VehicleInternalCode = new string(vehicleViolation.VehicleInternalCode.Where(x => char.IsDigit(x)).ToArray());
-                        Vehicle vehicle = 
+                        vehicle = 
                         _unitOfWork
                         .VehicleRepository
                         .Find(x => x.InternalCode.Equals(vehicleViolation.VehicleInternalCode) || x.VehicelLicenses.Where(l=>l.PlateNumber.Contains(vehicleViolation.VehicleInternalCode)).Count() > 0)

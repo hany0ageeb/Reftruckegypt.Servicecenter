@@ -6,6 +6,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels
 {
     public class SparePartViewModel
     {
+        public SparePartViewModel() { }
         public SparePartViewModel(SparePart sparePart)
         {
             Id = sparePart.Id;

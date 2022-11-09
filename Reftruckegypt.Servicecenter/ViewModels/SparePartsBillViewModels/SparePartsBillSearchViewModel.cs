@@ -398,6 +398,89 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
                 }
             }
         }
+        private decimal FindSparePartUnitPrice(SparePart sparePart, Uom uom, Period period)
+        {
+            if (period == null)
+                return 0;
+            SparePartsPriceList priceList = _unitOfWork
+                .SparePartsPriceListRepository
+                .Find(x => x.Period.Id == period.Id).FirstOrDefault();
+            if (priceList == null)
+                return 0;
+            return priceList.FindUnitPrice(sparePart, uom) ?? 0;
+        }
+        public Task<string> ImportFromExcelFileAsync(Mapper mapper, IProgress<int> progress)
+        {
+            return Task.Run<string>(() =>
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                List<SparePartsBillLineViewModel> excelLines = mapper.Take<SparePartsBillLineViewModel>().Select(r=>r.Value).ToList();
+                progress.Report(25);
+                List<SparePartsBill> internalBills = new List<SparePartsBill>();
+                List<SparePartsBill> validBills = new List<SparePartsBill>();
+                var bills = excelLines.GroupBy(e => new { VehicleInternalCode = e.VehicleInternalCode, BillDate = e.BillDate, Repairs = e.Repairs });
+                foreach(var bill in bills)
+                {
+                    SparePartsBill b = new SparePartsBill()
+                    {
+                        Vehicle = _unitOfWork.VehicleRepository.Find(x => x.InternalCode == bill.Key.VehicleInternalCode).FirstOrDefault(),
+                        BillDate = bill.Key.BillDate,
+                        Period = _unitOfWork.PeriodRepository.FindOpenPeriod(bill.Key.BillDate),
+                        Repairs = bill.Key.Repairs
+                    };
+                    foreach(var l in bill)
+                    {
+                        var line = new SparePartsBillLine()
+                        {
+                            Quantity = l.Quantity,
+                            SparePart = _unitOfWork.SparePartRepository.Find(x => x.Code == l.SparePartCode).FirstOrDefault(),
+                            Uom = string.IsNullOrEmpty(l.UomCode) ? SparePart?.PrimaryUom : _unitOfWork.UomRepository.Find(x => x.Code == l.UomCode).FirstOrDefault()
+                        };
+                        line.UnitPrice = l.UnitPrice.HasValue ? l.UnitPrice.Value : l.UnitPrice.HasValue ? l.UnitPrice.Value : FindSparePartUnitPrice(line.SparePart, line.Uom, b.Period);
+                        if (line?.Uom?.Id == line.SparePart?.PrimaryUom?.Id)
+                            line.UomConversionRate = null;
+                        else
+                            line.UomConversionRate = _unitOfWork.UomConversionRepository.FindUomConversionRate(line.Uom.Id, line.SparePart.PrimaryUom.Id, line.SparePart.Id);
+                        b.Lines.Add(line);
+                    }
+                    internalBills.Add(b);
+                }
+                progress.Report(50);
+                
+                foreach(var internalBill in internalBills)
+                {
+                    bool billLinesHasErrors = false;
+                    ModelState modelState =  _billValidator.Validate(internalBill);
+                    if (modelState.HasErrors)
+                    {
+                        stringBuilder.AppendLine(modelState.Error);
+                        continue;
+                    }
+                    foreach(var line in internalBill.Lines)
+                    {
+                        ModelState lineState = _lineValidator.Validate(line);
+                        if (lineState.HasErrors)
+                        {
+                            stringBuilder.AppendLine(lineState.Error);
+                            billLinesHasErrors = true;
+                            break;
+                        }
+                    }
+                    if (billLinesHasErrors)
+                    {
+                        billLinesHasErrors = false;
+                        continue;
+                    }
+                    validBills.Add(internalBill);
+                }
+                progress.Report(75);
+                _unitOfWork.SparePartsBillRepository.Add(validBills);
+                _unitOfWork.Complete();
+                progress.Report(100);
+                return stringBuilder.ToString();
+            });
+        }
+
         public BindingList<SparePartsBillHeaderViewModel> Headers { get; private set; } = new BindingList<SparePartsBillHeaderViewModel>();
         public BindingList<SparePartsBillLineViewModel> Lines { get; private set; } = new BindingList<SparePartsBillLineViewModel>();
         public List<SparePart> SpareParts { get; private set; } = new List<SparePart>();

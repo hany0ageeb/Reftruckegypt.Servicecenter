@@ -640,11 +640,23 @@
     <Compile Include="Views\ImportMappingViews\FuelConsumptionMappingView.Designer.cs">
       <DependentUpon>FuelConsumptionMappingView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ImportMappingViews\InternalRepairInvoiceMappingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ImportMappingViews\InternalRepairInvoiceMappingView.Designer.cs">
+      <DependentUpon>InternalRepairInvoiceMappingView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ImportMappingViews\PriceListMappingView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\ImportMappingViews\PriceListMappingView.Designer.cs">
       <DependentUpon>PriceListMappingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImportMappingViews\SparePartMappingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ImportMappingViews\SparePartMappingView.Designer.cs">
+      <DependentUpon>SparePartMappingView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ImportMappingViews\VehicleKilometerReadingMappingView.cs">
       <SubType>Form</SubType>
@@ -977,8 +989,14 @@
     <EmbeddedResource Include="Views\ImportMappingViews\FuelConsumptionMappingView.resx">
       <DependentUpon>FuelConsumptionMappingView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ImportMappingViews\InternalRepairInvoiceMappingView.resx">
+      <DependentUpon>InternalRepairInvoiceMappingView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ImportMappingViews\PriceListMappingView.resx">
       <DependentUpon>PriceListMappingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ImportMappingViews\SparePartMappingView.resx">
+      <DependentUpon>SparePartMappingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ImportMappingViews\VehicleKilometerReadingMappingView.resx">
       <DependentUpon>VehicleKilometerReadingMappingView.cs</DependentUpon>

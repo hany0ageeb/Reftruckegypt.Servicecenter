@@ -7,6 +7,7 @@ using Reftruckegypt.Servicecenter.ViewModels.FuelConsumptionViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleKilometerReadingViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViewModels;
 using Reftruckegypt.Servicecenter.ViewModels.VehicleViolationViewModels;
+using Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -202,7 +203,9 @@ namespace Reftruckegypt.Servicecenter.Views
             }
             finally
             {
-
+                toolStripProgressBar1.Visible = false;
+                toolStripProgressBar1.Value = 0;
+                Cursor = Cursors.Default;
             }
         }
         private async void vehicleKilmeterReadingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -248,6 +251,50 @@ namespace Reftruckegypt.Servicecenter.Views
                 Cursor = Cursors.Default;
             }
         }
+
+        private async void internalRepairInvoicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName);
+                    using(ImportMappingViews.InternalRepairInvoiceMappingView internalRepairInvoiceMappingView = new ImportMappingViews.InternalRepairInvoiceMappingView(headers, openFileDialog1.FileName))
+                    {
+                        if(internalRepairInvoiceMappingView.ShowDialog(this) == DialogResult.OK && internalRepairInvoiceMappingView.Mapper != null)
+                        {
+                            using (var scope = Program.ServiceProvider.CreateScope())
+                            {
+                                SparePartsBillSearchViewModel searchViewModel = scope.ServiceProvider.GetRequiredService<SparePartsBillSearchViewModel>();
+                                Progress<int> progress = new Progress<int>();
+                                toolStripProgressBar1.Visible = true;
+                                toolStripProgressBar1.Value = 0;
+                                progress.ProgressChanged += Progress_ProgressChanged;
+                                string errorMessage = await searchViewModel.ImportFromExcelFileAsync(internalRepairInvoiceMappingView.Mapper, progress);
+                                if (!string.IsNullOrEmpty(errorMessage))
+                                {
+                                    using (ImportErrorsView errorsView = new ImportErrorsView(errorMessage))
+                                    {
+                                        errorsView.ShowDialog(this);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                toolStripProgressBar1.Visible = false;
+                toolStripProgressBar1.Value = 0;
+                Cursor = Cursors.Default;
+            }
+        }
         private async void vehiclesViolationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -267,7 +314,7 @@ namespace Reftruckegypt.Servicecenter.Views
                                 toolStripProgressBar1.Visible = true;
                                 toolStripProgressBar1.Value = 0;
                                 progress.ProgressChanged += Progress_ProgressChanged;
-                                string errorMessage = await searchViewModel.ImportFromExcelFile(violationMappingView.Mapper, progress);
+                                string errorMessage = await searchViewModel.ImportFromExcelFileAsync(violationMappingView.Mapper, progress);
                                 if (!string.IsNullOrEmpty(errorMessage))
                                 {
                                     using (ImportErrorsView errorsView = new ImportErrorsView(errorMessage))
@@ -319,6 +366,51 @@ namespace Reftruckegypt.Servicecenter.Views
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                _ = MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                toolStripProgressBar1.Visible = false;
+                toolStripProgressBar1.Value = 0;
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private async void toolStripMenuItemImportSpareParts_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    List<string> headers = ReadFileColumnHeaders(openFileDialog1.FileName);
+                    using(ImportMappingViews.SparePartMappingView sparePartMappingView = new ImportMappingViews.SparePartMappingView(headers, openFileDialog1.FileName))
+                    {
+                        if(sparePartMappingView.ShowDialog(this) == DialogResult.OK && sparePartMappingView.Mapper != null)
+                        {
+                            using(var scope = Program.ServiceProvider.CreateScope())
+                            {
+                                var searchModel = scope.ServiceProvider.GetRequiredService<ViewModels.SparePartViewModels.SparePartSearchViewModel>();
+                                Progress<int> progress = new Progress<int>();
+                                toolStripProgressBar1.Visible = true;
+                                toolStripProgressBar1.Value = 0;
+                                progress.ProgressChanged += Progress_ProgressChanged;
+                                string errorMessage = await searchModel.ImportFromExcelAsync(sparePartMappingView.Mapper, progress);
+                                if (!string.IsNullOrEmpty(errorMessage))
+                                {
+                                    using (ImportErrorsView errorsView = new ImportErrorsView(errorMessage))
+                                    {
+                                        errorsView.ShowDialog(this);
+                                    }
+                                }
+                            }
+                            
                         }
                     }
                 }
@@ -434,6 +526,5 @@ namespace Reftruckegypt.Servicecenter.Views
             }
         }
 
-        
     }
 }

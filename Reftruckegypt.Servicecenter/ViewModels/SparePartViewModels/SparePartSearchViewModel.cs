@@ -164,5 +164,68 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartViewModels
         #endregion IDisposable
 
         public BindingList<SparePartViewModel> SpareParts { get; private set; } = new BindingList<SparePartViewModel>();
+
+        public async Task<string> ImportFromExcelAsync(Mapper mapper, IProgress<int> progress)
+        {
+            return await Task.Run<string>(() =>
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                List<SparePartViewModel> sparePartViewModels = mapper.Take<SparePartViewModel>().Select(r => r.Value).ToList();
+                List<SparePart> spareParts = new List<SparePart>();
+                int currentProgress = 0;
+                for(int index = 0; index < sparePartViewModels.Count; index++)
+                {
+                    if (string.IsNullOrEmpty(sparePartViewModels[index].Code))
+                    {
+                        stringBuilder.AppendLine($"Invalid Code At Row# {index + 2}");
+                        continue;
+                    }
+                    if (string.IsNullOrEmpty(sparePartViewModels[index].Name))
+                    {
+                        stringBuilder.AppendLine($"Invalid Name At Row# {index + 2}");
+                        continue;
+                    }
+                    if (string.IsNullOrEmpty(sparePartViewModels[index].UomCode))
+                    {
+                        stringBuilder.AppendLine($"Invalid Uom At Row# {index + 2}");
+                        continue;
+                    }
+                    string uomCode = sparePartViewModels[index].UomCode;
+                    SparePart sparePart = new SparePart()
+                    {
+                        Code = sparePartViewModels[index].Code,
+                        Name = sparePartViewModels[index].Name,
+                        PrimaryUom = _unitOfWork.UomRepository.Find(x=>x.Code == uomCode).FirstOrDefault()
+                    };
+                    ModelState modelState = _validator.Validate(sparePart);
+                    if (modelState.HasErrors)
+                    {
+                        stringBuilder.AppendLine($"Invalid Spare Part At Row# {index+2}: {modelState.Error}");
+                        continue;
+                    }
+                    if(spareParts.Any(x=>x.Code == sparePart.Code))
+                    {
+                        stringBuilder.AppendLine($"Duplicate Item Code  {sparePart.Code} At Row# {index + 2}");
+                        continue;
+                    }
+                    if (_unitOfWork.SparePartRepository.Exists(x => x.Code == sparePart.Code))
+                    {
+                        stringBuilder.AppendLine($"Duplicate Item Code {sparePart.Code} At Row# {index + 2}");
+                        continue;
+                    }
+                    spareParts.Add(sparePart);
+                    int p = (int)(index / sparePartViewModels.Count * 100.0);
+                    if (p != currentProgress)
+                    {
+                        currentProgress = p;
+                        progress.Report(currentProgress);
+                    }
+                }
+                _unitOfWork.SparePartRepository.Add(spareParts);
+                _unitOfWork.Complete();
+                progress.Report(100);
+                return stringBuilder.ToString();
+            });
+        }
     }
 }

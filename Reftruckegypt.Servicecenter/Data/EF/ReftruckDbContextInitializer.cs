@@ -32,9 +32,30 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             {
                 new Period()
                 {
-                    FromDate = new System.DateTime(2022, 8, 1,0,0,0),
-                    ToDate = new System.DateTime(2022, 8, 31,23,59,59),
-                    Name = "Aug-2022",
+                    FromDate = new System.DateTime(2022, 10, 30,0,0,0),
+                    ToDate = new System.DateTime(2022, 12, 31,23,59,59),
+                    Name = "2022",
+                    State = PeriodStates.OpenState
+                },
+                new Period()
+                {
+                    FromDate = new System.DateTime(2022, 08, 01,0,0,0),
+                    ToDate = new System.DateTime(2022, 08, 30,23,59,59),
+                    Name = "سولار 8",
+                    State = PeriodStates.OpenState
+                },
+                new Period()
+                {
+                    FromDate = new System.DateTime(2022, 09, 01,0,0,0),
+                    ToDate = new System.DateTime(2022, 09, 30,23,59,59),
+                    Name = "2021",
+                    State = PeriodStates.OpenState
+                },
+                new Period()
+                {
+                    FromDate = new System.DateTime(2022, 10, 01,0,0,0),
+                    ToDate = new System.DateTime(2022, 10, 29,23,59,59),
+                    Name = "10",
                     State = PeriodStates.OpenState
                 }
             };
@@ -106,37 +127,44 @@ namespace Reftruckegypt.Servicecenter.Data.EF
             {
                 new ExternalAutoRepairShop()
                 {
-                    Name = "المركز الهندسي",
+                    Name = "توكيل منصور شيفورليه ",
+                    Address = "أكتوبر ",
+                    Phone = "",
+                    IsEnabled = true
+                },
+                new ExternalAutoRepairShop()
+                {
+                    Name = "أولاد جاد ",
+                    Address = "عبده جاد العاشر من رمضان ",
+                    Phone = "",
+                    IsEnabled = true
+                },
+                new ExternalAutoRepairShop()
+                {
+                    Name = "التوكيل ",
                     Address = "العاشر",
                     Phone = "",
                     IsEnabled = true
                 },
                 new ExternalAutoRepairShop()
                 {
-                    Name = "المنصور للسيارات",
-                    Address = "الهرم",
-                    Phone = "",
-                    IsEnabled = true
-                },
-                new ExternalAutoRepairShop()
-                {
-                    Name = "بريدجستون",
+                    Name = "جريش للزجاج ",
                     Address = "العاشر",
                     Phone = "",
                     IsEnabled = true
                 },
                 new ExternalAutoRepairShop()
                 {
-                    Name = "محطة توتال",
-                    Address = "العاشر",
+                    Name = "بنزينه زيوت ",
+                    Address = "",
                     Phone = "",
                     IsEnabled = true
                 },
                 new ExternalAutoRepairShop()
                 {
-                    Name = "ورشة الأسطي عبد الله",
-                    Address = "العاشر",
-                    Phone = "",
+                    Name = "السوق المحلي العاشر ",
+                    Address="",
+                    Phone="",
                     IsEnabled = true
                 }
             };
@@ -205,169 +233,216 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                     Description = "الكلاركات",
                     IsChassisNumberRequired = false,
                     IsFuelCardRequired = false
+                },
+                new VehicleCategory()
+                {
+                    Name = "Microbus",
+                    Description = "ميكروباص",
+                    IsChassisNumberRequired = true,
+                    IsFuelCardRequired = true
                 }
             };
             VehicleModel[] vehicleModels = new VehicleModel[]
-           {
-                // Buses
-                new VehicleModel()
-                {
-                    // 0
-                    Name = "ميكروباص فوتون",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    // 1
-                    Name = "ميكروباص تويوتا",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    // 2
-                    Name = "أوتوبيس - شيفروليه - خلف",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    // 3
-                    Name = "أوتوبيس - شيفروليه - MCV",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                // Trucks
-                new VehicleModel()
-                {
-                    // 4
-                    Name = "شيفرليه  - جامبو 5000",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    // 5
-                    Name = "شيفرليه ديماكس",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    Name = "ديماكس دبل كابينة",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    Name = "متسوبيشى كانتر",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    Name = "شيفرليه  - جامبو 8000",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    Name = "مرسيدس شبل",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    Name = "نيسان دبل كابينة",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    Name = "مرسيدس فان",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    Name = "تويوتا فان",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                //Passengers
-                new VehicleModel()
-                {
-                    Name = "هيونداى فيرنا - مانوال",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[1]
-                },
-                new VehicleModel()
-                {
-                    Name = "اسكودا أوكتافيا",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[1]
-                },
-                new VehicleModel()
-                {
-                    Name = "شيفرليه أفيو",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[1]
-                },
-                new VehicleModel()
-                {
-                    Name = "هيونداى فيرنا - أوتوماتيك",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[1]
-                },new VehicleModel()
-                {
-                    Name = "هيونداى توسان",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[1]
-                },
-                new VehicleModel()
-                {
-                    Name = "نيسان صني  - N17 - أوتوماتيك",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[1]
-                },
-                new VehicleModel()
-                {
-                    Name = "Toyota",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[1]
-                },
-                new VehicleModel()
-                {
-                    Name = "MG5",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[1]
-                },
-                new VehicleModel()
-                {
-                    Name = "أوبل أستر",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[1]
-                },
-                //Liftfork
-                new VehicleModel()
-                {
-                    Name = "TCM",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    Name = "كاتربلر",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                },
-                new VehicleModel()
-                {
-                    Name = "كوماتسو",
-                    Description = "",
-                    DefaultFuelType = fuelTypes[0]
-                }
+            {
+                // Diesle 0 --- Gasoline 1
+               new VehicleModel()
+               {
+                   Name = "هيونداي فيرنا 2015",
+                   Description = "م/ملاك محسن ",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "هيونداى فيرنا - مانوال",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "أوتوبيس - شيفروليه - MCV",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "هيونداي ماتريكس ",
+                   Description = "أ.وجدي ",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "شيفرليه أفيو",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "اسكودا أوكتافيا",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "ميكروباص تويوتا",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "سبورتاج ",
+                   Description = "أ.ثروت ",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "تويوتا فان",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "هيونداى فيرنا - أوتوماتيك",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "أوبل أستر",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "شيفرليه  - جامبو 5000",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "نيسان دبل كابينة",
+                   Description = "",
+                   DefaultFuelType=fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "ديماكس دبل كابينة",
+                   Description = "",
+                   DefaultFuelType=fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = " v هيونداي ",
+                   Description = "أ.داوود",
+                   DefaultFuelType=fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "هيونداى توسان",
+                   Description = "",
+                   DefaultFuelType=fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "كوماتسو",
+                   Description = "",
+                   DefaultFuelType=fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "MG",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "مرسيدس فان",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "ميكروباص فوتون",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "متسوبيشى كانتر",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "FIAT Microbus",
+                   Description = "الصيانه الخارجيه ",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "مرسيدس شبل",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "TCM",
+                   Description = "",
+                   DefaultFuelType=fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "شيفرليه ديماكس",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "Toyota",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "ميتسوبيشي ملاكي ",
+                   Description = "أ/فيكتور ",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "fiat",
+                   Description = "مؤمن السباعي ",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "أوتوبيس - شيفروليه - خلف",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "نيسان صني  - N17 - أوتوماتيك",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[1]
+               },
+               new VehicleModel()
+               {
+                   Name = "مرسيدس قلاب  ",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "شيفرليه  - جامبو 8000",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               },
+               new VehicleModel()
+               {
+                   Name = "كاتربلر",
+                   Description = "",
+                   DefaultFuelType = fuelTypes[0]
+               }
             };
             // ...
             Vehicle[] vehicles = new Vehicle[]
@@ -837,18 +912,18 @@ namespace Reftruckegypt.Servicecenter.Data.EF
                 }
             };
             // ...
-            //context.Locations.AddRange(locations);
-            //context.VehicleCategories.AddRange(vehicleCategories);
-            //context.FuelTypes.AddRange(fuelTypes);
-            //context.VehicleModels.AddRange(vehicleModels);
-            //context.VehicelOvallStates.AddRange(overallStates);
-            //context.ExternalAutoRepairShops.AddRange(externalAutoRepairShops);
-            //context.Uoms.AddRange(uoms);
-            //context.ViolationTypes.AddRange(violationTypes);
+            context.Locations.AddRange(locations);
+            context.VehicleCategories.AddRange(vehicleCategories);
+            context.FuelTypes.AddRange(fuelTypes);
+            context.VehicleModels.AddRange(vehicleModels);
+            context.VehicelOvallStates.AddRange(overallStates);
+            context.ExternalAutoRepairShops.AddRange(externalAutoRepairShops);
+            context.Uoms.AddRange(uoms);
+            context.ViolationTypes.AddRange(violationTypes);
             //context.Vehicels.AddRange(vehicles);
             context.UserCommands.AddRange(userCommands);
             context.UserReports.AddRange(userReports);
-            //context.Periods.AddRange(periods);
+            context.Periods.AddRange(periods);
             //context.ExternalRepairBills.AddRange(externalRepairBills);
             // ........
             context.MalfunctionReasons.AddRange(malfunctionReasons);

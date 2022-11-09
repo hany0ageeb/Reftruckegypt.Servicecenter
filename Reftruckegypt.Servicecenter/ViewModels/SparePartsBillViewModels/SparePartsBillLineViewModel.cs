@@ -6,6 +6,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
 {
     public class SparePartsBillLineViewModel
     {
+        public SparePartsBillLineViewModel() { }
         public SparePartsBillLineViewModel(SparePartsBillLine line)
         {
             Id = line.Id;
@@ -47,7 +48,7 @@ namespace Reftruckegypt.Servicecenter.ViewModels.SparePartsBillViewModels
         [Column("Spare Part Name")]
         public string SparePartName { get; private set; }
         [Column("Unit Price")]
-        public decimal UnitPrice { get; private set; }
+        public decimal? UnitPrice { get; private set; }
         [Column("Quantity")]
         public decimal Quantity { get; private set; }
         [Column("Uom Code")]
